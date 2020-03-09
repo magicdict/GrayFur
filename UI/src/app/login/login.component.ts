@@ -12,7 +12,8 @@ export class LoginComponent {
 
   Start() {
     console.log("jump to status");
-    this.ge.Init();
+    this.ge.InitRole();
+    this.ge.InitGameStatus();
     this.router.navigateByUrl("scene");
   }
   Load() {

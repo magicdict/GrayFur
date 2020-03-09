@@ -20,8 +20,8 @@ export class StatusComponent implements OnInit{
   public c : character;
 
   Exit(){
-    console.log("jump to main")
-    this.router.navigateByUrl("login");
+    console.log("jump to scene")
+    this.router.navigateByUrl("scene");
   }
 
 }

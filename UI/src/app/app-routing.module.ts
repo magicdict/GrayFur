@@ -18,7 +18,7 @@ const routes: Routes = [
     path:'scene',
     component:SceneComponent
   },
-  { path: '', redirectTo: 'scene', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
