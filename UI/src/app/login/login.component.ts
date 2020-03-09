@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { GameEngine } from '../module/GameEngine.service';
 
 @Component({
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  constructor(private router: Router){
-    
-  }
+  constructor(private ge: GameEngine,
+    private router: Router,
+  ) { }
 
-  Start(){
-    console.log("jump to status")
+  Start() {
+    console.log("jump to status");
+    this.ge.Init();
     this.router.navigateByUrl("status");
   }
-
+  Load() {
+    this.ge.Load();
+  }
 }

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { StatusComponent } from './status/status.component';
+import { GameEngine } from './module/GameEngine.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { StatusComponent } from './status/status.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [GameEngine],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
