@@ -19,7 +19,7 @@ export class SceneComponent implements OnInit {
     this.c = this.ge.t3;
     this.scene = this.ge.getLinesBySceneIdx();
     this.lines = this.scene.Lines;
-    this.line = this.lines[this.ge.status.lineIdx];
+    this.line = this.lines[this.ge.status.lineIdx].split("@")[1]
     this.faceurl = this.lines[this.ge.status.lineIdx].split("@")[0]
   }
 
