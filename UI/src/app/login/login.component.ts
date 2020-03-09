@@ -13,7 +13,7 @@ export class LoginComponent {
   Start() {
     console.log("jump to status");
     this.ge.Init();
-    this.router.navigateByUrl("status");
+    this.router.navigateByUrl("scene");
   }
   Load() {
     this.ge.Load();

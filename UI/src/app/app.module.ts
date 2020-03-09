@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { StatusComponent } from './status/status.component';
 import { GameEngine } from './module/GameEngine.service';
+import { SceneComponent } from './scene/scene.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    SceneComponent,
     StatusComponent
   ],
   imports: [
