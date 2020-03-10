@@ -14,10 +14,14 @@ export class StatusComponent implements OnInit{
 
   ngOnInit(): void {
     this.c = this.ge.currentRole;
+    if (this.c instanceof doubleSoul){
+      this.d = this.c;
+    }
   }
 
   public c : character;
-
+  public d : doubleSoul;
+  
   Exit(){
     console.log("jump to scene")
     this.router.navigateByUrl("scene");

@@ -38,4 +38,14 @@ export class SceneComponent implements OnInit {
     if (idx === 2) this.ge.currentRole = this.ge.小舞;
     this.router.navigateByUrl("status");
   }
+
+  Fight(){
+    console.log("jump to fight")
+    this.router.navigateByUrl("fight");
+  }
+
+  Exit(){
+    console.log("jump to login")
+    this.router.navigateByUrl("login");
+  }
 }

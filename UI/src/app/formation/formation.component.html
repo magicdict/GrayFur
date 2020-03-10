@@ -1,36 +1,71 @@
-<div class="container" style="width: 320px;">
-    <!--前排-->
-    <div class="row">
-        <div class="col-3" style="padding:5px;text-align: center;">
-            <img src="/assets/character/唐三/头像.jpg" width="70px" height="70px">
-            唐三(唐门)
-        </div>
-        <div class="col-3" style="padding:5px">
-            <img src="/assets/character/唐三/头像.jpg" width="70px" height="70px">
-            唐三(唐门)
-        </div>
-        <div class="col-3" style="padding:5px">
-            <img src="/assets/character/唐三/头像.jpg" width="70px" height="70px">
-            长老(唐门)
-        </div>
-        <div class="col-3" style="padding:5px">
-            <img src="/assets/character/唐三/头像.jpg" width="70px" height="70px">
-            毕比东
-        </div>
-    </div>
+<div class="container" style="width: 320px;" *ngIf=(Enemy)>
     <!--后排-->
     <div class="row">
-        <div class="col-3" style="padding:5px">
-            <img src="/assets/character/唐三/头像.jpg" width="70px" height="70px">
+        <div class="col-3" style="padding:5px;height: 80px;">
+
         </div>
         <div class="col-3" style="padding:5px">
-            <img src="/assets/character/唐三/头像.jpg" width="70px" height="70px">
+        
         </div>
         <div class="col-3" style="padding:5px">
-            <img src="/assets/character/唐三/头像.jpg" width="70px" height="70px">
+        
         </div>
-        <div class="col-3" style="padding:5px">
-            <img src="/assets/character/唐三/头像.jpg" width="70px" height="70px">
+        <div class="col-3" style="padding:5px;">
+
         </div>
     </div>
+    <!--前排-->
+    <div class="row">
+        <div class="col-3" style="padding:5px;text-align: center; ">
+            <img src="/assets/character/比比东/头像.jpg" width="70px" height="70px">
+            <font color="white">比比东</font>
+        </div>
+        <div class="col-3" style="padding:5px;">
+
+        </div>
+        <div class="col-3" style="padding:5px;">
+
+        </div>
+        <div class="col-3" style="padding:5px">
+            <img src="/assets/character/菊花关/头像.jpg" width="70px" height="70px">
+            <font color="white">菊花关</font>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="width: 320px;" *ngIf=(!Enemy)>
+    <!--前排-->
+    <div class="row">
+        <div class="col-3" style="padding:5px;text-align: center; ">
+            <img src="/assets/character/唐门唐三/头像.jpg" width="70px" height="70px">
+            <font color="white">唐三(唐门)</font>
+        </div>
+        <div class="col-3" style="padding:5px;">
+
+        </div>
+        <div class="col-3" style="padding:5px;">
+
+        </div>
+        <div class="col-3" style="padding:5px">
+            <img src="/assets/character/唐三/头像.jpg" width="70px" height="70px">
+            <font color="white">唐三</font>
+        </div>
+    </div>
+        <!--后排-->
+        <div class="row">
+            <div class="col-3" style="padding:5px;">
+    
+            </div>
+            <div class="col-3" style="padding:5px">
+                <img src="/assets/character/唐门长老/头像.jpg" width="70px" height="70px">
+                <font color="white">长老(唐门)</font>
+            </div>
+            <div class="col-3" style="padding:5px">
+                <img src="/assets/character/小舞/头像.jpg" width="70px" height="70px">
+                <font color="white">小舞</font>
+            </div>
+            <div class="col-3" style="padding:5px;">
+    
+            </div>
+        </div>
 </div>

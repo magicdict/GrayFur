@@ -29,6 +29,6 @@ export class character {
 export class doubleSoul extends character
 {
     SecondSoul :string; //第二武魂
-    SecondSkill:string; //第二武魂魂技        
+    SecondSkill:string[]; //第二武魂魂技        
 }
 

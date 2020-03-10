@@ -1,26 +1,67 @@
 <div class="alert alert-primary" role="alert">
     状态
 </div>
-<div>
-    <img [src]="'/assets/character/' + c.Name + '/图鉴.jpg'" height="150px" width="100px"
-        style="margin:10px;float: left;" />
-    <h2>{{c.Name}}</h2>
-    生命:{{c.HP}} / {{ c.MaxHP }}<br />
-    魂力:{{c.MP}} / {{ c.MaxMP }}<br />
-    等级:{{c.LV}}({{c.Grade()}})<br />
-    武魂:{{c.Soul }}<br />
-    定位:{{c.TeamPosition}}<br />
-    <br />
-    {{c.Description}}
+<div class="row">
+    <div class="col-4">
+        <img [src]="'/assets/character/' + c.Name + '/图鉴.jpg'" height="150px" width="100px" />
+    </div>
+    <div class="col-8">
+        <div class="row">
+            <h2>{{c.Name}}</h2>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                生命:{{c.HP}} / {{ c.MaxHP }}     
+            </div>
+            <div class="col-6">
+                魂力:{{c.MP}} / {{ c.MaxMP }}     
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                等级:{{c.LV}}({{c.Grade()}})
+            </div>
+            <div class="col-6">
+                定位:{{c.TeamPosition}}
+            </div>
+        </div>
+        <br />    
+        {{c.Description}}
+    </div>
 </div>
 
 <hr />
-<ul>
-    <li *ngFor="let skill of c.Skill">
-        {{ skill }}
-    </li>
-</ul>
 
-<div style="margin-top: 10%;text-align: center;">
+<div *ngIf="d === undefined" style="margin-left: 10px;">
+    武魂:{{c.Soul}}<br />
+    <ul>
+        <li *ngFor="let skill of c.Skill">
+            {{ skill }}
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="d !== undefined">
+    <div class="row" style="margin-left: 10px;">
+        <div class="col-6">
+            武魂:{{c.Soul}}<br />
+            <ul>
+                <li *ngFor="let skill of c.Skill">
+                    {{ skill }}
+                </li>
+            </ul>
+        </div>
+        <div class="col-6">
+            双生武魂:{{d.SecondSoul}}<br />
+            <ul>
+                <li *ngFor="let skill of d.SecondSkill">
+                    {{ skill }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center;">
     <input type="button" class="btn btn-lg btn-danger" (click)="Exit()" value="退出" />
 </div>

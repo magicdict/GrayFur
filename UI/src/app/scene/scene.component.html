@@ -1,6 +1,8 @@
 <div [ngStyle]="{'background-image': 'url(/assets/scene/' + this.scene.Background + '.jpg)'}"
     style="position:relative;height:0;padding-bottom: 150%;width: 100%;background-size: contain;" (click)="Next()">
     <h6 style="color: aliceblue;">{{this.scene.Title}}</h6>
+    <button class="btn btn-lg btn-danger" (click)="Exit()" style="float: right;">退出</button>
+    <button class="btn btn-lg btn-primary" (click)="Fight()" style="float: right;">战斗</button>
     <button class="btn btn-lg btn-success" (click)="Status(2)" style="float: right;">小舞状态</button>
     <button class="btn btn-lg btn-success" (click)="Status(1)" style="float: right;">唐三状态</button>
     <div

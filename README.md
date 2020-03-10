@@ -17,4 +17,14 @@ http://datavisualization.club:8888/
 
 ## Demo画面
 
-![场景](Demo/场景20200309.jpg)
+### 场景
+
+<img src="Demo/场景20200310.jpg" width="50%">
+
+### 状态[双生武魂]
+
+<img src="Demo/状态20200310.jpg" width="50%">
+
+### 战斗
+
+<img src="Demo/战斗20200310.jpg" width="50%">
