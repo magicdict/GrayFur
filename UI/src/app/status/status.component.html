@@ -2,13 +2,14 @@
     状态
 </div>
 <div>
-    <img src="/assets/character/唐三.jpg" height="150px" width="100px" style="margin:10px;float: left;" />
+    <img [src]="'/assets/character/' + c.Name + '/图鉴.jpg'" height="150px" width="100px"
+        style="margin:10px;float: left;" />
     <h2>{{c.Name}}</h2>
-    HP:{{c.HP}} / {{ c.MaxHP }}<br />
-    MP:{{c.MP}} / {{ c.MaxMP }}<br />
-    LV:{{c.LV}}({{c.Grade()}})<br />
-    武魂：{{c.Soul}}<br />
-    定位：{{c.TeamPosition}}<br />
+    生命:{{c.HP}} / {{ c.MaxHP }}<br />
+    魂力:{{c.MP}} / {{ c.MaxMP }}<br />
+    等级:{{c.LV}}({{c.Grade()}})<br />
+    武魂:{{c.Soul }}<br />
+    定位:{{c.TeamPosition}}<br />
     <br />
     {{c.Description}}
 </div>

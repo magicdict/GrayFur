@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { character } from './character';
+import { character, doubleSoul } from './character';
 import { DataStorage } from './datastorage';
 import { SceneInfo, getLinesBySceneIdx } from './SceneInfo';
+import { CharacterCreator } from './CharacterCreator';
 
 
 @Injectable()
@@ -9,31 +10,20 @@ export class GameEngine {
     constructor(private localstorage: DataStorage) {
 
     }
-    public t3: character;
-    public status : GameStatus;
+    public 唐三: doubleSoul;
+    public 小舞: character;
+
+    public currentRole : character;
+
     public InitRole() {
-        this.t3 = new character("唐三");
-        this.t3.LV = 1;
-        this.t3.HP = 100;
-        this.t3.MaxHP = 100;
-        this.t3.MP = 20;
-        this.t3.MaxMP = 20;
-        this.t3.Soul = "蓝银皇";
-        this.t3.TeamPosition = "控制系";
-        this.t3.Description = "唐三前世为巴蜀唐门外门子弟，来到斗罗大陆后与伙伴们一起在异界大陆重新建立了唐门。"
-        this.t3.Skill = ["缠绕",
-            "寄生",
-            "蛛网束缚",
-            "蓝银囚笼/蓝银突刺阵",
-            "蓝银霸皇枪",
-            "虚无状态/暴杀八段摔",
-            "蓝银真身",
-            "蓝银虎鲸镜之灭/蓝银虎鲸魔之摄",
-            "蓝银天青龙之魂",
-            "海神神环"];
-        this.localstorage.Save("唐三", this.t3);
+        this.唐三 = CharacterCreator.唐三();
+        this.localstorage.Save("唐三", this.唐三);
+        this.小舞 = CharacterCreator.小舞();
+        this.localstorage.Save("小舞", this.小舞);
+        this.currentRole = this.唐三;
     }
 
+    public status : GameStatus;
     public InitGameStatus(){
         this.status = new GameStatus();
         this.status.lineIdx = 0;
@@ -42,8 +32,8 @@ export class GameEngine {
     }
 
     public Load() {
-        var t3 = this.localstorage.Load<character>("唐三");
-        if (t3 === null) {
+        var 唐三 = this.localstorage.Load<character>("唐三");
+        if (唐三 === null) {
             //没有存档，则新建一个存档
             this.InitRole();
         }

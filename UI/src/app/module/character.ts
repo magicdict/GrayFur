@@ -6,9 +6,9 @@ export class character {
     MaxMP: number;  //最大魔法值（魂力）
     MP: number;         //魔法值（魂力）
     Description:string; //简介
-    Soul :string;       //武魂（暂时不考虑双生武魂）
+    Soul :string;       //武魂
     TeamPosition:string;//团队角色
-    Skill:string[];     //魂技（暂时不考虑双生武魂）
+    Skill:string[];     //魂技
     Grade():string
     {
         if (this.LV <= 9) return "魂士";
@@ -20,9 +20,15 @@ export class character {
         if (this.LV <= 69) return "魂帝";
         if (this.LV <= 79) return "魂圣";
         if (this.LV <= 89) return "魂斗罗";
-        if (this.LV <= 99) return "封号斗罗";
+        if (this.LV <= 99) return "封号斗罗";   //这里可以再细分
         return "神";
     }
     constructor(theName: string) { this.Name = theName; }
+}
+
+export class doubleSoul extends character
+{
+    SecondSoul :string; //第二武魂
+    SecondSkill:string; //第二武魂魂技        
 }
 

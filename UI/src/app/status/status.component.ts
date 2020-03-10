@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { character } from '../module/character';
+import { character, doubleSoul } from '../module/character';
 import { GameEngine } from '../module/GameEngine.service';
 
 
@@ -13,9 +13,8 @@ export class StatusComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    this.c = this.ge.t3;
+    this.c = this.ge.currentRole;
   }
-
 
   public c : character;
 

@@ -4,9 +4,10 @@ import { GameEngine } from '../module/GameEngine.service';
 
 
 @Component({
-    templateUrl: './fight.component.html',
+    selector:'app-formation',
+    templateUrl: './formation.component.html',
 })
-export class FightComponent implements OnInit {
+export class FormationComponent implements OnInit {
     constructor(private ge: GameEngine,
         private router: Router,
     ) { }

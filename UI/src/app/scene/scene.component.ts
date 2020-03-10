@@ -16,7 +16,7 @@ export class SceneComponent implements OnInit {
   public c: character;
 
   ngOnInit(): void {
-    this.c = this.ge.t3;
+    this.c = this.ge.唐三;
     this.scene = this.ge.getLinesBySceneIdx();
     this.lines = this.scene.Lines;
     this.line = this.lines[this.ge.status.lineIdx].split("@")[1]
@@ -33,7 +33,9 @@ export class SceneComponent implements OnInit {
     this.line = this.lines[this.ge.status.lineIdx].split("@")[1];
     this.faceurl = this.lines[this.ge.status.lineIdx].split("@")[0]
   }
-  Status() {
+  Status(idx:number) {
+    if (idx === 1) this.ge.currentRole = this.ge.唐三;
+    if (idx === 2) this.ge.currentRole = this.ge.小舞;
     this.router.navigateByUrl("status");
   }
 }
