@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { character, doubleSoul } from './character';
 import { DataStorage } from './datastorage';
-import { SceneInfo, getLinesBySceneIdx } from './SceneInfo';
+import { SceneInfo, getSceneInfoByName } from './SceneInfo';
 import { CharacterCreator } from './CharacterCreator';
 
 
@@ -27,7 +27,7 @@ export class GameEngine {
     public InitGameStatus(){
         this.status = new GameStatus();
         this.status.lineIdx = 0;
-        this.status.sceneIdx = 0;
+        this.status.sceneName = "Scene0000";
         this.localstorage.Save("游戏状态", this.status);
     }
 
@@ -43,14 +43,10 @@ export class GameEngine {
             this.InitGameStatus();
         }
     }
-
-    //游戏状态控制
-    getLinesBySceneIdx(): SceneInfo{
-        return getLinesBySceneIdx(this.status.sceneIdx);
-    } 
 }
 
 export class GameStatus{
-    sceneIdx: number = 0;    //场景编号
+    sceneName: string = "Scene0000";    //场景编号
     lineIdx: number = 0;    //台词位置
+    fightname:string;
 }

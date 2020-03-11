@@ -8,7 +8,7 @@
 
 ## 开发环境
 
-- Angular 9.0.5
+- Angular 9.0.6
 - BootStrap 4.4.1
 
 ## 在线网址
@@ -27,4 +27,4 @@ http://datavisualization.club:8888/
 
 ### 战斗
 
-<img src="Demo/战斗20200310.jpg" width="50%">
+<img src="Demo/战斗20200311.jpg" width="50%">

@@ -1,11 +1,14 @@
-<div [ngStyle]="{'background-image': 'url(/assets/scene/唐门.jpg)'}"
+<div [ngStyle]="{'background-image': 'url(/assets/scene/战斗场地.jpg)'}"
     style="position:relative;height:0;padding-bottom: 150%;width: 100%;background-size: contain; ">
-    <app-formation [Enemy]="true" ></app-formation>
+    <h6 style="color: aliceblue;">{{this.ge.status.fightname}}</h6>
+    <button class="btn btn-lg btn-danger" (click)="Exit()" style="float: right;">退出</button>
+
+    <app-formation [Enemy]="true"></app-formation>
     <br />
     <app-formation [Enemy]="false"></app-formation>
     <div
         style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 100px;background-color: dodgerblue;opacity: 1;">
-        <img [src]="'/assets/character/小舞/头像.jpg'" height="100px" width="100px" style="float: left;"  />
+        <img [src]="'/assets/character/小舞/头像.jpg'" height="100px" width="100px" style="float: left;" />
         <h5 style="color: aliceblue;margin: 10px;">
             普通攻击<br />
             魂技<br />

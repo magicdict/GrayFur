@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { character } from '../module/character';
 import { GameEngine } from '../module/GameEngine.service';
-import { SceneInfo } from '../module/SceneInfo';
+import { SceneInfo, FightPrefix, ChangeScenePrefix, getSceneInfoByName } from '../module/SceneInfo';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class SceneComponent implements OnInit {
 
   ngOnInit(): void {
     this.c = this.ge.唐三;
-    this.scene = this.ge.getLinesBySceneIdx();
+    this.scene = getSceneInfoByName(this.ge.status.sceneName);
     this.lines = this.scene.Lines;
     this.line = this.lines[this.ge.status.lineIdx].split("@")[1]
     this.faceurl = this.lines[this.ge.status.lineIdx].split("@")[0]
@@ -30,8 +30,30 @@ export class SceneComponent implements OnInit {
   Next() {
     this.ge.status.lineIdx++;
     if (this.ge.status.lineIdx >= this.lines.length) return;
-    this.line = this.lines[this.ge.status.lineIdx].split("@")[1];
-    this.faceurl = this.lines[this.ge.status.lineIdx].split("@")[0]
+    let RawInfo = this.lines[this.ge.status.lineIdx];
+
+    //战斗
+    if(RawInfo.startsWith(FightPrefix)){
+      var fightname = RawInfo.substr(FightPrefix.length);
+      this.ge.status.fightname = fightname;
+      console.log("jump to fight" + fightname);
+      this.router.navigateByUrl("fight");
+    }
+
+    //转场
+    if(RawInfo.startsWith(ChangeScenePrefix)){
+      var NextScene = RawInfo.substr(ChangeScenePrefix.length);
+      console.log("Scene Chnage To:" + NextScene);
+      this.ge.status.sceneName = NextScene;
+      this.ge.status.lineIdx = 0;
+      this.scene = getSceneInfoByName(NextScene);
+      this.lines = this.scene.Lines;
+      RawInfo = this.lines[this.ge.status.lineIdx];
+    }
+
+    //台词
+    this.line = RawInfo.split("@")[1];
+    this.faceurl = RawInfo.split("@")[0]
   }
   Status(idx:number) {
     if (idx === 1) this.ge.currentRole = this.ge.唐三;
