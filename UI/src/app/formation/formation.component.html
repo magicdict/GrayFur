@@ -1,65 +1,38 @@
-<div class="container" style="width: 320px;" *ngIf=(Enemy)>
-    <!--后排-->
-    <div class="row">
-        <div class="col-3" style="padding:5px;height: 80px;">
-
+<div class="container" style="width: 320px;">
+    <div class="row" style="height: 100px;">
+        <div class="col-3" >
+            <app-formationItem  [Item]="R1C1">
+            </app-formationItem>
         </div>
-        <div class="col-3" style="padding:5px">
-        
+        <div class="col-3" >
+            <app-formationItem  [Item]="R1C2">
+            </app-formationItem>
         </div>
-        <div class="col-3" style="padding:5px">
-        
+        <div class="col-3" >
+            <app-formationItem  [Item]="R1C3">
+            </app-formationItem>
         </div>
-        <div class="col-3" style="padding:5px;">
-
-        </div>
-    </div>
-    <!--前排-->
-    <div class="row">
-        <div class="col-3" style="padding:5px;text-align: center; ">
-
-        </div>
-        <div class="col-3" style="padding:5px;">
-            <img src="/assets/character/赵无极/头像.jpg" width="70px" height="70px">
-            <font color="white">赵无极</font>
-        </div>
-        <div class="col-3" style="padding:5px;">
-
-        </div>
-        <div class="col-3" style="padding:5px">
+        <div class="col-3" >
+            <app-formationItem  [Item]="R1C4">
+            </app-formationItem>
         </div>
     </div>
-</div>
-
-<div class="container" style="width: 320px;" *ngIf=(!Enemy)>
-    <!--前排-->
-    <div class="row">
-        <div class="col-3" style="padding:5px;text-align: center; ">
+    <div class="row" style="height: 100px;">
+        <div class="col-3" >
+            <app-formationItem  [Item]="R2C1">
+            </app-formationItem>
         </div>
-        <div class="col-3" style="padding:5px;">
-            <img src="/assets/character/小舞/头像.jpg" width="70px" height="70px">
-            <font color="white">小舞</font>
+        <div class="col-3" >
+            <app-formationItem  [Item]="R2C2">
+            </app-formationItem>
         </div>
-        <div class="col-3" style="padding:5px;">
-            <img src="/assets/character/唐三/头像.jpg" width="70px" height="70px">
-            <font color="white">唐三</font>
+        <div class="col-3" >
+            <app-formationItem  [Item]="R2C3">
+            </app-formationItem>
         </div>
-        <div class="col-3" style="padding:5px">
+        <div class="col-3" >
+            <app-formationItem  [Item]="R2C4">
+            </app-formationItem>
         </div>
     </div>
-        <!--后排-->
-        <div class="row">
-            <div class="col-3" style="padding:5px;height: 80px;">
-    
-            </div>
-            <div class="col-3" style="padding:5px">
-                
-            </div>
-            <div class="col-3" style="padding:5px">
-
-            </div>
-            <div class="col-3" style="padding:5px;">
-    
-            </div>
-        </div>
 </div>

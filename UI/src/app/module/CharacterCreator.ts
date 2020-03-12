@@ -47,4 +47,25 @@ export class CharacterCreator {
             "柔骨兔真身"];
         return 小舞;
     }
+
+    public static 赵无极(): character {
+        let 赵无极 = new character("赵无极");
+        赵无极.LV = 65;
+        赵无极.HP = 1000;
+        赵无极.MaxHP = 1000;
+        赵无极.MP = 200;
+        赵无极.MaxMP = 200;
+        赵无极.Soul = "大力金刚熊";
+        赵无极.TeamPosition = "强攻系";
+        赵无极.Description = "人称不动明王，防御力惊人，曾经风靡一时的狠辣角色，后来到史莱克学院当老师。虽外表凶狠，但内心善良，且十分护短，非常喜爱史莱克七怪。"
+        赵无极.Skill = [
+            "不动明王身",
+            "大力金刚掌",
+            "重力增强",
+            "定位追踪",
+            "重力挤压",
+            "大力金刚吼",
+            "武魂真身"];
+        return 赵无极;
+    }
 }

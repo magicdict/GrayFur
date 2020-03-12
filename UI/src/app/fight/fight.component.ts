@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../module/GameEngine.service';
+import { character } from '../module/character';
+import { getBattleInfoByName } from '../module/BattleInfo';
+
 
 
 @Component({
@@ -11,12 +14,17 @@ export class FightComponent implements OnInit {
         private router: Router,
     ) { }
 
-    ngOnInit(): void {
+    Enemy: character[];
+    MyTeam: character[];
 
+    ngOnInit(): void {
+        let battleinfo = getBattleInfoByName(this.ge.status.fightname)
+        this.Enemy = battleinfo.Enemy.map(x=>this.ge.GetRoleByName(x));
+        this.MyTeam = battleinfo.MyTeam.map(x=>this.ge.GetRoleByName(x));
     }
-    Exit(){
+    Exit() {
         console.log("jump to scene");
         this.ge.status.lineIdx++;
         this.router.navigateByUrl("scene");
-      }
+    }
 }

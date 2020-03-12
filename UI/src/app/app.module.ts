@@ -9,6 +9,7 @@ import { GameEngine } from './module/GameEngine.service';
 import { SceneComponent } from './scene/scene.component';
 import { FormationComponent } from './formation/formation.component';
 import { FightComponent } from './fight/fight.component';
+import { FormationItemComponent } from './formation/formationItem.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FightComponent } from './fight/fight.component';
     SceneComponent,
     StatusComponent,
     FormationComponent,
+    FormationItemComponent,
     FightComponent
   ],
   imports: [

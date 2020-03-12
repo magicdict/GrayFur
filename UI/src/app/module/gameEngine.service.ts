@@ -12,19 +12,36 @@ export class GameEngine {
     }
     public 唐三: doubleSoul;
     public 小舞: character;
+    public 赵无极: character;
 
-    public currentRole : character;
+    public currentRole: character;
+
+    public GetRoleByName(name: string): character {
+        switch (name) {
+            case "唐三":
+                return this.唐三
+            case "小舞":
+                return this.小舞
+            case "赵无极":
+                return this.赵无极
+            default:
+                return undefined;
+        }
+    }
 
     public InitRole() {
         this.唐三 = CharacterCreator.唐三();
         this.localstorage.Save("唐三", this.唐三);
         this.小舞 = CharacterCreator.小舞();
         this.localstorage.Save("小舞", this.小舞);
+        this.赵无极 = CharacterCreator.赵无极();
+        this.localstorage.Save("赵无极", this.赵无极);
+
         this.currentRole = this.唐三;
     }
 
-    public status : GameStatus;
-    public InitGameStatus(){
+    public status: GameStatus;
+    public InitGameStatus() {
         this.status = new GameStatus();
         this.status.lineIdx = 0;
         this.status.sceneName = "Scene0000";
@@ -39,14 +56,14 @@ export class GameEngine {
         }
 
         var status = this.localstorage.Load<GameStatus>("游戏状态");
-        if (status === null){
+        if (status === null) {
             this.InitGameStatus();
         }
     }
 }
 
-export class GameStatus{
+export class GameStatus {
     sceneName: string = "Scene0000";    //场景编号
     lineIdx: number = 0;    //台词位置
-    fightname:string;
+    fightname: string;
 }
