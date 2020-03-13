@@ -18,7 +18,7 @@ export interface BattleInfo {
 
 export const Battle0001: BattleInfo = {
     Title: "史莱克学院赵无极",
-    Background: "史莱克学院",
+    Background: "战斗场地",
     Enemy: [undefined, undefined, undefined, "小舞",
         undefined, "赵无极", undefined, undefined],
     MyTeam: [undefined, "唐三", "小舞", undefined,

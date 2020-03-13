@@ -17,6 +17,10 @@ http://datavisualization.club:8888/
 
 ## Demo画面
 
+### 效果
+
+<img src="Demo/Demo.gif" width="50%">
+
 ### 场景
 
 <img src="Demo/场景20200310.jpg" width="50%">

@@ -1,3 +1,5 @@
+import { SkillInfo } from './SkillInfo';
+
 export class character {
     Name: string;   //姓名
     LV: number;      //等级
@@ -8,7 +10,8 @@ export class character {
     Description: string; //简介
     Soul: string;       //武魂
     TeamPosition: string;//团队角色
-    Skill: string[];     //魂技
+    Skill: string[];        //魂技
+    Skill_A:SkillInfo[];    //魂技
     Grade(): string {
         if (this.LV <= 9) return "魂士";
         if (this.LV <= 19) return "魂师";

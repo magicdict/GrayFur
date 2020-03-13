@@ -1,4 +1,5 @@
 import { character, doubleSoul } from './character';
+import { SkillCreator } from './SkillCreator';
 
 export class CharacterCreator {
     public static 唐三(): doubleSoul {
@@ -22,8 +23,17 @@ export class CharacterCreator {
             "蓝银虎鲸镜之灭/蓝银虎鲸魔之摄",
             "蓝银天青龙之魂",
             "海神神环"];
-        唐三.SecondSkill = ["泰坦之锤/大地之力", 
-                           "大地蚁皇斩","器魂真身","千钧壁垒"]
+        唐三.Skill_A = [
+            SkillCreator.缠绕(),
+            SkillCreator.寄生(),
+            SkillCreator.蛛网束缚_单体(),
+            SkillCreator.蛛网束缚_群体(),
+            SkillCreator.蓝银囚笼(),
+            SkillCreator.蓝银突刺阵(),
+            SkillCreator.蓝银霸王枪(),
+        ];
+        唐三.SecondSkill = ["泰坦之锤/大地之力",
+            "大地蚁皇斩", "器魂真身", "千钧壁垒"]
 
         return 唐三;
     }
@@ -45,6 +55,10 @@ export class CharacterCreator {
             "柔骨锁",
             "虚无状态/暴杀八段摔",
             "柔骨兔真身"];
+        小舞.Skill_A = [
+            SkillCreator.腰弓(),
+            SkillCreator.魅惑(),
+        ]
         return 小舞;
     }
 
@@ -66,6 +80,9 @@ export class CharacterCreator {
             "重力挤压",
             "大力金刚吼",
             "武魂真身"];
+        赵无极.Skill_A = [
+            SkillCreator.不动明王身(),
+        ];
         return 赵无极;
     }
 }

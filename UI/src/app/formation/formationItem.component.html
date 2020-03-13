@@ -1,4 +1,10 @@
-<div style="padding:2px;width: 70px;" *ngIf="Item !==undefined">
+<div style="position:relative;padding:2px;width: 70px;" *ngIf="Item !==undefined">
+    <div style="position: absolute;top: 0px;left: 0px;z-index: 998;width:70px;background-color:royalblue ;opacity: 1;">
+        <font color="white">{{Item.Name}}{{Item.Grade()}}</font>
+    </div>
+    <div style="position: absolute;top: 0px;left: 60px;z-index: 999;width:16px;height:16px;background-color:greenyellow ;opacity: 1;">
+        <font color="black">毒</font>
+    </div>
     <img [src]="'/assets/character/' + Item.Name + '/头像.jpg'" width="70px" height="70px">
     <div class="progress">
         <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': (Item.HP * 100/ Item.MaxHP) + '%'}">
@@ -9,5 +15,4 @@
             [ngStyle]="{'width': (Item.MP * 100/ Item.MaxMP) + '%'}">
             {{Item.MP + "/" + Item.MaxMP}}</div>
     </div>
-    <!-- <font color="white">{{Item.Name}}LV:{{Item.LV}}({{Item.Grade()}})</font> -->
 </div>
