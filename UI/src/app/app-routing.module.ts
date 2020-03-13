@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { StatusComponent } from './status/status.component';
 import { SceneComponent } from './scene/scene.component';
 import { FightComponent } from './fight/fight.component';
+import { MiniGameComponent } from './miniGame/miniGame.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path:'fight',
     component:FightComponent
+  },
+  {
+    path:'minigame',
+    component:MiniGameComponent
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

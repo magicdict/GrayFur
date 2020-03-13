@@ -11,6 +11,9 @@ import { FormationComponent } from './formation/formation.component';
 import { FightComponent } from './fight/fight.component';
 import { FormationItemComponent } from './formation/formationItem.component';
 
+import { MiniGameComponent } from './miniGame/miniGame.component';
+import { GameCellComponent } from './miniGame/GameCell.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +22,9 @@ import { FormationItemComponent } from './formation/formationItem.component';
     StatusComponent,
     FormationComponent,
     FormationItemComponent,
-    FightComponent
+    FightComponent,
+    MiniGameComponent,
+    GameCellComponent
   ],
   imports: [
     BrowserModule,
