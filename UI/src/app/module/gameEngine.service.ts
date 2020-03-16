@@ -60,10 +60,20 @@ export class GameEngine {
             this.InitGameStatus();
         }
     }
+
+    public fightStatus: FightStatus;
+    public InitFightStatus() {
+        this.fightStatus = new FightStatus();
+        this.fightStatus.currentActionCharater = this.小舞;
+    }
 }
 
 export class GameStatus {
     sceneName: string = "Scene0000";    //场景编号
     lineIdx: number = 0;    //台词位置
     fightname: string;
+}
+
+export class FightStatus {
+    currentActionCharater: character;
 }

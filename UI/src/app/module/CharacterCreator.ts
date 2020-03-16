@@ -9,6 +9,8 @@ export class CharacterCreator {
         唐三.MaxHP = 100;
         唐三.MP = 20;
         唐三.MaxMP = 20;
+        唐三.BaseAct = 10;
+        唐三.BaseDef = 10;
         唐三.Soul = "蓝银皇";
         唐三.SecondSoul = "昊天锤";
         唐三.TeamPosition = "控制系";
@@ -45,6 +47,8 @@ export class CharacterCreator {
         小舞.MaxHP = 100;
         小舞.MP = 20;
         小舞.MaxMP = 20;
+        小舞.BaseAct = 10;
+        小舞.BaseDef = 10;
         小舞.Soul = "柔骨兔";
         小舞.TeamPosition = "敏攻系";
         小舞.Description = "小舞的名字是由其父“小五”得来，因为她是家族中第五个出生的，小舞的爸爸懒得取名，就把名字换了一个字。“小舞”这个名字也是由此而来的。"
@@ -69,6 +73,8 @@ export class CharacterCreator {
         赵无极.MaxHP = 1000;
         赵无极.MP = 200;
         赵无极.MaxMP = 200;
+        赵无极.BaseAct = 100;
+        赵无极.BaseDef = 100;
         赵无极.Soul = "大力金刚熊";
         赵无极.TeamPosition = "强攻系";
         赵无极.Description = "人称不动明王，防御力惊人，曾经风靡一时的狠辣角色，后来到史莱克学院当老师。虽外表凶狠，但内心善良，且十分护短，非常喜爱史莱克七怪。"

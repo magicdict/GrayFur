@@ -6,11 +6,48 @@
     <app-formation [Fighterlist]="Enemy" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
     <br />
     <app-formation [Fighterlist]="MyTeam" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
-    <div
+
+
+    <div class="container" *ngIf="SkillPickStatus"
+        style="position: absolute;z-index: 1000; bottom: 0px;width: 100%;height: 100px;background-color: dodgerblue;opacity: 1;">
+        <button class="btn btn-danger" (click)="ReturnFormSkillPicker()" style="float: right;">返回</button>
+        <ul *ngFor="let skill of ge.fightStatus.currentActionCharater.Skill_A"  style="padding: 0px;">
+            <li style="padding: 0px;">{{skill.Name}} - {{skill.Description}}  
+                <button class="btn btn-sm btn-success" (click)="ExcuteSkill(skill)">发动</button>  
+            </li>
+        </ul>
+    </div>
+    <div class="container"
         style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 100px;background-color: dodgerblue;opacity: 1;">
-        <img [src]="'/assets/character/小舞/头像.jpg'" height="100px" width="100px" style="float: left;" />
-        <h5 style="color: aliceblue;margin: 0px;">{{this.Message}}</h5>
-        <button class="btn btn-lg btn-danger" (click)="Attack()" >普通攻击</button><br />
-        <button class="btn btn-lg btn-danger" (click)="SkillTest()" >魂技测试</button><br />
+        <div class="row">
+            <div class="col-4" style="padding:0px;">
+                <img [src]="'/assets/character/小舞/头像.jpg'" height="100px" width="100px" />
+            </div>
+            <div class="col-5" style="padding:0px">
+                <h5 style="color: aliceblue;margin: 0px;">{{this.Message}}</h5>
+                <div class="container">
+                    <div class="row" style="margin: 5px;">
+                        <button class="btn btn-danger" (click)="Attack()">普攻</button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-danger" (click)="Skill()">魂技</button>
+                    </div>
+                    <div class="row" style="margin: 5px;">
+                        <button class="btn btn-danger" (click)="Tool()">道具</button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-danger" (click)="Defence()">防御</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3" style="padding:0px;">
+                命&nbsp;{{this.ge.fightStatus.currentActionCharater.HP}} /
+                {{this.ge.fightStatus.currentActionCharater.MaxHP}} <br />
+                魂&nbsp;{{this.ge.fightStatus.currentActionCharater.MP}} /
+                {{this.ge.fightStatus.currentActionCharater.MaxMP}} <br />
+                攻&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeAct}} <br />
+                防&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeDef}} <br />
+                中毒&nbsp;麻痹
+            </div>
+
+        </div>
     </div>
 </div>
