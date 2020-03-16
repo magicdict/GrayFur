@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../module/GameEngine.service';
 import { character } from '../module/character';
+
 
 
 @Component({
@@ -15,6 +16,10 @@ export class FormationItemComponent implements OnInit {
 
     @Input() Item: character;
 
+    @Output() ItemClickedEmit: EventEmitter<character> = new EventEmitter();
+    ItemClicked() {
+        this.ItemClickedEmit.emit(this.Item);
+    }
     ngOnInit(): void {
 
     }

@@ -18,7 +18,7 @@ export class GameCellComponent {
         switch (this.Status) {
             case MiniGameCardStatus.Hide:
                 this.Status = MiniGameCardStatus.Show;
-                setTimeout(() => { this.cellClicked.emit(this); }, 1000);
+                setTimeout(() => { this.cellClicked.emit(this); }, 300);
                 break;
             default:
                 break;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../module/GameEngine.service';
 import { character } from '../module/character';
@@ -15,6 +15,8 @@ export class FormationComponent implements OnInit {
 
     @Input() Fighterlist: character[];
 
+
+
     //Row1
     R1C1: character = undefined;
     R1C2: character = undefined;
@@ -25,6 +27,11 @@ export class FormationComponent implements OnInit {
     R2C2: character = undefined;
     R2C3: character = undefined;
     R2C4: character = undefined;
+
+    @Output() ItemClickedEmit: EventEmitter<character> = new EventEmitter();
+    ItemClicked(clickedItem: character) {
+        this.ItemClickedEmit.emit(clickedItem);
+    }
 
     ngOnInit(): void {
         this.R1C1 = this.Fighterlist[0];

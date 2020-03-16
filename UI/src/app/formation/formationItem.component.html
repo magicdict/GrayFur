@@ -1,4 +1,4 @@
-<div style="position:relative;padding:2px;width: 70px;" *ngIf="Item !==undefined">
+<div style="position:relative;padding:2px;width: 70px;" *ngIf="Item !==undefined" (click)="ItemClicked()">
     <div style="position: absolute;top: 0px;left: 0px;z-index: 998;width:70px;background-color:royalblue ;opacity: 1;">
         <font color="white">{{Item.Name}}{{Item.Grade()}}</font>
     </div>

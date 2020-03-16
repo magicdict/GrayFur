@@ -16,21 +16,39 @@ export class FightComponent implements OnInit {
 
     Enemy: character[];
     MyTeam: character[];
-    Battle:BattleInfo;
-
+    Battle: BattleInfo;
+    Message: string = "进入战场";
     ngOnInit(): void {
         this.Battle = getBattleInfoByName(this.ge.status.fightname);
-        this.Enemy = this.Battle.Enemy.map(x=>this.ge.GetRoleByName(x));
-        this.MyTeam = this.Battle.MyTeam.map(x=>this.ge.GetRoleByName(x));
+        this.Enemy = this.Battle.Enemy.map(x => this.ge.GetRoleByName(x));
+        this.MyTeam = this.Battle.MyTeam.map(x => this.ge.GetRoleByName(x));
     }
+
+    ItemClicked(clickedItem: character) {
+        //对象目标选择
+
+    }
+
+    Attack() {
+        console.log("普通攻击");
+        this.Message = "请选择一个攻击目标";
+        this.ItemClicked = (clickedItem: character) => {
+            clickedItem.HP -= 10;
+        }
+    }
+
     Exit() {
         console.log("jump to scene");
         this.ge.status.lineIdx++;
         this.router.navigateByUrl("scene");
     }
 
-    SkillTest(){
+    SkillTest() {
         //魂技测试
-        this.ge.小舞.Skill_A[0].Excute(this.ge.赵无极);
+        this.Message = "请选择一个攻击目标";
+        this.ItemClicked = (clickedItem: character) => {
+            this.ge.小舞.Skill_A[0].Excute(clickedItem);
+        }
+        
     }
 }
