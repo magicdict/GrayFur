@@ -23,7 +23,8 @@ export class MiniGameComponent implements OnInit {
     //2维数组
     PullzeArray: My2DArray<string> = new My2DArray<string>(6, 6, "唐三");
     ClearCnt = 0;
-
+    //使用步数
+    StepUsage = 0;
     ngOnInit(): void {
         let Names = ["唐三","小舞","比比东","赵无极","菊花关","唐门唐三"]
         let AllNames = new Array();
@@ -57,6 +58,7 @@ export class MiniGameComponent implements OnInit {
     
 
     CellClicker(value:GameCellComponent) {
+        this.StepUsage ++;
         if (this.firstCellRef === undefined && this.secondCellRef === undefined) {
             //两个都不存在的 
             this.firstCellRef = value;
