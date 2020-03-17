@@ -17,10 +17,10 @@ export class SceneComponent implements OnInit {
 
   ngOnInit(): void {
     this.c = this.ge.唐三;
-    this.scene = getSceneInfoByName(this.ge.status.sceneName);
+    this.scene = getSceneInfoByName(this.ge.gamestatus.sceneName);
     this.lines = this.scene.Lines;
-    this.line = this.lines[this.ge.status.lineIdx].split("@")[1]
-    this.faceurl = this.lines[this.ge.status.lineIdx].split("@")[0]
+    this.line = this.lines[this.ge.gamestatus.lineIdx].split("@")[1]
+    this.faceurl = this.lines[this.ge.gamestatus.lineIdx].split("@")[0]
   }
 
   scene: SceneInfo;
@@ -28,14 +28,14 @@ export class SceneComponent implements OnInit {
   line: string;
   faceurl: string;
   Next() {
-    this.ge.status.lineIdx++;
-    if (this.ge.status.lineIdx >= this.lines.length) return;
-    let RawInfo = this.lines[this.ge.status.lineIdx];
+    this.ge.gamestatus.lineIdx++;
+    if (this.ge.gamestatus.lineIdx >= this.lines.length) return;
+    let RawInfo = this.lines[this.ge.gamestatus.lineIdx];
 
     //战斗
     if(RawInfo.startsWith(FightPrefix)){
       var fightname = RawInfo.substr(FightPrefix.length);
-      this.ge.status.fightname = fightname;
+      this.ge.gamestatus.fightname = fightname;
       console.log("jump to fight" + fightname);
       this.router.navigateByUrl("fight");
     }
@@ -44,11 +44,11 @@ export class SceneComponent implements OnInit {
     if(RawInfo.startsWith(ChangeScenePrefix)){
       var NextScene = RawInfo.substr(ChangeScenePrefix.length);
       console.log("Scene Chnage To:" + NextScene);
-      this.ge.status.sceneName = NextScene;
-      this.ge.status.lineIdx = 0;
+      this.ge.gamestatus.sceneName = NextScene;
+      this.ge.gamestatus.lineIdx = 0;
       this.scene = getSceneInfoByName(NextScene);
       this.lines = this.scene.Lines;
-      RawInfo = this.lines[this.ge.status.lineIdx];
+      RawInfo = this.lines[this.ge.gamestatus.lineIdx];
     }
 
     //台词
@@ -61,13 +61,9 @@ export class SceneComponent implements OnInit {
     this.router.navigateByUrl("status");
   }
 
-  Fight(){
-    console.log("jump to fight")
-    this.router.navigateByUrl("fight");
-  }
-
   Exit(){
     console.log("jump to login")
+    this.ge.Save();
     this.router.navigateByUrl("login");
   }
 }

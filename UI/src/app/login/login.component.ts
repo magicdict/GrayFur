@@ -22,5 +22,6 @@ export class LoginComponent {
   }
   Load() {
     this.ge.Load();
+    this.router.navigateByUrl("scene");
   }
 }

@@ -11,12 +11,15 @@ export class character {
 
     BaseAct: number;     //基础攻击力
     BaseDef: number;     //基础防御力
+    Speed:number;                   //速度：出手顺序       
 
-            
-    IsDefStatus: boolean;    //是否为防御状态
-    DefStatusPlus: number = 0.5;  //防御状态下防御力加成    
+    //战斗状态下使用属性
+    IsDefStatus: boolean;           //是否为防御状态
+    DefStatusPlus: number = 0.5;    //防御状态下防御力加成    
+    Factor: number = 1;             //因子：3成功力的某个角色
+    IsMyTeam:boolean;               //角色在战场上是否为我方角色  
 
-    Factor: number = 1;  //因子：3成功力的某个角色
+
 
     //实时攻击力
     get RealTimeAct(): number {

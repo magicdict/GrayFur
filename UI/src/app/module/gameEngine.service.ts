@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { character, doubleSoul } from './character';
 import { DataStorage } from './datastorage';
-import { SceneInfo, getSceneInfoByName } from './SceneInfo';
 import { CharacterCreator } from './CharacterCreator';
+import { BattleInfo, getBattleInfoByName } from './BattleInfo';
+import { FightStatus } from './FightStatus';
 
 
 @Injectable()
@@ -40,31 +41,37 @@ export class GameEngine {
         this.currentRole = this.唐三;
     }
 
-    public status: GameStatus;
+    public gamestatus: GameStatus;
     public InitGameStatus() {
-        this.status = new GameStatus();
-        this.status.lineIdx = 0;
-        this.status.sceneName = "Scene0000";
-        this.localstorage.Save("游戏状态", this.status);
+        this.gamestatus = new GameStatus();
+        this.gamestatus.lineIdx = 0;
+        this.gamestatus.sceneName = "Scene0000";
+        this.localstorage.Save("游戏状态", this.gamestatus);
     }
 
     public Load() {
-        var 唐三 = this.localstorage.Load<character>("唐三");
-        if (唐三 === null) {
-            //没有存档，则新建一个存档
-            this.InitRole();
-        }
-
-        var status = this.localstorage.Load<GameStatus>("游戏状态");
-        if (status === null) {
+        this.gamestatus = this.localstorage.Load<GameStatus>("游戏状态");
+        if (this.gamestatus === null) {
             this.InitGameStatus();
+            this.InitRole();
+        } else {
+            this.唐三 = this.localstorage.Load<doubleSoul>("唐三");
+            this.小舞 = this.localstorage.Load<character>("小舞");
+            this.赵无极 = this.localstorage.Load<character>("赵无极");
         }
+    }
+    public Save() {
+        this.localstorage.Save("唐三", this.唐三);
+        this.localstorage.Save("小舞", this.小舞);
+        this.localstorage.Save("赵无极", this.赵无极);
+        this.localstorage.Save("游戏状态", this.gamestatus);
     }
 
     public fightStatus: FightStatus;
     public InitFightStatus() {
-        this.fightStatus = new FightStatus();
-        this.fightStatus.currentActionCharater = this.小舞;
+        let battleinfo = getBattleInfoByName(this.gamestatus.fightname);
+        this.fightStatus = new FightStatus(battleinfo, this);
+        this.fightStatus.NewTurn();
     }
 }
 
@@ -72,8 +79,4 @@ export class GameStatus {
     sceneName: string = "Scene0000";    //场景编号
     lineIdx: number = 0;    //台词位置
     fightname: string;
-}
-
-export class FightStatus {
-    currentActionCharater: character;
 }
