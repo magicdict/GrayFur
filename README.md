@@ -31,7 +31,7 @@ http://datavisualization.club:8888/
 
 ### 战斗
 
-<img src="Demo/战斗20200312.jpg" width="50%">
+<img src="Demo/战斗20200317.jpg" width="50%">
 
 ### 记忆力游戏
 

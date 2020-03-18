@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../module/GameEngine.service';
-import { character } from '../module/character';
-import { SkillInfo, enmRange, enmDirect } from '../module/SkillInfo';
+import { character, characterStatus } from '../Modal/character';
+import { SkillInfo, enmRange, enmDirect } from '../Modal/SkillInfo';
 
 
 
@@ -48,7 +48,7 @@ export class FightComponent implements OnInit {
     }
 
     Skill() {
-        //魂技测试
+        //魂技
         this.SkillPickStatus = true;
         this.Message = "请选择一个魂技";
     }
@@ -131,13 +131,24 @@ export class FightComponent implements OnInit {
     //防御
     Defence() {
         this.ge.fightStatus.currentActionCharater.IsDefStatus = true;
+        this.ge.fightStatus.ActionDone();
     }
 
-    //测试用：模拟胜利
+    //测试用:模拟胜利
     Exit() {
         console.log("jump to scene");
         this.ge.gamestatus.lineIdx++;
         this.router.navigateByUrl("scene");
+    }
+    //测试用:状态的改变
+    SkillTest(){
+        console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
+        this.ge.fightStatus.currentActionCharater.appendStatus([characterStatus.中毒,3]);
+        console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
+        this.ge.fightStatus.currentActionCharater.appendStatus([characterStatus.中毒,4]);
+        console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
+        this.ge.fightStatus.currentActionCharater.removeStatus(characterStatus.中毒);
+        console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
     }
 
 }

@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { character, doubleSoul } from './character';
-import { DataStorage } from './datastorage';
+import { character, doubleSoul } from '../Modal/character';
+import { DataStorage } from '../Lib/datastorage';
 import { CharacterCreator } from './CharacterCreator';
-import { BattleInfo, getBattleInfoByName } from './BattleInfo';
+import { getBattleInfoByName } from '../Modal/BattleInfo';
 import { FightStatus } from './FightStatus';
 
 

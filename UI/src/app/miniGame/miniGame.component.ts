@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { My2DArray } from '../module/My2DArray';
+import { My2DArray } from '../Lib/My2DArray';
 import { GameCellComponent } from './GameCell.component';
-import { Random } from '../module/Random';
+import { Random } from '../Lib/Random';
 import { Router } from '@angular/router';
 
 

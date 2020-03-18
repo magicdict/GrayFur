@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { character, doubleSoul } from '../module/character';
+import { character, doubleSoul } from '../Modal/character';
 import { GameEngine } from '../module/GameEngine.service';
 
 

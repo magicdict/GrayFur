@@ -1,4 +1,4 @@
-import { character, doubleSoul } from './character';
+import { character, doubleSoul } from '../Modal/character';
 import { SkillCreator } from './SkillCreator';
 
 export class CharacterCreator {
@@ -92,6 +92,16 @@ export class CharacterCreator {
         赵无极.Skill_A = [
             SkillCreator.不动明王身(),
         ];
+        赵无极.AI = (role,status) => {
+            //初级阶段,对前排的一个活人进行普通攻击
+            status.MyTeam.some(element => {
+                if (element !== undefined && element.HP > 0) {
+                    element.HP -= status.NornamAct(role, element);
+                    if (element.HP <= 0) element.HP = 0;
+                    return true;
+                }
+            });
+        }
         return 赵无极;
     }
 }

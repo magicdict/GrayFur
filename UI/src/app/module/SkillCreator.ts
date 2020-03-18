@@ -1,4 +1,4 @@
-import { SkillInfo, BlockSkillInfo, DefenceSkillInfo,enmRange, enmDirect, enmSkillType, AttactSkillInfo } from './SkillInfo';
+import { SkillInfo, BlockSkillInfo, DefenceSkillInfo,enmRange, enmDirect, enmSkillType, AttactSkillInfo } from '../Modal/SkillInfo';
 
 export class SkillCreator {
     //唐三

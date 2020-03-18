@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../module/GameEngine.service';
-import { character } from '../module/character';
+import { character } from '../Modal/character';
 
 
 @Component({

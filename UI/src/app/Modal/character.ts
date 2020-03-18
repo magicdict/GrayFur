@@ -1,4 +1,5 @@
 import { SkillInfo } from './SkillInfo';
+import { FightStatus } from '../module/FightStatus';
 
 export class character {
     Name: string;   //姓名
@@ -11,14 +12,30 @@ export class character {
 
     BaseAct: number;     //基础攻击力
     BaseDef: number;     //基础防御力
-    Speed:number;                   //速度：出手顺序       
+    Speed: number;                   //速度：出手顺序       
 
     //战斗状态下使用属性
     IsDefStatus: boolean;           //是否为防御状态
     DefStatusPlus: number = 0.5;    //防御状态下防御力加成    
     Factor: number = 1;             //因子：3成功力的某个角色
-    IsMyTeam:boolean;               //角色在战场上是否为我方角色  
+    IsMyTeam: boolean;               //角色在战场上是否为我方角色  
+    Status: Array<[characterStatus, number]>;           //状态
 
+    appendStatus(StatusWithTurn: [characterStatus, number]) {
+        let t = this.Status.find(x => x[0] === StatusWithTurn[0])
+        if (t === undefined) {
+            //不存在的情况
+            this.Status.push(StatusWithTurn);
+        } else {
+            StatusWithTurn[1] += t[1];
+            this.Status = this.Status.filter(x => x[0] !== StatusWithTurn[0]);
+            this.Status.push(StatusWithTurn);
+        }
+    }
+
+    removeStatus(status: characterStatus) {
+        this.Status = this.Status.filter(x => x[0] !== status);
+    }
 
 
     //实时攻击力
@@ -31,6 +48,8 @@ export class character {
         if (this.IsDefStatus) def += this.BaseDef * this.DefStatusPlus;
         return def;
     }
+    //AI能力
+    AI: (role: character, fightstatus: FightStatus) => void = undefined;
 
     Description: string; //简介
     Soul: string;       //武魂
@@ -53,6 +72,16 @@ export class character {
         if (this.LV == 100) return "成神";
     }
     constructor(theName: string) { this.Name = theName; }
+}
+
+export enum characterStatus {
+    中毒,
+    禁言,
+    晕眩,
+    束缚,
+    物免,
+    魔免,
+    无敌,
 }
 
 export class doubleSoul extends character {

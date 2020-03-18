@@ -16,10 +16,11 @@ export abstract class SkillInfo {
 
 export class BlockSkillInfo extends SkillInfo {
     Turns: number;
-    BlockAttact: boolean;
-    BlockSkill: boolean; //晕眩
+    BlockAttact: boolean;   //束缚
+    BlockSkill: boolean;    //晕眩
     Excute(c: character) {
-
+        if (this.BlockAttact) { }
+        if (this.BlockSkill) { }
     }
 }
 

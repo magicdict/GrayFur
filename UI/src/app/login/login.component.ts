@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../module/GameEngine.service';
-import { Random } from '../module/Random';
+import { Random } from '../Lib/Random';
 
 @Component({
   templateUrl: './login.component.html',

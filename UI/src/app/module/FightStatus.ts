@@ -1,5 +1,5 @@
-import { character } from './character';
-import { BattleInfo } from './BattleInfo';
+import { character, characterStatus } from '../Modal/character';
+import { BattleInfo } from '../Modal/BattleInfo';
 import { GameEngine } from './GameEngine.service';
 import { Output, EventEmitter } from '@angular/core';
 
@@ -22,6 +22,7 @@ export class FightStatus {
                 element.IsMyTeam = false;
                 element.HP = element.MaxHP;
                 element.MP = element.MaxMP;
+                element.Status = new Array<[characterStatus, number]>();
             }
         });
 
@@ -31,6 +32,7 @@ export class FightStatus {
                 element.IsMyTeam = true;
                 element.HP = element.MaxHP;
                 element.MP = element.MaxMP;
+                element.Status = new Array<[characterStatus, number]>();
             }
         });
 
@@ -88,7 +90,11 @@ export class FightStatus {
                 this.currentActionCharater = Role;
             } else {
                 //AI For Enemy
-                this.EnemyAI(Role);
+                if (Role.AI === undefined) {
+                    this.EnemyAI(Role);
+                } else {
+                    Role.AI(Role, this);
+                }
                 this.ActionDone();
             }
         }
@@ -99,10 +105,17 @@ export class FightStatus {
         //初级阶段,对前排的一个活人进行普通攻击
         this.MyTeam.some(element => {
             if (element !== undefined && element.HP > 0) {
-                element.HP -= c.RealTimeAct;
+                element.HP -= this.NornamAct(c, element);
                 if (element.HP <= 0) element.HP = 0;
                 return true;
             }
         });
+    }
+
+    //以下是伤害计算的核心公式
+    NornamAct(Act: character, BeAct: character): number {
+        var HarmPoint = Act.RealTimeAct - BeAct.RealTimeDef;
+        if (HarmPoint < 0) HarmPoint = 5;   //命中时候的最低消费
+        return HarmPoint;
     }
 }
