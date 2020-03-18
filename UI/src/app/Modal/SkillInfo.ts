@@ -1,8 +1,9 @@
 import { character } from './character';
 
+/** 技能 */
 export abstract class SkillInfo {
     Name: string;
-    Order: number;   //第一魂技
+    Order: number;   //第N魂技
     SkillType: enmSkillType;
     Range: enmRange;
     Direct: enmDirect;
@@ -15,6 +16,7 @@ export abstract class SkillInfo {
 }
 
 export class BlockSkillInfo extends SkillInfo {
+    SkillType = enmSkillType.Block;
     Turns: number;
     BlockAttact: boolean;   //束缚
     BlockSkill: boolean;    //晕眩
@@ -25,6 +27,7 @@ export class BlockSkillInfo extends SkillInfo {
 }
 
 export class AttactSkillInfo extends SkillInfo {
+    SkillType = enmSkillType.Attact;
     Harm: number;
     Excute(c: character) {
         c.HP -= this.Harm;
@@ -33,7 +36,17 @@ export class AttactSkillInfo extends SkillInfo {
 }
 
 export class DefenceSkillInfo extends SkillInfo {
+    SkillType = enmSkillType.Defence;
     Turns: number;
+    Excute(c: character) {
+
+    }
+}
+
+export class HealSkillInfo extends SkillInfo {
+    SkillType = enmSkillType.Heal;
+    RecoverHP:number = 0;
+    RecoverMP:number = 0;
     Excute(c: character) {
 
     }

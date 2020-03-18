@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../module/GameEngine.service';
-import { Random } from '../Lib/Random';
 
 @Component({
   templateUrl: './login.component.html',
@@ -13,8 +12,7 @@ export class LoginComponent {
 
   Start() {
     console.log("jump to status");
-    this.ge.InitRole();
-    this.ge.InitGameStatus();
+    this.ge.NewGame();
     this.router.navigateByUrl("scene");
   }
   MiniGame(){

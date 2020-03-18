@@ -1,0 +1,24 @@
+<div class="alert alert-primary" role="alert">
+    所持金魂币：{{this.ge.gamestatus.Money}}
+    <input type="button" class="btn btn-sm btn-danger"  style="float: right;margin: 0px;" (click)="Exit()" value="退出" />
+</div>
+<table class="table table-striped"  style="width: 100%;padding: 0;">
+    <thead>
+        <tr>
+            <th scope="col" style="width: 80px;">名称</th>
+            <th scope="col">描述</th>
+            <th scope="col" style="width: 50px;">价格</th>
+            <th scope="col" style="width: 50px;">所持</th>
+            <th scope="col" style="width: 70px;">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let t of this.ge.StoreToolList">
+            <td>{{t.Name}}</td>
+            <td>{{t.Func.Description}}</td>
+            <td>{{t.Price}}</td>
+            <td>{{this.ge.gamestatus.getToolHoldCnt(t.Name)}}</td>
+            <td><button class="btn btn-primary" [disabled]=" this.ge.gamestatus.Money < t.Price " (click)="Buy(t)">购买</button></td>
+        </tr>
+    </tbody>
+</table>

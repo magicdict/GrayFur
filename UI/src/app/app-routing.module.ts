@@ -5,6 +5,7 @@ import { StatusComponent } from './status/status.component';
 import { SceneComponent } from './scene/scene.component';
 import { FightComponent } from './fight/fight.component';
 import { MiniGameComponent } from './miniGame/miniGame.component';
+import { StoreComponent } from './store/store.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path:'minigame',
     component:MiniGameComponent
+  },
+  {
+    path:'store',
+    component:StoreComponent
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

@@ -55,7 +55,14 @@ export class SceneComponent implements OnInit {
     this.line = RawInfo.split("@")[1];
     this.faceurl = RawInfo.split("@")[0]
   }
-  Status(idx:number) {
+
+
+  Store(){
+    this.router.navigateByUrl("store");
+  }
+
+  Status() {
+    let idx = 1;
     if (idx === 1) this.ge.currentRole = this.ge.唐三;
     if (idx === 2) this.ge.currentRole = this.ge.小舞;
     this.router.navigateByUrl("status");

@@ -13,12 +13,14 @@ import { FormationItemComponent } from './formation/formationItem.component';
 
 import { MiniGameComponent } from './miniGame/miniGame.component';
 import { GameCellComponent } from './miniGame/GameCell.component';
+import { StoreComponent } from './store/store.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SceneComponent,
+    StoreComponent,
     StatusComponent,
     FormationComponent,
     FormationItemComponent,
