@@ -37,6 +37,17 @@ http://datavisualization.club:8888/
 
 <img src="Demo/战斗20200317.jpg" width="50%">
 
+<img src="Demo/全员战斗20200318.jpg" width="50%">
+
+### 魂技选择
+
+<img src="Demo/魂技选择20200318.jpg" width="50%">
+
+### 道具选择
+
+<img src="Demo/道具选择20200318.jpg" width="50%">
+
+
 ### 记忆力游戏
 
 <img src="Demo/记忆力游戏20200316.jpg" width="50%">

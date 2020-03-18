@@ -68,6 +68,141 @@ export class CharacterCreator {
         return 小舞;
     }
 
+    public static 戴沐白(): character {
+        let 戴沐白 = new character("戴沐白");
+        戴沐白.LV = 1;
+        戴沐白.HP = 100;
+        戴沐白.MaxHP = 100;
+        戴沐白.MP = 20;
+        戴沐白.MaxMP = 20;
+        戴沐白.BaseAct = 10;
+        戴沐白.BaseDef = 10;
+        戴沐白.Speed = 50;
+        戴沐白.Soul = "柔骨兔";
+        戴沐白.TeamPosition = "敏攻系";
+        戴沐白.Description = "小舞的名字是由其父“小五”得来，因为她是家族中第五个出生的，小舞的爸爸懒得取名，就把名字换了一个字。“小舞”这个名字也是由此而来的。"
+        戴沐白.Skill = ["腰弓",
+            "魅惑",
+            "瞬间闪移",
+            "无敌金身",
+            "柔骨锁",
+            "虚无状态/暴杀八段摔",
+            "柔骨兔真身"];
+        戴沐白.Skill_A = [
+            SkillCreator.腰弓(),
+            SkillCreator.魅惑(),
+        ]
+        return 戴沐白;
+    }
+
+    public static 奥斯卡(): character {
+        let 奥斯卡 = new character("奥斯卡");
+        奥斯卡.LV = 1;
+        奥斯卡.HP = 100;
+        奥斯卡.MaxHP = 100;
+        奥斯卡.MP = 20;
+        奥斯卡.MaxMP = 20;
+        奥斯卡.BaseAct = 10;
+        奥斯卡.BaseDef = 10;
+        奥斯卡.Speed = 50;
+        奥斯卡.Soul = "柔骨兔";
+        奥斯卡.TeamPosition = "敏攻系";
+        奥斯卡.Description = "小舞的名字是由其父“小五”得来，因为她是家族中第五个出生的，小舞的爸爸懒得取名，就把名字换了一个字。“小舞”这个名字也是由此而来的。"
+        奥斯卡.Skill = ["腰弓",
+            "魅惑",
+            "瞬间闪移",
+            "无敌金身",
+            "柔骨锁",
+            "虚无状态/暴杀八段摔",
+            "柔骨兔真身"];
+        奥斯卡.Skill_A = [
+            SkillCreator.腰弓(),
+            SkillCreator.魅惑(),
+        ]
+        return 奥斯卡;
+    }
+
+    public static 马红俊(): character {
+        let 马红俊 = new character("马红俊");
+        马红俊.LV = 1;
+        马红俊.HP = 100;
+        马红俊.MaxHP = 100;
+        马红俊.MP = 20;
+        马红俊.MaxMP = 20;
+        马红俊.BaseAct = 10;
+        马红俊.BaseDef = 10;
+        马红俊.Speed = 50;
+        马红俊.Soul = "柔骨兔";
+        马红俊.TeamPosition = "敏攻系";
+        马红俊.Description = "小舞的名字是由其父“小五”得来，因为她是家族中第五个出生的，小舞的爸爸懒得取名，就把名字换了一个字。“小舞”这个名字也是由此而来的。"
+        马红俊.Skill = ["腰弓",
+            "魅惑",
+            "瞬间闪移",
+            "无敌金身",
+            "柔骨锁",
+            "虚无状态/暴杀八段摔",
+            "柔骨兔真身"];
+        马红俊.Skill_A = [
+            SkillCreator.腰弓(),
+            SkillCreator.魅惑(),
+        ]
+        return 马红俊;
+    }
+
+    public static 宁荣荣(): character {
+        let 宁荣荣 = new character("宁荣荣");
+        宁荣荣.LV = 1;
+        宁荣荣.HP = 100;
+        宁荣荣.MaxHP = 100;
+        宁荣荣.MP = 20;
+        宁荣荣.MaxMP = 20;
+        宁荣荣.BaseAct = 10;
+        宁荣荣.BaseDef = 10;
+        宁荣荣.Speed = 50;
+        宁荣荣.Soul = "柔骨兔";
+        宁荣荣.TeamPosition = "敏攻系";
+        宁荣荣.Description = "小舞的名字是由其父“小五”得来，因为她是家族中第五个出生的，小舞的爸爸懒得取名，就把名字换了一个字。“小舞”这个名字也是由此而来的。"
+        宁荣荣.Skill = ["腰弓",
+            "魅惑",
+            "瞬间闪移",
+            "无敌金身",
+            "柔骨锁",
+            "虚无状态/暴杀八段摔",
+            "柔骨兔真身"];
+        宁荣荣.Skill_A = [
+            SkillCreator.腰弓(),
+            SkillCreator.魅惑(),
+        ]
+        return 宁荣荣;
+    }
+
+    public static 朱竹清(): character {
+        let 朱竹清 = new character("朱竹清");
+        朱竹清.LV = 1;
+        朱竹清.HP = 100;
+        朱竹清.MaxHP = 100;
+        朱竹清.MP = 20;
+        朱竹清.MaxMP = 20;
+        朱竹清.BaseAct = 10;
+        朱竹清.BaseDef = 10;
+        朱竹清.Speed = 50;
+        朱竹清.Soul = "柔骨兔";
+        朱竹清.TeamPosition = "敏攻系";
+        朱竹清.Description = "小舞的名字是由其父“小五”得来，因为她是家族中第五个出生的，小舞的爸爸懒得取名，就把名字换了一个字。“小舞”这个名字也是由此而来的。"
+        朱竹清.Skill = ["腰弓",
+            "魅惑",
+            "瞬间闪移",
+            "无敌金身",
+            "柔骨锁",
+            "虚无状态/暴杀八段摔",
+            "柔骨兔真身"];
+        朱竹清.Skill_A = [
+            SkillCreator.腰弓(),
+            SkillCreator.魅惑(),
+        ]
+        return 朱竹清;
+    }
+
     public static 赵无极(): character {
         let 赵无极 = new character("赵无极");
         赵无极.LV = 65;

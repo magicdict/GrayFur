@@ -15,14 +15,49 @@
 
 
     <div class="container" *ngIf="SkillPickStatus"
-        style="position: absolute;z-index: 1000; bottom: 0px;width: 100%;height: 100px;background-color: dodgerblue;opacity: 1;">
+        style="position: absolute;z-index: 1000; bottom: 210px;width: 100%;height: 200px;background-color: lightyellow;opacity: 0.95;">
+        <table class="table table-striped"  style="width: 100%;padding: 0px;margin: 0px; height: 160px;">
+            <thead>
+                <tr style="width: 100%;padding: 0;">
+                    <th scope="col" style="width: 60px;">名称</th>
+                    <th scope="col">描述</th>
+                    <th scope="col" style="width: 50px;">魂力</th>
+                    <th scope="col" style="width: 60px;">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="width: 100%;padding: 0;" *ngFor="let skill of this.ge.fightStatus.currentActionCharater.Skill_A">
+                    <td style="width: 60px;">{{skill.Name}}</td>
+                    <td style="text-align: left;">{{skill.Description}}</td>
+                    <td style="width: 50px;">{{skill.MpUsage()}}</td>
+                    <td style="width: 60px;"><button class="btn btn-sm btn-primary" [disabled]=" this.ge.fightStatus.currentActionCharater.MP < skill.MpUsage() " (click)="ExcuteSkill(skill)">发动</button></td>
+                </tr>
+            </tbody>
+        </table>
         <button class="btn btn-danger" (click)="ReturnFormSkillPicker()" style="float: right;">返回</button>
-        <ul *ngFor="let skill of ge.fightStatus.currentActionCharater.Skill_A" style="padding: 0px;">
-            <li style="padding: 0px;">{{skill.Name}} - {{skill.Description}}
-                <button class="btn btn-sm btn-success" (click)="ExcuteSkill(skill)">发动</button>
-            </li>
-        </ul>
     </div>
+
+    <div class="container" *ngIf="ToolPickStatus"
+        style="position: absolute;z-index: 1000; bottom: 210px;width: 100%;height: 200px;background-color: lightyellow;opacity: 0.95;">
+        <table class="table table-striped"  style="width: 100%;padding: 0px;margin: 0px; height: 160px;">
+            <thead>
+                <tr style="width: 100%;padding: 0;">
+                    <th scope="col" style="width: 60px;">名称</th>
+                    <th scope="col">描述</th>
+                    <th scope="col" style="width: 60px;">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="width: 100%;padding: 0;" *ngFor="let tool of this.ge.gamestatus.toolbag">
+                    <td style="width: 60px;">{{tool[0]}}</td>
+                    <td style="text-align: left;">{{this.ge.getTool(tool[0]).Func.Description}}</td>
+                    <td style="width: 60px;"><button class="btn btn-sm btn-primary" (click)="UseTool(tool[0])">使用</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-danger" (click)="ReturnFormToolPicker()" style="float: right;">返回</button>
+    </div>
+
     <div class="container"
         style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 100px;background-color: dodgerblue;opacity: 1;">
         <div class="row">

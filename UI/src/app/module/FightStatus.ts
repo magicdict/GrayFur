@@ -79,23 +79,31 @@ export class FightStatus {
             this.ResultEvent.emit(1);
             return;
         }
+        //气绝者去除
+        this.MyTeam = this.MyTeam.map(x => x !== undefined && x.HP > 0 ? x : undefined);
+        this.Enemy = this.Enemy.map(x => x !== undefined && x.HP > 0 ? x : undefined);
 
         if (this.TurnList.length == 0) {
             console.log("回合结束");
             this.NewTurn();
         } else {
             let Role = this.TurnList.pop();
-            console.log("当前角色：" + Role.Name + "[" + Role.IsMyTeam + "]");
-            if (Role.IsMyTeam) {
-                this.currentActionCharater = Role;
-            } else {
-                //AI For Enemy
-                if (Role.AI === undefined) {
-                    this.EnemyAI(Role);
-                } else {
-                    Role.AI(Role, this);
-                }
+            if (Role === undefined) {
+                //角色已经气绝
                 this.ActionDone();
+            } else {
+                console.log("当前角色：" + Role.Name + "[" + Role.IsMyTeam + "]");
+                if (Role.IsMyTeam) {
+                    this.currentActionCharater = Role;
+                } else {
+                    //AI For Enemy
+                    if (Role.AI === undefined) {
+                        this.EnemyAI(Role);
+                    } else {
+                        Role.AI(Role, this);
+                    }
+                    this.ActionDone();
+                }
             }
         }
     }

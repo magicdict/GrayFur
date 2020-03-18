@@ -48,7 +48,10 @@ export class HealSkillInfo extends SkillInfo {
     RecoverHP:number = 0;
     RecoverMP:number = 0;
     Excute(c: character) {
-
+        c.HP += this.RecoverHP;
+        if (c.HP > c.MaxHP) c.HP = c.MaxHP;
+        c.MP += this.RecoverMP;
+        if (c.MP > c.MaxMP) c.MP = c.MaxMP;
     }
 }
 

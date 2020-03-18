@@ -21,6 +21,6 @@ export const Battle0001: BattleInfo = {
     Background: "战斗场地",
     Enemy: [undefined, undefined, undefined, undefined,
         undefined, "赵无极", undefined, undefined],
-    MyTeam: [undefined, "唐三", "小舞", undefined,
-        undefined, undefined, undefined, , undefined]
+    MyTeam: ["小舞", "马红俊", "戴沐白", "朱竹清",
+        undefined, "宁荣荣", "奥斯卡", "唐三"]
 }

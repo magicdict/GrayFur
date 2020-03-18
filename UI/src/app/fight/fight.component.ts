@@ -16,6 +16,7 @@ export class FightComponent implements OnInit {
 
     Message: string = "进入战场";
     SkillPickStatus: boolean;
+    ToolPickStatus: boolean;
     FightEnd: boolean = false;
     FightResultTitle: string = "";
     ngOnInit(): void {
@@ -30,7 +31,7 @@ export class FightComponent implements OnInit {
             }
             this.FightEnd = true;
             console.log("jump to scene");
-            setTimeout(() => { this.router.navigateByUrl("scene");}, 3000);
+            setTimeout(() => { this.router.navigateByUrl("scene"); }, 3000);
         }, null, null);
     }
 
@@ -43,7 +44,7 @@ export class FightComponent implements OnInit {
         this.ItemClicked = (clickedItem: character) => {
             clickedItem.HP -= 10;
             this.ge.fightStatus.ActionDone();
-            this.ItemClicked = (clickedItem: character) => {}
+            this.ItemClicked = (clickedItem: character) => { }
         }
     }
 
@@ -75,7 +76,7 @@ export class FightComponent implements OnInit {
                             if (!clickedItem.IsMyTeam) {
                                 Skill.Excute(clickedItem);
                                 this.ge.fightStatus.ActionDone();
-                                this.ItemClicked = (clickedItem: character) => {}
+                                this.ItemClicked = (clickedItem: character) => { }
                             }
                         }
                         break;
@@ -85,7 +86,7 @@ export class FightComponent implements OnInit {
                             if (clickedItem.IsMyTeam) {
                                 Skill.Excute(clickedItem);
                                 this.ge.fightStatus.ActionDone();
-                                this.ItemClicked = (clickedItem: character) => {}
+                                this.ItemClicked = (clickedItem: character) => { }
                             }
                         }
                         break;
@@ -94,7 +95,7 @@ export class FightComponent implements OnInit {
                         this.ItemClicked = (clickedItem: character) => {
                             Skill.Excute(clickedItem);
                             this.ge.fightStatus.ActionDone();
-                            this.ItemClicked = (clickedItem: character) => {}
+                            this.ItemClicked = (clickedItem: character) => { }
                         }
                         break;
                 }
@@ -125,9 +126,18 @@ export class FightComponent implements OnInit {
 
     //道具
     Tool() {
-
+        this.ToolPickStatus = true;
+        this.Message = "请选择一个道具";
     }
-
+    UseTool(name: string) {
+        this.ToolPickStatus = false;
+        this.ExcuteSkill(this.ge.getTool(name).Func);
+        this.ge.gamestatus.changeTool([name, -1]);
+    }
+    ReturnFormToolPicker() {
+        this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
+        this.ToolPickStatus = false;
+    }
     //防御
     Defence() {
         this.ge.fightStatus.currentActionCharater.IsDefStatus = true;
@@ -141,11 +151,11 @@ export class FightComponent implements OnInit {
         this.router.navigateByUrl("scene");
     }
     //测试用:状态的改变
-    SkillTest(){
+    SkillTest() {
         console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
-        this.ge.fightStatus.currentActionCharater.appendStatus([characterStatus.中毒,3]);
+        this.ge.fightStatus.currentActionCharater.appendStatus([characterStatus.中毒, 3]);
         console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
-        this.ge.fightStatus.currentActionCharater.appendStatus([characterStatus.中毒,4]);
+        this.ge.fightStatus.currentActionCharater.appendStatus([characterStatus.中毒, 4]);
         console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
         this.ge.fightStatus.currentActionCharater.removeStatus(characterStatus.中毒);
         console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
