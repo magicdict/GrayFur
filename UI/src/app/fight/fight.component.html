@@ -26,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="width: 100%;padding: 0;" *ngFor="let skill of this.ge.fightStatus.currentActionCharater.Skill_A">
+                <tr style="width: 100%;padding: 0;" *ngFor="let skill of this.ge.fightStatus.currentActionCharater.Skill">
                     <td style="width: 60px;">{{skill.Name}}</td>
                     <td style="text-align: left;">{{skill.Description}}</td>
                     <td style="width: 50px;">{{skill.MpUsage()}}</td>
@@ -88,9 +88,9 @@
             </div>
             <div class="col-3" style="padding:0px;">
                 命&nbsp;{{this.ge.fightStatus.currentActionCharater.HP}} /
-                {{this.ge.fightStatus.currentActionCharater.MaxHP}} <br />
+                {{this.ge.fightStatus.currentActionCharater.RealMaxHP}} <br />
                 魂&nbsp;{{this.ge.fightStatus.currentActionCharater.MP}} /
-                {{this.ge.fightStatus.currentActionCharater.MaxMP}} <br />
+                {{this.ge.fightStatus.currentActionCharater.RealMaxMP}} <br />
                 攻&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeAct}} <br />
                 防&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeDef}} <br />
                 中毒&nbsp;麻痹

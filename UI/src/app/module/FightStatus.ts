@@ -20,9 +20,7 @@ export class FightStatus {
         this.Enemy.forEach(element => {
             if (element !== undefined) {
                 element.IsMyTeam = false;
-                element.HP = element.MaxHP;
-                element.MP = element.MaxMP;
-                element.Status = new Array<[characterStatus, number]>();
+                this.InitRole(element);
             }
         });
 
@@ -30,12 +28,16 @@ export class FightStatus {
         this.MyTeam.forEach(element => {
             if (element !== undefined) {
                 element.IsMyTeam = true;
-                element.HP = element.MaxHP;
-                element.MP = element.MaxMP;
-                element.Status = new Array<[characterStatus, number]>();
+                this.InitRole(element);
             }
         });
 
+    }
+
+    InitRole(c:character){
+        c.HP = c.BaseMaxHP;
+        c.MP = c.BaseMaxMP;
+        c.Status = new Array<[characterStatus, number]>();
     }
 
     NewTurn() {

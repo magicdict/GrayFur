@@ -22,16 +22,11 @@ export class StatusComponent implements OnInit {
   public c: character;
   public d: doubleSoul;
 
-  Status(pos: number) {
-    switch (pos) {
-      case 1:
-        this.c = this.ge.唐三
-        break;
-      case 2:
-        this.c = this.ge.小舞
-        break;
-      default:
-        break;
+  Status(name: string) {
+    this.d = undefined;
+    this.c = this.ge.GetRoleByName(name);
+    if (this.c instanceof doubleSoul) {
+      this.d = this.c;
     }
   }
 

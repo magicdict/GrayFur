@@ -1,85 +1,92 @@
-<div class="alert alert-primary" role="alert">
-    状态     
-    <button class="btn btn-sm btn-primary" (click)="Status(1)" style="float: right;">唐三</button>
-    <button class="btn btn-sm btn-primary" (click)="Status(2)" style="float: right;">小舞</button>
-</div>
-<div class="row">
-    <div class="col-4">
-        <img [src]="'/assets/character/' + c.Name + '/图鉴.jpg'" height="150px" width="100px" />
+<div style="position:relative;height:0;padding-bottom: 150%;width: 100%;background-size: contain; ">
+    <div class="alert alert-primary" role="alert">
+        状态 
     </div>
-    <div class="col-8">
-        <div class="row">
-            <h2>{{c.Name}}</h2>
+    <div class="row">
+        <div class="col-4">
+            <img [src]="'/assets/character/' + c.Name + '/图鉴.jpg'" height="150px" width="100px" />
         </div>
-        <div class="row">
-            <div class="col-6">
-                生命:{{c.HP}} / {{ c.MaxHP }}     
+        <div class="col-8">
+            <div class="row">
+                <h2>{{c.Name}}</h2>
             </div>
-            <div class="col-6">
-                魂力:{{c.MP}} / {{ c.MaxMP }}     
+            <div class="row">
+                <div class="col-6">
+                    生命:{{c.HP}} / {{ c.BaseMaxHP }}
+                </div>
+                <div class="col-6">
+                    魂力:{{c.MP}} / {{ c.BaseMaxMP }}
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                等级:{{c.LV}}({{c.Grade}})
+            <div class="row">
+                <div class="col-6">
+                    等级:{{c.LV}}({{c.Grade}})
+                </div>
+                <div class="col-6">
+                    定位:{{c.TeamPosition}}
+                </div>
             </div>
-            <div class="col-6">
-                定位:{{c.TeamPosition}}
+            <div class="row">
+                <div class="col-6">
+                    攻击:{{c.BaseAct}}
+                </div>
+                <div class="col-6">
+                    防御:{{c.BaseDef}}
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                攻击:{{c.BaseAct}}
-            </div>
-            <div class="col-6">
-                防御:{{c.BaseDef}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                速度:{{c.Speed}}
-            </div>
-            <div class="col-6">
-                
-            </div>
-        </div>
-        <br />    
-        {{c.Description}}
-    </div>
-</div>
+            <div class="row">
+                <div class="col-6">
+                    速度:{{c.Speed}}
+                </div>
+                <div class="col-6">
 
-<hr />
-
-<div *ngIf="d === undefined" style="margin-left: 10px;">
-    武魂:{{c.Soul}}<br />
-    <ul>
-        <li *ngFor="let skill of c.Skill">
-            {{ skill }}
-        </li>
-    </ul>
-</div>
-
-<div *ngIf="d !== undefined">
-    <div class="row" style="margin-left: 10px;">
-        <div class="col-6">
-            武魂:{{c.Soul}}<br />
-            <ul>
-                <li *ngFor="let skill of c.Skill">
-                    {{ skill }}
-                </li>
-            </ul>
-        </div>
-        <div class="col-6">
-            双生武魂:{{d.SecondSoul}}<br />
-            <ul>
-                <li *ngFor="let skill of d.SecondSkill">
-                    {{ skill }}
-                </li>
-            </ul>
+                </div>
+            </div>
+            <br />
+            {{c.Description}}
         </div>
     </div>
-</div>
 
-<div style="text-align: center;">
-    <input type="button" class="btn btn-lg btn-danger" (click)="Exit()" value="退出" />
+    <hr />
+
+    <div *ngIf="d === undefined" style="margin-left: 10px;">
+        武魂:{{c.Soul}}<br />
+        <ul>
+            <li *ngFor="let skill of c.SkillName">
+                {{ skill }}
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="d !== undefined">
+        <div class="row" style="margin-left: 10px;">
+            <div class="col-6">
+                武魂:{{c.Soul}}<br />
+                <ul>
+                    <li *ngFor="let skill of c.SkillName">
+                        {{ skill }}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6">
+                双生武魂:{{d.SecondSoul}}<br />
+                <ul>
+                    <li *ngFor="let skill of d.SecondSkillName">
+                        {{ skill }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 30px;">
+        <button class="btn btn-sm btn-danger" (click)="Exit()" style="float: right;padding: 4px;">退出</button>
+        <button class="btn btn-sm btn-primary" (click)="Status('朱竹清')" style="float: right;padding: 4px;">朱竹清</button>
+        <button class="btn btn-sm btn-primary" (click)="Status('宁荣荣')" style="float: right;padding: 4px;">宁荣荣</button>
+        <button class="btn btn-sm btn-primary" (click)="Status('马红俊')" style="float: right;padding: 4px;">马红俊</button>
+        <button class="btn btn-sm btn-primary" (click)="Status('小舞')" style="float: right;padding: 4px;">小舞</button>
+        <button class="btn btn-sm btn-primary" (click)="Status('唐三')" style="float: right;padding: 4px;">唐三</button>
+        <button class="btn btn-sm btn-primary" (click)="Status('奥斯卡')" style="float: right;padding: 4px;">奥斯卡</button>
+        <button class="btn btn-sm btn-primary" (click)="Status('戴沐白')" style="float: right;padding: 4px;">戴沐白</button>
+    </div>
 </div>

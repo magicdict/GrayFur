@@ -1,4 +1,3 @@
-import { character } from './character';
 
 export function getBattleInfoByName(FightName: string): BattleInfo {
     switch (FightName) {

@@ -8,7 +8,7 @@
 
 ## 开发环境
 
-- Angular 9.0.6
+- Angular 9.0.7
 - BootStrap 4.4.1
 
 ## 在线网址
@@ -31,7 +31,7 @@ http://datavisualization.club:8888/
 
 ### 状态[双生武魂]
 
-<img src="Demo/状态20200310.jpg" width="50%">
+<img src="Demo/状态20200319.jpg" width="50%">
 
 ### 战斗
 
@@ -46,7 +46,6 @@ http://datavisualization.club:8888/
 ### 道具选择
 
 <img src="Demo/道具选择20200318.jpg" width="50%">
-
 
 ### 记忆力游戏
 

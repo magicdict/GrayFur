@@ -1,4 +1,4 @@
-import { SkillInfo, BlockSkillInfo, DefenceSkillInfo,enmRange, enmDirect, enmSkillType, AttactSkillInfo } from '../Modal/SkillInfo';
+import { SkillInfo, BlockSkillInfo, DefenceSkillInfo, enmRange, enmDirect, enmSkillType, AttactSkillInfo, HealSkillInfo, BufferSkillInfo } from '../Modal/SkillInfo';
 
 export class SkillCreator {
     //唐三
@@ -96,8 +96,8 @@ export class SkillCreator {
         s.Harm = 100;
         s.Source = "蓝银皇天赋魂环";
         return s;
-    } 
-    
+    }
+
     //小舞
     public static 腰弓(): SkillInfo {
         let s = new AttactSkillInfo();
@@ -108,8 +108,8 @@ export class SkillCreator {
         s.Range = enmRange.Self;
         s.Harm = 100;
         return s;
-    } 
-    
+    }
+
     public static 魅惑(): SkillInfo {
         let s = new BlockSkillInfo();
         s.Name = "魅惑";
@@ -133,5 +133,102 @@ export class SkillCreator {
         s.Range = enmRange.Self;
         s.Turns = 1;
         return s;
-    } 
+    }
+
+
+    /**HP增益 */
+    public static HPBuffer(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Order = 1;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.EveryOne;
+        s.Buffer.HPFactor = 0.1;
+        return s;
+    }
+
+
+    //武魂融合
+
+    public static 双神共存(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "双神共存";
+        s.Description = "成就独一无二的完美武魂融合技，是神级的融合。";
+        s.Combine = ["唐三", "小舞"];
+        s.Order = 10;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.EveryOne;
+        s.Buffer.HPFactor = 0.1;
+        return s;
+    }
+
+    public static 复活之光(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "复活之光";
+        s.Description = "起死回生";
+        s.Combine = ["宁荣荣", "奥斯卡"];
+        s.Order = 10;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.EveryOne;
+        s.Buffer.HPFactor = 0.1;
+        return s;
+    }
+
+    public static 幽冥白虎(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "幽冥白虎";
+        s.Description = "幽冥白虎";
+        s.Combine = ["戴沐白", "朱竹清"];
+        s.Order = 10;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.EveryOne;
+        s.Buffer.HPFactor = 0.1;
+        return s;
+    }
+
+    public static 光明圣龙(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "光明圣龙";
+        s.Description = "光明圣龙";
+        s.Combine = ["玉小刚", "柳二龙", "弗兰德"];
+        s.Order = 10;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.EveryOne;
+        s.Buffer.HPFactor = 0.1;
+        return s;
+    }
+
+    //道具
+
+    /**生命值小回复 */
+    public static 生命值小回复(): SkillInfo {
+        let s = new HealSkillInfo();
+        s.Name = "生命值小回复";
+        s.Description = "单体，回复50生命值";
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.PickOne;
+        s.RecoverHP = 50;
+        return s;
+    }
+
+    /**魂力小回复 */
+    public static 魂力小回复(): SkillInfo {
+        let s = new HealSkillInfo();
+        s.Name = "魂力小回复";
+        s.Description = "单体，回复10魂力";
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.PickOne;
+        s.RecoverMP = 10;
+        return s;
+    }
+
+    /**生命值魂力小回复 */
+    public static 生命值魂力小回复(): SkillInfo {
+        let s = new HealSkillInfo();
+        s.Name = "生命值魂力小回复";
+        s.Description = "单体，回复50生命值和10魂力";
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.PickOne;
+        s.RecoverMP = 10;
+        return s;
+    }
 }

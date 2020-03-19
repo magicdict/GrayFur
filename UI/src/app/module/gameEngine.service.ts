@@ -5,7 +5,7 @@ import { CharacterCreator } from './CharacterCreator';
 import { getBattleInfoByName } from '../Modal/BattleInfo';
 import { FightStatus } from './FightStatus';
 import { ToolInfo } from '../Modal/ToolInfo';
-import { ToolSkillCreator } from './ToolSkillCreator';
+import { ToolCreator } from './ToolCreator';
 
 
 @Injectable()
@@ -20,9 +20,9 @@ export class GameEngine {
     /**初始化道具 */
     public InitTool() {
         this.StoreToolList = new Array<ToolInfo>();
-        this.StoreToolList.push(ToolSkillCreator.止血草());
-        this.StoreToolList.push(ToolSkillCreator.小烤肠());
-        this.StoreToolList.push(ToolSkillCreator.小黑瓶());
+        this.StoreToolList.push(ToolCreator.止血草());
+        this.StoreToolList.push(ToolCreator.小烤肠());
+        this.StoreToolList.push(ToolCreator.小黑瓶());
     }
 
     getTool(name: string): ToolInfo {
@@ -67,27 +67,25 @@ export class GameEngine {
 
     public InitRole() {
         this.唐三 = CharacterCreator.唐三();
-        this.localstorage.Save("唐三", this.唐三);
         this.小舞 = CharacterCreator.小舞();
-        this.localstorage.Save("小舞", this.小舞);
-
         this.戴沐白 = CharacterCreator.戴沐白();
-        this.localstorage.Save("戴沐白", this.戴沐白);
         this.奥斯卡 = CharacterCreator.奥斯卡();
-        this.localstorage.Save("奥斯卡", this.奥斯卡);
-
         this.马红俊 = CharacterCreator.马红俊();
-        this.localstorage.Save("马红俊", this.马红俊);
         this.宁荣荣 = CharacterCreator.宁荣荣();
-        this.localstorage.Save("宁荣荣", this.宁荣荣);
-
         this.朱竹清 = CharacterCreator.朱竹清();
+
+        this.localstorage.Save("唐三", this.唐三);
+        this.localstorage.Save("小舞", this.小舞);
+        this.localstorage.Save("戴沐白", this.戴沐白);
+        this.localstorage.Save("奥斯卡", this.奥斯卡);
+        this.localstorage.Save("马红俊", this.马红俊);
+        this.localstorage.Save("宁荣荣", this.宁荣荣);
         this.localstorage.Save("朱竹清", this.朱竹清);
-
-
-        this.赵无极 = CharacterCreator.赵无极();
-        this.localstorage.Save("赵无极", this.赵无极);
         this.currentRole = this.唐三;
+    }
+
+    public InitNPC() {
+        this.赵无极 = CharacterCreator.赵无极();
     }
 
     public gamestatus: GameStatus;
@@ -98,8 +96,8 @@ export class GameEngine {
 
         this.gamestatus.Money = 10;
         /**给3个止血草 */
-        this.gamestatus.changeTool([ToolSkillCreator.止血草().Name, 5]);
-        this.gamestatus.changeTool([ToolSkillCreator.小烤肠().Name, 2]);
+        this.gamestatus.changeTool([ToolCreator.止血草().Name, 5]);
+        this.gamestatus.changeTool([ToolCreator.小烤肠().Name, 2]);
         this.localstorage.Save("游戏状态", this.gamestatus);
     }
 
@@ -115,14 +113,25 @@ export class GameEngine {
         } else {
             this.唐三 = this.localstorage.Load<doubleSoul>("唐三");
             this.小舞 = this.localstorage.Load<character>("小舞");
-            this.赵无极 = this.localstorage.Load<character>("赵无极");
+            this.戴沐白 = this.localstorage.Load<character>("戴沐白");
+            this.奥斯卡 = this.localstorage.Load<character>("奥斯卡");
+            this.马红俊 = this.localstorage.Load<character>("马红俊");
+            this.宁荣荣 = this.localstorage.Load<character>("宁荣荣");
+            this.朱竹清 = this.localstorage.Load<character>("朱竹清");
         }
-
+        this.InitNPC();
     }
+
     public Save() {
+        //这里不保存NPC的状态
         this.localstorage.Save("唐三", this.唐三);
         this.localstorage.Save("小舞", this.小舞);
-        this.localstorage.Save("赵无极", this.赵无极);
+        this.localstorage.Save("戴沐白", this.戴沐白);
+        this.localstorage.Save("奥斯卡", this.奥斯卡);
+        this.localstorage.Save("马红俊", this.马红俊);
+        this.localstorage.Save("宁荣荣", this.宁荣荣);
+        this.localstorage.Save("朱竹清", this.朱竹清);
+
         this.localstorage.Save("游戏状态", this.gamestatus);
     }
 

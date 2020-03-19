@@ -1,4 +1,4 @@
-import { character } from './character';
+import { character, BufferList } from './character';
 
 /** 技能 */
 export abstract class SkillInfo {
@@ -12,6 +12,8 @@ export abstract class SkillInfo {
     MpUsage(): number {
         return Math.pow(2, this.Order);
     }
+    /**武魂融合技的融合者列表 */
+    Combine: string[];
     abstract Excute(c: character);
 }
 
@@ -45,15 +47,28 @@ export class DefenceSkillInfo extends SkillInfo {
 
 export class HealSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Heal;
-    RecoverHP:number = 0;
-    RecoverMP:number = 0;
+    RecoverHP: number = 0;
+    RecoverMP: number = 0;
     Excute(c: character) {
         c.HP += this.RecoverHP;
-        if (c.HP > c.MaxHP) c.HP = c.MaxHP;
+        if (c.HP > c.RealMaxHP) c.HP = c.RealMaxHP;
         c.MP += this.RecoverMP;
-        if (c.MP > c.MaxMP) c.MP = c.MaxMP;
+        if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
     }
 }
+
+/**增益和减弱 */
+export class BufferSkillInfo extends SkillInfo {
+    SkillType = enmSkillType.Buffer;
+    Buffer: BufferList = new BufferList();
+    //TODO:增幅强度和等级关联
+    Excute(c: character) {
+        //TODO:不能简单使用赋值？如果原本Buffer就存在呢？
+        c.Buffer = this.Buffer;
+    }
+}
+
+
 
 //技能类型
 export enum enmSkillType {

@@ -8,12 +8,12 @@
     </div>
     <img [src]="'/assets/character/' + Item.Name + '/头像.jpg'" width="70px" height="70px">
     <div class="progress">
-        <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': (Item.HP * 100/ Item.MaxHP) + '%'}">
-            {{Item.HP + "/" + Item.MaxHP}}</div>
+        <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': (Item.HP * 100/ Item.RealMaxHP) + '%'}">
+            {{Item.HP + "/" + Item.RealMaxHP}}</div>
     </div>
     <div class="progress">
         <div class="progress-bar bg-primary" role="progressbar"
-            [ngStyle]="{'width': (Item.MP * 100/ Item.MaxMP) + '%'}">
-            {{Item.MP + "/" + Item.MaxMP}}</div>
+            [ngStyle]="{'width': (Item.MP * 100/ Item.RealMaxMP) + '%'}">
+            {{Item.MP + "/" + Item.RealMaxMP}}</div>
     </div>
 </div>

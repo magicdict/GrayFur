@@ -1,61 +1,96 @@
 import { SkillInfo } from './SkillInfo';
 import { FightStatus } from '../module/FightStatus';
+import { Equipment } from './Equipment';
 
 export class character {
     Name: string;   //姓名
     LV: number;      //等级
 
-    MaxHP: number;  //最大生命值
+    BaseMaxHP: number;  //最大生命值
     HP: number;     //生命值
-    MaxMP: number;  //最大魔法值（魂力）
+    BaseMaxMP: number;  //最大魔法值（魂力）
     MP: number;         //魔法值（魂力）
 
     BaseAct: number;     //基础攻击力
     BaseDef: number;     //基础防御力
-    Speed: number;                   //速度：出手顺序       
 
     //战斗状态下使用属性
-    IsDefStatus: boolean;           //是否为防御状态
-    DefStatusPlus: number = 0.5;    //防御状态下防御力加成    
-    Factor: number = 1;             //因子：3成功力的某个角色
-    IsMyTeam: boolean;               //角色在战场上是否为我方角色  
-    Status: Array<[characterStatus, number]>;           //状态
+    /**速度：出手顺序 */
+    Speed: number;                          
+    /**角色在战场上是否为我方角色 */
+    IsMyTeam: boolean;                 
+    /**是否为防御状态 */
+    IsDefStatus: boolean;
+    /**因子：3成功力的某个角色 */
+    Factor: number = 1;
+    /**增益 */             
+    Buffer: BufferList;
+    /**状态 */
+    Status: Array<[characterStatus, number]>;           
 
-    appendStatus(StatusWithTurn: [characterStatus, number]) {
-        let t = this.Status.find(x => x[0] === StatusWithTurn[0])
-        if (t === undefined) {
-            //不存在的情况
-            this.Status.push(StatusWithTurn);
-        } else {
-            StatusWithTurn[1] += t[1];
-            this.Status = this.Status.filter(x => x[0] !== StatusWithTurn[0]);
-            this.Status.push(StatusWithTurn);
+    /**经过增益之后的生命最大值 */
+    get RealMaxHP(): number {
+        var R = this.BaseMaxHP;
+        if (this.Buffer.HPFactor !== undefined) {
+            R += R * this.Buffer.HPFactor;
         }
+        if (this.Buffer.HPValue !== undefined) {
+            R += this.Buffer.HPValue;
+        }
+        return R;
     }
-
-    removeStatus(status: characterStatus) {
-        this.Status = this.Status.filter(x => x[0] !== status);
+    /**经过增益之后的魂力最大值 */
+    get RealMaxMP(): number {
+        var R = this.BaseMaxMP;
+        if (this.Buffer.MPFactor !== undefined) {
+            R += R * this.Buffer.MPFactor;
+        }
+        if (this.Buffer.MPValue !== undefined) {
+            R += this.Buffer.MPValue;
+        }
+        return R;
     }
-
 
     //实时攻击力
     get RealTimeAct(): number {
-        return this.BaseAct * this.Factor;
+        var act = this.BaseAct * this.Factor;
+        if (this.Buffer.AttactFactor !== undefined) {
+            act += act * this.Buffer.AttactFactor;
+        }
+        if (this.Buffer.AttactValue !== undefined) {
+            act += this.Buffer.AttactValue;
+        }
+        return act;
     };
+
+    /**防御状态下防御力加成 */
+    DefStatusPlus: number = 0.5;
     //实时防御力
     get RealTimeDef(): number {
         var def = this.BaseDef * this.Factor;
-        if (this.IsDefStatus) def += this.BaseDef * this.DefStatusPlus;
+        if (this.IsDefStatus) {
+            def += def * this.DefStatusPlus
+        }
+        if (this.Buffer.DefenceFactor !== undefined) {
+            def += def * this.Buffer.DefenceFactor;
+        }
+        if (this.Buffer.DefenceValue !== undefined) {
+            def += this.Buffer.DefenceValue;
+        }
         return def;
     }
     //AI能力
     AI: (role: character, fightstatus: FightStatus) => void = undefined;
-
-    Description: string; //简介
-    Soul: string;       //武魂
+    /**简介 */
+    Description: string; 
+    /**武魂 */
+    Soul: string;       
+    /**魂骨 */
+    Bones:Equipment[];
     TeamPosition: string;//团队角色
-    Skill: string[];        //魂技
-    Skill_A: SkillInfo[];    //魂技
+    /**魂技名称 */
+    SkillName: string[];        
+    Skill: SkillInfo[];    //魂技
     get Grade(): string {
         if (this.LV <= 9) return "魂士";
         if (this.LV <= 19) return "魂师";
@@ -71,7 +106,43 @@ export class character {
         if (this.LV == 99) return "极限斗罗";
         if (this.LV == 100) return "成神";
     }
-    constructor(theName: string) { this.Name = theName; }
+    appendStatus(StatusWithTurn: [characterStatus, number]) {
+        let t = this.Status.find(x => x[0] === StatusWithTurn[0])
+        if (t === undefined) {
+            //不存在的情况
+            this.Status.push(StatusWithTurn);
+        } else {
+            StatusWithTurn[1] += t[1];
+            this.Status = this.Status.filter(x => x[0] !== StatusWithTurn[0]);
+            this.Status.push(StatusWithTurn);
+        }
+    }
+
+    removeStatus(status: characterStatus) {
+        this.Status = this.Status.filter(x => x[0] !== status);
+    }
+    constructor(theName: string) { 
+        this.Name = theName; 
+        this.Buffer = new BufferList();
+    }
+}
+
+/**Buffer */
+export class BufferList {
+    //Value表示绝对值，Percent表示百分比
+
+    HPValue: number = undefined;
+    HPFactor: number = undefined;
+
+    MPValue: number = undefined;
+    MPFactor: number = undefined;
+
+    AttactValue: number = undefined;
+    AttactFactor: number = undefined;
+
+    DefenceValue: number = undefined;
+    DefenceFactor: number = undefined;
+
 }
 
 export enum characterStatus {
@@ -86,6 +157,6 @@ export enum characterStatus {
 
 export class doubleSoul extends character {
     SecondSoul: string; //第二武魂
-    SecondSkill: string[]; //第二武魂魂技        
+    SecondSkillName: string[]; //第二武魂魂技        
 }
 
