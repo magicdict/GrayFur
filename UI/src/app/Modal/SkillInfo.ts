@@ -9,12 +9,12 @@ export abstract class SkillInfo {
     Direct: enmDirect;
     Description: string;
     Source: string;
-    MpUsage(): number {
+    get MpUsage(): number {
         return Math.pow(2, this.Order);
     }
     /**武魂融合技的融合者列表 */
     Combine: string[];
-    abstract Excute(c: character);
+    abstract Excute(c: character): void;
 }
 
 export class BlockSkillInfo extends SkillInfo {
@@ -37,21 +37,15 @@ export class AttactSkillInfo extends SkillInfo {
     }
 }
 
-export class DefenceSkillInfo extends SkillInfo {
-    SkillType = enmSkillType.Defence;
-    Turns: number;
-    Excute(c: character) {
-
-    }
-}
-
 export class HealSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Heal;
     RecoverHP: number = 0;
     RecoverMP: number = 0;
     Excute(c: character) {
+
         c.HP += this.RecoverHP;
         if (c.HP > c.RealMaxHP) c.HP = c.RealMaxHP;
+
         c.MP += this.RecoverMP;
         if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
     }
@@ -61,19 +55,23 @@ export class HealSkillInfo extends SkillInfo {
 export class BufferSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Buffer;
     Buffer: BufferList = new BufferList();
-    //TODO:增幅强度和等级关联
+    //TODO:增幅强度和等级关联:如果是和施法者相关，必须使用currentActionCharater的信息
     Excute(c: character) {
         //TODO:不能简单使用赋值？如果原本Buffer就存在呢？
         c.Buffer = this.Buffer;
+        //生命值和魂力的Buffer，还需要对于HP和MP进行修正
+        if (c.HP > c.RealMaxHP) c.HP = c.RealMaxHP;
+        if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
+        if (c.HP === c.BaseMaxHP || c.HP === c.RealMaxHP) c.HP = c.RealMaxHP;
+        if (c.MP === c.BaseMaxMP || c.MP === c.RealMaxMP) c.MP = c.RealMaxMP;
     }
 }
 
 
 
-//技能类型
+/**技能类型 */
 export enum enmSkillType {
     Attact,     //攻击 
-    Defence,    //防御 
     Heal,       //治疗 
     Buffer,     //光环 
     Block       //限制

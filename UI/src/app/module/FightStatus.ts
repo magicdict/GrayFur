@@ -34,9 +34,9 @@ export class FightStatus {
 
     }
 
-    InitRole(c:character){
-        c.HP = c.BaseMaxHP;
-        c.MP = c.BaseMaxMP;
+    InitRole(c: character) {
+        c.HP = c.RealMaxHP;
+        c.MP = c.RealMaxMP;
         c.Status = new Array<[characterStatus, number]>();
     }
 
@@ -53,7 +53,7 @@ export class FightStatus {
                 this.TurnList.push(element)
         });
         //速度升序排序
-        this.TurnList.sort((x, y) => { return x.Speed - y.Speed });
+        this.TurnList.sort((x, y) => { return x.RealSpeed - y.RealSpeed });
         let Role = this.TurnList.pop();
         console.log("当前角色：" + Role.Name + "[" + Role.IsMyTeam + "]");
         if (Role.IsMyTeam) {

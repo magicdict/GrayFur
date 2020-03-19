@@ -12,7 +12,7 @@ export class CharacterCreator {
         唐三.BaseMaxMP = 20;
         唐三.BaseAct = 10;
         唐三.BaseDef = 10;
-        唐三.Speed = 30;
+        唐三.BaseSpeed = 30;
         唐三.Bones = [
             EquipmentCreator.外附魂骨八蛛矛(),
             EquipmentCreator.天青牛蟒右臂骨(),
@@ -61,7 +61,7 @@ export class CharacterCreator {
         小舞.BaseMaxMP = 20;
         小舞.BaseAct = 10;
         小舞.BaseDef = 10;
-        小舞.Speed = 50;
+        小舞.BaseSpeed = 50;
         小舞.Soul = "柔骨兔";
         小舞.TeamPosition = "敏攻系";
         小舞.Description = "小舞的名字是由其父“小五”得来，因为她是家族中第五个出生的，小舞的爸爸懒得取名，就把名字换了一个字。“小舞”这个名字也是由此而来的。"
@@ -89,12 +89,15 @@ export class CharacterCreator {
         戴沐白.BaseMaxMP = 20;
         戴沐白.BaseAct = 10;
         戴沐白.BaseDef = 10;
-        戴沐白.Speed = 50;
+        戴沐白.BaseSpeed = 50;
         戴沐白.Soul = "白虎";
         戴沐白.TeamPosition = "敏攻系";
         戴沐白.Description = "史莱克七怪老大、星罗帝国三皇子 、星罗帝国太子、唐门长老、唐门刑堂堂主"
-        戴沐白.SkillName = [];
+        戴沐白.SkillName = [
+            "白虎护身障"
+        ];
         戴沐白.Skill = [
+            SkillCreator.白虎护身障()
         ]
         return 戴沐白;
     }
@@ -108,7 +111,7 @@ export class CharacterCreator {
         奥斯卡.BaseMaxMP = 20;
         奥斯卡.BaseAct = 10;
         奥斯卡.BaseDef = 10;
-        奥斯卡.Speed = 50;
+        奥斯卡.BaseSpeed = 50;
         奥斯卡.Soul = "香肠/食神";
         奥斯卡.TeamPosition = "辅助";
         奥斯卡.Description = "史莱克学院的学员，弗兰德院长从小收留的孤儿，大陆上第一位食物系封号斗罗，不可多得的食物系天才魂师。"
@@ -128,12 +131,13 @@ export class CharacterCreator {
         马红俊.BaseMaxMP = 20;
         马红俊.BaseAct = 10;
         马红俊.BaseDef = 10;
-        马红俊.Speed = 50;
+        马红俊.BaseSpeed = 50;
         马红俊.Soul = "邪火凤凰";
         马红俊.TeamPosition = "敏攻系";
         马红俊.Description = "拥有顶级兽武魂邪火凤凰，为变异武魂。对自身有邪火反噬的影响。"
-        马红俊.SkillName = [];
+        马红俊.SkillName = ["凤凰火线", "浴火凤凰"];
         马红俊.Skill = [
+            SkillCreator.凤凰火线(), SkillCreator.浴火凤凰()
         ]
         return 马红俊;
     }
@@ -147,7 +151,7 @@ export class CharacterCreator {
         宁荣荣.BaseMaxMP = 20;
         宁荣荣.BaseAct = 10;
         宁荣荣.BaseDef = 10;
-        宁荣荣.Speed = 999;     //第一时间释放技能
+        宁荣荣.BaseSpeed = 999;     //第一时间释放技能
         宁荣荣.Soul = "九宝琉璃塔";
         宁荣荣.TeamPosition = "辅助系";
         宁荣荣.Description = "九宝琉璃宗宗主，为七宝琉璃宗前宗主宁风致和粉色长发女子(名字不详)之女，也是唯一的女儿。"
@@ -162,7 +166,11 @@ export class CharacterCreator {
             "九宝神光护体",
             "九宝无敌神光"];
         宁荣荣.Skill = [
-            SkillCreator.HPBuffer(),
+            SkillCreator.力量增益(),
+            SkillCreator.敏捷增幅(),
+            SkillCreator.魂力增幅(),
+            SkillCreator.防御增幅(),
+            SkillCreator.攻击增幅(),
             SkillCreator.复活之光()
         ]
         return 宁荣荣;
@@ -177,12 +185,13 @@ export class CharacterCreator {
         朱竹清.BaseMaxMP = 20;
         朱竹清.BaseAct = 10;
         朱竹清.BaseDef = 10;
-        朱竹清.Speed = 50;
+        朱竹清.BaseSpeed = 50;
         朱竹清.Soul = "幽冥灵猫";
         朱竹清.TeamPosition = "敏攻系";
         朱竹清.Description = "星罗帝国贵族朱家二小姐，在戴沐白被封星罗太子之后，被册封为太子妃"
-        朱竹清.SkillName = [];
+        朱竹清.SkillName = ["幽冥突刺", "幽冥百爪", "幽冥斩"];
         朱竹清.Skill = [
+            SkillCreator.幽冥突刺(), SkillCreator.幽冥百爪(), SkillCreator.幽冥斩()
         ]
         return 朱竹清;
     }
@@ -196,7 +205,7 @@ export class CharacterCreator {
         赵无极.BaseMaxMP = 200;
         赵无极.BaseAct = 100;
         赵无极.BaseDef = 100;
-        赵无极.Speed = 10;
+        赵无极.BaseSpeed = 10;
         赵无极.Soul = "大力金刚熊";
         赵无极.TeamPosition = "强攻系";
         赵无极.Description = "人称不动明王，防御力惊人，曾经风靡一时的狠辣角色，后来到史莱克学院当老师。虽外表凶狠，但内心善良，且十分护短，非常喜爱史莱克七怪。"
@@ -211,7 +220,7 @@ export class CharacterCreator {
         赵无极.Skill = [
             SkillCreator.不动明王身(),
         ];
-        赵无极.AI = (role,status) => {
+        赵无极.AI = (role, status) => {
             //初级阶段,对前排的一个活人进行普通攻击
             status.MyTeam.some(element => {
                 if (element !== undefined && element.HP > 0) {

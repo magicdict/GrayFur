@@ -55,6 +55,7 @@ export class FightComponent implements OnInit {
     }
 
     ExcuteSkill(Skill: SkillInfo) {
+        this.ge.fightStatus.currentActionCharater.MP -= Skill.MpUsage;
         console.log("发动魂技:" + Skill.Name);
         console.log("Range:" + Skill.Range);
         console.log("Direct:" + Skill.Direct);
@@ -105,12 +106,27 @@ export class FightComponent implements OnInit {
                 switch (Skill.Direct) {
                     case enmDirect.Enemy:
                         //敌人全体
+                        this.ge.fightStatus.Enemy.forEach(element => {
+                            if (element !== undefined) Skill.Excute(element);
+                        });
+                        this.ge.fightStatus.ActionDone();
                         break;
                     case enmDirect.MyTeam:
                         //我军全体
+                        this.ge.fightStatus.MyTeam.forEach(element => {
+                            if (element !== undefined) Skill.Excute(element);
+                        });
+                        this.ge.fightStatus.ActionDone();
                         break;
                     default:
                         //战场全体
+                        this.ge.fightStatus.MyTeam.forEach(element => {
+                            if (element !== undefined) Skill.Excute(element);
+                        });
+                        this.ge.fightStatus.Enemy.forEach(element => {
+                            if (element !== undefined) Skill.Excute(element);
+                        });
+                        this.ge.fightStatus.ActionDone();
                         break;
                 }
                 break;

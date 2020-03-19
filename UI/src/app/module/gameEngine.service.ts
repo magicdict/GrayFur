@@ -38,7 +38,6 @@ export class GameEngine {
     public 宁荣荣: character;
     public 朱竹清: character;
 
-    public 赵无极: character;
 
     public currentRole: character;
 
@@ -84,8 +83,10 @@ export class GameEngine {
         this.currentRole = this.唐三;
     }
 
+    public 赵无极: character;
     public InitNPC() {
         this.赵无极 = CharacterCreator.赵无极();
+        this.赵无极.Factor = 0.6;
     }
 
     public gamestatus: GameStatus;
@@ -104,6 +105,7 @@ export class GameEngine {
     public NewGame() {
         this.InitGameStatus();
         this.InitRole();
+        this.InitNPC();
     }
 
     public Load() {
@@ -118,8 +120,8 @@ export class GameEngine {
             this.马红俊 = this.localstorage.Load<character>("马红俊");
             this.宁荣荣 = this.localstorage.Load<character>("宁荣荣");
             this.朱竹清 = this.localstorage.Load<character>("朱竹清");
+            this.InitNPC();
         }
-        this.InitNPC();
     }
 
     public Save() {

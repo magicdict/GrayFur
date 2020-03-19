@@ -1,6 +1,21 @@
-import { SkillInfo, BlockSkillInfo, DefenceSkillInfo, enmRange, enmDirect, enmSkillType, AttactSkillInfo, HealSkillInfo, BufferSkillInfo } from '../Modal/SkillInfo';
+import { SkillInfo, BlockSkillInfo, enmRange, enmDirect, AttactSkillInfo, HealSkillInfo, BufferSkillInfo } from '../Modal/SkillInfo';
 
 export class SkillCreator {
+
+    //戴沐白
+    public static 白虎护身障(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "白虎护身障";
+        s.Description = "攻击、防御、力量增强50%";
+        s.Order = 1;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.Self;
+        s.Buffer.AttactFactor = 0.5;
+        s.Buffer.DefenceFactor = 0.5;
+        s.Buffer.HPFactor = 0.5;
+        return s;
+    }
+
     //唐三
     public static 缠绕(): SkillInfo {
         let s = new BlockSkillInfo();
@@ -104,9 +119,9 @@ export class SkillCreator {
         s.Name = "腰弓";
         s.Description = "柔术";
         s.Order = 1;
-        s.Direct = enmDirect.MyTeam;
-        s.Range = enmRange.Self;
-        s.Harm = 100;
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 50;
         return s;
     }
 
@@ -123,22 +138,37 @@ export class SkillCreator {
         return s;
     }
 
-    //赵无极
-    public static 不动明王身(): SkillInfo {
-        let s = new DefenceSkillInfo();
-        s.Name = "不动明王身";
-        s.Description = "防御极强，面对唐三纯熟的唐门暗器，铿铿锵锵，火花四溅，并不能伤及他分毫。";
+    //马红俊
+    public static 凤凰火线(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "凤凰火线";
+        s.Description = "从口中喷出一道火焰，单向远程攻击技";
         s.Order = 1;
-        s.Direct = enmDirect.MyTeam;
-        s.Range = enmRange.Self;
-        s.Turns = 1;
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 50;
         return s;
     }
 
-
-    /**HP增益 */
-    public static HPBuffer(): SkillInfo {
+    public static 浴火凤凰(): SkillInfo {
         let s = new BufferSkillInfo();
+        s.Name = "浴火凤凰";
+        s.Description = "开启时凤凰火焰增强30%";
+        s.Order = 1;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.Self;
+        //TODO:这里应该是使得凤凰火线的技能伤害变成130.
+        s.Buffer.AttactFactor = 0.3;
+        return s;
+    }
+
+    //宁荣荣
+
+    /**力量增益 */
+    public static 力量增益(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "力量增益";
+        s.Description = "我方全体生命值上限增加10%";
         s.Order = 1;
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
@@ -146,6 +176,99 @@ export class SkillCreator {
         return s;
     }
 
+    /**敏捷增幅 */
+    public static 敏捷增幅(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "敏捷增幅";
+        s.Description = "我方全体速度上限增加10%";
+        s.Order = 2;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.EveryOne;
+        s.Buffer.SpeedFactor = 0.1;
+        return s;
+    }
+
+    /**魂力增幅 */
+    public static 魂力增幅(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "魂力增幅";
+        s.Description = "我方全体魂力上限增加10%";
+        s.Order = 3;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.EveryOne;
+        s.Buffer.MPFactor = 0.1;
+        return s;
+    }
+
+    /**防御增幅 */
+    public static 防御增幅(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "防御增幅";
+        s.Description = "我方全体防御力上限增加10%";
+        s.Order = 4;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.EveryOne;
+        s.Buffer.DefenceFactor = 0.1;
+        return s;
+    }
+
+    /**攻击增幅 */
+    public static 攻击增幅(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "攻击增幅";
+        s.Description = "我方全体攻击力上限增加10%";
+        s.Order = 5;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.EveryOne;
+        s.Buffer.AttactFactor = 0.1;
+        return s;
+    }
+
+    //朱竹清
+    public static 幽冥突刺(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "幽冥突刺";
+        s.Description = "迅速用利爪刺杀对方，近身单体攻击技";
+        s.Order = 1;
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 50;
+        return s;
+    }
+
+    public static 幽冥百爪(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "幽冥百爪";
+        s.Description = "透点式攻击，百爪攻击同一点，速度极快，破坏力强，近身单体攻击技";
+        s.Order = 2;
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 100;
+        return s;
+    }
+
+    public static 幽冥斩(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "幽冥斩";
+        s.Description = "魂力覆盖双手的同时高举并合掌，然后由上往下攻击，攻击时，覆盖双手的魂力会随着双手的移动轨迹形成一个月牙状的黑影斩向对方，破坏力极大，近身单体攻击技";
+        s.Order = 3;
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 200;
+        return s;
+    }
+
+    //赵无极
+    public static 不动明王身(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "不动明王身";
+        s.Description = "防御极强，面对唐三纯熟的唐门暗器，铿铿锵锵，火花四溅，并不能伤及他分毫。";
+        s.Order = 1;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.Self;
+        s.Buffer.DefenceFactor = 1;
+        return s;
+    }
 
     //武魂融合
 

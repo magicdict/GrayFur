@@ -16,21 +16,33 @@ export class character {
 
     //战斗状态下使用属性
     /**速度：出手顺序 */
-    Speed: number;                          
+    BaseSpeed: number;
+    get RealSpeed(): number {
+        var R = this.BaseSpeed * this.Factor;
+        if (this.Buffer.SpeedFactor !== undefined) {
+            R += R * this.Buffer.SpeedFactor;
+        }
+        if (this.Buffer.SpeedValue !== undefined) {
+            R += this.Buffer.SpeedValue;
+        }
+        return R;
+    }
+
+
     /**角色在战场上是否为我方角色 */
-    IsMyTeam: boolean;                 
+    IsMyTeam: boolean;
     /**是否为防御状态 */
     IsDefStatus: boolean;
     /**因子：3成功力的某个角色 */
     Factor: number = 1;
-    /**增益 */             
+    /**增益 */
     Buffer: BufferList;
     /**状态 */
-    Status: Array<[characterStatus, number]>;           
+    Status: Array<[characterStatus, number]>;
 
     /**经过增益之后的生命最大值 */
     get RealMaxHP(): number {
-        var R = this.BaseMaxHP;
+        var R = this.BaseMaxHP * this.Factor;
         if (this.Buffer.HPFactor !== undefined) {
             R += R * this.Buffer.HPFactor;
         }
@@ -41,7 +53,7 @@ export class character {
     }
     /**经过增益之后的魂力最大值 */
     get RealMaxMP(): number {
-        var R = this.BaseMaxMP;
+        var R = this.BaseMaxMP * this.Factor;
         if (this.Buffer.MPFactor !== undefined) {
             R += R * this.Buffer.MPFactor;
         }
@@ -82,14 +94,15 @@ export class character {
     //AI能力
     AI: (role: character, fightstatus: FightStatus) => void = undefined;
     /**简介 */
-    Description: string; 
+    Description: string;
     /**武魂 */
-    Soul: string;       
+    Soul: string;
     /**魂骨 */
-    Bones:Equipment[];
+    Bones: Equipment[];
+
     TeamPosition: string;//团队角色
     /**魂技名称 */
-    SkillName: string[];        
+    SkillName: string[];
     Skill: SkillInfo[];    //魂技
     get Grade(): string {
         if (this.LV <= 9) return "魂士";
@@ -121,8 +134,8 @@ export class character {
     removeStatus(status: characterStatus) {
         this.Status = this.Status.filter(x => x[0] !== status);
     }
-    constructor(theName: string) { 
-        this.Name = theName; 
+    constructor(theName: string) {
+        this.Name = theName;
         this.Buffer = new BufferList();
     }
 }
@@ -137,6 +150,9 @@ export class BufferList {
     MPValue: number = undefined;
     MPFactor: number = undefined;
 
+    SpeedValue: number = undefined;
+    SpeedFactor: number = undefined;
+
     AttactValue: number = undefined;
     AttactFactor: number = undefined;
 
@@ -145,6 +161,7 @@ export class BufferList {
 
 }
 
+/**状态 */
 export enum characterStatus {
     中毒,
     禁言,
@@ -153,6 +170,11 @@ export enum characterStatus {
     物免,
     魔免,
     无敌,
+    //特色特殊状态:战斗开始的时候将被清除掉
+    /**马红俊 */
+    浴火凤凰,
+    /**朱竹清 */
+    幽冥影分身
 }
 
 export class doubleSoul extends character {
