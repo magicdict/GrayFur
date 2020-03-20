@@ -65,7 +65,7 @@ export class FightComponent implements OnInit {
         switch (Skill.Range) {
             case enmRange.Self:
                 //对自己使用的技能
-                Skill.Excute(this.ge.fightStatus.currentActionCharater);
+                Skill.Excute(this.ge.fightStatus.currentActionCharater, this.ge.fightStatus);
                 this.ge.fightStatus.ActionDone();
                 break;
             case enmRange.PickOne:
@@ -75,7 +75,7 @@ export class FightComponent implements OnInit {
                         //敌人全体
                         this.ItemClicked = (clickedItem: character) => {
                             if (!clickedItem.IsMyTeam) {
-                                Skill.Excute(clickedItem);
+                                Skill.Excute(clickedItem, this.ge.fightStatus);
                                 this.ge.fightStatus.ActionDone();
                                 this.ItemClicked = (clickedItem: character) => { }
                             }
@@ -85,7 +85,7 @@ export class FightComponent implements OnInit {
                         //我军全体
                         this.ItemClicked = (clickedItem: character) => {
                             if (clickedItem.IsMyTeam) {
-                                Skill.Excute(clickedItem);
+                                Skill.Excute(clickedItem, this.ge.fightStatus);
                                 this.ge.fightStatus.ActionDone();
                                 this.ItemClicked = (clickedItem: character) => { }
                             }
@@ -94,7 +94,7 @@ export class FightComponent implements OnInit {
                     default:
                         //战场全体
                         this.ItemClicked = (clickedItem: character) => {
-                            Skill.Excute(clickedItem);
+                            Skill.Excute(clickedItem, this.ge.fightStatus);
                             this.ge.fightStatus.ActionDone();
                             this.ItemClicked = (clickedItem: character) => { }
                         }
@@ -107,24 +107,24 @@ export class FightComponent implements OnInit {
                     case enmDirect.Enemy:
                         //敌人全体
                         this.ge.fightStatus.Enemy.forEach(element => {
-                            if (element !== undefined) Skill.Excute(element);
+                            if (element !== undefined) Skill.Excute(element, this.ge.fightStatus);
                         });
                         this.ge.fightStatus.ActionDone();
                         break;
                     case enmDirect.MyTeam:
                         //我军全体
                         this.ge.fightStatus.MyTeam.forEach(element => {
-                            if (element !== undefined) Skill.Excute(element);
+                            if (element !== undefined) Skill.Excute(element, this.ge.fightStatus);
                         });
                         this.ge.fightStatus.ActionDone();
                         break;
                     default:
                         //战场全体
                         this.ge.fightStatus.MyTeam.forEach(element => {
-                            if (element !== undefined) Skill.Excute(element);
+                            if (element !== undefined) Skill.Excute(element, this.ge.fightStatus);
                         });
                         this.ge.fightStatus.Enemy.forEach(element => {
-                            if (element !== undefined) Skill.Excute(element);
+                            if (element !== undefined) Skill.Excute(element, this.ge.fightStatus);
                         });
                         this.ge.fightStatus.ActionDone();
                         break;

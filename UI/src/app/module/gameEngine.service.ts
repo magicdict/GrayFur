@@ -6,6 +6,7 @@ import { getBattleInfoByName } from '../Modal/BattleInfo';
 import { FightStatus } from './FightStatus';
 import { ToolInfo } from '../Modal/ToolInfo';
 import { ToolCreator } from './ToolCreator';
+import { SkillCreator } from './SkillCreator';
 
 
 @Injectable()
@@ -84,9 +85,11 @@ export class GameEngine {
     }
 
     public 赵无极: character;
-    public InitNPC() {
+    public InitNPCAndSkillCustomExcute() {
         this.赵无极 = CharacterCreator.赵无极();
         this.赵无极.Factor = 0.6;
+        //以下为无法序列化的魂技
+        this.马红俊.Skill.push(SkillCreator.凤凰火线()); 
     }
 
     public gamestatus: GameStatus;
@@ -105,7 +108,7 @@ export class GameEngine {
     public NewGame() {
         this.InitGameStatus();
         this.InitRole();
-        this.InitNPC();
+        this.InitNPCAndSkillCustomExcute();
     }
 
     public Load() {
@@ -120,7 +123,7 @@ export class GameEngine {
             this.马红俊 = this.localstorage.Load<character>("马红俊");
             this.宁荣荣 = this.localstorage.Load<character>("宁荣荣");
             this.朱竹清 = this.localstorage.Load<character>("朱竹清");
-            this.InitNPC();
+            this.InitNPCAndSkillCustomExcute();
         }
     }
 

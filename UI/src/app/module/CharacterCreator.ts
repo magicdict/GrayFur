@@ -137,7 +137,8 @@ export class CharacterCreator {
         马红俊.Description = "拥有顶级兽武魂邪火凤凰，为变异武魂。对自身有邪火反噬的影响。"
         马红俊.SkillName = ["凤凰火线", "浴火凤凰"];
         马红俊.Skill = [
-            SkillCreator.凤凰火线(), SkillCreator.浴火凤凰()
+            //"凤凰火线"拥有自定义施放方法，不能被序列化，所以后期添加
+            SkillCreator.浴火凤凰()
         ]
         return 马红俊;
     }

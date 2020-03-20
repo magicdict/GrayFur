@@ -1,4 +1,6 @@
-import { SkillInfo, BlockSkillInfo, enmRange, enmDirect, AttactSkillInfo, HealSkillInfo, BufferSkillInfo } from '../Modal/SkillInfo';
+import { SkillInfo, StatusSkillInfo, enmRange, enmDirect, AttactSkillInfo, HealSkillInfo, BufferSkillInfo } from '../Modal/SkillInfo';
+import { characterStatus } from '../Modal/character';
+import { GameEngine } from './GameEngine.service';
 
 export class SkillCreator {
 
@@ -18,86 +20,79 @@ export class SkillCreator {
 
     //唐三
     public static 缠绕(): SkillInfo {
-        let s = new BlockSkillInfo();
+        let s = new StatusSkillInfo();
         s.Name = "缠绕";
         s.Description = "单体限制，使用蓝银皇缠住敌人";
         s.Order = 1;
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.PickOne;
-        s.Turns = 1;
-        s.BlockAttact = true;
-        s.BlockSkill = false;
         s.Source = "曼陀罗蛇";
+        s.PlusStatus = [characterStatus.束缚, 1];
         return s;
     }
 
     public static 寄生(): SkillInfo {
-        let s = new BlockSkillInfo();
+        let s = new StatusSkillInfo();
         s.Name = "寄生";
         s.Description = "单体限制，蓝银皇在敌人体内留下的种子萌发";
         s.Order = 2;
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.PickOne;
-        s.Turns = 2;
-        s.BlockAttact = true;
-        s.BlockSkill = false;
         s.Source = "鬼藤";
+        s.PlusStatus = [characterStatus.束缚, 3];
         return s;
     }
 
     public static 蛛网束缚_单体(): SkillInfo {
-        let s = new BlockSkillInfo();
+        let s = new StatusSkillInfo();
         s.Name = "蛛网束缚(单体)";
         s.Description = "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手";
         s.Order = 3;
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.PickOne;
-        s.Turns = 3;
-        s.BlockAttact = true;
-        s.BlockSkill = false;
+        s.PlusStatus = [characterStatus.晕眩, 3];
         s.Source = "人面魔蛛";
         return s;
     }
 
     public static 蛛网束缚_群体(): SkillInfo {
-        let s = new BlockSkillInfo();
+        let s = new StatusSkillInfo();
         s.Name = "蛛网束缚(群体)";
         s.Description = "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手";
         s.Order = 3;
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.EveryOne;
-        s.Turns = 1;
-        s.BlockAttact = true;
-        s.BlockSkill = false;
+        s.PlusStatus = [characterStatus.晕眩, 1];
         s.Source = "人面魔蛛";
         return s;
     }
 
     public static 蓝银囚笼(): SkillInfo {
-        let s = new BlockSkillInfo();
+        let s = new StatusSkillInfo();
         s.Name = "蓝银囚笼";
         s.Description = "群体限制，蓝银皇化为囚笼困住敌人";
         s.Order = 4;
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.EveryOne;
-        s.Turns = 2;
-        s.BlockAttact = true;
-        s.BlockSkill = false;
         s.Source = "地穴魔蛛";
+        s.PlusStatus = [characterStatus.晕眩, 3];
         return s;
     }
 
     public static 蓝银突刺阵(): SkillInfo {
-        let s = new BlockSkillInfo();
+        let s = new StatusSkillInfo();
         s.Name = "蓝银突刺阵";
         s.Description = "群体限制，强制眩晕一秒";
         s.Order = 4;
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.EveryOne;
-        s.Turns = 1;
-        s.BlockAttact = true;
-        s.BlockSkill = true;
         s.Source = "地穴魔蛛";
+        s.PlusStatus = [characterStatus.晕眩, 1];
+        //增加攻击性
+        let a = new AttactSkillInfo();
+        a.Name = "蓝银突刺阵附加攻击"
+        a.Harm = 20;
+        s.AddtionSkill = a;
         return s;
     }
 
@@ -126,15 +121,13 @@ export class SkillCreator {
     }
 
     public static 魅惑(): SkillInfo {
-        let s = new BlockSkillInfo();
+        let s = new StatusSkillInfo();
         s.Name = "魅惑";
         s.Description = "双眼放射诱惑人的粉红光，令人眩晕";
         s.Order = 2;
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.PickOne;
-        s.Turns = 2;
-        s.BlockAttact = true;
-        s.BlockSkill = true;
+        s.PlusStatus = [characterStatus.晕眩, 3];
         return s;
     }
 
@@ -146,19 +139,28 @@ export class SkillCreator {
         s.Order = 1;
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.PickOne;
+        s.CustomeExcute = (c, fs) => {
+            if (fs.currentActionCharater.Status.find(x => x[0] === characterStatus.浴火凤凰) !== undefined) {
+                c.HP -= 50 * 1.3;
+                if (c.HP <= 0) c.HP = 0;
+            } else {
+                c.HP -= 50;
+                if (c.HP <= 0) c.HP = 0;
+            }
+            return true;
+        }
         s.Harm = 50;
         return s;
     }
 
     public static 浴火凤凰(): SkillInfo {
-        let s = new BufferSkillInfo();
+        let s = new StatusSkillInfo();
         s.Name = "浴火凤凰";
         s.Description = "开启时凤凰火焰增强30%";
         s.Order = 1;
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.Self;
-        //TODO:这里应该是使得凤凰火线的技能伤害变成130.
-        s.Buffer.AttactFactor = 0.3;
+        s.PlusStatus = [characterStatus.浴火凤凰, 999];
         return s;
     }
 

@@ -1,4 +1,5 @@
-import { character, BufferList } from './character';
+import { character, BufferList, characterStatus } from './character';
+import { FightStatus } from '../module/FightStatus';
 
 /** 技能 */
 export abstract class SkillInfo {
@@ -14,26 +15,39 @@ export abstract class SkillInfo {
     }
     /**武魂融合技的融合者列表 */
     Combine: string[];
-    abstract Excute(c: character): void;
+    abstract Excute(c: character, fs: FightStatus): void;
+    /**自定义执行方法 */
+    CustomeExcute(c: character, fs: FightStatus): boolean {
+        return false;
+    }
+    //攻击并中毒这样的两个效果叠加的技能
+    AddtionSkill: SkillInfo = undefined;
 }
 
-export class BlockSkillInfo extends SkillInfo {
-    SkillType = enmSkillType.Block;
-    Turns: number;
-    BlockAttact: boolean;   //束缚
-    BlockSkill: boolean;    //晕眩
-    Excute(c: character) {
-        if (this.BlockAttact) { }
-        if (this.BlockSkill) { }
+export class StatusSkillInfo extends SkillInfo {
+    SkillType = enmSkillType.Status;
+    PlusStatus: [characterStatus, number] = undefined;;
+    RemoveStatus: characterStatus = undefined;
+    Excute(c: character, fs: FightStatus) {
+        if (this.CustomeExcute(c, fs)) return;
+
+        if (this.PlusStatus !== undefined) c.appendStatus(this.PlusStatus);
+        if (this.RemoveStatus !== undefined) c.removeStatus(this.RemoveStatus);
+
+        if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
     }
 }
 
 export class AttactSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Attact;
     Harm: number;
-    Excute(c: character) {
+    Excute(c: character, fs: FightStatus) {
+        if (this.CustomeExcute(c, fs)) return;
+
         c.HP -= this.Harm;
         if (c.HP <= 0) c.HP = 0;
+
+        if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
     }
 }
 
@@ -41,13 +55,13 @@ export class HealSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Heal;
     RecoverHP: number = 0;
     RecoverMP: number = 0;
-    Excute(c: character) {
-
+    Excute(c: character, fs: FightStatus) {
+        if (this.CustomeExcute(c, fs)) return;
         c.HP += this.RecoverHP;
         if (c.HP > c.RealMaxHP) c.HP = c.RealMaxHP;
-
         c.MP += this.RecoverMP;
         if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
+        if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
     }
 }
 
@@ -56,7 +70,9 @@ export class BufferSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Buffer;
     Buffer: BufferList = new BufferList();
     //TODO:增幅强度和等级关联:如果是和施法者相关，必须使用currentActionCharater的信息
-    Excute(c: character) {
+    Excute(c: character, fs: FightStatus) {
+        if (this.CustomeExcute(c, fs)) return;
+
         //TODO:不能简单使用赋值？如果原本Buffer就存在呢？
         c.Buffer = this.Buffer;
         //生命值和魂力的Buffer，还需要对于HP和MP进行修正
@@ -64,6 +80,8 @@ export class BufferSkillInfo extends SkillInfo {
         if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
         if (c.HP === c.BaseMaxHP || c.HP === c.RealMaxHP) c.HP = c.RealMaxHP;
         if (c.MP === c.BaseMaxMP || c.MP === c.RealMaxMP) c.MP = c.RealMaxMP;
+
+        if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
     }
 }
 
@@ -71,10 +89,14 @@ export class BufferSkillInfo extends SkillInfo {
 
 /**技能类型 */
 export enum enmSkillType {
-    Attact,     //攻击 
-    Heal,       //治疗 
-    Buffer,     //光环 
-    Block       //限制
+    /**攻击 */
+    Attact,
+    /**治疗 */
+    Heal,
+    /**光环  */
+    Buffer,
+    /**改变状态 */
+    Status
 }
 
 export enum enmRange {
