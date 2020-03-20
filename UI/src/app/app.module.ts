@@ -12,6 +12,7 @@ import { FightComponent } from './fight/fight.component';
 import { FormationItemComponent } from './formation/formationItem.component';
 
 import { MiniGameComponent } from './miniGame/miniGame.component';
+import { MiniGame2Component } from './miniGame/miniGame2.component';
 import { GameCellComponent } from './miniGame/GameCell.component';
 import { StoreComponent } from './store/store.component';
 
@@ -26,6 +27,7 @@ import { StoreComponent } from './store/store.component';
     FormationItemComponent,
     FightComponent,
     MiniGameComponent,
+    MiniGame2Component,
     GameCellComponent
   ],
   imports: [

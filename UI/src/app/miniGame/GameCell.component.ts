@@ -1,6 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { MiniGameCardStatus } from './miniGame.component';
-
 
 @Component({
     selector: 'minigame-cell',
@@ -10,18 +8,34 @@ export class GameCellComponent {
     constructor() { }
     @Input() ImageName;
     @Input() Status: MiniGameCardStatus;
+    @Input() ColIdx: number = 0;
+    @Input() RowIdx: number = 0;
     ShowStatus = MiniGameCardStatus.Show;
     HideStatus = MiniGameCardStatus.Hide;
     ClearStatus = MiniGameCardStatus.Clear;
+    SelectedStatus = MiniGameCardStatus.Selected;
     @Output() cellClicked: EventEmitter<GameCellComponent> = new EventEmitter();
-    ChangeStatus() {
+    CellClicked() {
+        this.cellClicked.emit(this);
+    }
+    get BackGoundColor(): string {
         switch (this.Status) {
-            case MiniGameCardStatus.Hide:
-                this.Status = MiniGameCardStatus.Show;
-                setTimeout(() => { this.cellClicked.emit(this); }, 300);
-                break;
+            case MiniGameCardStatus.Selected:
+                return "red";
             default:
-                break;
+                return "";
         }
     }
+}
+
+/**卡牌状态 */
+export enum MiniGameCardStatus {
+    /**消除 */
+    Clear,
+    /**正面 */
+    Show,
+    /**背面 */
+    Hide,
+    /**高亮 */
+    Selected
 }

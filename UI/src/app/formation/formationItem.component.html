@@ -2,13 +2,14 @@
     <div style="position: absolute;top: 0px;left: 0px;z-index: 998;width:70px;background-color:royalblue ;opacity: 1;">
         <font color="white">{{Item.Name}}{{Item.Grade}}</font>
     </div>
-    <div
+    <div *ngIf="StatusTitle !== undefined"
         style="position: absolute;top: 0px;left: 60px;z-index: 999;width:16px;height:16px;background-color:greenyellow ;opacity: 1;">
-        <font color="black">毒</font>
+        <font color="black">{{StatusTitle}}</font>
     </div>
     <img [src]="'/assets/character/' + Item.Name + '/头像.jpg'" width="70px" height="70px">
     <div class="progress">
-        <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': (Item.HP * 100/ Item.RealMaxHP) + '%'}">
+        <div class="progress-bar bg-danger" role="progressbar"
+            [ngStyle]="{'width': (Item.HP * 100/ Item.RealMaxHP) + '%'}">
             {{Item.HP + "/" + Item.RealMaxHP}}</div>
     </div>
     <div class="progress">

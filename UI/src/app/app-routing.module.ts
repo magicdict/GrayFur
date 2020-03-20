@@ -6,6 +6,7 @@ import { SceneComponent } from './scene/scene.component';
 import { FightComponent } from './fight/fight.component';
 import { MiniGameComponent } from './miniGame/miniGame.component';
 import { StoreComponent } from './store/store.component';
+import { MiniGame2Component } from './miniGame/miniGame2.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path:'minigame',
     component:MiniGameComponent
+  },
+  {
+    path:'minigame2',
+    component:MiniGame2Component
   },
   {
     path:'store',

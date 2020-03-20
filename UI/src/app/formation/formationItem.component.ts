@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../module/GameEngine.service';
-import { character } from '../Modal/character';
+import { character, characterStatus } from '../Modal/character';
 
 
 
@@ -17,6 +17,21 @@ export class FormationItemComponent implements OnInit {
     @Input() Item: character;
 
     @Output() ItemClickedEmit: EventEmitter<character> = new EventEmitter();
+
+    get StatusTitle(): string {
+        if (this.Item.Status.length == 0) return undefined;
+        switch (this.Item.Status[0][0]) {
+            case characterStatus.中毒:
+                return "毒"
+            case characterStatus.浴火凤凰:
+                return "火"
+            case characterStatus.束缚:
+                return "缚"
+            default:
+                break;
+        }
+    }
+
     ItemClicked() {
         this.ItemClickedEmit.emit(this.Item);
     }

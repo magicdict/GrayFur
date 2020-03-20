@@ -35,9 +35,7 @@ http://datavisualization.club:8888/
 
 ### 战斗
 
-<img src="Demo/战斗20200317.jpg" width="50%">
-
-<img src="Demo/全员战斗20200318.jpg" width="50%">
+<img src="Demo/战斗20200320.jpg" width="50%">
 
 ### 魂技选择
 
@@ -50,3 +48,7 @@ http://datavisualization.club:8888/
 ### 记忆力游戏
 
 <img src="Demo/记忆力游戏20200316.jpg" width="50%">
+
+### 连连看
+
+<img src="Demo/连连看20200320.jpg" width="50%">

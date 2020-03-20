@@ -18,6 +18,9 @@ export class LoginComponent {
   MiniGame(){
     this.router.navigateByUrl("minigame");
   }
+  MiniGame2(){
+    this.router.navigateByUrl("minigame2");
+  }
   Load() {
     this.ge.Load();
     this.router.navigateByUrl("scene");

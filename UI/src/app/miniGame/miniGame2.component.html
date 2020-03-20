@@ -1,0 +1,23 @@
+<div [ngStyle]="{'background-image': 'url(/assets/scene/战斗场地.jpg)'}"
+    style="position:relative;height:0;padding-bottom: 150%;width: 100%;background-size: contain; ">
+    <button class="btn btn-lg btn-danger" (click)="Exit()" style="float: right;">退出</button>
+    <h6 style="color: aliceblue;width: 50%;">连连看</h6>
+    <br /><br /><br />
+    <div class="container" *ngFor="let R of [0,1,2,3,4,5]" [style]="{'padding':'0px','width':52 * 6 + 'px'}">
+        <div class="row">
+            <div *ngFor="let C of [0,1,2,3,4,5]" class="col-2" style="padding: 0px;">
+                <minigame-cell [ImageName]="PullzeArray.getValue(R,C)" [Status]="ShowStatus" [ColIdx] = "C" [RowIdx] = "R"
+                    (cellClicked)="CellClicker($event)"></minigame-cell>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <div style="position: absolute;z-index: 99; bottom: 0px;width: 100%;text-align: center;margin-bottom: 0px;" class="alert alert-primary" role="alert">
+        使用步数：
+        {{StepUsage}}
+        &nbsp;&nbsp;&nbsp;&nbsp;    
+        消除个数：
+        {{ClearCnt}}
+    </div>
+</div>
