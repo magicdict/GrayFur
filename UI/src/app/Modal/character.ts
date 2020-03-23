@@ -1,33 +1,33 @@
 import { SkillInfo } from './SkillInfo';
 import { FightStatus } from '../module/FightStatus';
 import { Equipment } from './Equipment';
+import { RPGCore } from './RPGCore';
 
 export class character {
-    Name: string;   //姓名
-    LV: number;      //等级
+    /**姓名 */
+    Name: string;
+    /**等级 */
+    LV: number;
+    /**当前经验值 */
+    Exp: number = 0;
 
-    BaseMaxHP: number;  //最大生命值
+    get NextNeedExp(): number {
+        return RPGCore.NeedExpForNextLv(this.LV);
+    }
+
+    /**最大生命值 */
+    BaseMaxHP: number = 100;
     HP: number;     //生命值
-    BaseMaxMP: number;  //最大魔法值（魂力）
+
+    BaseMaxMP: number = 20;  //最大魔法值（魂力）
     MP: number;         //魔法值（魂力）
 
-    BaseAct: number;     //基础攻击力
-    BaseDef: number;     //基础防御力
+    BaseAct: number = 10;     //基础攻击力
+    BaseDef: number = 10;     //基础防御力
 
     //战斗状态下使用属性
     /**速度：出手顺序 */
-    BaseSpeed: number;
-    get RealSpeed(): number {
-        var R = this.BaseSpeed * this.Factor;
-        if (this.Buffer.SpeedFactor !== undefined) {
-            R += R * this.Buffer.SpeedFactor;
-        }
-        if (this.Buffer.SpeedValue !== undefined) {
-            R += this.Buffer.SpeedValue;
-        }
-        return R;
-    }
-
+    BaseSpeed: number = 10;
 
     /**角色在战场上是否为我方角色 */
     IsMyTeam: boolean;
@@ -35,62 +35,147 @@ export class character {
     IsDefStatus: boolean;
     /**因子：3成功力的某个角色 */
     Factor: number = 1;
-    /**增益 */
-    Buffer: BufferList;
-    /**状态 */
-    Status: Array<[characterStatus, number]>;
+    /**成长速度因子 */
+    GrowthFactor: number = 1;
+    /**速度成长值 */
+    get SpeedUpPerLv(): number {
+        switch (this.TeamPosition) {
+            case enmTeamPosition.强攻系:
+                return 5;
+            case enmTeamPosition.敏攻系:
+                return 15;
+            case enmTeamPosition.控制系:
+                return 10;
+            case enmTeamPosition.辅助系:
+                return 10;
+        }
+    }
+    get MaxHPUpPerLv(): number {
+        switch (this.TeamPosition) {
+            case enmTeamPosition.强攻系:
+                return 100;
+            case enmTeamPosition.敏攻系:
+                return 25;
+            case enmTeamPosition.控制系:
+                return 40;
+            case enmTeamPosition.辅助系:
+                return 40;
+        }
+    }
+    get MaxMPUpPerLv(): number {
+        switch (this.TeamPosition) {
+            case enmTeamPosition.强攻系:
+                return 5;
+            case enmTeamPosition.敏攻系:
+                return 10;
+            case enmTeamPosition.控制系:
+                return 15;
+            case enmTeamPosition.辅助系:
+                return 10;
+        }
+    }
+    get ActUpPerLv(): number {
+        switch (this.TeamPosition) {
+            case enmTeamPosition.强攻系:
+                return 15;
+            case enmTeamPosition.敏攻系:
+                return 15;
+            case enmTeamPosition.控制系:
+                return 5;
+            case enmTeamPosition.辅助系:
+                return 5;
+        }
+    }
+    get DefUpPerLv(): number {
+        switch (this.TeamPosition) {
+            case enmTeamPosition.强攻系:
+                return 15;
+            case enmTeamPosition.敏攻系:
+                return 5;
+            case enmTeamPosition.控制系:
+                return 5;
+            case enmTeamPosition.辅助系:
+                return 5;
+        }
+    }
 
     /**经过增益之后的生命最大值 */
     get RealMaxHP(): number {
-        var R = this.BaseMaxHP * this.Factor;
-        if (this.Buffer.HPFactor !== undefined) {
-            R += R * this.Buffer.HPFactor;
-        }
-        if (this.Buffer.HPValue !== undefined) {
-            R += this.Buffer.HPValue;
-        }
-        return R;
+        var R = this.BaseMaxHP + (this.LV - 1) * this.MaxHPUpPerLv * this.GrowthFactor;
+        R = R * this.Factor;
+        this.BufferList.forEach(element => {
+            if (element.HPFactor !== undefined) {
+                R += R * element.HPFactor;
+            }
+            if (element.HPValue !== undefined) {
+                R += element.HPValue;
+            }
+        });
+        return Math.round(R);
     }
     /**经过增益之后的魂力最大值 */
     get RealMaxMP(): number {
-        var R = this.BaseMaxMP * this.Factor;
-        if (this.Buffer.MPFactor !== undefined) {
-            R += R * this.Buffer.MPFactor;
-        }
-        if (this.Buffer.MPValue !== undefined) {
-            R += this.Buffer.MPValue;
-        }
-        return R;
+        var R = this.BaseMaxMP + (this.LV - 1) * this.MaxMPUpPerLv * this.GrowthFactor;
+        R = R * this.Factor;
+        this.BufferList.forEach(element => {
+            if (element.MPFactor !== undefined) {
+                R += R * element.MPFactor;
+            }
+            if (element.MPValue !== undefined) {
+                R += element.MPValue;
+            }
+        });
+        return Math.round(R);
     }
 
     //实时攻击力
     get RealTimeAct(): number {
-        var act = this.BaseAct * this.Factor;
-        if (this.Buffer.AttactFactor !== undefined) {
-            act += act * this.Buffer.AttactFactor;
-        }
-        if (this.Buffer.AttactValue !== undefined) {
-            act += this.Buffer.AttactValue;
-        }
-        return act;
+        var R = this.BaseAct + (this.LV - 1) * this.ActUpPerLv * this.GrowthFactor;
+        R = R * this.Factor;
+        this.BufferList.forEach(element => {
+            if (element.AttactFactor !== undefined) {
+                R += R * element.AttactFactor;
+            }
+            if (element.AttactValue !== undefined) {
+                R += element.AttactValue;
+            }
+        });
+        return Math.round(R);
     };
 
     /**防御状态下防御力加成 */
     DefStatusPlus: number = 0.5;
     //实时防御力
     get RealTimeDef(): number {
-        var def = this.BaseDef * this.Factor;
+        var R = this.BaseDef + (this.LV - 1) * this.DefUpPerLv * this.GrowthFactor;
+        R = R * this.Factor;
         if (this.IsDefStatus) {
-            def += def * this.DefStatusPlus
+            R += R * this.DefStatusPlus
         }
-        if (this.Buffer.DefenceFactor !== undefined) {
-            def += def * this.Buffer.DefenceFactor;
-        }
-        if (this.Buffer.DefenceValue !== undefined) {
-            def += this.Buffer.DefenceValue;
-        }
-        return def;
+        this.BufferList.forEach(element => {
+            if (element.DefenceFactor !== undefined) {
+                R += R * element.DefenceFactor;
+            }
+            if (element.DefenceValue !== undefined) {
+                R += element.DefenceValue;
+            }
+        });
+        return Math.round(R);
     }
+
+    get RealSpeed(): number {
+        var R = this.BaseSpeed + (this.LV - 1) * this.SpeedUpPerLv * this.GrowthFactor;
+        this.BufferList.forEach(element => {
+            if (element.SpeedFactor !== undefined) {
+                R += R * element.SpeedFactor;
+            }
+            if (element.SpeedValue !== undefined) {
+                R += element.SpeedValue;
+            }
+        });
+        return Math.round(R);
+    }
+
     //AI能力
     AI: (role: character, fightstatus: FightStatus) => void = undefined;
     /**简介 */
@@ -100,10 +185,26 @@ export class character {
     /**魂骨 */
     Bones: Equipment[];
 
-    TeamPosition: string;//团队角色
+    TeamPosition: enmTeamPosition;//团队角色
+
+    get strTeamPosition(): string {
+        switch (this.TeamPosition) {
+            case enmTeamPosition.强攻系:
+                return "强攻系"
+            case enmTeamPosition.控制系:
+                return "控制系"
+            case enmTeamPosition.敏攻系:
+                return "敏攻系"
+            case enmTeamPosition.辅助系:
+                return "辅助系"
+        }
+    }
+
     /**魂技名称 */
     SkillName: string[];
-    Skill: SkillInfo[];    //魂技
+    /**魂技 */
+    Skill: SkillInfo[];
+
     get Grade(): string {
         if (this.LV <= 9) return "魂士";
         if (this.LV <= 19) return "魂师";
@@ -119,6 +220,12 @@ export class character {
         if (this.LV == 99) return "极限斗罗";
         if (this.LV == 100) return "成神";
     }
+
+    /**增益 */
+    BufferList: Array<Buffer>;
+    /**状态 */
+    Status: Array<[characterStatus, number]>;
+
     appendStatus(StatusWithTurn: [characterStatus, number]) {
         let t = this.Status.find(x => x[0] === StatusWithTurn[0])
         if (t === undefined) {
@@ -136,12 +243,12 @@ export class character {
     }
     constructor(theName: string) {
         this.Name = theName;
-        this.Buffer = new BufferList();
+        this.BufferList = new Array<Buffer>();
     }
 }
 
 /**Buffer */
-export class BufferList {
+export class Buffer {
     //Value表示绝对值，Percent表示百分比
 
     HPValue: number = undefined;
@@ -158,7 +265,15 @@ export class BufferList {
 
     DefenceValue: number = undefined;
     DefenceFactor: number = undefined;
+    /**来源 */
+    Source: string;
+}
 
+export enum enmTeamPosition {
+    强攻系,
+    敏攻系,
+    控制系,
+    辅助系
 }
 
 /**状态 */
@@ -169,7 +284,7 @@ export enum characterStatus {
     禁言,
     /**无法物理和技能攻击 */
     晕眩,
-    /**无法普通攻击，可以使用技能 */    
+    /**无法普通攻击，可以使用技能 */
     束缚,
     /**物理攻击免疫 */
     物免,
@@ -181,7 +296,9 @@ export enum characterStatus {
     /**马红俊 */
     浴火凤凰,
     /**朱竹清 */
-    幽冥影分身
+    幽冥影分身,
+    /**香肠效果 */
+    飞行
 }
 
 export class doubleSoul extends character {

@@ -1,6 +1,5 @@
 import { SkillInfo, StatusSkillInfo, enmRange, enmDirect, AttactSkillInfo, HealSkillInfo, BufferSkillInfo } from '../Modal/SkillInfo';
 import { characterStatus } from '../Modal/character';
-import { GameEngine } from './GameEngine.service';
 
 export class SkillCreator {
 
@@ -17,6 +16,52 @@ export class SkillCreator {
         s.Buffer.HPFactor = 0.5;
         return s;
     }
+
+    public static 白虎烈光波(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "白虎烈光波";
+        s.Description = "发出白色的光波进行攻击";
+        s.Order = 2;
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 50;
+        return s;
+    }
+
+    public static 白虎金刚变(): SkillInfo {
+        let s = new BufferSkillInfo();
+        s.Name = "白虎金刚变";
+        s.Description = "攻击、防御、力量增强100%";
+        s.Order = 3;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.Self;
+        s.Buffer.AttactFactor = 1;
+        s.Buffer.DefenceFactor = 1;
+        s.Buffer.HPFactor = 1;
+        return s;
+    }
+
+    public static 白虎流星雨(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "白虎流星雨";
+        s.Description = "发出无数拳头大小的金色光球进行攻击";
+        s.Order = 4;
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 100;
+        return s;
+    }
+
+    //奥斯卡
+
+    public static 超级恢复大香肠():SkillInfo{
+        let s = this.生命值魂力小回复();
+        s.Name = "超级恢复大香肠";
+        s.Order = 3;
+        s.Range = enmRange.EveryOne;
+        return s;
+    }
+
 
     //唐三
     public static 缠绕(): SkillInfo {
@@ -175,6 +220,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.Buffer.HPFactor = 0.1;
+        s.BufferFactorByLV = true;
         return s;
     }
 
@@ -187,6 +233,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.Buffer.SpeedFactor = 0.1;
+        s.BufferFactorByLV = true;
         return s;
     }
 
@@ -199,6 +246,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.Buffer.MPFactor = 0.1;
+        s.BufferFactorByLV = true;
         return s;
     }
 
@@ -211,6 +259,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.Buffer.DefenceFactor = 0.1;
+        s.BufferFactorByLV = true;
         return s;
     }
 
@@ -223,6 +272,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.Buffer.AttactFactor = 0.1;
+        s.BufferFactorByLV = true;
         return s;
     }
 
@@ -354,6 +404,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.PickOne;
         s.RecoverMP = 10;
+        s.RecoverHP = 50;
         return s;
     }
 }

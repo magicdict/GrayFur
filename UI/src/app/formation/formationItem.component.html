@@ -1,6 +1,6 @@
 <div style="position:relative;padding:2px;width: 70px;" *ngIf="Item !==undefined && Item.HP >0" (click)="ItemClicked()">
     <div style="position: absolute;top: 0px;left: 0px;z-index: 998;width:70px;background-color:royalblue ;opacity: 1;">
-        <font color="white">{{Item.Name}}{{Item.Grade}}</font>
+        <font color="white">{{Item.Name}}-{{Item.LV}}</font>
     </div>
     <div *ngIf="StatusTitle !== undefined"
         style="position: absolute;top: 0px;left: 60px;z-index: 999;width:16px;height:16px;background-color:greenyellow ;opacity: 1;">

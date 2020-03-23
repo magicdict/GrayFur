@@ -1,7 +1,8 @@
-import { character, characterStatus } from '../Modal/character';
+import { character, characterStatus, Buffer } from '../Modal/character';
 import { BattleInfo } from '../Modal/BattleInfo';
 import { GameEngine } from './GameEngine.service';
 import { Output, EventEmitter } from '@angular/core';
+import { RPGCore } from '../Modal/RPGCore';
 
 
 export class FightStatus {
@@ -35,8 +36,10 @@ export class FightStatus {
     }
 
     InitRole(c: character) {
+        if (c === undefined) return;
         c.HP = c.RealMaxHP;
         c.MP = c.RealMaxMP;
+        c.BufferList = new Array<Buffer>();
         c.Status = new Array<[characterStatus, number]>();
     }
 
@@ -45,12 +48,20 @@ export class FightStatus {
         this.TurnList = new Array<character>();
         //所有HP不为0的角色进入回合列表
         this.MyTeam.forEach(element => {
-            if (element !== undefined && element.HP > 0)
+            if (element !== undefined && element.HP > 0) {
+                //状态修正,之前可能需要进行中毒等状态的结算
+                element.Status = element.Status.map(x => [x[0], x[1] - 1]);
+                element.Status = element.Status.filter(x => x[1] > 0);
                 this.TurnList.push(element)
+            }
         });
         this.Enemy.forEach(element => {
-            if (element !== undefined && element.HP > 0)
+            if (element !== undefined && element.HP > 0) {
+                //状态修正,之前可能需要进行中毒等状态的结算
+                element.Status = element.Status.map(x => [x[0], x[1] - 1]);
+                element.Status = element.Status.filter(x => x[1] > 0);
                 this.TurnList.push(element)
+            }
         });
         //速度升序排序
         this.TurnList.sort((x, y) => { return x.RealSpeed - y.RealSpeed });
@@ -60,7 +71,7 @@ export class FightStatus {
             this.currentActionCharater = Role;
         } else {
             //AI For Enemy
-            this.EnemyAI(Role);
+            RPGCore.EnemyAI(Role, this);
             this.ActionDone();
         }
     }
@@ -71,6 +82,7 @@ export class FightStatus {
         let MyTeamLive = this.MyTeam.find(x => x !== undefined && x.HP > 0);
         if (MyTeamLive === undefined) {
             console.log("团灭");
+            this.MyTeam.forEach(element => { this.InitRole(element) });
             this.ResultEvent.emit(0);
             return;
         }
@@ -78,6 +90,7 @@ export class FightStatus {
         let EnemyTeamLive = this.Enemy.find(x => x !== undefined && x.HP > 0);
         if (EnemyTeamLive === undefined) {
             console.log("胜利");
+            this.MyTeam.forEach(element => { this.InitRole(element) });
             this.ResultEvent.emit(1);
             return;
         }
@@ -100,7 +113,7 @@ export class FightStatus {
                 } else {
                     //AI For Enemy
                     if (Role.AI === undefined) {
-                        this.EnemyAI(Role);
+                        RPGCore.EnemyAI(Role, this);
                     } else {
                         Role.AI(Role, this);
                     }
@@ -108,24 +121,5 @@ export class FightStatus {
                 }
             }
         }
-    }
-    //敌方人工智能
-    EnemyAI(c: character) {
-        console.log("敌方人工智能:" + c.Name);
-        //初级阶段,对前排的一个活人进行普通攻击
-        this.MyTeam.some(element => {
-            if (element !== undefined && element.HP > 0) {
-                element.HP -= this.NornamAct(c, element);
-                if (element.HP <= 0) element.HP = 0;
-                return true;
-            }
-        });
-    }
-
-    //以下是伤害计算的核心公式
-    NornamAct(Act: character, BeAct: character): number {
-        var HarmPoint = Act.RealTimeAct - BeAct.RealTimeDef;
-        if (HarmPoint < 0) HarmPoint = 5;   //命中时候的最低消费
-        return HarmPoint;
     }
 }

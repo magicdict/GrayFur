@@ -1,4 +1,4 @@
-import { character, BufferList, characterStatus } from './character';
+import { character, Buffer, characterStatus } from './character';
 import { FightStatus } from '../module/FightStatus';
 
 /** 技能 */
@@ -43,8 +43,8 @@ export class AttactSkillInfo extends SkillInfo {
     Harm: number;
     Excute(c: character, fs: FightStatus) {
         if (this.CustomeExcute(c, fs)) return;
-
-        c.HP -= this.Harm;
+        let factor = fs.currentActionCharater.LV / 100;
+        c.HP -= Math.round(this.Harm * factor);
         if (c.HP <= 0) c.HP = 0;
 
         if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
@@ -57,9 +57,10 @@ export class HealSkillInfo extends SkillInfo {
     RecoverMP: number = 0;
     Excute(c: character, fs: FightStatus) {
         if (this.CustomeExcute(c, fs)) return;
-        c.HP += this.RecoverHP;
+        let factor = fs.currentActionCharater.LV / 100;
+        c.HP += Math.round(this.RecoverHP * factor);
         if (c.HP > c.RealMaxHP) c.HP = c.RealMaxHP;
-        c.MP += this.RecoverMP;
+        c.MP += Math.round(this.RecoverMP * factor);
         if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
         if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
     }
@@ -68,19 +69,34 @@ export class HealSkillInfo extends SkillInfo {
 /**增益和减弱 */
 export class BufferSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Buffer;
-    Buffer: BufferList = new BufferList();
-    //TODO:增幅强度和等级关联:如果是和施法者相关，必须使用currentActionCharater的信息
+    Buffer: Buffer = new Buffer();
+    /**Buffer强度是否和施法者等级挂钩？ */
+    BufferFactorByLV = false;
     Excute(c: character, fs: FightStatus) {
         if (this.CustomeExcute(c, fs)) return;
-
-        //TODO:不能简单使用赋值？如果原本Buffer就存在呢？
-        c.Buffer = this.Buffer;
+        //增加Buffer来源信息，相同的不叠加
+        if (c.BufferList.find(x => x.Source === this.Name) !== undefined) return;
+        //增幅强度和等级关联:如果是和施法者相关，必须使用currentActionCharater的信息
+        if (this.BufferFactorByLV) {
+            let factor = fs.currentActionCharater.LV / 100;
+            if (this.Buffer.AttactFactor !== undefined) this.Buffer.AttactFactor = factor;
+            if (this.Buffer.DefenceFactor !== undefined) this.Buffer.DefenceFactor = factor;
+            if (this.Buffer.HPFactor !== undefined) this.Buffer.HPFactor = factor;
+            if (this.Buffer.MPFactor !== undefined) this.Buffer.MPFactor = factor;
+            if (this.Buffer.SpeedFactor !== undefined) this.Buffer.SpeedFactor = factor;
+        }
+        let MaxHpBefore = c.RealMaxHP;
+        let MaxMpBefore = c.RealMaxMP;
+        this.Buffer.Source = this.Name;
+        c.BufferList.push(this.Buffer);
+        let MaxHpAfter = c.RealMaxHP;
+        let MaxMpAfter = c.RealMaxMP;
+        //魂力和生命的等比缩放
+        if (MaxHpAfter !== MaxHpBefore) c.HP = Math.round(c.HP * (MaxHpAfter / MaxHpBefore))
+        if (MaxMpAfter !== MaxMpBefore) c.MP = Math.round(c.MP * (MaxMpAfter / MaxMpBefore))
         //生命值和魂力的Buffer，还需要对于HP和MP进行修正
         if (c.HP > c.RealMaxHP) c.HP = c.RealMaxHP;
         if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
-        if (c.HP === c.BaseMaxHP || c.HP === c.RealMaxHP) c.HP = c.RealMaxHP;
-        if (c.MP === c.BaseMaxMP || c.MP === c.RealMaxMP) c.MP = c.RealMaxMP;
-
         if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
     }
 }

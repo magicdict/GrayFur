@@ -26,10 +26,12 @@ export class MiniGameComponent implements OnInit {
     //使用步数
     StepUsage = 0;
     ngOnInit(): void {
-        let Names = ["唐三", "小舞", "比比东", "赵无极", "菊花关", "唐门唐三"]
+        let Names = ["唐三", "小舞", "戴沐白",
+            "奥斯卡", "马红俊", "宁荣荣",
+            "朱竹清", "赵无极", "比比东"];
         let AllNames = new Array();
-        // 36格子  6个角色，每人6格 
-        for (let index = 0; index < 6; index++) {
+        // 36格子  9个角色，每人4格 
+        for (let index = 0; index < 4; index++) {
             Names.forEach(name => {
                 AllNames.push(name);
             });

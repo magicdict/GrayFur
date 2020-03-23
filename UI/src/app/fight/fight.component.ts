@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GameEngine } from '../module/GameEngine.service';
 import { character, characterStatus } from '../Modal/character';
 import { SkillInfo, enmRange, enmDirect } from '../Modal/SkillInfo';
+import { RPGCore } from '../Modal/RPGCore';
 
 @Component({
     templateUrl: './fight.component.html',
@@ -53,7 +54,7 @@ export class FightComponent implements OnInit {
         console.log("普通攻击");
         this.Message = "请选择一个攻击目标";
         this.ItemClicked = (clickedItem: character) => {
-            clickedItem.HP -= 10;
+            clickedItem.HP -= RPGCore.NornamAct(this.ge.fightStatus.currentActionCharater, clickedItem);
             this.ge.fightStatus.ActionDone();
             this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
             this.ItemClicked = (_clickedItem: character) => { }

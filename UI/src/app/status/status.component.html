@@ -1,6 +1,7 @@
-<div style="position:relative;height:0;padding-bottom: 150%;width: 100%;background-size: contain; ">
+<div
+    style="position:relative;height:0;padding-bottom: 150%;width: 100%;background-size: contain; background-color: blanchedalmond;">
     <div class="alert alert-primary" role="alert">
-        状态 
+        状态
     </div>
     <div class="row">
         <div class="col-4">
@@ -12,10 +13,10 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    生命:{{c.HP}} / {{ c.BaseMaxHP }}
+                    生命:{{ c.RealMaxHP }}
                 </div>
                 <div class="col-6">
-                    魂力:{{c.MP}} / {{ c.BaseMaxMP }}
+                    魂力:{{ c.RealMaxMP }}
                 </div>
             </div>
             <div class="row">
@@ -23,15 +24,15 @@
                     等级:{{c.LV}}({{c.Grade}})
                 </div>
                 <div class="col-6">
-                    定位:{{c.TeamPosition}}
+                    定位:{{c.strTeamPosition}}
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
-                    攻击:{{c.BaseAct}}
+                    攻击:{{c.RealTimeAct}}
                 </div>
                 <div class="col-6">
-                    防御:{{c.BaseDef}}
+                    防御:{{c.RealTimeDef}}
                 </div>
             </div>
             <div class="row">
@@ -39,7 +40,7 @@
                     速度:{{c.BaseSpeed}}
                 </div>
                 <div class="col-6">
-
+                    经验值：{{c.Exp}}({{c.NextNeedExp}})
                 </div>
             </div>
             <br />
