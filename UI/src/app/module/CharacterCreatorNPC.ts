@@ -22,7 +22,7 @@ export class CharacterCreatorNPC {
         赵无极.Skill = [
             SkillCreator.不动明王身(),
         ];
-        赵无极.AI = RPGCore.EnemyAI;
+        
         return 赵无极;
     }
 

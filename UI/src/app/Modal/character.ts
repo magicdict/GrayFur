@@ -1,7 +1,6 @@
 import { SkillInfo } from './SkillInfo';
 import { FightStatus } from '../module/FightStatus';
 import { Equipment } from './Equipment';
-import { RPGCore } from './RPGCore';
 
 export class character {
     /**姓名 */
@@ -10,11 +9,10 @@ export class character {
     LV: number;
     /**当前经验值 */
     Exp: number = 0;
-
+    /**等级 */
     get NextNeedExp(): number {
-        return RPGCore.NeedExpForNextLv(this.LV);
+        return Math.round(50 * Math.pow(1.1, this.LV - 1));
     }
-
     /**最大生命值 */
     BaseMaxHP: number = 100;
     HP: number;     //生命值
@@ -177,8 +175,6 @@ export class character {
         return Math.round(R);
     }
 
-    //AI能力
-    AI: (role: character, fightstatus: FightStatus) => void = undefined;
     /**简介 */
     Description: string;
     /**武魂 */

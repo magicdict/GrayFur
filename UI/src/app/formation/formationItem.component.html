@@ -2,8 +2,8 @@
     <div style="position: absolute;top: 0px;left: 0px;z-index: 998;width:70px;background-color:royalblue ;opacity: 1;">
         <font color="white">{{Item.Name}}-{{Item.LV}}</font>
     </div>
-    <div *ngIf="StatusTitle !== undefined"
-        style="position: absolute;top: 0px;left: 60px;z-index: 999;width:16px;height:16px;background-color:greenyellow ;opacity: 1;">
+    <div *ngIf="StatusTitle !== undefined" [ngStyle]="{'width':(this.Item.BufferStatusList.length * 16)+ 'px'}"
+        style="position: absolute;top: 50px;left: 0px;z-index: 999;height:16px;background-color:greenyellow ;opacity: 1;">
         <font color="black">{{StatusTitle}}</font>
     </div>
     <img [src]="'/assets/character/' + Item.Name + '/头像.jpg'" width="70px" height="70px">

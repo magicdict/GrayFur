@@ -14,7 +14,7 @@ export class FightStatus {
     @Output() ResultEvent: EventEmitter<number> = new EventEmitter<number>();
     //列出当前所有战场角色的速度列表，每一回合的出手顺序根据速度来实现
     TurnList: Array<character>;
-    TurnCnt:number = 0;
+    TurnCnt: number = 0;
     constructor(battleinfo: BattleInfo, ge: GameEngine) {
         this.info = battleinfo;
 
@@ -78,16 +78,15 @@ export class FightStatus {
                 let block = Role.BufferStatusList.find(x => x.Status === characterStatus.束缚 || x.Status === characterStatus.晕眩);
                 if (block === undefined) {
                     console.log("本回合第一个行动的人：" + Role.Name);
-                    if (Role.IsMyTeam) {
-                        this.currentActionCharater = Role;
-                    } else {
+                    this.currentActionCharater = Role;
+                    if (!Role.IsMyTeam) {
                         //AI For Enemy
                         RPGCore.EnemyAI(Role, this);
                         this.ActionDone();
                     }
                     IsFirstRun = true;
                 } else {
-                    console.log("角色被束缚");
+                    console.log(Role.Name + ":角色被束缚");
                 }
                 if (this.TurnList.length === 0) IsFirstRun = true;
             }
@@ -142,19 +141,14 @@ export class FightStatus {
             let block = Role.BufferStatusList.find(x => x.Status === characterStatus.束缚 || x.Status === characterStatus.晕眩);
 
             if (Role === undefined || block !== undefined) {
-                console.log("角色已经气绝,或者角色被束缚");
+                console.log(Role.Name + ":角色已经气绝,或者角色被束缚");
                 this.ActionDone();
             } else {
                 console.log("当前角色：" + Role.Name + "[" + Role.IsMyTeam + "]");
-                if (Role.IsMyTeam) {
-                    this.currentActionCharater = Role;
-                } else {
+                this.currentActionCharater = Role;
+                if (!Role.IsMyTeam) {
                     //AI For Enemy
-                    if (Role.AI === undefined) {
-                        RPGCore.EnemyAI(Role, this);
-                    } else {
-                        Role.AI(Role, this);
-                    }
+                    RPGCore.EnemyAI(Role, this);
                     this.ActionDone();
                 }
             }

@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
-import { GameEngine } from '../module/GameEngine.service';
 import { character, characterStatus } from '../Modal/character';
 
 
@@ -10,9 +8,7 @@ import { character, characterStatus } from '../Modal/character';
     templateUrl: './formationItem.component.html',
 })
 export class FormationItemComponent implements OnInit {
-    constructor(private ge: GameEngine,
-        private router: Router,
-    ) { }
+    constructor() { }
 
     @Input() Item: character;
 
@@ -20,17 +16,29 @@ export class FormationItemComponent implements OnInit {
 
     get StatusTitle(): string {
         if (this.Item.BufferStatusList.length == 0) return undefined;
-        switch (this.Item.BufferStatusList[0].Status) {
-            case characterStatus.中毒:
-                return "毒"
-            case characterStatus.浴火凤凰:
-                return "火"
-            case characterStatus.束缚:
-                return "缚"
-            default:
-                break;
-        }
+        let s = "";
+        this.Item.BufferStatusList.forEach(element => {
+            switch (element.Status) {
+                case characterStatus.魂技:
+                    s += "技";
+                    break;
+                case characterStatus.中毒:
+                    s += "毒"
+                    break;
+                case characterStatus.浴火凤凰:
+                    s += "火"
+                    break;
+                case characterStatus.束缚:
+                    s += "缚"
+                    break;
+                default:
+                    break;
+            }
+        });
+        return s;
     }
+
+    
 
     ItemClicked() {
         this.ItemClickedEmit.emit(this.Item);

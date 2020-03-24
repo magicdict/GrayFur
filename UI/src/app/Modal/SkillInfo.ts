@@ -88,7 +88,7 @@ export class BufferStatusSkillInfo extends SkillInfo {
         if (fs.IsDebugMode){
             console.log("技能对象：" + c.Name);
             c.BufferStatusList.forEach(element => {
-                console.log("回合数：" + element.Turns + "\t状态" + element.Status);
+                console.log("回合数：" + element.Turns + "\t状态" + element.Status.toString() + "\t来源" + element.Source);
             });
         }
         if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
