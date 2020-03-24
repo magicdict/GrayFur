@@ -162,7 +162,7 @@ export class character {
         });
         return Math.round(R);
     }
-    
+
     /**实时速度 */
     get RealSpeed(): number {
         var R = this.BaseSpeed + (this.LV - 1) * this.SpeedUpPerLv * this.GrowthFactor;
@@ -185,8 +185,8 @@ export class character {
     Soul: string;
     /**魂骨 */
     Bones: Equipment[];
-
-    TeamPosition: enmTeamPosition;//团队角色
+    /**团队角色 */
+    TeamPosition: enmTeamPosition = enmTeamPosition.辅助系;
 
     get strTeamPosition(): string {
         switch (this.TeamPosition) {
@@ -292,7 +292,7 @@ export class Buffer {
     /**持续回合数 */
     Turns: number = 999;    //默认999回合
     /**状态 */
-    Status: characterStatus;
+    Status: characterStatus = characterStatus.魂技;
 }
 
 export enum enmTeamPosition {
@@ -304,6 +304,9 @@ export enum enmTeamPosition {
 
 /**状态 */
 export enum characterStatus {
+    /**通用 */
+    魂技,
+    /**增益 */
     增益,
     /**每回合失去生命值 */
     中毒,

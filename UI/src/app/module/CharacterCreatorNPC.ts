@@ -1,6 +1,7 @@
 import { character, enmTeamPosition } from '../Modal/character';
 import { SkillCreator } from './SkillCreator';
 import { RPGCore } from '../Modal/RPGCore';
+import { EquipmentCreator } from '../Modal/Equipment';
 
 export class CharacterCreatorNPC {
     public static 赵无极(): character {
@@ -21,16 +22,7 @@ export class CharacterCreatorNPC {
         赵无极.Skill = [
             SkillCreator.不动明王身(),
         ];
-        赵无极.AI = (role, status) => {
-            //初级阶段,对前排的一个活人进行普通攻击
-            status.MyTeam.some(element => {
-                if (element !== undefined && element.HP > 0) {
-                    element.HP -= RPGCore.NornamAct(role, element);
-                    if (element.HP <= 0) element.HP = 0;
-                    return true;
-                }
-            });
-        }
+        赵无极.AI = RPGCore.EnemyAI;
         return 赵无极;
     }
 
@@ -51,4 +43,24 @@ export class CharacterCreatorNPC {
         ];
         return 独孤雁;
     }
+
+    public static 独孤博(): character {
+        let 独孤博 = new character("独孤博");
+        独孤博.LV = 93;
+        独孤博.GrowthFactor = 1.1;
+        独孤博.Soul = "碧鳞蛇";
+        独孤博.TeamPosition = enmTeamPosition.辅助系;
+        独孤博.Description = "独孤博的孙女,玉天恒的恋人,因为自身武魂原因而中毒,后被唐三所救。";
+        独孤博.Bones = [EquipmentCreator.万年美杜莎头骨()];
+        独孤博.SkillName = [
+            "碧磷红毒",
+            "碧磷蓝毒",
+            "碧磷紫毒",
+        ];
+        独孤博.Skill = [
+            SkillCreator.碧磷红毒(), SkillCreator.碧磷蓝毒(), SkillCreator.碧磷紫毒(),
+        ];
+        return 独孤博;
+    }
+
 }

@@ -6,6 +6,7 @@ import { RPGCore } from '../Modal/RPGCore';
 
 
 export class FightStatus {
+    IsDebugMode: boolean = true;
     Enemy: character[];
     MyTeam: character[];
     info: BattleInfo;
@@ -13,7 +14,7 @@ export class FightStatus {
     @Output() ResultEvent: EventEmitter<number> = new EventEmitter<number>();
     //列出当前所有战场角色的速度列表，每一回合的出手顺序根据速度来实现
     TurnList: Array<character>;
-
+    TurnCnt:number = 0;
     constructor(battleinfo: BattleInfo, ge: GameEngine) {
         this.info = battleinfo;
 
@@ -43,26 +44,25 @@ export class FightStatus {
     }
 
     NewTurn() {
-        console.log("新的回合");
+        this.TurnCnt++;
+        console.log("新的回合:" + this.TurnCnt);
         this.TurnList = new Array<character>();
         //所有HP不为0的角色进入回合列表
         this.MyTeam.forEach(element => {
             if (element !== undefined && element.HP > 0) {
                 //状态修正,之前可能需要进行中毒等状态的结算
                 element.BufferTurnDown();
-                let block = element.BufferStatusList.find(x => x[0] === characterStatus.束缚);
-                if (block === undefined) this.TurnList.push(element);
+                this.TurnList.push(element);
             }
         });
         this.Enemy.forEach(element => {
             if (element !== undefined && element.HP > 0) {
                 //状态修正,之前可能需要进行中毒等状态的结算
                 element.BufferTurnDown();
-                let block = element.BufferStatusList.find(x => x[0] === characterStatus.束缚);
-                if (block === undefined) this.TurnList.push(element);
+                this.TurnList.push(element);
             }
         });
-
+        if (this.IsDebugMode) this.PrintStatus();
         if (this.TurnList.length === 0) {
             //这里可能出现战场所有角色都无法行动的状态   
             console.log("没有可以活动的角色，回合结束");
@@ -70,19 +70,49 @@ export class FightStatus {
         } else {
             //速度升序排序
             this.TurnList.sort((x, y) => { return x.RealSpeed - y.RealSpeed });
-            let Role = this.TurnList.pop();
-            console.log("当前角色：" + Role.Name + "[" + Role.IsMyTeam + "]");
-            if (Role.IsMyTeam) {
-                this.currentActionCharater = Role;
-            } else {
-                //AI For Enemy
-                RPGCore.EnemyAI(Role, this);
-                this.ActionDone();
+            //寻找第一个行动的人
+            var IsFirstRun = false;
+            while (!IsFirstRun) {
+                let Role = this.TurnList.pop();
+                console.log("当前角色：" + Role.Name + "[" + Role.IsMyTeam + "]");
+                let block = Role.BufferStatusList.find(x => x.Status === characterStatus.束缚 || x.Status === characterStatus.晕眩);
+                if (block === undefined) {
+                    console.log("本回合第一个行动的人：" + Role.Name);
+                    if (Role.IsMyTeam) {
+                        this.currentActionCharater = Role;
+                    } else {
+                        //AI For Enemy
+                        RPGCore.EnemyAI(Role, this);
+                        this.ActionDone();
+                    }
+                    IsFirstRun = true;
+                } else {
+                    console.log("角色被束缚");
+                }
+                if (this.TurnList.length === 0) IsFirstRun = true;
             }
         }
     }
 
-    //当前角色动作完成
+    /**调试用方法，打印战场状态 */
+    PrintStatus() {
+        console.log("我方状态：")
+        this.MyTeam.forEach(element => {
+            if (element !== undefined) {
+                console.log("Name:" + element.Name + "\tHP" + element.HP + "/" + element.RealMaxHP + "\tMP" + element.MP + "/" + element.RealMaxMP);
+                console.log("Name:" + element.Name + "\tAct" + element.RealTimeAct + "\tDef" + element.RealTimeDef + "\tSpd" + element.RealSpeed);
+            }
+        });
+        console.log("敌方状态：")
+        this.Enemy.forEach(element => {
+            if (element !== undefined) {
+                console.log("Name:" + element.Name + "\tHP" + element.HP + "/" + element.RealMaxHP + "\tMP" + element.MP + "/" + element.RealMaxMP);
+                console.log("Name:" + element.Name + "\tAct" + element.RealTimeAct + "\tDef" + element.RealTimeDef + "\tSpd" + element.RealSpeed);
+            }
+        });
+    }
+
+    /**当前角色动作完成 */
     ActionDone() {
         //胜负统计
         let MyTeamLive = this.MyTeam.find(x => x !== undefined && x.HP > 0);
@@ -109,8 +139,10 @@ export class FightStatus {
             this.NewTurn();
         } else {
             let Role = this.TurnList.pop();
-            if (Role === undefined) {
-                //角色已经气绝
+            let block = Role.BufferStatusList.find(x => x.Status === characterStatus.束缚 || x.Status === characterStatus.晕眩);
+
+            if (Role === undefined || block !== undefined) {
+                console.log("角色已经气绝,或者角色被束缚");
                 this.ActionDone();
             } else {
                 console.log("当前角色：" + Role.Name + "[" + Role.IsMyTeam + "]");

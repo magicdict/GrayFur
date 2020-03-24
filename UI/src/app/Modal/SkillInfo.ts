@@ -56,7 +56,7 @@ export class HealSkillInfo extends SkillInfo {
 export class BufferStatusSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Buffer;
     Buffer: Buffer = new Buffer();
-    PlusStatus:characterStatus;
+    PlusStatus:characterStatus = characterStatus.魂技;
     /**Buffer强度是否和施法者等级挂钩？ */
     BufferFactorByLV = false;
     Excute(c: character, fs: FightStatus) {
@@ -85,6 +85,12 @@ export class BufferStatusSkillInfo extends SkillInfo {
         //生命值和魂力的Buffer，还需要对于HP和MP进行修正
         if (c.HP > c.RealMaxHP) c.HP = c.RealMaxHP;
         if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
+        if (fs.IsDebugMode){
+            console.log("技能对象：" + c.Name);
+            c.BufferStatusList.forEach(element => {
+                console.log("回合数：" + element.Turns + "\t状态" + element.Status);
+            });
+        }
         if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
     }
 }

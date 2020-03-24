@@ -20,6 +20,7 @@ export class RPGCore {
         status.MyTeam.some(element => {
             if (element !== undefined && element.HP > 0) {
                 element.HP -= RPGCore.NornamAct(c, element);
+                if(status.IsDebugMode) console.log(c.Name + "普通攻击=>" + element.Name)
                 if (element.HP <= 0) element.HP = 0;
                 return true;
             }

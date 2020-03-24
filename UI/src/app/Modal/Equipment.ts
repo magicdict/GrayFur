@@ -69,4 +69,11 @@ export class EquipmentCreator {
         e.Position = EquipmentPosition.外附魂骨;
         return e;
     }
+
+    public static 万年美杜莎头骨(): Equipment {
+        let e = new Equipment();
+        e.Name = "万年美杜莎头骨";
+        e.Position = EquipmentPosition.头骨;
+        return e;
+    }
 }
