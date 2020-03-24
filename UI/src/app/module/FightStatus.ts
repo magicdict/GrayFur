@@ -39,8 +39,7 @@ export class FightStatus {
         if (c === undefined) return;
         c.HP = c.RealMaxHP;
         c.MP = c.RealMaxMP;
-        c.BufferList = new Array<Buffer>();
-        c.Status = new Array<[characterStatus, number]>();
+        c.BufferStatusList = new Array<Buffer>();
     }
 
     NewTurn() {
@@ -50,29 +49,36 @@ export class FightStatus {
         this.MyTeam.forEach(element => {
             if (element !== undefined && element.HP > 0) {
                 //状态修正,之前可能需要进行中毒等状态的结算
-                element.Status = element.Status.map(x => [x[0], x[1] - 1]);
-                element.Status = element.Status.filter(x => x[1] > 0);
-                this.TurnList.push(element)
+                element.BufferTurnDown();
+                let block = element.BufferStatusList.find(x => x[0] === characterStatus.束缚);
+                if (block === undefined) this.TurnList.push(element);
             }
         });
         this.Enemy.forEach(element => {
             if (element !== undefined && element.HP > 0) {
                 //状态修正,之前可能需要进行中毒等状态的结算
-                element.Status = element.Status.map(x => [x[0], x[1] - 1]);
-                element.Status = element.Status.filter(x => x[1] > 0);
-                this.TurnList.push(element)
+                element.BufferTurnDown();
+                let block = element.BufferStatusList.find(x => x[0] === characterStatus.束缚);
+                if (block === undefined) this.TurnList.push(element);
             }
         });
-        //速度升序排序
-        this.TurnList.sort((x, y) => { return x.RealSpeed - y.RealSpeed });
-        let Role = this.TurnList.pop();
-        console.log("当前角色：" + Role.Name + "[" + Role.IsMyTeam + "]");
-        if (Role.IsMyTeam) {
-            this.currentActionCharater = Role;
+
+        if (this.TurnList.length === 0) {
+            //这里可能出现战场所有角色都无法行动的状态   
+            console.log("没有可以活动的角色，回合结束");
+            this.NewTurn();
         } else {
-            //AI For Enemy
-            RPGCore.EnemyAI(Role, this);
-            this.ActionDone();
+            //速度升序排序
+            this.TurnList.sort((x, y) => { return x.RealSpeed - y.RealSpeed });
+            let Role = this.TurnList.pop();
+            console.log("当前角色：" + Role.Name + "[" + Role.IsMyTeam + "]");
+            if (Role.IsMyTeam) {
+                this.currentActionCharater = Role;
+            } else {
+                //AI For Enemy
+                RPGCore.EnemyAI(Role, this);
+                this.ActionDone();
+            }
         }
     }
 

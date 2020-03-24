@@ -103,12 +103,12 @@ export class character {
     get RealMaxHP(): number {
         var R = this.BaseMaxHP + (this.LV - 1) * this.MaxHPUpPerLv * this.GrowthFactor;
         R = R * this.Factor;
-        this.BufferList.forEach(element => {
-            if (element.HPFactor !== undefined) {
-                R += R * element.HPFactor;
+        this.BufferStatusList.forEach(element => {
+            if (element.MaxHPFactor !== undefined) {
+                R += R * element.MaxHPFactor;
             }
-            if (element.HPValue !== undefined) {
-                R += element.HPValue;
+            if (element.MaxHPValue !== undefined) {
+                R += element.MaxHPValue;
             }
         });
         return Math.round(R);
@@ -117,22 +117,22 @@ export class character {
     get RealMaxMP(): number {
         var R = this.BaseMaxMP + (this.LV - 1) * this.MaxMPUpPerLv * this.GrowthFactor;
         R = R * this.Factor;
-        this.BufferList.forEach(element => {
-            if (element.MPFactor !== undefined) {
-                R += R * element.MPFactor;
+        this.BufferStatusList.forEach(element => {
+            if (element.MaxMPFactor !== undefined) {
+                R += R * element.MaxMPFactor;
             }
-            if (element.MPValue !== undefined) {
-                R += element.MPValue;
+            if (element.MaxMPValue !== undefined) {
+                R += element.MaxMPValue;
             }
         });
         return Math.round(R);
     }
 
-    //实时攻击力
+    /**实时攻击力 */
     get RealTimeAct(): number {
         var R = this.BaseAct + (this.LV - 1) * this.ActUpPerLv * this.GrowthFactor;
         R = R * this.Factor;
-        this.BufferList.forEach(element => {
+        this.BufferStatusList.forEach(element => {
             if (element.AttactFactor !== undefined) {
                 R += R * element.AttactFactor;
             }
@@ -145,14 +145,14 @@ export class character {
 
     /**防御状态下防御力加成 */
     DefStatusPlus: number = 0.5;
-    //实时防御力
+    /**实时防御力 */
     get RealTimeDef(): number {
         var R = this.BaseDef + (this.LV - 1) * this.DefUpPerLv * this.GrowthFactor;
         R = R * this.Factor;
         if (this.IsDefStatus) {
             R += R * this.DefStatusPlus
         }
-        this.BufferList.forEach(element => {
+        this.BufferStatusList.forEach(element => {
             if (element.DefenceFactor !== undefined) {
                 R += R * element.DefenceFactor;
             }
@@ -162,10 +162,11 @@ export class character {
         });
         return Math.round(R);
     }
-
+    
+    /**实时速度 */
     get RealSpeed(): number {
         var R = this.BaseSpeed + (this.LV - 1) * this.SpeedUpPerLv * this.GrowthFactor;
-        this.BufferList.forEach(element => {
+        this.BufferStatusList.forEach(element => {
             if (element.SpeedFactor !== undefined) {
                 R += R * element.SpeedFactor;
             }
@@ -222,28 +223,43 @@ export class character {
     }
 
     /**增益 */
-    BufferList: Array<Buffer>;
-    /**状态 */
-    Status: Array<[characterStatus, number]>;
-
+    BufferStatusList: Array<Buffer>;
+    /**增加状态 */
     appendStatus(StatusWithTurn: [characterStatus, number]) {
-        let t = this.Status.find(x => x[0] === StatusWithTurn[0])
+        let t = this.BufferStatusList.find(x => x[0] === StatusWithTurn[0])
         if (t === undefined) {
             //不存在的情况
-            this.Status.push(StatusWithTurn);
+            let b = new Buffer();
+            b.Status = StatusWithTurn[0];
+            b.Turns = StatusWithTurn[1];
+            this.BufferStatusList.push(b);
         } else {
             StatusWithTurn[1] += t[1];
-            this.Status = this.Status.filter(x => x[0] !== StatusWithTurn[0]);
-            this.Status.push(StatusWithTurn);
+            this.BufferStatusList = this.BufferStatusList.filter(x => x[0] !== StatusWithTurn[0]);
+            let b = new Buffer();
+            b.Status = StatusWithTurn[0];
+            b.Turns = StatusWithTurn[1];
+            this.BufferStatusList.push(b);
         }
     }
-
+    BufferTurnDown() {
+        this.BufferStatusList.forEach(element => {
+            if (element.Status === characterStatus.中毒) {
+                //中毒状态，如果存在HP伤害部分，则这里处理，由于使用了get自动属性功能，Real系的都会自动计算
+                if (element.HPFactor !== undefined) this.HP += this.HP * element.HPFactor;
+                if (element.HPValue !== undefined) this.HP += element.HPValue;
+            }
+            element.Turns -= 1;
+        });
+        this.BufferStatusList = this.BufferStatusList.filter(x => x.Turns > 0);
+    }
+    /**移除状态 */
     removeStatus(status: characterStatus) {
-        this.Status = this.Status.filter(x => x[0] !== status);
+        this.BufferStatusList = this.BufferStatusList.filter(x => x[0] !== status);
     }
     constructor(theName: string) {
         this.Name = theName;
-        this.BufferList = new Array<Buffer>();
+        this.BufferStatusList = new Array<Buffer>();
     }
 }
 
@@ -251,8 +267,14 @@ export class character {
 export class Buffer {
     //Value表示绝对值，Percent表示百分比
 
+    MaxHPValue: number = undefined;
+    MaxHPFactor: number = undefined;
+
     HPValue: number = undefined;
     HPFactor: number = undefined;
+
+    MaxMPValue: number = undefined;
+    MaxMPFactor: number = undefined;
 
     MPValue: number = undefined;
     MPFactor: number = undefined;
@@ -267,6 +289,10 @@ export class Buffer {
     DefenceFactor: number = undefined;
     /**来源 */
     Source: string;
+    /**持续回合数 */
+    Turns: number = 999;    //默认999回合
+    /**状态 */
+    Status: characterStatus;
 }
 
 export enum enmTeamPosition {
@@ -278,6 +304,7 @@ export enum enmTeamPosition {
 
 /**状态 */
 export enum characterStatus {
+    增益,
     /**每回合失去生命值 */
     中毒,
     /**无法使用技能 */

@@ -24,20 +24,6 @@ export abstract class SkillInfo {
     AddtionSkill: SkillInfo = undefined;
 }
 
-export class StatusSkillInfo extends SkillInfo {
-    SkillType = enmSkillType.Status;
-    PlusStatus: [characterStatus, number] = undefined;;
-    RemoveStatus: characterStatus = undefined;
-    Excute(c: character, fs: FightStatus) {
-        if (this.CustomeExcute(c, fs)) return;
-
-        if (this.PlusStatus !== undefined) c.appendStatus(this.PlusStatus);
-        if (this.RemoveStatus !== undefined) c.removeStatus(this.RemoveStatus);
-
-        if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
-    }
-}
-
 export class AttactSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Attact;
     Harm: number;
@@ -67,28 +53,30 @@ export class HealSkillInfo extends SkillInfo {
 }
 
 /**增益和减弱 */
-export class BufferSkillInfo extends SkillInfo {
+export class BufferStatusSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Buffer;
     Buffer: Buffer = new Buffer();
+    PlusStatus:characterStatus;
     /**Buffer强度是否和施法者等级挂钩？ */
     BufferFactorByLV = false;
     Excute(c: character, fs: FightStatus) {
         if (this.CustomeExcute(c, fs)) return;
         //增加Buffer来源信息，相同的不叠加
-        if (c.BufferList.find(x => x.Source === this.Name) !== undefined) return;
+        if (c.BufferStatusList.find(x => x.Source === this.Name) !== undefined) return;
         //增幅强度和等级关联:如果是和施法者相关，必须使用currentActionCharater的信息
         if (this.BufferFactorByLV) {
             let factor = fs.currentActionCharater.LV / 100;
             if (this.Buffer.AttactFactor !== undefined) this.Buffer.AttactFactor = factor;
             if (this.Buffer.DefenceFactor !== undefined) this.Buffer.DefenceFactor = factor;
-            if (this.Buffer.HPFactor !== undefined) this.Buffer.HPFactor = factor;
-            if (this.Buffer.MPFactor !== undefined) this.Buffer.MPFactor = factor;
+            if (this.Buffer.MaxHPFactor !== undefined) this.Buffer.MaxHPFactor = factor;
+            if (this.Buffer.MaxMPFactor !== undefined) this.Buffer.MaxMPFactor = factor;
             if (this.Buffer.SpeedFactor !== undefined) this.Buffer.SpeedFactor = factor;
         }
+        //从技能使用点开始就起效的属性变化的调整:由于使用了get自动属性功能，Real系的都会自动计算
         let MaxHpBefore = c.RealMaxHP;
         let MaxMpBefore = c.RealMaxMP;
         this.Buffer.Source = this.Name;
-        c.BufferList.push(this.Buffer);
+        c.BufferStatusList.push(this.Buffer);
         let MaxHpAfter = c.RealMaxHP;
         let MaxMpAfter = c.RealMaxMP;
         //魂力和生命的等比缩放

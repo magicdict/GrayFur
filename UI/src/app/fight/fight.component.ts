@@ -4,6 +4,7 @@ import { GameEngine } from '../module/GameEngine.service';
 import { character, characterStatus } from '../Modal/character';
 import { SkillInfo, enmRange, enmDirect } from '../Modal/SkillInfo';
 import { RPGCore } from '../Modal/RPGCore';
+import { SkillCreator } from '../module/SkillCreator';
 
 @Component({
     templateUrl: './fight.component.html',
@@ -197,13 +198,7 @@ export class FightComponent implements OnInit {
 
     //测试用:状态的改变
     SkillTest() {
-        console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
-        this.ge.fightStatus.currentActionCharater.appendStatus([characterStatus.中毒, 3]);
-        console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
-        this.ge.fightStatus.currentActionCharater.appendStatus([characterStatus.中毒, 4]);
-        console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
-        this.ge.fightStatus.currentActionCharater.removeStatus(characterStatus.中毒);
-        console.log("状态：" + this.ge.fightStatus.currentActionCharater.Status);
+        SkillCreator.碧磷紫毒().Excute(this.ge.fightStatus.MyTeam[7],this.ge.fightStatus);
     }
 
 }

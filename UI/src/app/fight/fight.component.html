@@ -1,7 +1,7 @@
 <div [ngStyle]="{'background-image': 'url(/assets/scene/' + this.ge.fightStatus.info.Background + '.jpg)'}"
     style="position:relative;height:0;padding-bottom: 150%;width: 100%;background-size: contain; ">
     <button class="btn btn-lg btn-danger" (click)="Exit()" style="float: right;">胜利</button>
-    <button class="btn btn-lg btn-danger" (click)="SkillTest()" style="float: right;">状态改变</button>
+    <button class="btn btn-lg btn-danger" (click)="SkillTest()" style="float: right;">【毒】状态测试</button>
     <h6 style="color: aliceblue;width: 50%;">{{this.ge.fightStatus.info.Title}}</h6>
     <br />
     <app-formation [Fighterlist]="this.ge.fightStatus.Enemy" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
@@ -97,9 +97,7 @@
                 {{this.ge.fightStatus.currentActionCharater.RealMaxMP}} <br />
                 攻&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeAct}} <br />
                 防&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeDef}} <br />
-                中毒&nbsp;麻痹
             </div>
-
         </div>
     </div>
 </div>

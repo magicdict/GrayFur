@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { character, doubleSoul } from '../Modal/character';
 import { DataStorage } from '../Lib/datastorage';
-import { CharacterCreator } from './CharacterCreator';
+import { CharacterCreatorMainRole } from './CharacterCreatorMainRole';
 import { getBattleInfoByName } from '../Modal/BattleInfo';
 import { FightStatus } from './FightStatus';
 import { ToolInfo } from '../Modal/ToolInfo';
 import { ToolCreator } from './ToolCreator';
 import { SkillCreator } from './SkillCreator';
+import { CharacterCreatorNPC } from './CharacterCreatorNPC';
 
 
 @Injectable()
@@ -60,19 +61,21 @@ export class GameEngine {
                 return this.朱竹清
             case "赵无极":
                 return this.赵无极
+                case "独孤雁":
+                    return this.独孤雁
             default:
                 return undefined;
         }
     }
 
     public InitRole() {
-        this.唐三 = CharacterCreator.唐三();
-        this.小舞 = CharacterCreator.小舞();
-        this.戴沐白 = CharacterCreator.戴沐白();
-        this.奥斯卡 = CharacterCreator.奥斯卡();
-        this.马红俊 = CharacterCreator.马红俊();
-        this.宁荣荣 = CharacterCreator.宁荣荣();
-        this.朱竹清 = CharacterCreator.朱竹清();
+        this.唐三 = CharacterCreatorMainRole.唐三();
+        this.小舞 = CharacterCreatorMainRole.小舞();
+        this.戴沐白 = CharacterCreatorMainRole.戴沐白();
+        this.奥斯卡 = CharacterCreatorMainRole.奥斯卡();
+        this.马红俊 = CharacterCreatorMainRole.马红俊();
+        this.宁荣荣 = CharacterCreatorMainRole.宁荣荣();
+        this.朱竹清 = CharacterCreatorMainRole.朱竹清();
 
         this.localstorage.Save("唐三", this.唐三);
         this.localstorage.Save("小舞", this.小舞);
@@ -85,9 +88,11 @@ export class GameEngine {
     }
 
     public 赵无极: character;
+    public 独孤雁: character;
     public InitNPCAndSkillCustomExcute() {
-        this.赵无极 = CharacterCreator.赵无极();
+        this.赵无极 = CharacterCreatorNPC.赵无极();
         this.赵无极.Factor = 0.6;
+        this.独孤雁 = CharacterCreatorNPC.独孤雁();
         //以下为无法序列化的魂技
         this.马红俊.Skill.push(SkillCreator.凤凰火线()); 
     }

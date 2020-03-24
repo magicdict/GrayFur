@@ -19,8 +19,8 @@ export class FormationItemComponent implements OnInit {
     @Output() ItemClickedEmit: EventEmitter<character> = new EventEmitter();
 
     get StatusTitle(): string {
-        if (this.Item.Status.length == 0) return undefined;
-        switch (this.Item.Status[0][0]) {
+        if (this.Item.BufferStatusList.length == 0) return undefined;
+        switch (this.Item.BufferStatusList[0].Status) {
             case characterStatus.中毒:
                 return "毒"
             case characterStatus.浴火凤凰:
