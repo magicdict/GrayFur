@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { character } from '../Modal/character';
-import { GameEngine } from '../module/GameEngine.service';
+import { GameEngine } from '../Core/gameEngine.service';
 import { SceneInfo, FightPrefix, ChangeScenePrefix, getSceneInfoByName } from '../Modal/SceneInfo';
 
 

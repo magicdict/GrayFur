@@ -1,7 +1,7 @@
 import { character, doubleSoul, enmTeamPosition } from '../Modal/character';
 import { SkillCreator } from './SkillCreator';
 import { EquipmentCreator } from '../Modal/Equipment';
-import { RPGCore } from '../Modal/RPGCore';
+import { RPGCore } from '../Core/RPGCore';
 
 export class CharacterCreatorMainRole {
     public static 唐三(): doubleSoul {

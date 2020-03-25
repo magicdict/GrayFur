@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { GameEngine } from '../module/GameEngine.service';
+import { GameEngine } from '../Core/gameEngine.service';
 
 @Component({
   templateUrl: './login.component.html',

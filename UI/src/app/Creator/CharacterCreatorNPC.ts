@@ -1,6 +1,6 @@
 import { character, enmTeamPosition } from '../Modal/character';
 import { SkillCreator } from './SkillCreator';
-import { RPGCore } from '../Modal/RPGCore';
+import { RPGCore } from '../Core/RPGCore';
 import { EquipmentCreator } from '../Modal/Equipment';
 
 export class CharacterCreatorNPC {

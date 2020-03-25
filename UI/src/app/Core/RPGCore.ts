@@ -1,6 +1,6 @@
-import { character, enmTeamPosition } from './character';
-import { FightStatus } from '../module/FightStatus';
-import { AttactSkillInfo, SkillInfo, enmDirect, enmRange } from './SkillInfo';
+import { character, enmTeamPosition } from '../Modal/character';
+import { FightStatus } from './FightStatus';
+import { AttactSkillInfo, SkillInfo, enmDirect, enmRange } from '../Modal/SkillInfo';
 
 
 

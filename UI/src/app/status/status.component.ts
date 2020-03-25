@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { character, doubleSoul } from '../Modal/character';
-import { GameEngine } from '../module/GameEngine.service';
+import { GameEngine } from '../Core/gameEngine.service';
 
 
 @Component({

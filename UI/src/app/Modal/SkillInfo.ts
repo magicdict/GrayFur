@@ -1,5 +1,5 @@
 import { character, Buffer, characterStatus } from './character';
-import { FightStatus } from '../module/FightStatus';
+import { FightStatus } from '../Core/FightStatus';
 
 /** 技能 */
 export abstract class SkillInfo {

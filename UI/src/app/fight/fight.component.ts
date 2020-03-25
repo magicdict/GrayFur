@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GameEngine } from '../module/GameEngine.service';
+import { GameEngine } from '../Core/gameEngine.service';
 import { character } from '../Modal/character';
 import { SkillInfo, enmRange, enmDirect } from '../Modal/SkillInfo';
-import { RPGCore } from '../Modal/RPGCore';
-import { SkillCreator } from '../module/SkillCreator';
+import { RPGCore } from '../Core/RPGCore';
+import { SkillCreator } from '../Creator/SkillCreator';
 
 @Component({
     templateUrl: './fight.component.html',

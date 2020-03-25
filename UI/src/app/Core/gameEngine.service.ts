@@ -1,18 +1,18 @@
 import { Injectable } from "@angular/core";
 import { character, doubleSoul } from '../Modal/character';
 import { DataStorage } from '../Lib/datastorage';
-import { CharacterCreatorMainRole } from './CharacterCreatorMainRole';
+import { CharacterCreatorMainRole } from '../Creator/CharacterCreatorMainRole';
 import { getBattleInfoByName } from '../Modal/BattleInfo';
 import { FightStatus } from './FightStatus';
 import { ToolInfo } from '../Modal/ToolInfo';
-import { ToolCreator } from './ToolCreator';
-import { SkillCreator } from './SkillCreator';
-import { CharacterCreatorNPC } from './CharacterCreatorNPC';
+import { ToolCreator } from '../Creator/ToolCreator';
+import { SkillCreator } from '../Creator/SkillCreator';
+import { CharacterCreatorNPC } from '../Creator/CharacterCreatorNPC';
 
 
 @Injectable()
 export class GameEngine {
-    constructor(private localstorage: DataStorage) {
+    constructor(public localstorage: DataStorage) {
         /**初始化道具 */
         this.InitTool();
     }

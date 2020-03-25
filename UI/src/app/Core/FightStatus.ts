@@ -2,7 +2,7 @@ import { character, characterStatus, Buffer } from '../Modal/character';
 import { BattleInfo } from '../Modal/BattleInfo';
 import { GameEngine } from './GameEngine.service';
 import { Output, EventEmitter } from '@angular/core';
-import { RPGCore } from '../Modal/RPGCore';
+import { RPGCore } from './RPGCore';
 
 
 export class FightStatus {
@@ -15,6 +15,7 @@ export class FightStatus {
     //列出当前所有战场角色的速度列表，每一回合的出手顺序根据速度来实现
     TurnList: Array<character>;
     TurnCnt: number = 0;
+    Exp: number = 0;
     constructor(battleinfo: BattleInfo, ge: GameEngine) {
         this.info = battleinfo;
 
@@ -23,6 +24,7 @@ export class FightStatus {
             if (element !== undefined) {
                 element.IsMyTeam = false;
                 this.InitRole(element);
+                this.Exp += element.GetExpWhenDefeat;
             }
         });
 
@@ -38,6 +40,10 @@ export class FightStatus {
 
     InitRole(c: character) {
         if (c === undefined) return;
+        while (c.Exp >= c.NextNeedExp) {
+            c.Exp -= c.NextNeedExp;
+            c.LV++;
+        }
         c.HP = c.RealMaxHP;
         c.MP = c.RealMaxMP;
         c.BufferStatusList = new Array<Buffer>();
@@ -125,7 +131,12 @@ export class FightStatus {
         let EnemyTeamLive = this.Enemy.find(x => x !== undefined && x.HP > 0);
         if (EnemyTeamLive === undefined) {
             console.log("胜利");
-            this.MyTeam.forEach(element => { this.InitRole(element) });
+            this.MyTeam.forEach(element => {
+                if (element !== undefined){
+                    element.Exp += this.Exp;
+                    this.InitRole(element)
+                }
+            });
             this.ResultEvent.emit(1);
             return;
         }

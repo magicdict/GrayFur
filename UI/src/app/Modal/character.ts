@@ -1,5 +1,4 @@
 import { SkillInfo } from './SkillInfo';
-import { FightStatus } from '../module/FightStatus';
 import { Equipment } from './Equipment';
 
 export class character {
@@ -12,6 +11,10 @@ export class character {
     /**等级 */
     get NextNeedExp(): number {
         return Math.round(50 * Math.pow(1.1, this.LV - 1));
+    }
+    /**作为敌人的时候，击败的时候能够获得的经验值 */
+    get GetExpWhenDefeat(): number {
+        return Math.round(20 * Math.pow(1.1, this.LV - 1));
     }
     /**最大生命值 */
     BaseMaxHP: number = 100;
