@@ -1,11 +1,11 @@
 <div [ngStyle]="{'background-image': 'url(/assets/scene/' + this.ge.fightStatus.info.Background + '.jpg)'}"
     style="position:relative;height:0;padding-bottom: 150%;width: 100%;background-size: contain; ">
-    <button class="btn btn-lg btn-danger" (click)="Exit()" style="float: right;">胜利</button>
-    <button class="btn btn-lg btn-danger" (click)="SkillTest()" style="float: right;">【毒】状态测试</button>
+    <button class="btn btn-sm btn-danger" (click)="Exit()" style="float: right;">胜利</button>
+    <button class="btn btn-sm btn-danger" (click)="SkillTest()" style="float: right;">【毒】状态测试</button>
     <h6 style="color: aliceblue;width: 50%;">{{this.ge.fightStatus.info.Title}}</h6>
     <br />
     <app-formation [Fighterlist]="this.ge.fightStatus.Enemy" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
-    <br />
+    <hr style="border: blueviolet dashed 1px;margin: 5px;" />
     <app-formation [Fighterlist]="this.ge.fightStatus.MyTeam" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
 
     <div class="container" *ngIf="FightEnd"
@@ -74,29 +74,30 @@
                 <div class="container" style="padding:0px">
                     <div class="row" style="margin: 2px;padding:0px">
                         <div class="col-6" style="padding:0px">
-                            <button class="btn  btn-danger" style="width: 90%;" (click)="Attack()">普攻</button>
+                            <button class="btn  btn-danger" style="width: 90%;" (click)="Attack()"><img src="assets/Icons/W_Dagger001.png" width="16px" height="16px" />攻击</button>
                         </div>
                         <div class="col-6" style="padding:0px">
-                            <button class="btn  btn-danger" style="width: 90%;" (click)="Skill()">魂技</button>
+                            <button class="btn  btn-danger" style="width: 90%;" (click)="Skill()"><img src="assets/Icons/I_Book.png" width="16px" height="16px" />魂技</button>
                         </div>
                     </div>
                     <div class="row" style="margin: 2px;padding:0px">
                         <div class="col-6" style="padding:0px">
-                            <button class="btn btn-danger" style="width: 90%;" (click)="Tool()">道具</button>
+                            <button class="btn btn-danger" style="width: 90%;" (click)="Tool()"><img src="assets/Icons/I_Water.png" width="16px" height="16px" />道具</button>
                         </div>
                         <div class="col-6" style="padding:0px">
-                            <button class="btn btn-danger" style="width: 90%;" (click)="Defence()">防御</button>
+                            <button class="btn btn-danger" style="width: 90%;" (click)="Defence()"><img src="assets/Icons/E_Metal04.png" width="16px" height="16px" />防御</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-3" style="padding:0px;">
-                命&nbsp;{{this.ge.fightStatus.currentActionCharater.HP}} /
+                <img src="assets/Icons/S_Holy03.png" width="16px" height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.HP}} /
                 {{this.ge.fightStatus.currentActionCharater.RealMaxHP}} <br />
-                魂&nbsp;{{this.ge.fightStatus.currentActionCharater.MP}} /
+                <img src="assets/Icons/I_Book.png" width="16px" height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.MP}} /
                 {{this.ge.fightStatus.currentActionCharater.RealMaxMP}} <br />
-                攻&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeAct}} <br />
-                防&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeDef}} <br />
+                <img src="assets/Icons/W_Dagger001.png" width="16px" height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeAct}} <br />
+                <img src="assets/Icons/E_Metal04.png" width="16px" height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeDef}} <br />
+                <img src="assets/Icons/A_Shoes01.png" width="16px" height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealSpeed}} <br />
             </div>
         </div>
     </div>

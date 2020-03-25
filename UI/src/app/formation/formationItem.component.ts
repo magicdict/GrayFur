@@ -14,22 +14,22 @@ export class FormationItemComponent implements OnInit {
 
     @Output() ItemClickedEmit: EventEmitter<character> = new EventEmitter();
 
-    get StatusTitle(): string {
+    get StatusTitle(): Array<string> {
         if (this.Item.BufferStatusList.length == 0) return undefined;
-        let s = "";
+        let s = new Array<string>();
         this.Item.BufferStatusList.forEach(element => {
             switch (element.Status) {
                 case characterStatus.魂技:
-                    s += "技";
+                    s.push("I_Book.png");
                     break;
                 case characterStatus.中毒:
-                    s += "毒"
+                    s.push("S_Poison05.png");
                     break;
                 case characterStatus.浴火凤凰:
-                    s += "火"
+                    s.push("S_Fire03.png");
                     break;
                 case characterStatus.束缚:
-                    s += "缚"
+                    s.push("I_SnailShell.png");
                     break;
                 default:
                     break;
