@@ -28,6 +28,7 @@ export class AttactSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Attact;
     Harm: number;
     Excute(c: character, fs: FightStatus) {
+        //如果自定义方法被执行，则跳过后续代码
         if (this.CustomeExcute(c, fs)) return;
         let factor = fs.currentActionCharater.LV / 100;
         c.HP -= Math.round(this.Harm * factor);
@@ -56,7 +57,7 @@ export class HealSkillInfo extends SkillInfo {
 export class BufferStatusSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Buffer;
     Buffer: Buffer = new Buffer();
-    PlusStatus:characterStatus = characterStatus.魂技;
+    PlusStatus: characterStatus = characterStatus.魂技;
     /**Buffer强度是否和施法者等级挂钩？ */
     BufferFactorByLV = false;
     Excute(c: character, fs: FightStatus) {
@@ -85,7 +86,7 @@ export class BufferStatusSkillInfo extends SkillInfo {
         //生命值和魂力的Buffer，还需要对于HP和MP进行修正
         if (c.HP > c.RealMaxHP) c.HP = c.RealMaxHP;
         if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
-        if (fs.IsDebugMode){
+        if (fs.IsDebugMode) {
             console.log("技能对象：" + c.Name);
             c.BufferStatusList.forEach(element => {
                 console.log("回合数：" + element.Turns + "\t状态" + element.Status.toString() + "\t来源" + element.Source);
@@ -103,12 +104,11 @@ export enum enmSkillType {
     Attact,
     /**治疗 */
     Heal,
-    /**光环  */
-    Buffer,
-    /**改变状态 */
-    Status
+    /**光环和状态  */
+    Buffer
 }
 
+/**技能范围 */
 export enum enmRange {
     Self,       //自己
     PickOne,    //选择一个人
@@ -118,6 +118,7 @@ export enum enmRange {
     EveryOne,   //战场所有人
 }
 
+/**技能方向 */
 export enum enmDirect {
     MyTeam,     //本方
     Enemy,      //敌方
