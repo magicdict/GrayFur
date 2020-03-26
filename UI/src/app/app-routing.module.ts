@@ -7,36 +7,41 @@ import { FightComponent } from './fight/fight.component';
 import { MiniGameComponent } from './miniGame/miniGame.component';
 import { StoreComponent } from './store/store.component';
 import { MiniGame2Component } from './miniGame/miniGame2.component';
+import { PictorialBookComponent } from './status/pictorialbook.component';
 
 
 const routes: Routes = [
   {
     path: 'login',
-    component:LoginComponent
+    component: LoginComponent
+  },
+  {
+    path: 'pictorialbook',
+    component: PictorialBookComponent
   },
   {
     path: 'status',
-    component:StatusComponent
+    component: StatusComponent
   },
   {
-    path:'scene',
-    component:SceneComponent
+    path: 'scene',
+    component: SceneComponent
   },
   {
-    path:'fight',
-    component:FightComponent
+    path: 'fight',
+    component: FightComponent
   },
   {
-    path:'minigame',
-    component:MiniGameComponent
+    path: 'minigame',
+    component: MiniGameComponent
   },
   {
-    path:'minigame2',
-    component:MiniGame2Component
+    path: 'minigame2',
+    component: MiniGame2Component
   },
   {
-    path:'store',
-    component:StoreComponent
+    path: 'store',
+    component: StoreComponent
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

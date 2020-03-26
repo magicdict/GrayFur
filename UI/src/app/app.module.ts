@@ -15,6 +15,7 @@ import { MiniGameComponent } from './miniGame/miniGame.component';
 import { MiniGame2Component } from './miniGame/miniGame2.component';
 import { GameCellComponent } from './miniGame/GameCell.component';
 import { StoreComponent } from './store/store.component';
+import { PictorialBookComponent } from './status/pictorialbook.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { StoreComponent } from './store/store.component';
     LoginComponent,
     SceneComponent,
     StoreComponent,
+    PictorialBookComponent,
     StatusComponent,
     FormationComponent,
     FormationItemComponent,

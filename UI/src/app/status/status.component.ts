@@ -22,17 +22,9 @@ export class StatusComponent implements OnInit {
   public c: character;
   public d: doubleSoul;
 
-  Status(name: string) {
-    this.d = undefined;
-    this.c = this.ge.GetRoleByName(name);
-    if (this.c instanceof doubleSoul) {
-      this.d = this.c;
-    }
-  }
-
   Exit() {
-    console.log("jump to scene")
-    this.router.navigateByUrl("scene");
+    console.log("jump to pictorialbook")
+    this.router.navigateByUrl("pictorialbook");
   }
 
 }

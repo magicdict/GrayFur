@@ -154,4 +154,19 @@ export const Scene0000: SceneInfo = {
 
 这里使用 FightPrefix表示进入战斗，ChangeScenePrefix表示场景转换。对话列表则使用@符号将角色和台词进行区分。
 
+## 道具系统
+
+可以将道具看作一种特殊的技能,只是这种技能是可以购买的。当然特殊的剧情道具则不属于这个范畴，设计起来比较复杂，需要配合场景的通过条件来使用。
+
+```typescript
+export enum enmToolType {
+    /**暗器 */
+    HiddenWeapon,
+    /**可购入的一般道具 */
+    StoreItem,
+    /**剧情道具 */
+    Spacial
+}
+```
+
 ### ver0.01 2020/03/25

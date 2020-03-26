@@ -14,7 +14,7 @@
 
 ## 开发环境
 
-- Angular 9.0.7
+- Angular 9.1.0
 - BootStrap 4.4.1
 
 ## 在线网址
@@ -31,11 +31,15 @@ http://datavisualization.club:8888/
 
 <img src="Demo/场景20200310.jpg" width="50%">
 
-### 场景
+### 商店
 
 <img src="Demo/商店20200318.jpg" width="50%">
 
-### 状态[双生武魂]
+### 图鉴
+
+<img src="Demo/图鉴.jpg" width="50%">
+
+### 双生武魂
 
 <img src="Demo/状态20200319.jpg" width="50%">
 

@@ -14,7 +14,7 @@ export class character {
     }
     /**作为敌人的时候，击败的时候能够获得的经验值 */
     get GetExpWhenDefeat(): number {
-        return Math.round(20 * Math.pow(1.1, this.LV - 1));
+        return Math.round(20 * Math.pow(1.1, this.LV - 1) * this.Factor);
     }
     /**最大生命值 */
     BaseMaxHP: number = 100;

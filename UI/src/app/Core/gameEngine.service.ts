@@ -42,32 +42,9 @@ export class GameEngine {
 
 
     public currentRole: character;
-
+    public PictorialBook: Array<character> = new Array<character>();
     public GetRoleByName(name: string): character {
-        switch (name) {
-            case "唐三":
-                return this.唐三
-            case "小舞":
-                return this.小舞
-            case "戴沐白":
-                return this.戴沐白
-            case "奥斯卡":
-                return this.奥斯卡
-            case "马红俊":
-                return this.马红俊
-            case "宁荣荣":
-                return this.宁荣荣
-            case "朱竹清":
-                return this.朱竹清
-            case "赵无极":
-                return this.赵无极
-            case "独孤雁":
-                return this.独孤雁
-            case "独孤博":
-                return this.独孤博
-            default:
-                return undefined;
-        }
+        return this.PictorialBook.find(x => x.Name === name);
     }
 
     public InitRole() {
@@ -92,6 +69,7 @@ export class GameEngine {
     public 赵无极: character;
     public 独孤雁: character;
     public 独孤博: character;
+
     public InitNPCAndSkillCustomExcute() {
         this.赵无极 = CharacterCreatorNPC.赵无极();
         this.赵无极.Factor = 0.6;
@@ -99,6 +77,20 @@ export class GameEngine {
         this.独孤博 = CharacterCreatorNPC.独孤博();
         //以下为无法序列化的魂技
         this.马红俊.Skill.push(SkillCreator.凤凰火线());
+
+        //图鉴准备
+        this.PictorialBook.push(this.唐三);
+        this.PictorialBook.push(this.小舞);
+        this.PictorialBook.push(this.戴沐白);
+        this.PictorialBook.push(this.奥斯卡);
+        this.PictorialBook.push(this.马红俊);
+        this.PictorialBook.push(this.宁荣荣);
+        this.PictorialBook.push(this.朱竹清);
+
+        this.PictorialBook.push(this.赵无极);
+        this.PictorialBook.push(this.独孤雁);
+        this.PictorialBook.push(this.独孤博);
+
     }
 
     public gamestatus: GameStatus;
