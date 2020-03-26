@@ -2,7 +2,8 @@
     style="position:relative;height:0;padding-bottom: 150%;width: 100%;background-size: contain; background-color: blanchedalmond;">
     <div class="alert alert-primary" role="alert">
         图鉴
-        <input type="button" class="btn btn-sm btn-danger" style="float: right;margin: 0px;" (click)="Exit()" value="退出" />
+        <input type="button" class="btn btn-sm btn-danger" style="float: right;margin: 0px;" (click)="Exit()"
+            value="退出" />
     </div>
     <div class="row">
         <div class="col-4">
@@ -51,7 +52,7 @@
 
     <hr />
 
-    <div *ngIf="d === undefined" style="margin-left: 10px;">
+    <div *ngIf="PageIdx === 1" style="margin-left: 10px;">
         武魂:{{c.Soul}}<br />
         <ul>
             <li *ngFor="let skill of c.SkillName">
@@ -60,24 +61,42 @@
         </ul>
     </div>
 
-    <div *ngIf="d !== undefined">
-        <div class="row" style="margin-left: 10px;">
-            <div class="col-6">
-                武魂:{{c.Soul}}<br />
-                <ul>
-                    <li *ngFor="let skill of c.SkillName">
-                        {{ skill }}
-                    </li>
-                </ul>
-            </div>
-            <div class="col-6">
-                双生武魂:{{d.SecondSoul}}<br />
-                <ul>
-                    <li *ngFor="let skill of d.SecondSkillName">
-                        {{ skill }}
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div *ngIf="PageIdx === 2" style="margin-left: 10px;">
+        双生武魂:{{d.SecondSoul}}<br />
+        <ul>
+            <li *ngFor="let skill of d.SecondSkillName">
+                {{ skill }}
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="PageIdx === 3" style="margin-left: 10px;">
+        魂骨<br />
+        <ul>
+            <li *ngFor="let bone of c.Bones">
+                {{ bone.Name }}
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="PageIdx === 4" style="margin-left: 10px;">
+        领域<br />
+        <ul>
+            <li *ngFor="let field of c.Fields">
+                {{ field.Name }}
+            </li>
+        </ul>
+    </div>
+
+    <div style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 50px;">
+        <button *ngIf="c.Fields.length > 0" type="button" class="btn btn-lg btn-primary"
+            style="float: right;margin: 0px;" (click)="PageIdx = 4;"><img src="assets/Icons/S_Holy05.png" width="16px" height="16px" />领域</button>
+        <button *ngIf="c.Bones.length > 0" type="button" class="btn btn-lg btn-primary" style="float: right;margin: 0px;"
+            (click)="PageIdx = 3;"><img src="assets/Icons/I_Bone.png" width="16px" height="16px" />魂骨</button>
+        <button *ngIf="d !== undefined" type="button" class="btn btn-lg btn-primary" style="float: right;margin: 0px;"
+            (click)="PageIdx = 2;"><img src="assets/Icons/I_Scroll.png" width="16px" height="16px" />双生武魂</button>
+        <button type="button" class="btn btn-lg btn-primary" style="float: right;margin: 0px;"
+            (click)="PageIdx = 1;"><img src="assets/Icons/I_Book.png" width="16px" height="16px" />武魂</button>
     </div>
 </div>
+

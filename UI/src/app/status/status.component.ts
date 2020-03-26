@@ -21,6 +21,7 @@ export class StatusComponent implements OnInit {
 
   public c: character;
   public d: doubleSoul;
+  public PageIdx: number = 1;
 
   Exit() {
     console.log("jump to pictorialbook")

@@ -1,5 +1,6 @@
 import { SkillInfo } from './SkillInfo';
 import { Equipment } from './Equipment';
+import { Field } from './Field';
 
 export class character {
     /**姓名 */
@@ -183,7 +184,10 @@ export class character {
     /**武魂 */
     Soul: string;
     /**魂骨 */
-    Bones: Equipment[];
+    Bones: Equipment[] = [];
+    /**领域技能 */
+    Fields: Field[] = [];
+
     /**团队角色 */
     TeamPosition: enmTeamPosition = enmTeamPosition.辅助系;
 
@@ -332,6 +336,8 @@ export enum characterStatus {
 
 export class doubleSoul extends character {
     SecondSoul: string; //第二武魂
-    SecondSkillName: string[]; //第二武魂魂技        
+    SecondSkillName: string[]; //第二武魂魂技
+    /**魂技 */
+    SecondSkill: SkillInfo[];
 }
 

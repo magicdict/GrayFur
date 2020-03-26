@@ -1,7 +1,7 @@
 import { character, doubleSoul, enmTeamPosition } from '../Modal/character';
 import { SkillCreator } from './SkillCreator';
 import { EquipmentCreator } from '../Modal/Equipment';
-import { RPGCore } from '../Core/RPGCore';
+import { FieldCreator } from '../Modal/Field';
 
 export class CharacterCreatorMainRole {
     public static 唐三(): doubleSoul {
@@ -42,8 +42,11 @@ export class CharacterCreatorMainRole {
             SkillCreator.双神共存()
         ];
         唐三.SecondSkillName = ["泰坦之锤/大地之力",
-            "大地蚁皇斩", "器魂真身", "千钧壁垒"]
+            "大地蚁皇斩", "器魂真身", "千钧壁垒"];
+        唐三.SecondSkill = [];
 
+        唐三.Fields = [FieldCreator.蓝银领域(), FieldCreator.海神领域(),
+        FieldCreator.杀神领域(), FieldCreator.修罗领域()];
         return 唐三;
     }
 
@@ -77,11 +80,11 @@ export class CharacterCreatorMainRole {
         戴沐白.TeamPosition = enmTeamPosition.敏攻系;
         戴沐白.Description = "史莱克七怪老大、星罗帝国三皇子 、星罗帝国太子、唐门长老、唐门刑堂堂主"
         戴沐白.SkillName = [
-            "白虎护身障","白虎烈光波","白虎金刚变","白虎流星雨"
+            "白虎护身障", "白虎烈光波", "白虎金刚变", "白虎流星雨"
         ];
         戴沐白.Skill = [
-            SkillCreator.白虎护身障(),SkillCreator.白虎烈光波(),
-            SkillCreator.白虎金刚变(),SkillCreator.白虎流星雨()
+            SkillCreator.白虎护身障(), SkillCreator.白虎烈光波(),
+            SkillCreator.白虎金刚变(), SkillCreator.白虎流星雨()
         ]
         return 戴沐白;
     }
@@ -93,7 +96,7 @@ export class CharacterCreatorMainRole {
         奥斯卡.Soul = "香肠/食神";
         奥斯卡.TeamPosition = enmTeamPosition.辅助系;
         奥斯卡.Description = "史莱克学院的学员，弗兰德院长从小收留的孤儿，大陆上第一位食物系封号斗罗，不可多得的食物系天才魂师。"
-        奥斯卡.SkillName = ["超级恢复大香肠","复活之光"];
+        奥斯卡.SkillName = ["超级恢复大香肠", "复活之光"];
         奥斯卡.Skill = [
             SkillCreator.超级恢复大香肠(),
             SkillCreator.复活之光()
@@ -158,5 +161,5 @@ export class CharacterCreatorMainRole {
         return 朱竹清;
     }
 
-    
+
 }

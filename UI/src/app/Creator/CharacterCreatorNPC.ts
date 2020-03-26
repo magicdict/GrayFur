@@ -1,6 +1,5 @@
-import { character, enmTeamPosition } from '../Modal/character';
+import { character, enmTeamPosition, doubleSoul } from '../Modal/character';
 import { SkillCreator } from './SkillCreator';
-import { RPGCore } from '../Core/RPGCore';
 import { EquipmentCreator } from '../Modal/Equipment';
 
 export class CharacterCreatorNPC {
@@ -22,7 +21,7 @@ export class CharacterCreatorNPC {
         赵无极.Skill = [
             SkillCreator.不动明王身(),
         ];
-        
+
         return 赵无极;
     }
 
@@ -61,6 +60,46 @@ export class CharacterCreatorNPC {
             SkillCreator.碧磷红毒(), SkillCreator.碧磷蓝毒(), SkillCreator.碧磷紫毒(),
         ];
         return 独孤博;
+    }
+
+    public static 比比东(): doubleSoul {
+        let 比比东 = new doubleSoul("比比东");
+        比比东.LV = 99;
+        比比东.GrowthFactor = 1.5;
+        比比东.Bones = [
+
+        ]
+        比比东.Soul = "死亡蛛皇";
+        比比东.SecondSoul = "噬魂蛛皇";
+        比比东.TeamPosition = enmTeamPosition.控制系;
+        比比东.Description = "武魂殿现任教皇也是最年轻的的教皇（34岁），武魂帝国创始人兼第一任女皇，杀戮之都杀神之一。"
+        比比东.SkillName = [
+
+            "死亡蛛网束缚",
+            "荆棘蛛铠",
+            "吸血蛛刺",
+            "死亡蛛皇真身",
+            "蛛皇分身",
+            "不死之身",
+        ];
+        比比东.Skill = [
+
+        ];
+        比比东.SecondSkillName = [
+            "半月",
+            "魔蛛召唤",
+            "永恒之创",
+            "噬魂蛛皇真身",
+            "空间撕裂之深渊斩"]
+        比比东.SecondSkill = [];
+        比比东.Bones = [
+            EquipmentCreator.六翅紫光翼(),
+            EquipmentCreator.精神免疫头骨(),
+            EquipmentCreator.死亡蛛皇左臂骨(),
+            EquipmentCreator.死亡蛛皇右臂骨(),
+            EquipmentCreator.柔骨兔魂骨(),
+        ];
+        return 比比东;
     }
 
 }

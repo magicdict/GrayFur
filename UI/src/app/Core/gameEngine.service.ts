@@ -69,12 +69,15 @@ export class GameEngine {
     public 赵无极: character;
     public 独孤雁: character;
     public 独孤博: character;
+    public 比比东: doubleSoul;
 
     public InitNPCAndSkillCustomExcute() {
         this.赵无极 = CharacterCreatorNPC.赵无极();
         this.赵无极.Factor = 0.6;
         this.独孤雁 = CharacterCreatorNPC.独孤雁();
         this.独孤博 = CharacterCreatorNPC.独孤博();
+        this.比比东 = CharacterCreatorNPC.比比东();
+
         //以下为无法序列化的魂技
         this.马红俊.Skill.push(SkillCreator.凤凰火线());
 
@@ -90,7 +93,7 @@ export class GameEngine {
         this.PictorialBook.push(this.赵无极);
         this.PictorialBook.push(this.独孤雁);
         this.PictorialBook.push(this.独孤博);
-
+        this.PictorialBook.push(this.比比东);
     }
 
     public gamestatus: GameStatus;

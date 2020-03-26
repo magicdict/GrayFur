@@ -70,10 +70,48 @@ export class EquipmentCreator {
         return e;
     }
 
+    //独孤博
+    
     public static 万年美杜莎头骨(): Equipment {
         let e = new Equipment();
         e.Name = "万年美杜莎头骨";
         e.Position = EquipmentPosition.头骨;
+        return e;
+    }
+
+    //比比东
+    public static 六翅紫光翼(): Equipment {
+        let e = new Equipment();
+        e.Name = "六翅紫光翼";
+        e.Position = EquipmentPosition.外附魂骨;
+        return e;
+    }
+
+    public static 精神免疫头骨(): Equipment {
+        let e = new Equipment();
+        e.Name = "精神免疫头骨";
+        e.Position = EquipmentPosition.头骨;
+        return e;
+    }
+
+    public static 死亡蛛皇左臂骨(): Equipment {
+        let e = new Equipment();
+        e.Name = "死亡蛛皇左臂骨";
+        e.Position = EquipmentPosition.左臂骨;
+        return e;
+    }
+
+    public static 死亡蛛皇右臂骨(): Equipment {
+        let e = new Equipment();
+        e.Name = "死亡蛛皇右臂骨";
+        e.Position = EquipmentPosition.右臂骨;
+        return e;
+    }
+
+    public static 柔骨兔魂骨(): Equipment {
+        let e = new Equipment();
+        e.Name = "柔骨兔魂骨";
+        e.Position = EquipmentPosition.躯干骨;
         return e;
     }
 }
