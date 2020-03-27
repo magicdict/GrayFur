@@ -14,6 +14,7 @@ export class SkillCreator {
         s.Buffer.AttactFactor = 0.5;
         s.Buffer.DefenceFactor = 0.5;
         s.Buffer.MaxHPFactor = 0.5;
+        s.Buffer.Status = [characterStatus.攻击增益, characterStatus.防御增益, characterStatus.生命增益];
         return s;
     }
 
@@ -38,6 +39,7 @@ export class SkillCreator {
         s.Buffer.AttactFactor = 1;
         s.Buffer.DefenceFactor = 1;
         s.Buffer.MaxHPFactor = 1;
+        s.Buffer.Status = [characterStatus.攻击增益, characterStatus.防御增益, characterStatus.生命增益];
         return s;
     }
 
@@ -73,7 +75,7 @@ export class SkillCreator {
         s.Range = enmRange.PickOne;
         s.Source = "曼陀罗蛇";
         s.Buffer.Turns = 1;
-        s.Buffer.Status = characterStatus.束缚;
+        s.Buffer.Status = [characterStatus.束缚];
         return s;
     }
 
@@ -86,7 +88,8 @@ export class SkillCreator {
         s.Range = enmRange.PickOne;
         s.Source = "鬼藤";
         s.Buffer.Turns = 3;
-        s.Buffer.Status = characterStatus.束缚;
+        s.Buffer.Status = [characterStatus.束缚];
+
         return s;
     }
 
@@ -98,7 +101,7 @@ export class SkillCreator {
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.PickOne;
         s.Buffer.Turns = 3;
-        s.Buffer.Status = characterStatus.晕眩;
+        s.Buffer.Status = [characterStatus.束缚];
         s.Source = "人面魔蛛";
         return s;
     }
@@ -111,7 +114,7 @@ export class SkillCreator {
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.EveryOne;
         s.Buffer.Turns = 1;
-        s.Buffer.Status = characterStatus.晕眩;
+        s.Buffer.Status = [characterStatus.束缚];
         s.Source = "人面魔蛛";
         return s;
     }
@@ -125,7 +128,7 @@ export class SkillCreator {
         s.Range = enmRange.EveryOne;
         s.Source = "地穴魔蛛";
         s.Buffer.Turns = 3;
-        s.Buffer.Status = characterStatus.晕眩;
+        s.Buffer.Status = [characterStatus.束缚];
         return s;
     }
 
@@ -138,8 +141,7 @@ export class SkillCreator {
         s.Range = enmRange.EveryOne;
         s.Source = "地穴魔蛛";
         s.Buffer.Turns = 1;
-        s.Buffer.Status = characterStatus.晕眩;
-
+        s.Buffer.Status = [characterStatus.束缚];
         //增加攻击性
         let a = new AttactSkillInfo();
         a.Name = "蓝银突刺阵附加攻击"
@@ -180,7 +182,7 @@ export class SkillCreator {
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.PickOne;
         s.Buffer.Turns = 3;
-        s.Buffer.Status = characterStatus.晕眩;
+        s.Buffer.Status = [characterStatus.束缚];
         return s;
     }
 
@@ -192,17 +194,17 @@ export class SkillCreator {
         s.Order = 1;
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.PickOne;
+        s.Harm = 50;
         s.CustomeExcute = (c, fs) => {
-            if (fs.currentActionCharater.BufferStatusList.find(x => x[0] === characterStatus.浴火凤凰) !== undefined) {
-                c.HP -= 50 * 1.3;
+            if (fs.currentActionCharater.StatusList.find(x => x === characterStatus.浴火凤凰) !== undefined) {
+                c.HP -= s.Harm * 1.3;
                 if (c.HP <= 0) c.HP = 0;
             } else {
-                c.HP -= 50;
+                c.HP -= s.Harm;
                 if (c.HP <= 0) c.HP = 0;
             }
             return true;
         }
-        s.Harm = 50;
         return s;
     }
 
@@ -214,7 +216,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.Self;
         s.Buffer.Turns = 999;
-        s.Buffer.Status = characterStatus.浴火凤凰;
+        s.Buffer.Status = [characterStatus.浴火凤凰];
         return s;
     }
 
@@ -229,6 +231,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.Buffer.MaxHPFactor = 0.1;
+        s.Buffer.Status = [characterStatus.生命增益];
         s.BufferFactorByLV = true;
         return s;
     }
@@ -242,6 +245,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.Buffer.SpeedFactor = 0.1;
+        s.Buffer.Status = [characterStatus.速度增益];
         s.BufferFactorByLV = true;
         return s;
     }
@@ -255,6 +259,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.Buffer.MaxMPFactor = 0.1;
+        s.Buffer.Status = [characterStatus.魂力增益];
         s.BufferFactorByLV = true;
         return s;
     }
@@ -268,6 +273,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.Buffer.DefenceFactor = 0.1;
+        s.Buffer.Status = [characterStatus.防御增益];
         s.BufferFactorByLV = true;
         return s;
     }
@@ -281,6 +287,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.Buffer.AttactFactor = 0.1;
+        s.Buffer.Status = [characterStatus.攻击增益];
         s.BufferFactorByLV = true;
         return s;
     }
@@ -328,6 +335,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.Self;
         s.Buffer.DefenceFactor = 1;
+        s.Buffer.Status = [characterStatus.防御增益];
         return s;
     }
 
@@ -342,6 +350,7 @@ export class SkillCreator {
         s.Range = enmRange.Self;
         s.Buffer.SpeedFactor = 0.2;
         s.Buffer.AttactFactor = 0.2;
+        s.Buffer.Status = [characterStatus.攻击增益, characterStatus.速度增益];
         s.Buffer.Source = s.Name;
         return s;
     }
@@ -354,6 +363,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.Self;
         s.Buffer.DefenceFactor = 0.3;
+        s.Buffer.Status = [characterStatus.防御增益];
         s.Buffer.Source = s.Name;
         return s;
     }
@@ -367,7 +377,7 @@ export class SkillCreator {
         s.Range = enmRange.PickOne;
         s.Buffer.HPFactor = -0.05;
         s.Buffer.Turns = 3;
-        s.Buffer.Status = characterStatus.中毒;
+        s.Buffer.Status = [characterStatus.中毒];
         s.Buffer.Source = s.Name;
         return s;
     }

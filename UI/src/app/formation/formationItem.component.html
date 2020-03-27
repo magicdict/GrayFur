@@ -3,17 +3,21 @@
         <font color="white">{{Item.Name}}-{{Item.LV}}</font>
     </div>
     <div style="position: absolute;top: 50px;left: 0px;z-index: 999;height:16px;">
-        <img  *ngFor="let s of this.StatusTitle" [src]="'/assets/Icons/' + s" width="16px" height="16px" />
+        <img *ngFor="let s of this.StatusTitle" [src]="'/assets/Icons/' + s" width="16px" height="16px" />
     </div>
     <img [src]="'/assets/character/' + Item.Name + '/头像.jpg'" width="70px" height="70px">
     <div class="progress">
-        <div class="progress-bar bg-danger" role="progressbar"
-            [ngStyle]="{'width': (Item.HP * 100/ Item.RealMaxHP) + '%'}">
-            {{Item.HP + "/" + Item.RealMaxHP}}</div>
+        <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width':Item.HPPercent + '%'}">
+            {{Item.HPPercent >= 50?(Item.HP + "/" + Item.RealMaxHP):""  }}</div>
+        <div class="progress-bar" style="background: white;color: black;" role="progressbar"
+            [ngStyle]="{'width':100-Item.HPPercent + '%'}">
+            {{Item.HPPercent < 50?(Item.HP + "/" + Item.RealMaxHP):""  }}</div>
     </div>
     <div class="progress">
-        <div class="progress-bar bg-primary" role="progressbar"
-            [ngStyle]="{'width': (Item.MP * 100/ Item.RealMaxMP) + '%'}">
-            {{Item.MP + "/" + Item.RealMaxMP}}</div>
+        <div class="progress-bar bg-primary" role="progressbar" [ngStyle]="{'width':Item.MPPercent + '%'}">
+            {{Item.MPPercent >= 50?(Item.MP + "/" + Item.RealMaxMP):""  }}</div>
+        <div class="progress-bar" style="background: white;color: black;" role="progressbar"
+            [ngStyle]="{'width':100-Item.MPPercent + '%'}">
+            {{Item.MPPercent < 50?(Item.MP + "/" + Item.RealMaxMP):""  }}</div>
     </div>
 </div>

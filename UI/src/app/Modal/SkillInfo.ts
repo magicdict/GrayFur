@@ -11,6 +11,7 @@ export abstract class SkillInfo {
     Description: string;
     Source: string;
     get MpUsage(): number {
+        if (this.Order === undefined) return 0; //道具是不消耗魂力的
         return Math.pow(2, this.Order);
     }
     /**武魂融合技的融合者列表 */
@@ -57,13 +58,12 @@ export class HealSkillInfo extends SkillInfo {
 export class BufferStatusSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Buffer;
     Buffer: Buffer = new Buffer();
-    PlusStatus: characterStatus = characterStatus.魂技;
     /**Buffer强度是否和施法者等级挂钩？ */
     BufferFactorByLV = false;
     Excute(c: character, fs: FightStatus) {
         if (this.CustomeExcute(c, fs)) return;
         //增加Buffer来源信息，相同的不叠加
-        if (c.BufferStatusList.find(x => x.Source === this.Name) !== undefined) return;
+        if (c.BufferList.find(x => x.Source === this.Name) !== undefined) return;
         //增幅强度和等级关联:如果是和施法者相关，必须使用currentActionCharater的信息
         if (this.BufferFactorByLV) {
             let factor = fs.currentActionCharater.LV / 100;
@@ -77,7 +77,7 @@ export class BufferStatusSkillInfo extends SkillInfo {
         let MaxHpBefore = c.RealMaxHP;
         let MaxMpBefore = c.RealMaxMP;
         this.Buffer.Source = this.Name;
-        c.BufferStatusList.push(this.Buffer);
+        c.BufferList.push(this.Buffer);
         let MaxHpAfter = c.RealMaxHP;
         let MaxMpAfter = c.RealMaxMP;
         //魂力和生命的等比缩放
@@ -88,7 +88,7 @@ export class BufferStatusSkillInfo extends SkillInfo {
         if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
         if (fs.IsDebugMode) {
             console.log("技能对象：" + c.Name);
-            c.BufferStatusList.forEach(element => {
+            c.BufferList.forEach(element => {
                 console.log("回合数：" + element.Turns + "\t状态" + element.Status.toString() + "\t来源" + element.Source);
             });
         }

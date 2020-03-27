@@ -15,9 +15,12 @@ export class FightComponent implements OnInit {
     ) { }
 
     Message: string = "进入战场";
+    /**正在选择技能 */
     SkillPickStatus: boolean;
+    /**正在选择道具 */
     ToolPickStatus: boolean;
-    
+    /**正在选择技能使用对象 */
+    SkillRolePickStatus:boolean;
     FightEnd: boolean = false;
     FightResultTitle: string = "";
 
@@ -44,7 +47,7 @@ export class FightComponent implements OnInit {
     get IsFuncAreaAvilible(): boolean {
         if (this.SkillPickStatus) return false;
         if (this.ToolPickStatus) return false;
-
+        if (this.SkillRolePickStatus) return false;
         return true;
     }
 
@@ -81,19 +84,19 @@ export class FightComponent implements OnInit {
             case enmRange.Self:
                 //对自己使用的技能
                 Skill.Excute(this.ge.fightStatus.currentActionCharater, this.ge.fightStatus);
-                
                 this.ge.fightStatus.ActionDone();
                 this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
                 break;
             case enmRange.PickOne:
                 this.Message = "请选择一个人发动魂技";
+                this.SkillRolePickStatus = true;
                 switch (Skill.Direct) {
                     case enmDirect.Enemy:
                         //敌人全体
                         this.ItemClicked = (clickedItem: character) => {
                             if (!clickedItem.IsMyTeam) {
                                 Skill.Excute(clickedItem, this.ge.fightStatus);
-                                
+                                this.SkillRolePickStatus = false;
                                 this.ge.fightStatus.ActionDone();
                                 this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
                                 this.ItemClicked = (_clickedItem: character) => { }
@@ -105,7 +108,7 @@ export class FightComponent implements OnInit {
                         this.ItemClicked = (clickedItem: character) => {
                             if (clickedItem.IsMyTeam) {
                                 Skill.Excute(clickedItem, this.ge.fightStatus);
-                                
+                                this.SkillRolePickStatus = false;
                                 this.ge.fightStatus.ActionDone();
                                 this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
                                 this.ItemClicked = (_clickedItem: character) => { }
@@ -116,7 +119,7 @@ export class FightComponent implements OnInit {
                         //战场全体
                         this.ItemClicked = (clickedItem: character) => {
                             Skill.Excute(clickedItem, this.ge.fightStatus);
-                            
+                            this.SkillRolePickStatus = false;
                             this.ge.fightStatus.ActionDone();
                             this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
                             this.ItemClicked = (_clickedItem: character) => { }
@@ -149,7 +152,6 @@ export class FightComponent implements OnInit {
                         });
                         break;
                 }
-                
                 this.ge.fightStatus.ActionDone();
                 this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
                 break;

@@ -46,7 +46,7 @@ export class FightStatus {
         }
         c.HP = c.RealMaxHP;
         c.MP = c.RealMaxMP;
-        c.BufferStatusList = new Array<Buffer>();
+        c.BufferList = new Array<Buffer>();
     }
 
     NewTurn() {
@@ -81,7 +81,7 @@ export class FightStatus {
             while (!IsFirstRun) {
                 let Role = this.TurnList.pop();
                 console.log("当前角色：" + Role.Name + "[" + Role.IsMyTeam + "]");
-                let block = Role.BufferStatusList.find(x => x.Status === characterStatus.束缚 || x.Status === characterStatus.晕眩);
+                let block = Role.StatusList.find(x => x === characterStatus.束缚 || x === characterStatus.晕眩);
                 if (block === undefined) {
                     console.log("本回合第一个行动的人：" + Role.Name);
                     this.currentActionCharater = Role;
@@ -132,7 +132,7 @@ export class FightStatus {
         if (EnemyTeamLive === undefined) {
             console.log("胜利");
             this.MyTeam.forEach(element => {
-                if (element !== undefined){
+                if (element !== undefined) {
                     element.Exp += this.Exp;
                     this.InitRole(element)
                 }
@@ -149,7 +149,7 @@ export class FightStatus {
             this.NewTurn();
         } else {
             let Role = this.TurnList.pop();
-            let block = Role.BufferStatusList.find(x => x.Status === characterStatus.束缚 || x.Status === characterStatus.晕眩);
+            let block = Role.StatusList.find(x => x === characterStatus.束缚 || x === characterStatus.晕眩);
 
             if (Role === undefined || block !== undefined) {
                 console.log(Role.Name + ":角色已经气绝,或者角色被束缚");
