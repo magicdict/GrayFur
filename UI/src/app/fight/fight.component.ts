@@ -200,7 +200,7 @@ export class FightComponent implements OnInit {
 
     //测试用:状态的改变
     SkillTest() {
-        SkillCreator.碧磷紫毒().Excute(this.ge.fightStatus.MyTeam[7],this.ge.fightStatus);
+        SkillCreator.碧磷紫毒().Excute(this.ge.fightStatus.MyTeam[0],this.ge.fightStatus);
     }
 
 }

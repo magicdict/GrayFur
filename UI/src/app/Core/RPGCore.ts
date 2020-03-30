@@ -16,19 +16,21 @@ export class RPGCore {
     public static EnemyAI(c: character, status: FightStatus) {
         console.log("敌方人工智能:" + c.Name);
         //自己的状态的评估
-        let IsLowHP = c.HP < 50;
+        let IsLowHP = c.HP < 50 || c.HPPercent < 10;
         //可以使用技能的总结
         let EnableSkill = c.Skill.filter(x => x.MpUsage <= c.MP);
-        //如果攻击系的或者毒的技能，则先使用
-        let EnableAttactSkill = EnableSkill.filter(x => x instanceof AttactSkillInfo);
         switch (c.TeamPosition) {
             case enmTeamPosition.强攻系:
+                if (this.EnemyAI_强攻系(c, status)) return;
                 break;
             case enmTeamPosition.敏攻系:
+                if (this.EnemyAI_敏攻系(c, status)) return;
                 break;
             case enmTeamPosition.控制系:
+                if (this.EnemyAI_控制系(c, status)) return;
                 break;
             case enmTeamPosition.辅助系:
+                if (this.EnemyAI_辅助系(c, status)) return;
                 break;
         }
 
@@ -43,6 +45,24 @@ export class RPGCore {
         if (status.IsDebugMode) console.log(c.Name + "普通攻击=>" + attactC.Name)
         if (attactC.HP <= 0) attactC.HP = 0;
     }
+
+    public static EnemyAI_强攻系(c: character, status: FightStatus): boolean {
+        let EnableSkill = c.Skill.filter(x => x.MpUsage <= c.MP);
+        //如果攻击系的或者毒的技能，则先使用
+        let EnableAttactSkill = EnableSkill.filter(x => x instanceof AttactSkillInfo);
+
+        return false;
+    }
+    public static EnemyAI_敏攻系(c: character, status: FightStatus): boolean {
+        return false;
+    }
+    public static EnemyAI_控制系(c: character, status: FightStatus): boolean {
+        return false;
+    }
+    public static EnemyAI_辅助系(c: character, status: FightStatus): boolean {
+        return false;
+    }
+
 
     /**使用技能 */
     static ExcuteSkill(skill: SkillInfo, status: FightStatus) {
