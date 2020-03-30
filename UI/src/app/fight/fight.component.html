@@ -9,23 +9,26 @@
     <app-formation [Fighterlist]="this.ge.fightStatus.MyTeam" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
 
     <div class="container" *ngIf="FightEnd"
-        style="position: absolute;z-index: 1000; bottom: 300px;width: 100%;height: 100px;background-color: lightyellow;opacity: 0.7;">
+        style="position: absolute;z-index: 1000; bottom: 200px;width: 100%;height: 300px;background-color: lightyellow;opacity: 0.7;">
         <h1>{{this.FightResultTitle}}</h1>
     </div>
 
 
     <div class="container" *ngIf="SkillPickStatus"
-        style="position: absolute;z-index: 1000; bottom: 210px;width: 100%;height: 200px;background-color: lightyellow;opacity: 0.95;">
-        <table class="table table-striped" style="width: 100%;padding: 0px;margin: 0px; height: 160px;">
+        style="position: absolute;z-index: 1000; bottom: 200px;width: 100%;height: 300px;background-color: lightyellow;opacity: 0.95;">
+        <table class="table table-striped" style="width: 100%;padding: 0px;margin: 0px; height: 260px;">
             <thead>
                 <tr style="width: 100%;padding: 0;">
                     <th scope="col" style="width: 60px;">名称</th>
                     <th scope="col">描述</th>
                     <th scope="col" style="width: 50px;">魂力</th>
-                    <th scope="col" style="width: 60px;">&nbsp;</th>
+                    <th scope="col" style="width: 60px;">
+                        <button class="btn btn-sm btn-danger" (click)="ReturnFormSkillPicker()"
+                            style="float: right;">返回</button>
+                    </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="height: 100%;">
                 <tr style="width: 100%;padding: 0;"
                     *ngFor="let skill of this.ge.fightStatus.currentActionCharater.Skill">
                     <td style="width: 60px;">{{skill.Name}}</td>
@@ -37,20 +40,21 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-danger" (click)="ReturnFormSkillPicker()" style="float: right;">返回</button>
+
     </div>
 
     <div class="container" *ngIf="ToolPickStatus"
-        style="position: absolute;z-index: 1000; bottom: 210px;width: 100%;height: 200px;background-color: lightyellow;opacity: 0.95;">
+        style="position: absolute;z-index: 1000; bottom: 210px;width: 100%;height: 300px;background-color: lightyellow;opacity: 0.95;">
         <table class="table table-striped" style="width: 100%;padding: 0px;margin: 0px; height: 160px;">
             <thead>
                 <tr style="width: 100%;padding: 0;">
                     <th scope="col" style="width: 60px;">名称</th>
                     <th scope="col">描述</th>
-                    <th scope="col" style="width: 60px;">&nbsp;</th>
+                    <th scope="col" style="width: 60px;"> <button class="btn btn-sm btn-danger"
+                            (click)="ReturnFormToolPicker()" style="float: right;">返回</button></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="height: 100%;">
                 <tr style="width: 100%;padding: 0;" *ngFor="let tool of this.ge.gamestatus.toolbag">
                     <td style="width: 60px;">{{tool[0]}}</td>
                     <td style="text-align: left;">{{this.ge.getTool(tool[0]).Func.Description}}</td>
@@ -59,7 +63,6 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn btn-danger" (click)="ReturnFormToolPicker()" style="float: right;">返回</button>
     </div>
 
     <div class="container"
@@ -74,30 +77,39 @@
                 <div class="container" style="padding:0px">
                     <div class="row" style="margin: 2px;padding:0px">
                         <div class="col-6" style="padding:0px">
-                            <button class="btn  btn-primary" style="width: 90%;" (click)="Attack()"><img src="assets/Icons/W_Dagger001.png" width="16px" height="16px" />攻击</button>
+                            <button class="btn  btn-primary" style="width: 90%;" (click)="Attack()"><img
+                                    src="assets/Icons/W_Dagger001.png" width="16px" height="16px" />攻击</button>
                         </div>
                         <div class="col-6" style="padding:0px">
-                            <button class="btn  btn-primary" style="width: 90%;" (click)="Skill()"><img src="assets/Icons/I_Book.png" width="16px" height="16px" />魂技</button>
+                            <button class="btn  btn-primary" style="width: 90%;" (click)="Skill()"><img
+                                    src="assets/Icons/I_Book.png" width="16px" height="16px" />魂技</button>
                         </div>
                     </div>
                     <div class="row" style="margin: 2px;padding:0px">
                         <div class="col-6" style="padding:0px">
-                            <button class="btn btn-primary" style="width: 90%;" (click)="Tool()"><img src="assets/Icons/I_Water.png" width="16px" height="16px" />道具</button>
+                            <button class="btn btn-primary" style="width: 90%;" (click)="Tool()"><img
+                                    src="assets/Icons/I_Water.png" width="16px" height="16px" />道具</button>
                         </div>
                         <div class="col-6" style="padding:0px">
-                            <button class="btn btn-primary" style="width: 90%;" (click)="Defence()"><img src="assets/Icons/E_Metal04.png" width="16px" height="16px" />防御</button>
+                            <button class="btn btn-primary" style="width: 90%;" (click)="Defence()"><img
+                                    src="assets/Icons/E_Metal04.png" width="16px" height="16px" />防御</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-3" style="padding:0px;">
-                <img src="assets/Icons/S_Holy03.png" width="16px" height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.HP}} /
+                <img src="assets/Icons/S_Holy03.png" width="16px"
+                    height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.HP}} /
                 {{this.ge.fightStatus.currentActionCharater.RealMaxHP}} <br />
-                <img src="assets/Icons/I_Book.png" width="16px" height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.MP}} /
+                <img src="assets/Icons/I_Book.png" width="16px"
+                    height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.MP}} /
                 {{this.ge.fightStatus.currentActionCharater.RealMaxMP}} <br />
-                <img src="assets/Icons/W_Dagger001.png" width="16px" height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeAct}} <br />
-                <img src="assets/Icons/E_Metal04.png" width="16px" height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeDef}} <br />
-                <img src="assets/Icons/A_Shoes01.png" width="16px" height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealSpeed}} <br />
+                <img src="assets/Icons/W_Dagger001.png" width="16px"
+                    height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeAct}} <br />
+                <img src="assets/Icons/E_Metal04.png" width="16px"
+                    height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeDef}} <br />
+                <img src="assets/Icons/A_Shoes01.png" width="16px"
+                    height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealSpeed}} <br />
             </div>
         </div>
     </div>

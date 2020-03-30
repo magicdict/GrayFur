@@ -1,5 +1,7 @@
 # 战斗流程
 
+    ver0.02 2020/03/30
+
 ## 回合开始
 
 每一个回合开始的时候，首先对上一个回合进行一次清算。
@@ -9,15 +11,15 @@
 
 ```typescript
     BufferTurnDown() {
-        this.BufferStatusList.forEach(element => {
-            if (element.Status === characterStatus.中毒) {
+        this.BufferList.forEach(element => {
+            if (element.Status.find(x => x === characterStatus.中毒) !== undefined) {
                 //中毒状态，如果存在HP伤害部分，则这里处理，由于使用了get自动属性功能，Real系的都会自动计算
                 if (element.HPFactor !== undefined) this.HP += this.HP * element.HPFactor;
                 if (element.HPValue !== undefined) this.HP += element.HPValue;
             }
             element.Turns -= 1;
         });
-        this.BufferStatusList = this.BufferStatusList.filter(x => x.Turns > 0);
+        this.BufferList = this.BufferList.filter(x => x.Turns > 0);
     }
 ```
   
@@ -93,5 +95,3 @@
 ```
 
 >EventEmitter在用户界面使用subscribe进行订阅
-
-### ver0.01 2020/03/25

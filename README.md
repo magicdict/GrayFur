@@ -47,6 +47,12 @@ http://datavisualization.club:8888/
 
 <img src="Demo/全员战斗20200324.jpg" width="50%">
 
+### 血量显示
+
+50%以下血量在白色部分显示血槽进度
+
+<img src="Demo/进度条残血显示.jpg" width="50%">
+
 ### 魂技选择
 
 <img src="Demo/魂技选择20200318.jpg" width="50%">
