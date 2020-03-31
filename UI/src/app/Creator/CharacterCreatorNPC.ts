@@ -3,6 +3,23 @@ import { SkillCreator } from './SkillCreator';
 import { EquipmentCreator } from '../Modal/Equipment';
 
 export class CharacterCreatorNPC {
+
+    public static 叶泠泠(): character {
+        let 叶泠泠 = new character("叶泠泠");
+        叶泠泠.LV = 35;
+        叶泠泠.GrowthFactor = 1.1;
+        叶泠泠.Soul = "九心海棠";
+        叶泠泠.TeamPosition = enmTeamPosition.辅助系;
+        叶泠泠.Description = "叶泠泠拥有九心海棠武魂，是皇斗战队唯一辅助器武魂，而九心海棠实际应该是大陆第一辅助系器武魂"
+        叶泠泠.SkillName = [
+            "范围性全体治疗",
+        ];
+        叶泠泠.Skill = [
+            SkillCreator.范围性全体治疗(),
+        ];
+        return 叶泠泠;
+    }
+
     public static 赵无极(): character {
         let 赵无极 = new character("赵无极");
         赵无极.LV = 65;

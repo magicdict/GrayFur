@@ -1,8 +1,8 @@
 <div [ngStyle]="{'background-image': 'url(/assets/scene/' + this.ge.fightStatus.info.Background + '.jpg)'}"
     style="position:relative;height:0;padding-bottom: 165%;width: 100%;background-size: contain; ">
-    <button class="btn btn-sm btn-danger" (click)="Exit()" style="float: right;">胜利</button>
-    <button class="btn btn-sm btn-danger" (click)="SkillTest()" style="float: right;">【毒】状态测试</button>
-    <h6 style="color: aliceblue;width: 50%;">{{this.ge.fightStatus.info.Title}}</h6>
+    <!-- <button class="btn btn-sm btn-danger" (click)="Exit()" style="float: right;">胜利</button> -->
+    <!-- <button class="btn btn-sm btn-danger" (click)="SkillTest()" style="float: right;">【毒】状态测试</button> -->
+    <h6 style="color: aliceblue;width: 50%;">{{this.ge.fightStatus.info.Title + ":" + this.ge.fightStatus.TurnCnt}}</h6>
     <br />
     <app-formation [Fighterlist]="this.ge.fightStatus.Enemy" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
     <hr style="border: blueviolet dashed 1px;margin: 5px;" />
@@ -114,3 +114,4 @@
         </div>
     </div>
 </div>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

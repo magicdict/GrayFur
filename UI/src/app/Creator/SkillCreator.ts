@@ -382,6 +382,21 @@ export class SkillCreator {
         return s;
     }
 
+    //叶泠泠 魂技
+
+    public static 范围性全体治疗():SkillInfo{
+        let s = new HealSkillInfo();
+        s.Name = "范围性全体治疗";
+        s.Description = "范围性全体治疗";
+        s.Order = 3;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.EveryOne;
+        s.RecoverHPPercent = 0.1;
+        s.BufferFactorByLV = true;  //和施法者等级挂钩
+        return s;
+    }
+
+
     //武魂融合
 
     public static 双神共存(): SkillInfo {

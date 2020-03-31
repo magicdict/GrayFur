@@ -1,78 +1,117 @@
 import { character, enmTeamPosition } from '../Modal/character';
 import { FightStatus } from './FightStatus';
-import { AttactSkillInfo, SkillInfo, enmDirect, enmRange } from '../Modal/SkillInfo';
-
-
+import { SkillInfo, enmDirect, enmRange } from '../Modal/SkillInfo';
 
 export class RPGCore {
     //以下是伤害计算的核心公式
     public static NornamAct(Act: character, BeAct: character): number {
-        var HarmPoint = Act.RealTimeAct - BeAct.RealTimeDef;
+        var HarmPoint = Math.round(Act.RealTimeAct - BeAct.RealTimeDef);
         if (HarmPoint < 0) HarmPoint = 5;   //命中时候的最低消费
         return HarmPoint;
     }
 
     //敌方人工智能
-    public static EnemyAI(c: character, status: FightStatus) {
+    public static EnemyAI(c: character, status: FightStatus): string {
         console.log("敌方人工智能:" + c.Name);
-        //自己的状态的评估
-        let IsLowHP = c.HP < 50 || c.HPPercent < 10;
-        //可以使用技能的总结
+        //可以使用技能列表
         let EnableSkill = c.Skill.filter(x => x.MpUsage <= c.MP);
+        if (EnableSkill.length === 0) {
+            //血量最少的人作为目标
+            let BeAttactCharactor = status.MyTeam.sort((x, y) => { return x.HP - y.HP; })[0];
+            BeAttactCharactor.HP -= RPGCore.NornamAct(c, BeAttactCharactor);
+            if (status.IsDebugMode) console.log(c.Name + "普通攻击=>" + BeAttactCharactor.Name)
+            if (BeAttactCharactor.HP <= 0) BeAttactCharactor.HP = 0;
+            return c.Name + "普通攻击=>" + BeAttactCharactor.Name;
+        }
+
         switch (c.TeamPosition) {
             case enmTeamPosition.强攻系:
-                if (this.EnemyAI_强攻系(c, status)) return;
+                if (this.EnemyAI_强攻系(c)) return "";
                 break;
             case enmTeamPosition.敏攻系:
-                if (this.EnemyAI_敏攻系(c, status)) return;
+                if (this.EnemyAI_敏攻系()) return "";
                 break;
             case enmTeamPosition.控制系:
-                if (this.EnemyAI_控制系(c, status)) return;
+                if (this.EnemyAI_控制系()) return "";
                 break;
             case enmTeamPosition.辅助系:
-                if (this.EnemyAI_辅助系(c, status)) return;
+                if (this.EnemyAI_辅助系()) return "";
                 break;
         }
 
         if (EnableSkill.length >= status.TurnCnt) {
-            this.ExcuteSkill(EnableSkill[status.TurnCnt - 1], status);
-            return;
+            return this.ExcuteSkill(EnableSkill[status.TurnCnt - 1], status);
+        } else {
+            return this.ExcuteSkill(EnableSkill[EnableSkill.length - 1], status);
         }
-
-        //血量最少的人作为目标
-        let attactC = status.MyTeam.sort((x, y) => { return x.HP - y.HP; })[0];
-        attactC.HP -= RPGCore.NornamAct(c, attactC);
-        if (status.IsDebugMode) console.log(c.Name + "普通攻击=>" + attactC.Name)
-        if (attactC.HP <= 0) attactC.HP = 0;
     }
 
-    public static EnemyAI_强攻系(c: character, status: FightStatus): boolean {
+    public static EnemyAI_强攻系(c: character): boolean {
         let EnableSkill = c.Skill.filter(x => x.MpUsage <= c.MP);
-        //如果攻击系的或者毒的技能，则先使用
-        let EnableAttactSkill = EnableSkill.filter(x => x instanceof AttactSkillInfo);
 
         return false;
     }
-    public static EnemyAI_敏攻系(c: character, status: FightStatus): boolean {
+    public static EnemyAI_敏攻系(): boolean {
         return false;
     }
-    public static EnemyAI_控制系(c: character, status: FightStatus): boolean {
+    public static EnemyAI_控制系(): boolean {
         return false;
     }
-    public static EnemyAI_辅助系(c: character, status: FightStatus): boolean {
+    public static EnemyAI_辅助系(): boolean {
         return false;
     }
 
 
     /**使用技能 */
-    static ExcuteSkill(skill: SkillInfo, status: FightStatus) {
+    static ExcuteSkill(skill: SkillInfo, status: FightStatus): string {
         status.currentActionCharater.MP -= skill.MpUsage;
-        var c: character;
         switch (skill.Range) {
             case enmRange.Self:
                 skill.Excute(status.currentActionCharater, status);
-                break;
+                return status.currentActionCharater.Name + "对自己使用了技能：" + skill.Name;;
+            case enmRange.EveryOne:
+                switch (skill.Direct) {
+                    case enmDirect.All:
+                        status.Enemy.forEach(
+                            element => {
+                                if (element !== undefined && element.HP > 0) {
+                                    console.log(status.currentActionCharater.Name + "对[" + element.Name + "]使用了技能：" + skill.Name);
+                                    skill.Excute(element, status);
+                                }
+                            }
+                        )
+                        status.MyTeam.forEach(
+                            element => {
+                                if (element !== undefined && element.HP > 0) {
+                                    console.log(status.currentActionCharater.Name + "对[" + element.Name + "]使用了技能：" + skill.Name);
+                                    skill.Excute(element, status);
+                                }
+                            }
+                        )
+                        return status.currentActionCharater.Name + "对敌我双方使用了技能：" + skill.Name;;
+                    case enmDirect.MyTeam:
+                        status.Enemy.forEach(
+                            element => {
+                                if (element !== undefined && element.HP > 0) {
+                                    console.log(status.currentActionCharater.Name + "对[" + element.Name + "]使用了技能：" + skill.Name);
+                                    skill.Excute(element, status);
+                                }
+                            }
+                        )
+                        return status.currentActionCharater.Name + "对敌双方使用了技能：" + skill.Name;;
+                    case enmDirect.Enemy:
+                        status.MyTeam.forEach(
+                            element => {
+                                if (element !== undefined && element.HP > 0) {
+                                    console.log(status.currentActionCharater.Name + "对[" + element.Name + "]使用了技能：" + skill.Name);
+                                    skill.Excute(element, status);
+                                }
+                            }
+                        )
+                        return status.currentActionCharater.Name + "对我双方使用了技能：" + skill.Name;;
+                }
             case enmRange.PickOne:
+                var c: character;
                 switch (skill.Direct) {
                     case enmDirect.All:
                         break;
@@ -80,18 +119,17 @@ export class RPGCore {
                         //这里应该使用status.Enemy
                         //一般选择队伍里面HP最少的人比较合适
                         c = status.Enemy.sort((x, y) => { return x.HP - y.HP; })[0];
-                        console.log(status.currentActionCharater.Name + "对[" + c.Name + "]使用了技能：" + skill.Name);
                         skill.Excute(c, status);
-                        break;
+                        return status.currentActionCharater.Name + "对[" + c.Name + "]使用了技能：" + skill.Name;
                     case enmDirect.Enemy:
                         //这里应该使用status.MyTeam
                         //一般选择队伍里面HP最少的人比较合适
                         c = status.MyTeam.sort((x, y) => { return x.HP - y.HP; })[0];
-                        console.log(status.currentActionCharater.Name + "对[" + c.Name + "]使用了技能：" + skill.Name);
                         skill.Excute(c, status);
-                        break;
+                        return status.currentActionCharater.Name + "对[" + c.Name + "]使用了技能：" + skill.Name;
                 }
                 break;
         }
+        return skill.Name;
     }
 }

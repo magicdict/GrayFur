@@ -10,15 +10,17 @@ export class FightStatus {
     Enemy: character[];
     MyTeam: character[];
     info: BattleInfo;
+    gameengine: GameEngine;
     currentActionCharater: character;
     @Output() ResultEvent: EventEmitter<number> = new EventEmitter<number>();
+    @Output() EnemyAction: EventEmitter<string> = new EventEmitter<string>();
     //列出当前所有战场角色的速度列表，每一回合的出手顺序根据速度来实现
     TurnList: Array<character>;
     TurnCnt: number = 0;
     Exp: number = 0;
     constructor(battleinfo: BattleInfo, ge: GameEngine) {
         this.info = battleinfo;
-
+        this.gameengine = ge;
         this.Enemy = battleinfo.Enemy.map(x => ge.GetRoleByName(x));
         this.Enemy.forEach(element => {
             if (element !== undefined) {
@@ -58,14 +60,14 @@ export class FightStatus {
             if (element !== undefined && element.HP > 0) {
                 //状态修正,之前可能需要进行中毒等状态的结算
                 element.BufferTurnDown();
-                this.TurnList.push(element);
+                if (element.HP > 0) this.TurnList.push(element);
             }
         });
         this.Enemy.forEach(element => {
             if (element !== undefined && element.HP > 0) {
                 //状态修正,之前可能需要进行中毒等状态的结算
                 element.BufferTurnDown();
-                this.TurnList.push(element);
+                if (element.HP > 0) this.TurnList.push(element);
             }
         });
         if (this.IsDebugMode) this.PrintStatus();
@@ -87,7 +89,7 @@ export class FightStatus {
                     this.currentActionCharater = Role;
                     if (!Role.IsMyTeam) {
                         //AI For Enemy
-                        RPGCore.EnemyAI(Role, this);
+                        this.EnemyAction.emit(RPGCore.EnemyAI(Role, this));
                         this.ActionDone();
                     }
                     IsFirstRun = true;
@@ -131,6 +133,8 @@ export class FightStatus {
         let EnemyTeamLive = this.Enemy.find(x => x !== undefined && x.HP > 0);
         if (EnemyTeamLive === undefined) {
             console.log("胜利");
+            //这里需要还原MyTeam的队列
+            this.MyTeam = this.info.MyTeam.map(x => this.gameengine.GetRoleByName(x));
             this.MyTeam.forEach(element => {
                 if (element !== undefined) {
                     element.Exp += this.Exp;
@@ -141,8 +145,8 @@ export class FightStatus {
             return;
         }
         //气绝者去除
-        this.MyTeam = this.MyTeam.map(x => x !== undefined && x.HP > 0 ? x : undefined);
-        this.Enemy = this.Enemy.map(x => x !== undefined && x.HP > 0 ? x : undefined);
+        this.MyTeam = this.MyTeam.map(x => (x !== undefined && x.HP > 0) ? x : undefined);
+        this.Enemy = this.Enemy.map(x => (x !== undefined && x.HP > 0) ? x : undefined);
 
         if (this.TurnList.length == 0) {
             console.log("回合结束");
@@ -159,7 +163,7 @@ export class FightStatus {
                 this.currentActionCharater = Role;
                 if (!Role.IsMyTeam) {
                     //AI For Enemy
-                    RPGCore.EnemyAI(Role, this);
+                    this.EnemyAction.emit(RPGCore.EnemyAI(Role, this));
                     this.ActionDone();
                 }
             }

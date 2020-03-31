@@ -10,6 +10,7 @@ export abstract class SkillInfo {
     Direct: enmDirect;
     Description: string;
     Source: string;
+    BufferFactorByLV = false;
     get MpUsage(): number {
         if (this.Order === undefined) return 0; //道具是不消耗魂力的
         return Math.pow(2, this.Order);
@@ -43,13 +44,28 @@ export class HealSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Heal;
     RecoverHP: number = 0;
     RecoverMP: number = 0;
+    RecoverHPPercent: number = 0;
+    RecoverMPPercent: number = 0;
     Excute(c: character, fs: FightStatus) {
         if (this.CustomeExcute(c, fs)) return;
-        let factor = fs.currentActionCharater.LV / 100;
-        c.HP += Math.round(this.RecoverHP * factor);
+        if (fs.IsDebugMode) console.log("Before HP:" + c.HP + " MP:" + c.MP);
+
+        var factor = 1;
+        /**Buffer强度是否和施法者等级挂钩？ */
+        if (this.BufferFactorByLV) {
+            factor = 1 + fs.currentActionCharater.LV / 100;
+        }
+
+        if (this.RecoverHP !== 0) c.HP += Math.round(this.RecoverHP * factor);
+        if (this.RecoverHPPercent !== 0) c.HP += Math.round(c.RealMaxHP * (this.RecoverHPPercent + factor));
         if (c.HP > c.RealMaxHP) c.HP = c.RealMaxHP;
-        c.MP += Math.round(this.RecoverMP * factor);
+
+        if (this.RecoverMP !== 0) c.MP += Math.round(this.RecoverMP * factor);
+        if (this.RecoverMPPercent !== 0) c.MP += Math.round(c.RealMaxMP * (this.RecoverMPPercent + factor));
         if (c.MP > c.RealMaxMP) c.MP = c.RealMaxMP;
+
+        if (fs.IsDebugMode) console.log("After HP:" + c.HP + " MP:" + c.MP);
+
         if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
     }
 }
@@ -59,7 +75,7 @@ export class BufferStatusSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Buffer;
     Buffer: Buffer = new Buffer();
     /**Buffer强度是否和施法者等级挂钩？ */
-    BufferFactorByLV = false;
+
     Excute(c: character, fs: FightStatus) {
         if (this.CustomeExcute(c, fs)) return;
         //增加Buffer来源信息，相同的不叠加
@@ -67,6 +83,7 @@ export class BufferStatusSkillInfo extends SkillInfo {
         //增幅强度和等级关联:如果是和施法者相关，必须使用currentActionCharater的信息
         if (this.BufferFactorByLV) {
             let factor = fs.currentActionCharater.LV / 100;
+            //以下不使用 1 + factor 是因为RealTimeAct()计算使用了 R += R * element.AttactFactor; 
             if (this.Buffer.AttactFactor !== undefined) this.Buffer.AttactFactor = factor;
             if (this.Buffer.DefenceFactor !== undefined) this.Buffer.DefenceFactor = factor;
             if (this.Buffer.MaxHPFactor !== undefined) this.Buffer.MaxHPFactor = factor;
@@ -77,7 +94,8 @@ export class BufferStatusSkillInfo extends SkillInfo {
         let MaxHpBefore = c.RealMaxHP;
         let MaxMpBefore = c.RealMaxMP;
         this.Buffer.Source = this.Name;
-        c.BufferList.push(this.Buffer);
+        //这里必须使用副本
+        c.BufferList.push(JSON.parse(JSON.stringify(this.Buffer)));
         let MaxHpAfter = c.RealMaxHP;
         let MaxMpAfter = c.RealMaxMP;
         //魂力和生命的等比缩放

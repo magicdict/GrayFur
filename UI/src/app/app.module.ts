@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LazyLoadImageModule } from 'ng-lazyload-image'; 
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -16,6 +17,8 @@ import { MiniGame2Component } from './miniGame/miniGame2.component';
 import { GameCellComponent } from './miniGame/GameCell.component';
 import { StoreComponent } from './store/store.component';
 import { PictorialBookComponent } from './status/pictorialbook.component';
+import { ToastService } from './toasts/toast-service';
+import { ToastsContainer } from './toasts/toast-container.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +33,16 @@ import { PictorialBookComponent } from './status/pictorialbook.component';
     FightComponent,
     MiniGameComponent,
     MiniGame2Component,
-    GameCellComponent
+    GameCellComponent,
+    ToastsContainer
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    NgbModule
   ],
-  providers: [GameEngine],
+  providers: [GameEngine,ToastService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -45,11 +45,9 @@ http://datavisualization.club:8888/
 
 ### 战斗
 
-<img src="Demo/全员战斗20200324.jpg" width="50%">
-
-### 血量显示
-
 50%以下血量在白色部分显示血槽进度
+
+敌方行动的Toast表示
 
 <img src="Demo/进度条残血显示.jpg" width="50%">
 

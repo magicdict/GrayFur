@@ -5,6 +5,7 @@ import { character } from '../Modal/character';
 import { SkillInfo, enmRange, enmDirect } from '../Modal/SkillInfo';
 import { RPGCore } from '../Core/RPGCore';
 import { SkillCreator } from '../Creator/SkillCreator';
+import { ToastService } from '../toasts/toast-service';
 
 @Component({
     templateUrl: './fight.component.html',
@@ -12,6 +13,7 @@ import { SkillCreator } from '../Creator/SkillCreator';
 export class FightComponent implements OnInit {
     constructor(public ge: GameEngine,
         private router: Router,
+        public toastService: ToastService
     ) { }
 
     Message: string = "进入战场";
@@ -20,14 +22,19 @@ export class FightComponent implements OnInit {
     /**正在选择道具 */
     ToolPickStatus: boolean;
     /**正在选择技能使用对象 */
-    SkillRolePickStatus:boolean;
+    SkillRolePickStatus: boolean;
     FightEnd: boolean = false;
     FightResultTitle: string = "";
 
     ngOnInit(): void {
         this.ge.InitFightStatus();
-        this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
-        this.ge.fightStatus.ResultEvent.subscribe((x) => {
+
+        this.ge.fightStatus.EnemyAction.subscribe((x: string) => {
+            console.log("Emit EnemyAction:" + x);
+            this.toastService.show(x, { classname: 'bg-danger text-light', delay: 3000 });
+        }, null, null);
+
+        this.ge.fightStatus.ResultEvent.subscribe((x: number) => {
             if (x === 0) {
                 this.FightResultTitle = "团灭了......魂力不足"
                 this.ge.gamestatus.lineIdx--;
@@ -39,6 +46,7 @@ export class FightComponent implements OnInit {
             console.log("jump to scene");
             setTimeout(() => { this.router.navigateByUrl("scene"); }, 3000);
         }, null, null);
+        this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
     }
 
     /**对象目标选择 */
@@ -78,7 +86,7 @@ export class FightComponent implements OnInit {
         console.log("Direct:" + Skill.Direct);
         this.ge.fightStatus.currentActionCharater.MP -= Skill.MpUsage;
         this.SkillPickStatus = false;
-        
+
         //根据不同的技能对象确定是否要选择技能的受体
         switch (Skill.Range) {
             case enmRange.Self:
@@ -200,7 +208,7 @@ export class FightComponent implements OnInit {
 
     //测试用:状态的改变
     SkillTest() {
-        SkillCreator.碧磷紫毒().Excute(this.ge.fightStatus.MyTeam[0],this.ge.fightStatus);
+        SkillCreator.碧磷紫毒().Excute(this.ge.fightStatus.MyTeam[0], this.ge.fightStatus);
     }
 
 }
