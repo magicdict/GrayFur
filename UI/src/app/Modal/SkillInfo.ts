@@ -1,16 +1,24 @@
-import { character, Buffer, characterStatus } from './character';
+import { character, Buffer } from './character';
 import { FightStatus } from '../Core/FightStatus';
 
 /** 技能 */
 export abstract class SkillInfo {
     Name: string;
-    Order: number;   //第N魂技
+    /**第N魂技 */
+    Order: number;   
     SkillType: enmSkillType;
     Range: enmRange;
     Direct: enmDirect;
     Description: string;
     Source: string;
-    BufferFactorByLV = false;
+    /**冷却回合数 */
+    ColdDownTurn:number = 0;
+    /**实时冷却剩余数 */
+    CurrentColdDown = 0;
+    /**是否获得 */
+    IsAvalible:Boolean;
+    /**效果随着等级变化 */
+    EffectWithLevel = false;
     get MpUsage(): number {
         if (this.Order === undefined) return 0; //道具是不消耗魂力的
         return Math.pow(2, this.Order);
@@ -52,7 +60,7 @@ export class HealSkillInfo extends SkillInfo {
 
         var factor = 1;
         /**Buffer强度是否和施法者等级挂钩？ */
-        if (this.BufferFactorByLV) {
+        if (this.EffectWithLevel) {
             factor = 1 + fs.currentActionCharater.LV / 100;
         }
 
@@ -81,7 +89,7 @@ export class BufferStatusSkillInfo extends SkillInfo {
         //增加Buffer来源信息，相同的不叠加
         if (c.BufferList.find(x => x.Source === this.Name) !== undefined) return;
         //增幅强度和等级关联:如果是和施法者相关，必须使用currentActionCharater的信息
-        if (this.BufferFactorByLV) {
+        if (this.EffectWithLevel) {
             let factor = fs.currentActionCharater.LV / 100;
             //以下不使用 1 + factor 是因为RealTimeAct()计算使用了 R += R * element.AttactFactor; 
             if (this.Buffer.AttactFactor !== undefined) this.Buffer.AttactFactor = factor;
@@ -142,6 +150,3 @@ export enum enmDirect {
     Enemy,      //敌方
     All,        //全体
 }
-
-
-

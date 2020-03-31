@@ -6,6 +6,7 @@ import { SkillInfo, enmRange, enmDirect } from '../Modal/SkillInfo';
 import { RPGCore } from '../Core/RPGCore';
 import { SkillCreator } from '../Creator/SkillCreator';
 import { ToastService } from '../toasts/toast-service';
+import { IconMgr } from '../Core/IconMgr';
 
 @Component({
     templateUrl: './fight.component.html',
@@ -15,7 +16,7 @@ export class FightComponent implements OnInit {
         private router: Router,
         public toastService: ToastService
     ) { }
-
+    iconMgr = IconMgr;
     Message: string = "进入战场";
     /**正在选择技能 */
     SkillPickStatus: boolean;
@@ -85,6 +86,7 @@ export class FightComponent implements OnInit {
         console.log("Range:" + Skill.Range);
         console.log("Direct:" + Skill.Direct);
         this.ge.fightStatus.currentActionCharater.MP -= Skill.MpUsage;
+        Skill.CurrentColdDown = Skill.ColdDownTurn + 1; //本轮结束会自动减1，所以这里额外加1
         this.SkillPickStatus = false;
 
         //根据不同的技能对象确定是否要选择技能的受体
@@ -181,8 +183,9 @@ export class FightComponent implements OnInit {
     }
     UseTool(name: string) {
         this.ToolPickStatus = false;
-        this.ExcuteSkill(this.ge.getTool(name).Func);
-        this.ge.gamestatus.changeTool([name, -1]);
+        let t = this.ge.getTool(name);
+        this.ExcuteSkill(t.Func);
+        this.ge.gamestatus.changeTool([t.Name, -1, t.Icon]);
         this.ge.fightStatus.ActionDone();
         this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
     }

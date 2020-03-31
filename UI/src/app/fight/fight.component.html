@@ -35,12 +35,14 @@
                     <td style="text-align: left;">{{skill.Description}}</td>
                     <td style="width: 50px;">{{skill.MpUsage}}</td>
                     <td style="width: 60px;"><button class="btn btn-sm btn-primary"
-                            [disabled]=" this.ge.fightStatus.currentActionCharater.MP < skill.MpUsage "
-                            (click)="ExcuteSkill(skill)">发动</button></td>
+                            [disabled]=" this.ge.fightStatus.currentActionCharater.MP < skill.MpUsage || skill.CurrentColdDown !== 0 || !skill.IsAvalible"
+                            (click)="ExcuteSkill(skill)">
+                            {{ (!skill.IsAvalible)?"未掌握":skill.CurrentColdDown ===0?"发动":("[" + skill.CurrentColdDown + "]")}}
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
-
     </div>
 
     <div class="container" *ngIf="ToolPickStatus"
@@ -56,7 +58,7 @@
             </thead>
             <tbody style="height: 100%;">
                 <tr style="width: 100%;padding: 0;" *ngFor="let tool of this.ge.gamestatus.toolbag">
-                    <td style="width: 60px;">{{tool[0]}}</td>
+                    <td style="width: 60px;"><img [src]="tool[2]" width="16px" height="16px" />{{tool[0]}}</td>
                     <td style="text-align: left;">{{this.ge.getTool(tool[0]).Func.Description}}</td>
                     <td style="width: 60px;"><button class="btn btn-sm btn-primary"
                             (click)="UseTool(tool[0])">使用</button></td>
@@ -78,37 +80,37 @@
                     <div class="row" style="margin: 2px;padding:0px">
                         <div class="col-6" style="padding:0px">
                             <button class="btn  btn-primary" style="width: 90%;" (click)="Attack()"><img
-                                    src="assets/Icons/W_Dagger001.png" width="16px" height="16px" />攻击</button>
+                                    [src]="this.iconMgr.icon_attact" width="16px" height="16px" />攻击</button>
                         </div>
                         <div class="col-6" style="padding:0px">
                             <button class="btn  btn-primary" style="width: 90%;" (click)="Skill()"><img
-                                    src="assets/Icons/I_Book.png" width="16px" height="16px" />魂技</button>
+                                    [src]="this.iconMgr.icon_skill" width="16px" height="16px" />魂技</button>
                         </div>
                     </div>
                     <div class="row" style="margin: 2px;padding:0px">
                         <div class="col-6" style="padding:0px">
                             <button class="btn btn-primary" style="width: 90%;" (click)="Tool()"><img
-                                    src="assets/Icons/I_Water.png" width="16px" height="16px" />道具</button>
+                                    [src]="this.iconMgr.icon_tool" width="16px" height="16px" />道具</button>
                         </div>
                         <div class="col-6" style="padding:0px">
                             <button class="btn btn-primary" style="width: 90%;" (click)="Defence()"><img
-                                    src="assets/Icons/E_Metal04.png" width="16px" height="16px" />防御</button>
+                                    [src]="this.iconMgr.icon_defence" width="16px" height="16px" />防御</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-3" style="padding:0px;">
-                <img src="assets/Icons/S_Holy03.png" width="16px"
+                <img [src]="this.iconMgr.icon_hp" width="16px"
                     height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.HP}} /
                 {{this.ge.fightStatus.currentActionCharater.RealMaxHP}} <br />
-                <img src="assets/Icons/I_Book.png" width="16px"
+                <img [src]="this.iconMgr.icon_skill" width="16px"
                     height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.MP}} /
                 {{this.ge.fightStatus.currentActionCharater.RealMaxMP}} <br />
-                <img src="assets/Icons/W_Dagger001.png" width="16px"
+                <img [src]="this.iconMgr.icon_attact" width="16px"
                     height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeAct}} <br />
-                <img src="assets/Icons/E_Metal04.png" width="16px"
+                <img [src]="this.iconMgr.icon_defence" width="16px"
                     height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeDef}} <br />
-                <img src="assets/Icons/A_Shoes01.png" width="16px"
+                <img [src]="this.iconMgr.icon_speed" width="16px"
                     height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealSpeed}} <br />
             </div>
         </div>

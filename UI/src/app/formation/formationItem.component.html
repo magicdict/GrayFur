@@ -3,7 +3,7 @@
         <font color="white">{{Item.Name}}-{{Item.LV}}</font>
     </div>
     <div style="position: absolute;top: 50px;left: 0px;z-index: 999;height:16px;">
-        <img *ngFor="let s of this.StatusTitle" [src]="'/assets/Icons/' + s" width="16px" height="16px" />
+        <img *ngFor="let icon of this.StatusIcon" [src]="icon" width="16px" height="16px" />
     </div>
     <img [src]="'/assets/character/' + Item.Name + '/头像.jpg'" width="70px" height="70px">
     <div class="progress">

@@ -9,13 +9,9 @@ import { character } from '../Modal/character';
     templateUrl: './formation.component.html',
 })
 export class FormationComponent implements OnInit {
-    constructor(private ge: GameEngine,
-        private router: Router,
-    ) { }
+    constructor() { }
 
     @Input() Fighterlist: character[];
-
-
 
     //Row1
     R1C1: character = undefined;

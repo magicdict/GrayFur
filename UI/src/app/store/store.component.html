@@ -1,5 +1,5 @@
 <div class="alert alert-primary" style="margin: 0px;">
-    <img src="assets/Icons/I_GoldCoin.png" width="16px" height="16px" />所持金魂币：{{this.ge.gamestatus.Money}}
+    <img [src]="this.iconMgr.icon_coin" width="16px" height="16px" />所持金魂币：{{this.ge.gamestatus.Money}}
     <input type="button" class="btn btn-sm btn-danger" style="float: right;margin: 0px;" (click)="Exit()" value="退出" />
 </div>
 <table class="table table-striped" style="width: 100%;padding: 0;margin: 0px;background-color: blanchedalmond;">
@@ -14,11 +14,11 @@
     </thead>
     <tbody style="height:100%;">
         <tr *ngFor="let t of this.ge.StoreToolList">
-            <td>{{t.Name}}</td>
+            <td style="width: 80px;"><img [src]="t.Icon" width="16px" height="16px" /> {{t.Name}}</td>
             <td>{{t.Func.Description}}</td>
-            <td>{{t.Price}}</td>
-            <td>{{this.ge.gamestatus.getToolHoldCnt(t.Name)}}</td>
-            <td><button class="btn btn-primary" [disabled]=" this.ge.gamestatus.Money < t.Price "
+            <td style="width: 50px;">{{t.Price}}</td>
+            <td style="width: 50px;">{{this.ge.gamestatus.getToolHoldCnt(t.Name)}}</td>
+            <td style="width: 70px;"><button class="btn btn-primary" [disabled]=" this.ge.gamestatus.Money < t.Price "
                     (click)="Buy(t)">购买</button></td>
         </tr>
     </tbody>

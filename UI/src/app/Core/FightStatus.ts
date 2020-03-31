@@ -46,6 +46,16 @@ export class FightStatus {
             c.Exp -= c.NextNeedExp;
             c.LV++;
         }
+        c.Skill.forEach(
+            skill => {
+                //人物魂技设定：人物技能都是各自New出来的独立对象
+                //冷却回合数
+                skill.CurrentColdDown = skill.ColdDownTurn;
+                //可用性的设定
+                let o = Math.floor(c.LV / 10)
+                skill.IsAvalible = skill.Order <= o;
+            }
+        )
         c.HP = c.RealMaxHP;
         c.MP = c.RealMaxMP;
         c.BufferList = new Array<Buffer>();

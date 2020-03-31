@@ -256,6 +256,12 @@ export class character {
             }
             element.Turns -= 1;
         });
+        this.Skill.forEach(
+            skill => {
+                //技能ColdDown
+                if (skill.CurrentColdDown > 0) skill.CurrentColdDown -= 1;
+            }
+        )
         this.BufferList = this.BufferList.filter(x => x.Turns > 0);
     }
     constructor(theName: string) {

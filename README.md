@@ -16,6 +16,8 @@
 
 - Angular 9.1.0
 - BootStrap 4.4.1
+- Issue：https://www.bugclose.com/
+- IDE：VS Code
 
 ## 在线网址
 

@@ -22,13 +22,13 @@
         this.BufferList = this.BufferList.filter(x => x.Turns > 0);
     }
 ```
-  
+
 > 极端情况下，敌我双方都可能被束缚，无法行动，所以先做一下判断是否有可以行动的角色。
 
 按照出手速度，将所有角色放在一个数组里面，然后决定第一个出手的人，如果是我方人员，等待用户界面的指令输入，如果是敌方的话，则使用AI进行行动。无论是AI还是用户界面的指令，一旦完成，则执行ActionDone方法，进行胜负判定，切换当前的行动角色。
 
 ```typescript
-/**当前角色动作完成 */
+    /**当前角色动作完成 */
     ActionDone() {
         //胜负统计
         let MyTeamLive = this.MyTeam.find(x => x !== undefined && x.HP > 0);

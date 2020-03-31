@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { character, doubleSoul } from '../Modal/character';
 import { GameEngine } from '../Core/gameEngine.service';
+import { IconMgr } from '../Core/IconMgr';
 
 
 @Component({
   templateUrl: './status.component.html',
 })
 export class StatusComponent implements OnInit {
-  constructor(private ge: GameEngine,
+  constructor(public ge: GameEngine,
     private router: Router,
   ) { }
-
+  iconMgr = IconMgr;
   ngOnInit(): void {
     this.c = this.ge.currentRole;
     if (this.c instanceof doubleSoul) {

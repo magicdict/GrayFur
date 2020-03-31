@@ -14,7 +14,7 @@ export class RPGCore {
     public static EnemyAI(c: character, status: FightStatus): string {
         console.log("敌方人工智能:" + c.Name);
         //可以使用技能列表
-        let EnableSkill = c.Skill.filter(x => x.MpUsage <= c.MP);
+        let EnableSkill = c.Skill.filter(x => x.MpUsage <= c.MP && x.CurrentColdDown === 0);
         if (EnableSkill.length === 0) {
             //血量最少的人作为目标
             let BeAttactCharactor = status.MyTeam.sort((x, y) => { return x.HP - y.HP; })[0];
@@ -65,6 +65,7 @@ export class RPGCore {
     /**使用技能 */
     static ExcuteSkill(skill: SkillInfo, status: FightStatus): string {
         status.currentActionCharater.MP -= skill.MpUsage;
+        skill.CurrentColdDown = skill.ColdDownTurn + 1; //本轮结束会自动减1，所以这里额外加1
         switch (skill.Range) {
             case enmRange.Self:
                 skill.Excute(status.currentActionCharater, status);

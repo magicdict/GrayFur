@@ -4,6 +4,8 @@ import { SkillInfo } from './SkillInfo';
 export class ToolInfo {
     /** 名字 */
     Name: string;
+    /** 图标 */
+    Icon: string;
     /** 价格 */
     Price: number;
     /** 道具和技能可以合并 */

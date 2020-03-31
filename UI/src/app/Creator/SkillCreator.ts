@@ -116,6 +116,7 @@ export class SkillCreator {
         s.Buffer.Turns = 1;
         s.Buffer.Status = [characterStatus.束缚];
         s.Source = "人面魔蛛";
+        s.ColdDownTurn = 3;
         return s;
     }
 
@@ -129,6 +130,7 @@ export class SkillCreator {
         s.Source = "地穴魔蛛";
         s.Buffer.Turns = 3;
         s.Buffer.Status = [characterStatus.束缚];
+        s.ColdDownTurn = 3;
         return s;
     }
 
@@ -232,7 +234,7 @@ export class SkillCreator {
         s.Range = enmRange.EveryOne;
         s.Buffer.MaxHPFactor = 0.1;
         s.Buffer.Status = [characterStatus.生命增益];
-        s.BufferFactorByLV = true;
+        s.EffectWithLevel = true;
         return s;
     }
 
@@ -246,7 +248,7 @@ export class SkillCreator {
         s.Range = enmRange.EveryOne;
         s.Buffer.SpeedFactor = 0.1;
         s.Buffer.Status = [characterStatus.速度增益];
-        s.BufferFactorByLV = true;
+        s.EffectWithLevel = true;
         return s;
     }
 
@@ -260,7 +262,7 @@ export class SkillCreator {
         s.Range = enmRange.EveryOne;
         s.Buffer.MaxMPFactor = 0.1;
         s.Buffer.Status = [characterStatus.魂力增益];
-        s.BufferFactorByLV = true;
+        s.EffectWithLevel = true;
         return s;
     }
 
@@ -274,7 +276,7 @@ export class SkillCreator {
         s.Range = enmRange.EveryOne;
         s.Buffer.DefenceFactor = 0.1;
         s.Buffer.Status = [characterStatus.防御增益];
-        s.BufferFactorByLV = true;
+        s.EffectWithLevel = true;
         return s;
     }
 
@@ -288,7 +290,8 @@ export class SkillCreator {
         s.Range = enmRange.EveryOne;
         s.Buffer.AttactFactor = 0.1;
         s.Buffer.Status = [characterStatus.攻击增益];
-        s.BufferFactorByLV = true;
+        s.EffectWithLevel = true;
+        s.ColdDownTurn = 5;
         return s;
     }
 
@@ -392,7 +395,7 @@ export class SkillCreator {
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.EveryOne;
         s.RecoverHPPercent = 0.1;
-        s.BufferFactorByLV = true;  //和施法者等级挂钩
+        s.EffectWithLevel = true;  //和施法者等级挂钩
         return s;
     }
 

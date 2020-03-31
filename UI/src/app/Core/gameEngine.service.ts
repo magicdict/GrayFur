@@ -24,7 +24,7 @@ export class GameEngine {
         this.StoreToolList = new Array<ToolInfo>();
         this.StoreToolList.push(ToolCreator.止血草());
         this.StoreToolList.push(ToolCreator.小烤肠());
-        this.StoreToolList.push(ToolCreator.小黑瓶());
+        this.StoreToolList.push(ToolCreator.小橙瓶());
     }
 
     getTool(name: string): ToolInfo {
@@ -107,8 +107,8 @@ export class GameEngine {
 
         this.gamestatus.Money = 10;
         /**给3个止血草 */
-        this.gamestatus.changeTool([ToolCreator.止血草().Name, 5]);
-        this.gamestatus.changeTool([ToolCreator.小烤肠().Name, 2]);
+        this.gamestatus.changeTool([ToolCreator.止血草().Name, 5,ToolCreator.止血草().Icon]);
+        this.gamestatus.changeTool([ToolCreator.小烤肠().Name, 2,ToolCreator.小烤肠().Icon]);
         this.localstorage.Save("游戏状态", this.gamestatus);
     }
 
@@ -161,12 +161,12 @@ export class GameStatus {
     lineIdx: number = 0;    //台词位置
     fightname: string;
     /**道具 */
-    toolbag: Array<[string, number]> = new Array<[string, number]>();
+    toolbag: Array<[string, number,string]> = new Array<[string, number,string]>();
     getToolHoldCnt(name: string): number {
         let t = this.toolbag.find(x => x[0] === name);
         return (t === undefined) ? 0 : t[1];
     }
-    changeTool(ToolWithCnt: [string, number]) {
+    changeTool(ToolWithCnt: [string, number,string]) {
         let t = this.toolbag.find(x => x[0] === ToolWithCnt[0])
         if (t === undefined) {
             //不存在的情况
@@ -180,3 +180,5 @@ export class GameStatus {
         this.toolbag = this.toolbag.filter(x => x[1] > 0);
     }
 }
+
+
