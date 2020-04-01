@@ -119,4 +119,36 @@ export class CharacterCreatorNPC {
         return 比比东;
     }
 
+
+
+    //番外
+
+    public static 达拉崩巴斑得贝迪卜多比鲁翁(): character {
+        let 达拉崩巴斑得贝迪卜多比鲁翁 = new character("达拉崩巴斑得贝迪卜多比鲁翁");
+        达拉崩巴斑得贝迪卜多比鲁翁.LV = 1;
+        达拉崩巴斑得贝迪卜多比鲁翁.GrowthFactor = 1.1;
+        达拉崩巴斑得贝迪卜多比鲁翁.Soul = "勇者之魂";
+        达拉崩巴斑得贝迪卜多比鲁翁.TeamPosition = enmTeamPosition.强攻系;
+        达拉崩巴斑得贝迪卜多比鲁翁.Description = "蒙达鲁克硫斯伯古比奇巴勒城的勇者，打败了昆图库塔卡提考特苏瓦西拉松，娶了公主米娅莫拉苏娜丹妮谢莉红"
+        达拉崩巴斑得贝迪卜多比鲁翁.SkillName = [
+        ];
+        达拉崩巴斑得贝迪卜多比鲁翁.Skill = [
+        ];
+        return 达拉崩巴斑得贝迪卜多比鲁翁;
+    }
+
+    public static 昆图库塔卡提考特苏瓦西拉松(): character {
+        let 昆图库塔卡提考特苏瓦西拉松 = new character("昆图库塔卡提考特苏瓦西拉松");
+        昆图库塔卡提考特苏瓦西拉松.LV = 99;
+        昆图库塔卡提考特苏瓦西拉松.GrowthFactor = 1.1;
+        昆图库塔卡提考特苏瓦西拉松.Soul = "恶龙";
+        昆图库塔卡提考特苏瓦西拉松.TeamPosition = enmTeamPosition.强攻系;
+        昆图库塔卡提考特苏瓦西拉松.Description = "被蒙达鲁克硫斯伯古比奇巴勒城的勇者，打败了的恶龙"
+        昆图库塔卡提考特苏瓦西拉松.SkillName = [
+        ];
+        昆图库塔卡提考特苏瓦西拉松.Skill = [
+        ];
+        return 昆图库塔卡提考特苏瓦西拉松;
+    }
+
 }

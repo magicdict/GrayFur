@@ -79,7 +79,7 @@ export class GameEngine {
         this.独孤博 = CharacterCreatorNPC.独孤博();
         this.比比东 = CharacterCreatorNPC.比比东();
         this.叶泠泠 = CharacterCreatorNPC.叶泠泠();
-
+      
         //以下为无法序列化的魂技
         this.马红俊.Skill.push(SkillCreator.凤凰火线());
 
@@ -97,6 +97,10 @@ export class GameEngine {
         this.PictorialBook.push(this.独孤博);
         this.PictorialBook.push(this.比比东);
         this.PictorialBook.push(this.叶泠泠);
+
+        this.PictorialBook.push(CharacterCreatorNPC.昆图库塔卡提考特苏瓦西拉松());
+        this.PictorialBook.push(CharacterCreatorNPC.达拉崩巴斑得贝迪卜多比鲁翁());
+
 
         //武魂融合技
         let s = SkillCreator.幽冥白虎();

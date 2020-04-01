@@ -43,7 +43,7 @@ export const Scene0001: SceneInfo = {
     Background: "史莱克学院",
     Lines: [
         "小舞@史莱克学院的赵无极老师及其厉害，小心对付啊。",
-        FightPrefix + "Battle0001",
+        FightPrefix + "Battle0002",
         "唐三@终于通过史莱克学院的入学测试了！奥力给！",
     ]
 };

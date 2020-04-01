@@ -19,7 +19,8 @@ export class StatusComponent implements OnInit {
       this.d = this.c;
     }
   }
-
+  clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   public c: character;
   public d: doubleSoul;
   public PageIdx: number = 1;
