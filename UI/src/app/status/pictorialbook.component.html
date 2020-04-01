@@ -1,13 +1,18 @@
-<div class="alert alert-primary" style="margin: 0px;">
-    图鉴
-    <input type="button" class="btn btn-sm btn-danger" style="float: right;margin: 0px;" (click)="Exit()" value="退出" />
+<div [ngStyle]="{'height':clientHeight + 'px','width':clientWidth + 'px'}">
+    <div class="alert alert-primary" style="margin: 0px;">
+        图鉴
+        <input type="button" class="btn btn-sm btn-danger" style="float: right;margin: 0px;" (click)="Exit()"
+            value="退出" />
+    </div>
+    <table class="table table-striped" style="width: 100%;padding: 0;margin: 0px;background-color: blanchedalmond;">
+        <tbody [ngStyle]="{'height':clientHeight - 40 + 'px'}">
+            <tr *ngFor="let t of this.ge.PictorialBook"
+                (click)="this.ge.currentRole = this.ge.GetRoleByName(t.Name);this.router.navigateByUrl('status');">
+                <td width="50px"><img [lazyLoad]="'/assets/character/' + t.Name + '/头像.jpg'" height="50px"
+                        width="50px" /></td>
+                <td width="60px">{{t.Name}}</td>
+                <td>{{t.Description}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-<table class="table table-striped" style="width: 100%;padding: 0;margin: 0px;background-color: blanchedalmond;">
-    <tbody style="height:100%;">
-        <tr *ngFor="let t of this.ge.PictorialBook" (click)="this.ge.currentRole = this.ge.GetRoleByName(t.Name);this.router.navigateByUrl('status');">
-            <td width="50px"><img [lazyLoad]="'/assets/character/' + t.Name + '/头像.jpg'" height="50px" width="50px" /></td>
-            <td width="60px">{{t.Name}}</td>
-            <td>{{t.Description}}</td>
-        </tr>
-    </tbody>
-</table>

@@ -97,6 +97,14 @@ export class GameEngine {
         this.PictorialBook.push(this.独孤博);
         this.PictorialBook.push(this.比比东);
         this.PictorialBook.push(this.叶泠泠);
+
+        //武魂融合技
+        let s = SkillCreator.幽冥白虎();
+        s.Combine.forEach(
+            c => {
+                this.GetRoleByName(c).Skill.push(s);
+            }
+        )
     }
 
     public gamestatus: GameStatus;
@@ -107,8 +115,8 @@ export class GameEngine {
 
         this.gamestatus.Money = 10;
         /**给3个止血草 */
-        this.gamestatus.changeTool([ToolCreator.止血草().Name, 5,ToolCreator.止血草().Icon]);
-        this.gamestatus.changeTool([ToolCreator.小烤肠().Name, 2,ToolCreator.小烤肠().Icon]);
+        this.gamestatus.changeTool([ToolCreator.止血草().Name, 5, ToolCreator.止血草().Icon]);
+        this.gamestatus.changeTool([ToolCreator.小烤肠().Name, 2, ToolCreator.小烤肠().Icon]);
         this.localstorage.Save("游戏状态", this.gamestatus);
     }
 
@@ -161,12 +169,12 @@ export class GameStatus {
     lineIdx: number = 0;    //台词位置
     fightname: string;
     /**道具 */
-    toolbag: Array<[string, number,string]> = new Array<[string, number,string]>();
+    toolbag: Array<[string, number, string]> = new Array<[string, number, string]>();
     getToolHoldCnt(name: string): number {
         let t = this.toolbag.find(x => x[0] === name);
         return (t === undefined) ? 0 : t[1];
     }
-    changeTool(ToolWithCnt: [string, number,string]) {
+    changeTool(ToolWithCnt: [string, number, string]) {
         let t = this.toolbag.find(x => x[0] === ToolWithCnt[0])
         if (t === undefined) {
             //不存在的情况

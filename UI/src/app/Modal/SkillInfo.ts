@@ -1,22 +1,43 @@
 import { character, Buffer } from './character';
 import { FightStatus } from '../Core/FightStatus';
+import { stringify } from 'querystring';
 
 /** 技能 */
 export abstract class SkillInfo {
     Name: string;
     /**第N魂技 */
-    Order: number;   
+    Order: number;
     SkillType: enmSkillType;
     Range: enmRange;
     Direct: enmDirect;
     Description: string;
     Source: string;
     /**冷却回合数 */
-    ColdDownTurn:number = 0;
+    ColdDownTurn: number = 0;
     /**实时冷却剩余数 */
     CurrentColdDown = 0;
     /**是否获得 */
-    IsAvalible:Boolean;
+    IsMaster: boolean;
+    /**是否能使用 */
+    IsAvalible(fs: FightStatus): string {
+        let c = fs.currentActionCharater;
+        if (c.MP < this.MpUsage) return "MP不足";
+        if (!this.IsMaster) return "未掌握";
+        if (this.CurrentColdDown !== 0) return "冷却中:" + this.CurrentColdDown;
+        if (this.Combine !== undefined) {
+            //武魂融合技
+            let EveryOneCanAction = true;
+            this.Combine.forEach(
+                name => {
+                    if (name !== c.Name) {
+                        if (fs.TurnList.find(x => x.Name === name) === undefined) EveryOneCanAction = false;
+                    }
+                }
+            );
+            if (!EveryOneCanAction) return "融合者已行动";
+        }
+        return "";
+    };
     /**效果随着等级变化 */
     EffectWithLevel = false;
     get MpUsage(): number {

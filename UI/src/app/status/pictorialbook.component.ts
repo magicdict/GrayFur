@@ -10,7 +10,8 @@ export class PictorialBookComponent {
     constructor(public ge: GameEngine,
         public router: Router,
     ) { }
-
+    clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     Exit() {
         console.log("jump to scene")
         this.router.navigateByUrl("scene");

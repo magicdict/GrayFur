@@ -1,5 +1,9 @@
-<div [ngStyle]="{'background-image': 'url(/assets/scene/' + this.scene.Background + '.jpg)'}"
-    style="position:relative;height:0;padding-bottom: 165%;width: 100%;background-size: contain;" (click)="Next()">
+<div style="position:relative;
+    background-image: url('assets/cover.jpg');  background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;"
+    [ngStyle]="{'height':clientHeight + 'px','width':clientWidth + 'px','background-image': 'url(/assets/scene/' + this.scene.Background  + '.jpg)'}"
+    (click)="Next()">
     <h6 style="color: aliceblue;">{{this.scene.Title}}</h6>
     <button class="btn btn-danger" (click)="Exit()" style="float: right;">休息</button>
     <button class="btn btn-primary" (click)="Store()" style="float: right;">商店</button>

@@ -8,6 +8,7 @@ import { SkillCreator } from '../Creator/SkillCreator';
 import { ToastService } from '../toasts/toast-service';
 import { IconMgr } from '../Core/IconMgr';
 
+
 @Component({
     templateUrl: './fight.component.html',
 })
@@ -16,6 +17,10 @@ export class FightComponent implements OnInit {
         private router: Router,
         public toastService: ToastService
     ) { }
+
+    clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
     iconMgr = IconMgr;
     Message: string = "进入战场";
     /**正在选择技能 */
@@ -88,6 +93,14 @@ export class FightComponent implements OnInit {
         this.ge.fightStatus.currentActionCharater.MP -= Skill.MpUsage;
         Skill.CurrentColdDown = Skill.ColdDownTurn + 1; //本轮结束会自动减1，所以这里额外加1
         this.SkillPickStatus = false;
+        //武魂融合技
+        if (Skill.Combine !== undefined) {
+            Skill.Combine.forEach(
+                c => {
+                    this.ge.fightStatus.TurnList = this.ge.fightStatus.TurnList.map(x => x.Name === c ? undefined : x);
+                }
+            )
+        }
 
         //根据不同的技能对象确定是否要选择技能的受体
         switch (Skill.Range) {

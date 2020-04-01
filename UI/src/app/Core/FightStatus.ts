@@ -53,7 +53,7 @@ export class FightStatus {
                 skill.CurrentColdDown = skill.ColdDownTurn;
                 //可用性的设定
                 let o = Math.floor(c.LV / 10)
-                skill.IsAvalible = skill.Order <= o;
+                skill.IsMaster = skill.Order <= o;
             }
         )
         c.HP = c.RealMaxHP;
@@ -154,10 +154,13 @@ export class FightStatus {
             this.ResultEvent.emit(1);
             return;
         }
+
         //气绝者去除
         this.MyTeam = this.MyTeam.map(x => (x !== undefined && x.HP > 0) ? x : undefined);
         this.Enemy = this.Enemy.map(x => (x !== undefined && x.HP > 0) ? x : undefined);
-
+        this.TurnList = this.TurnList.map(x => (x !== undefined && x.HP > 0) ? x : undefined);
+        this.TurnList = this.TurnList.filter(x => x !== undefined);
+        
         if (this.TurnList.length == 0) {
             console.log("回合结束");
             this.NewTurn();

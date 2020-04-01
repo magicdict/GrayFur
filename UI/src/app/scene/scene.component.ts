@@ -12,6 +12,9 @@ export class SceneComponent implements OnInit {
   constructor(private ge: GameEngine,
     private router: Router,
   ) { }
+  
+
+
 
   public c: character;
 
@@ -21,8 +24,12 @@ export class SceneComponent implements OnInit {
     this.lines = this.scene.Lines;
     this.line = this.lines[this.ge.gamestatus.lineIdx].split("@")[1]
     this.faceurl = this.lines[this.ge.gamestatus.lineIdx].split("@")[0]
+    this.clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    this.clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   }
 
+  clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   scene: SceneInfo;
   lines: string[];
   line: string;

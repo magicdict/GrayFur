@@ -9,17 +9,21 @@ import { GameEngine } from '../Core/gameEngine.service';
 export class LoginComponent {
   constructor(private ge: GameEngine,
     private router: Router,
-  ) { }
+  ) {
+
+  }
+
+  clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
   Start() {
-    console.log("jump to status");
     this.ge.NewGame();
     this.router.navigateByUrl("scene");
   }
-  MiniGame(){
+  MiniGame() {
     this.router.navigateByUrl("minigame");
   }
-  MiniGame2(){
+  MiniGame2() {
     this.router.navigateByUrl("minigame2");
   }
   Load() {

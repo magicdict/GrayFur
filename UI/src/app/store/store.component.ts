@@ -11,6 +11,8 @@ export class StoreComponent {
   constructor(public ge: GameEngine,
     private router: Router,
   ) { }
+  clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   iconMgr = IconMgr;
   Buy(tool:ToolInfo){
     this.ge.gamestatus.Money -= tool.Price;

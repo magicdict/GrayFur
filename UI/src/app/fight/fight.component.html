@@ -1,7 +1,7 @@
-<div [ngStyle]="{'background-image': 'url(/assets/scene/' + this.ge.fightStatus.info.Background + '.jpg)'}"
-    style="position:relative;height:0;padding-bottom: 165%;width: 100%;background-size: contain; ">
-    <!-- <button class="btn btn-sm btn-danger" (click)="Exit()" style="float: right;">胜利</button> -->
-    <!-- <button class="btn btn-sm btn-danger" (click)="SkillTest()" style="float: right;">【毒】状态测试</button> -->
+<div [ngStyle]="{'height':clientHeight + 'px','width':clientWidth + 'px','background-image': 'url(/assets/scene/' + this.ge.fightStatus.info.Background + '.jpg)'}"
+    style="position:relative;background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;">
     <h6 style="color: aliceblue;width: 50%;">{{this.ge.fightStatus.info.Title + ":" + this.ge.fightStatus.TurnCnt}}</h6>
     <br />
     <app-formation [Fighterlist]="this.ge.fightStatus.Enemy" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
@@ -22,7 +22,7 @@
                     <th scope="col" style="width: 60px;">名称</th>
                     <th scope="col">描述</th>
                     <th scope="col" style="width: 50px;">魂力</th>
-                    <th scope="col" style="width: 60px;">
+                    <th scope="col" style="width: 80px;">
                         <button class="btn btn-sm btn-danger" (click)="ReturnFormSkillPicker()"
                             style="float: right;">返回</button>
                     </th>
@@ -34,10 +34,9 @@
                     <td style="width: 60px;">{{skill.Name}}</td>
                     <td style="text-align: left;">{{skill.Description}}</td>
                     <td style="width: 50px;">{{skill.MpUsage}}</td>
-                    <td style="width: 60px;"><button class="btn btn-sm btn-primary"
-                            [disabled]=" this.ge.fightStatus.currentActionCharater.MP < skill.MpUsage || skill.CurrentColdDown !== 0 || !skill.IsAvalible"
-                            (click)="ExcuteSkill(skill)">
-                            {{ (!skill.IsAvalible)?"未掌握":skill.CurrentColdDown ===0?"发动":("[" + skill.CurrentColdDown + "]")}}
+                    <td style="width: 80px;"><button class="btn btn-sm btn-primary"
+                            [disabled]=" skill.IsAvalible(this.ge.fightStatus) !== ''" (click)="ExcuteSkill(skill)">
+                            {{ skill.IsAvalible(this.ge.fightStatus) === ""?"发动": skill.IsAvalible(this.ge.fightStatus) }}
                         </button>
                     </td>
                 </tr>

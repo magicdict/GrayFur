@@ -427,14 +427,14 @@ export class SkillCreator {
     }
 
     public static 幽冥白虎(): SkillInfo {
-        let s = new BufferStatusSkillInfo();
+        let s = new AttactSkillInfo();
         s.Name = "幽冥白虎";
         s.Description = "幽冥白虎";
         s.Combine = ["戴沐白", "朱竹清"];
-        s.Order = 10;
-        s.Direct = enmDirect.MyTeam;
-        s.Range = enmRange.EveryOne;
-        s.Buffer.MaxHPFactor = 0.1;
+        s.Order = 2;
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 500;
         return s;
     }
 
