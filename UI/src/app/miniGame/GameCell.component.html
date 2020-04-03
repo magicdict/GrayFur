@@ -1,6 +1,6 @@
 <div [ngSwitch]="this.Status" style="width: 52px;height: 52px;padding: 2px;"
     [ngStyle]="{'background-color':BackGoundColor}" (click)="CellClicked()">
-    <img *ngSwitchCase="HideStatus" [src]="'/assets/minilogo.jpg'" width="48px" height="48px">
+    <img *ngSwitchCase="HideStatus" [src]="'/assets/Image/minilogo.jpg'" width="48px" height="48px">
     <img *ngSwitchCase="ShowStatus" [src]="'/assets/character/' + ImageName + '/头像.jpg'" width="48px" height="48px">
     <img *ngSwitchCase="SelectedStatus" [src]="'/assets/character/' + ImageName + '/头像.jpg'" width="48px" height="48px">
 </div>

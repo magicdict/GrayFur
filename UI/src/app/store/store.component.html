@@ -1,6 +1,6 @@
 <div [ngStyle]="{'height':clientHeight + 'px','width':clientWidth + 'px'}">
     <div class="alert alert-primary" style="margin: 0px;">
-        <img [src]="this.iconMgr.icon_coin" width="16px" height="16px" />所持金魂币：{{this.ge.gamestatus.Money}}
+        <img [src]="this.iconMgr.icon_coin" width="16px" height="16px" />所持金魂币：{{this.bagmgr.Money}}
         <input type="button" class="btn btn-sm btn-danger" style="float: right;margin: 0px;" (click)="Exit()"
             value="退出" />
     </div>
@@ -19,9 +19,9 @@
                 <td style="width: 80px;"><img [src]="t.Icon" width="16px" height="16px" /> {{t.Name}}</td>
                 <td>{{t.Func.Description}}</td>
                 <td style="width: 50px;">{{t.Price}}</td>
-                <td style="width: 50px;">{{this.ge.gamestatus.getToolHoldCnt(t.Name)}}</td>
+                <td style="width: 50px;">{{this.bagmgr.getToolHoldCnt(t.Name)}}</td>
                 <td style="width: 70px;"><button class="btn btn-primary"
-                        [disabled]=" this.ge.gamestatus.Money < t.Price " (click)="Buy(t)">购买</button></td>
+                        [disabled]=" this.bagmgr.Money < t.Price " (click)="Buy(t)">购买</button></td>
             </tr>
         </tbody>
     </table>

@@ -20,7 +20,7 @@ const routes: Routes = [
     component: PictorialBookComponent
   },
   {
-    path: 'status',
+    path: 'status/:name',
     component: StatusComponent
   },
   {

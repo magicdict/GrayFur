@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { character, doubleSoul } from '../Modal/character';
 import { GameEngine } from '../Core/gameEngine.service';
 import { IconMgr } from '../Core/IconMgr';
@@ -11,14 +11,20 @@ import { IconMgr } from '../Core/IconMgr';
 export class StatusComponent implements OnInit {
   constructor(public ge: GameEngine,
     private router: Router,
+    private route: ActivatedRoute,
   ) { }
   iconMgr = IconMgr;
   ngOnInit(): void {
-    this.c = this.ge.currentRole;
-    if (this.c instanceof doubleSoul) {
-      this.d = this.c;
-    }
+    this.route.params.subscribe(
+      params => {
+        this.c = this.ge.GetRoleByName(params['name']);
+        if (this.c instanceof doubleSoul) {
+          this.d = this.c;
+        }
+      }
+    );
   }
+
   clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   public c: character;

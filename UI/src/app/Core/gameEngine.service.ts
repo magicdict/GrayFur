@@ -2,21 +2,28 @@ import { Injectable } from "@angular/core";
 import { character, doubleSoul } from '../Modal/character';
 import { DataStorage } from '../Lib/datastorage';
 import { CharacterCreatorMainRole } from '../Creator/CharacterCreatorMainRole';
-import { getBattleInfoByName } from '../Modal/BattleInfo';
 import { FightStatus } from './FightStatus';
 import { ToolInfo } from '../Modal/ToolInfo';
 import { ToolCreator } from '../Creator/ToolCreator';
 import { SkillCreator } from '../Creator/SkillCreator';
 import { CharacterCreatorNPC } from '../Creator/CharacterCreatorNPC';
+import { BattleMgr } from './BattleMgr';
+import { BagMgr } from './BagMgr';
+import { SceneMgr } from './SceneMgr';
 
 
 @Injectable()
 export class GameEngine {
-    constructor(public localstorage: DataStorage) {
+    constructor(
+        public localstorage: DataStorage,
+        public battlemgr: BattleMgr,
+        public scenemgr: SceneMgr,
+        public bagMgr:BagMgr
+    ) {
         /**初始化道具 */
         this.InitTool();
     }
-
+    IsDebugMode: boolean = true;
     /**道具列表 */
     StoreToolList: Array<ToolInfo>;
     /**初始化道具 */
@@ -25,6 +32,10 @@ export class GameEngine {
         this.StoreToolList.push(ToolCreator.止血草());
         this.StoreToolList.push(ToolCreator.小烤肠());
         this.StoreToolList.push(ToolCreator.小橙瓶());
+        this.StoreToolList.push(ToolCreator.观音泪());
+        this.StoreToolList.push(ToolCreator.菩提血());
+        this.StoreToolList.push(ToolCreator.阎王帖());
+        this.StoreToolList.push(ToolCreator.佛怒唐莲());
     }
 
     getTool(name: string): ToolInfo {
@@ -40,10 +51,9 @@ export class GameEngine {
     public 宁荣荣: character;
     public 朱竹清: character;
 
-
-    public currentRole: character;
     public PictorialBook: Array<character> = new Array<character>();
     public GetRoleByName(name: string): character {
+        if (name === undefined) return undefined;
         return this.PictorialBook.find(x => x.Name === name);
     }
 
@@ -63,7 +73,6 @@ export class GameEngine {
         this.localstorage.Save("马红俊", this.马红俊);
         this.localstorage.Save("宁荣荣", this.宁荣荣);
         this.localstorage.Save("朱竹清", this.朱竹清);
-        this.currentRole = this.唐三;
     }
 
     public 赵无极: character;
@@ -79,9 +88,6 @@ export class GameEngine {
         this.独孤博 = CharacterCreatorNPC.独孤博();
         this.比比东 = CharacterCreatorNPC.比比东();
         this.叶泠泠 = CharacterCreatorNPC.叶泠泠();
-      
-        //以下为无法序列化的魂技
-        this.马红俊.Skill.push(SkillCreator.凤凰火线());
 
         //图鉴准备
         this.PictorialBook.push(this.唐三);
@@ -101,6 +107,8 @@ export class GameEngine {
         this.PictorialBook.push(CharacterCreatorNPC.昆图库塔卡提考特苏瓦西拉松());
         this.PictorialBook.push(CharacterCreatorNPC.达拉崩巴斑得贝迪卜多比鲁翁());
 
+        //无法序列化的魂技
+        this.GetRoleByName("马红俊").Skill.push(SkillCreator.凤凰火线());
 
         //武魂融合技
         let s = SkillCreator.幽冥白虎();
@@ -111,28 +119,29 @@ export class GameEngine {
         )
     }
 
-    public gamestatus: GameStatus;
-    public InitGameStatus() {
-        this.gamestatus = new GameStatus();
-        this.gamestatus.lineIdx = 0;
-        this.gamestatus.sceneName = "Scene0000";
-
-        this.gamestatus.Money = 10;
+    public InitBag() {
+        SceneMgr.lineIdx = 0;
+        SceneMgr.sceneName = "Scene0000";
+        this.bagMgr.Money = 10;
         /**给3个止血草 */
-        this.gamestatus.changeTool([ToolCreator.止血草().Name, 5, ToolCreator.止血草().Icon]);
-        this.gamestatus.changeTool([ToolCreator.小烤肠().Name, 2, ToolCreator.小烤肠().Icon]);
-        this.localstorage.Save("游戏状态", this.gamestatus);
+        this.bagMgr.changeTool([ToolCreator.止血草().Name, 5, ToolCreator.止血草().Icon]);
+        this.bagMgr.changeTool([ToolCreator.小烤肠().Name, 2, ToolCreator.小烤肠().Icon]);
+        this.bagMgr.changeTool([ToolCreator.菩提血().Name, 1, ToolCreator.菩提血().Icon]);
+        this.localstorage.Save("游戏状态", this.bagMgr);
     }
 
     public NewGame() {
-        this.InitGameStatus();
+        if (!this.IsDebugMode) this.battlemgr.Load();
+        if (!this.IsDebugMode) this.scenemgr.Load();
+
+        this.InitBag();
         this.InitRole();
         this.InitNPCAndSkillCustomExcute();
     }
 
     public Load() {
-        this.gamestatus = this.localstorage.Load<GameStatus>("游戏状态");
-        if (this.gamestatus === null) {
+        this.bagMgr = this.localstorage.Load<BagMgr>("游戏状态");
+        if (this.bagMgr === null) {
             this.NewGame();
         } else {
             this.唐三 = this.localstorage.Load<doubleSoul>("唐三");
@@ -156,41 +165,13 @@ export class GameEngine {
         this.localstorage.Save("宁荣荣", this.宁荣荣);
         this.localstorage.Save("朱竹清", this.朱竹清);
 
-        this.localstorage.Save("游戏状态", this.gamestatus);
+        this.localstorage.Save("游戏状态", this.bagMgr);
     }
 
     public fightStatus: FightStatus;
     public InitFightStatus() {
-        let battleinfo = getBattleInfoByName(this.gamestatus.fightname);
-        this.fightStatus = new FightStatus(battleinfo, this);
-        this.fightStatus.NewTurn();
+        let battleinfo = this.IsDebugMode ? BattleMgr.getBattleInfoByName_Debug(BattleMgr.fightname) :
+            this.battlemgr.getBattleInfoByName(BattleMgr.fightname);
+        this.fightStatus = new FightStatus(battleinfo, this.PictorialBook);
     }
 }
-
-export class GameStatus {
-    Money: number;
-    sceneName: string = "Scene0000";    //场景编号
-    lineIdx: number = 0;    //台词位置
-    fightname: string;
-    /**道具 */
-    toolbag: Array<[string, number, string]> = new Array<[string, number, string]>();
-    getToolHoldCnt(name: string): number {
-        let t = this.toolbag.find(x => x[0] === name);
-        return (t === undefined) ? 0 : t[1];
-    }
-    changeTool(ToolWithCnt: [string, number, string]) {
-        let t = this.toolbag.find(x => x[0] === ToolWithCnt[0])
-        if (t === undefined) {
-            //不存在的情况
-            this.toolbag.push(ToolWithCnt);
-        } else {
-            ToolWithCnt[1] += t[1];
-            this.toolbag = this.toolbag.filter(x => x[0] !== ToolWithCnt[0]);
-            this.toolbag.push(ToolWithCnt);
-        }
-        //使用完了，则从背包中删除掉
-        this.toolbag = this.toolbag.filter(x => x[1] > 0);
-    }
-}
-
-

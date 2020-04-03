@@ -1,13 +1,21 @@
 <div style="position:relative;
-    background-image: url('assets/cover.jpg');  background-attachment: fixed;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100% 100%;"
     [ngStyle]="{'height':clientHeight + 'px','width':clientWidth + 'px','background-image': 'url(/assets/scene/' + this.scene.Background  + '.jpg)'}"
     (click)="Next()">
     <h6 style="color: aliceblue;">{{this.scene.Title}}</h6>
     <button class="btn btn-danger" (click)="Exit()" style="float: right;">休息</button>
+    <button class="btn btn-primary" (click)="Forest()" style="float: right;">星斗大森林</button>
     <button class="btn btn-primary" (click)="Store()" style="float: right;">商店</button>
     <button class="btn btn-primary" (click)="Status()" style="float: right;">图鉴</button>
+
+    <div *ngIf="this.WaitForBranchPicker"
+        style="position: absolute;z-index: 99; bottom: 300px;width: 100%;height: 100px;text-align: center;">
+        <button *ngFor="let q of this.BranchInfo" class="btn btn-lg btn-success" style="width:80% ;margin: 10px;"
+            (click)="Branch(q[1])">{{q[0]}}</button>
+    </div>
+
     <div
         style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 100px;background-color: dodgerblue;opacity: 0.8;">
         <img [src]="'/assets/character/' + this.faceurl + '/头像.jpg'" height="100px" width="100px"

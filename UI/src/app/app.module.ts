@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +20,9 @@ import { StoreComponent } from './store/store.component';
 import { PictorialBookComponent } from './status/pictorialbook.component';
 import { ToastService } from './toasts/toast-service';
 import { ToastsContainer } from './toasts/toast-container.component';
+import { BattleMgr } from './Core/BattleMgr';
+import { SceneMgr } from './Core/SceneMgr';
+import { BagMgr } from './Core/BagMgr';
 
 @NgModule({
   declarations: [
@@ -40,9 +44,15 @@ import { ToastsContainer } from './toasts/toast-container.component';
     BrowserModule,
     AppRoutingModule,
     LazyLoadImageModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [GameEngine,ToastService],
+  providers: [
+    GameEngine,
+    ToastService,
+    BattleMgr,
+    SceneMgr,
+    BagMgr],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

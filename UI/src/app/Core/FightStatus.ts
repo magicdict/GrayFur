@@ -1,6 +1,5 @@
 import { character, characterStatus, Buffer } from '../Modal/character';
-import { BattleInfo } from '../Modal/BattleInfo';
-import { GameEngine } from './GameEngine.service';
+import { BattleInfo } from './BattleMgr';
 import { Output, EventEmitter } from '@angular/core';
 import { RPGCore } from './RPGCore';
 
@@ -10,7 +9,12 @@ export class FightStatus {
     Enemy: character[];
     MyTeam: character[];
     info: BattleInfo;
-    gameengine: GameEngine;
+    public PictorialBook: Array<character> = new Array<character>();
+    //gameengine: GameEngine;
+    public GetRoleByName(name: string): character {
+        if (name === undefined) return undefined;
+        return this.PictorialBook.find(x => x.Name === name);
+    }
     currentActionCharater: character;
     @Output() ResultEvent: EventEmitter<number> = new EventEmitter<number>();
     @Output() EnemyAction: EventEmitter<string> = new EventEmitter<string>();
@@ -18,10 +22,10 @@ export class FightStatus {
     TurnList: Array<character>;
     TurnCnt: number = 0;
     Exp: number = 0;
-    constructor(battleinfo: BattleInfo, ge: GameEngine) {
+    constructor(battleinfo: BattleInfo,pictorialBook:Array<character>) {
         this.info = battleinfo;
-        this.gameengine = ge;
-        this.Enemy = battleinfo.Enemy.map(x => ge.GetRoleByName(x));
+        this.PictorialBook = pictorialBook;
+        this.Enemy = battleinfo.Enemy.map(x => this.GetRoleByName(x));
         this.Enemy.forEach(element => {
             if (element !== undefined) {
                 element.IsMyTeam = false;
@@ -30,7 +34,7 @@ export class FightStatus {
             }
         });
 
-        this.MyTeam = battleinfo.MyTeam.map(x => ge.GetRoleByName(x));
+        this.MyTeam = battleinfo.MyTeam.map(x => this.GetRoleByName(x));
         this.MyTeam.forEach(element => {
             if (element !== undefined) {
                 element.IsMyTeam = true;
@@ -109,6 +113,13 @@ export class FightStatus {
                 if (this.TurnList.length === 0) IsFirstRun = true;
             }
         }
+        let MyTeamLive = this.MyTeam.find(x => x !== undefined && x.HP > 0);
+        if (MyTeamLive === undefined) {
+            console.log("团灭");
+            this.MyTeam.forEach(element => { this.InitRole(element) });
+            this.ResultEvent.emit(0);
+            return;
+        }
     }
 
     /**调试用方法，打印战场状态 */
@@ -144,7 +155,7 @@ export class FightStatus {
         if (EnemyTeamLive === undefined) {
             console.log("胜利");
             //这里需要还原MyTeam的队列
-            this.MyTeam = this.info.MyTeam.map(x => this.gameengine.GetRoleByName(x));
+            this.MyTeam = this.info.MyTeam.map(x => this.GetRoleByName(x));
             this.MyTeam.forEach(element => {
                 if (element !== undefined) {
                     element.Exp += this.Exp;
@@ -160,7 +171,7 @@ export class FightStatus {
         this.Enemy = this.Enemy.map(x => (x !== undefined && x.HP > 0) ? x : undefined);
         this.TurnList = this.TurnList.map(x => (x !== undefined && x.HP > 0) ? x : undefined);
         this.TurnList = this.TurnList.filter(x => x !== undefined);
-        
+
         if (this.TurnList.length == 0) {
             console.log("回合结束");
             this.NewTurn();

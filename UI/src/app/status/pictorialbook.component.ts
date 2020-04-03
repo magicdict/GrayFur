@@ -12,6 +12,11 @@ export class PictorialBookComponent {
     ) { }
     clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    Status(name:string){
+        this.router.navigateByUrl('status/' + name);
+    }
+
     Exit() {
         console.log("jump to scene")
         this.router.navigateByUrl("scene");

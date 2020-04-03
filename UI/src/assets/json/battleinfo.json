@@ -1,0 +1,52 @@
+[
+    {
+        "Name": "Battle0001",
+        "Title": "史莱克学院赵无极",
+        "Background": "室内场景",
+        "Enemy": [
+            null,
+            "独孤雁",
+            "独孤博",
+            "叶泠泠",
+            null,
+            "赵无极",
+            "比比东",
+            null
+        ],
+        "MyTeam": [
+            "小舞",
+            "马红俊",
+            "戴沐白",
+            "朱竹清",
+            null,
+            "宁荣荣",
+            "奥斯卡",
+            "唐三"
+        ]
+    },
+    {
+        "Name": "Battle0002",
+        "Title": "蒙达鲁克硫斯伯古比奇巴勒城",
+        "Background": "中式建筑走廊",
+        "Enemy": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            "昆图库塔卡提考特苏瓦西拉松",
+            null,
+            null
+        ],
+        "MyTeam": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            "达拉崩巴斑得贝迪卜多比鲁翁",
+            null,
+            null
+        ]
+    }
+]

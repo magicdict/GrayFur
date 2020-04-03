@@ -19,6 +19,34 @@
 - Issue：https://www.bugclose.com/
 - IDE：VS Code
 
+## 兼容性
+
+- Windows7 Chrome最新版
+- Android iOS
+
+## 目标功能
+
+### 基本
+
+- 登陆
+- 场景转移/分支剧情选择
+- 图鉴和状态
+- 战斗
+
+### 道具
+
+- 普通道具（回复类、攻击类）
+- 商店
+
+### 魂技
+
+- 技能
+- 融合技
+
+### 计划中
+
+- 星斗大森林
+
 ## 在线网址
 
 http://datavisualization.club:8888/
@@ -33,9 +61,11 @@ http://datavisualization.club:8888/
 
 <img src="Demo/场景20200310.jpg" width="50%">
 
+<img src="Demo/场景分支.jpg" width="50%">
+
 ### 商店
 
-<img src="Demo/商店20200318.jpg" width="50%">
+<img src="Demo/商店.jpg" width="50%">
 
 ### 图鉴
 

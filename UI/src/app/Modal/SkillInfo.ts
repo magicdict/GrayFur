@@ -1,6 +1,5 @@
 import { character, Buffer } from './character';
 import { FightStatus } from '../Core/FightStatus';
-import { stringify } from 'querystring';
 
 /** 技能 */
 export abstract class SkillInfo {
@@ -58,13 +57,13 @@ export abstract class SkillInfo {
 export class AttactSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Attact;
     Harm: number;
+    IgnoreceDefence: boolean;
     Excute(c: character, fs: FightStatus) {
         //如果自定义方法被执行，则跳过后续代码
         if (this.CustomeExcute(c, fs)) return;
-        let factor = fs.currentActionCharater.LV / 100;
+        let factor = 1 + fs.currentActionCharater.LV / 100;
         c.HP -= Math.round(this.Harm * factor);
         if (c.HP <= 0) c.HP = 0;
-
         if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
     }
 }

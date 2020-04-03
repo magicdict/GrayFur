@@ -1,0 +1,1101 @@
+[
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.5,
+        "DefStatusPlus": 0.5,
+        "Bones": [
+            {
+                "Name": "外附魂骨八蛛矛",
+                "EvolutionName": "海神八翼",
+                "Position": 6
+            },
+            {
+                "Name": "天青牛蟒右臂骨",
+                "Position": 2
+            },
+            {
+                "Name": "泰坦巨猿左臂骨",
+                "Position": 1
+            },
+            {
+                "Name": "深海魔鲸王的躯干骨",
+                "Position": 5
+            },
+            {
+                "Name": "精神凝聚之智慧头骨",
+                "Position": 0
+            },
+            {
+                "Name": "蓝银皇右腿骨",
+                "Position": 4
+            },
+            {
+                "Name": "邪魔虎鲸王左腿骨",
+                "Position": 3
+            }
+        ],
+        "Fields": [
+            {
+                "Name": "蓝银领域",
+                "Descirption": "与外界蓝银草产生共鸣，短时间内把领域里的蓝银草变成蓝银皇为自己所用，大幅度提升战斗力，隔绝一定不良状态，控制领域范围内的所有蓝银草使用技能以领域为媒，在领域范围内可配合精神力探查周围的信息。"
+            },
+            {
+                "Name": "海神领域",
+                "Descirption": "传承海神获得，通过凝聚海神领域来获得大海的力量，补充自己的魂力。"
+            },
+            {
+                "Name": "杀神领域",
+                "Descirption": "增加气势，削弱对方实力，杀气形成的气势和压力往往能够让你的对手无法发挥出全部实力，而你自己却可以发挥到百分之一百二的程度，可增幅他人。"
+            },
+            {
+                "Name": "修罗领域",
+                "Descirption": "修罗神状态下使用，杀神领域的神级进化，但已经不再是杀神领域，而是全新的领域，修罗神的领域：修罗领域。"
+            }
+        ],
+        "TeamPosition": 2,
+        "Name": "唐三",
+        "BufferList": [],
+        "LV": 29,
+        "Soul": "蓝银皇",
+        "SecondSoul": "昊天锤",
+        "Description": "唐三前世为巴蜀唐门外门子弟，来到斗罗大陆后与伙伴们一起在异界大陆重新建立了唐门。",
+        "SkillName": [
+            "缠绕",
+            "寄生",
+            "蛛网束缚",
+            "蓝银囚笼/蓝银突刺阵",
+            "蓝银霸皇枪",
+            "虚无状态/暴杀八段摔",
+            "蓝银真身",
+            "蓝银虎鲸镜之灭/蓝银虎鲸魔之摄",
+            "蓝银天青龙之魂",
+            "海神神环"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "缠绕",
+                "Description": "单体限制，使用蓝银皇缠住敌人",
+                "Order": 1,
+                "Direct": 1,
+                "Range": 1,
+                "Source": "曼陀罗蛇"
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "寄生",
+                "Description": "单体限制，蓝银皇在敌人体内留下的种子萌发",
+                "Order": 2,
+                "Direct": 1,
+                "Range": 1,
+                "Source": "鬼藤"
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "蛛网束缚(单体)",
+                "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+                "Order": 3,
+                "Direct": 1,
+                "Range": 1,
+                "Source": "人面魔蛛"
+            },
+            {
+                "ColdDownTurn": 3,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "蛛网束缚(群体)",
+                "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+                "Order": 3,
+                "Direct": 1,
+                "Range": 5,
+                "Source": "人面魔蛛"
+            },
+            {
+                "ColdDownTurn": 3,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "蓝银囚笼",
+                "Description": "群体限制，蓝银皇化为囚笼困住敌人",
+                "Order": 4,
+                "Direct": 1,
+                "Range": 5,
+                "Source": "地穴魔蛛"
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "AddtionSkill": {
+                    "ColdDownTurn": 0,
+                    "CurrentColdDown": 0,
+                    "EffectWithLevel": false,
+                    "SkillType": 0,
+                    "Name": "蓝银突刺阵附加攻击",
+                    "Harm": 20
+                },
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "蓝银突刺阵",
+                "Description": "群体限制，强制眩晕一秒",
+                "Order": 4,
+                "Direct": 1,
+                "Range": 5,
+                "Source": "地穴魔蛛"
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "蓝银霸王枪",
+                "Description": "单体攻击，凝聚一点，蓝银皇武魂攻击最强魂技",
+                "Order": 5,
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 100,
+                "Source": "蓝银皇天赋魂环"
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "MaxHPFactor": 0.1,
+                    "Turns": 999,
+                    "Status": [
+                        0
+                    ]
+                },
+                "Name": "双神共存",
+                "Description": "成就独一无二的完美武魂融合技，是神级的融合。",
+                "Combine": [
+                    "唐三",
+                    "小舞"
+                ],
+                "Order": 10,
+                "Direct": 0,
+                "Range": 5
+            }
+        ],
+        "SecondSkillName": [
+            "泰坦之锤/大地之力",
+            "大地蚁皇斩",
+            "器魂真身",
+            "千钧壁垒"
+        ],
+        "SecondSkill": []
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.4,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 1,
+        "Name": "小舞",
+        "BufferList": [],
+        "LV": 25,
+        "Soul": "柔骨兔",
+        "Description": "小舞的名字是由其父“小五”得来，因为她是家族中第五个出生的，小舞的爸爸懒得取名，就把名字换了一个字。“小舞”这个名字也是由此而来的。",
+        "SkillName": [
+            "腰弓",
+            "魅惑",
+            "瞬间闪移",
+            "无敌金身",
+            "柔骨锁",
+            "虚无状态/暴杀八段摔",
+            "柔骨兔真身"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "腰弓",
+                "Description": "柔术",
+                "Order": 1,
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 50
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "魅惑",
+                "Description": "双眼放射诱惑人的粉红光，令人眩晕",
+                "Order": 2,
+                "Direct": 1,
+                "Range": 1
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "MaxHPFactor": 0.1,
+                    "Turns": 999,
+                    "Status": [
+                        0
+                    ]
+                },
+                "Name": "双神共存",
+                "Description": "成就独一无二的完美武魂融合技，是神级的融合。",
+                "Combine": [
+                    "唐三",
+                    "小舞"
+                ],
+                "Order": 10,
+                "Direct": 0,
+                "Range": 5
+            }
+        ]
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.4,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 1,
+        "Name": "戴沐白",
+        "BufferList": [],
+        "LV": 35,
+        "Soul": "白虎",
+        "Description": "史莱克七怪老大、星罗帝国三皇子 、星罗帝国太子、唐门长老、唐门刑堂堂主",
+        "SkillName": [
+            "白虎护身障",
+            "白虎烈光波",
+            "白虎金刚变",
+            "白虎流星雨"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "MaxHPFactor": 0.5,
+                    "AttactFactor": 0.5,
+                    "DefenceFactor": 0.5,
+                    "Turns": 999,
+                    "Status": [
+                        1,
+                        2,
+                        4
+                    ]
+                },
+                "Name": "白虎护身障",
+                "Description": "攻击、防御、力量增强50%",
+                "Order": 1,
+                "Direct": 0,
+                "Range": 0
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "白虎烈光波",
+                "Description": "发出白色的光波进行攻击",
+                "Order": 2,
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 50
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "MaxHPFactor": 1,
+                    "AttactFactor": 1,
+                    "DefenceFactor": 1,
+                    "Turns": 999,
+                    "Status": [
+                        1,
+                        2,
+                        4
+                    ]
+                },
+                "Name": "白虎金刚变",
+                "Description": "攻击、防御、力量增强100%",
+                "Order": 3,
+                "Direct": 0,
+                "Range": 0
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "白虎流星雨",
+                "Description": "发出无数拳头大小的金色光球进行攻击",
+                "Order": 4,
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 100
+            }
+        ]
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.3,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 3,
+        "Name": "奥斯卡",
+        "BufferList": [],
+        "LV": 25,
+        "Soul": "香肠/食神",
+        "Description": "史莱克学院的学员，弗兰德院长从小收留的孤儿，大陆上第一位食物系封号斗罗，不可多得的食物系天才魂师。",
+        "SkillName": [
+            "超级恢复大香肠",
+            "复活之光"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 1,
+                "RecoverHP": 50,
+                "RecoverMP": 10,
+                "RecoverHPPercent": 0,
+                "RecoverMPPercent": 0,
+                "Name": "超级恢复大香肠",
+                "Description": "单体，回复50生命值和10魂力",
+                "Direct": 0,
+                "Range": 5,
+                "Order": 3
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "MaxHPFactor": 0.1,
+                    "Turns": 999,
+                    "Status": [
+                        0
+                    ]
+                },
+                "Name": "复活之光",
+                "Description": "起死回生",
+                "Combine": [
+                    "宁荣荣",
+                    "奥斯卡"
+                ],
+                "Order": 10,
+                "Direct": 0,
+                "Range": 5
+            }
+        ]
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.3,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 1,
+        "Name": "马红俊",
+        "BufferList": [],
+        "LV": 25,
+        "Soul": "邪火凤凰",
+        "Description": "拥有顶级兽武魂邪火凤凰，为变异武魂。对自身有邪火反噬的影响。",
+        "SkillName": [
+            "凤凰火线",
+            "浴火凤凰"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 999,
+                    "Status": [
+                        13
+                    ]
+                },
+                "Name": "浴火凤凰",
+                "Description": "开启时凤凰火焰增强30%",
+                "Order": 1,
+                "Direct": 0,
+                "Range": 0
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "凤凰火线",
+                "Description": "从口中喷出一道火焰，单向远程攻击技",
+                "Order": 1,
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 50
+            }
+        ]
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.2,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 3,
+        "Name": "宁荣荣",
+        "BufferList": [],
+        "LV": 25,
+        "Soul": "九宝琉璃塔",
+        "Description": "九宝琉璃宗宗主，为七宝琉璃宗前宗主宁风致和粉色长发女子(名字不详)之女，也是唯一的女儿。",
+        "SkillName": [
+            "力量增幅",
+            "敏捷增幅",
+            "魂力增幅",
+            "防御增幅",
+            "攻击增幅",
+            "属性增幅",
+            "九宝真身",
+            "九宝神光护体",
+            "九宝无敌神光"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": true,
+                "SkillType": 2,
+                "Buffer": {
+                    "MaxHPFactor": 0.1,
+                    "Turns": 999,
+                    "Status": [
+                        4
+                    ]
+                },
+                "Name": "力量增益",
+                "Description": "我方全体生命值上限增加10%",
+                "Order": 1,
+                "Direct": 0,
+                "Range": 5
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": true,
+                "SkillType": 2,
+                "Buffer": {
+                    "SpeedFactor": 0.1,
+                    "Turns": 999,
+                    "Status": [
+                        3
+                    ]
+                },
+                "Name": "敏捷增幅",
+                "Description": "我方全体速度上限增加10%",
+                "Order": 2,
+                "Direct": 0,
+                "Range": 5
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": true,
+                "SkillType": 2,
+                "Buffer": {
+                    "MaxMPFactor": 0.1,
+                    "Turns": 999,
+                    "Status": [
+                        5
+                    ]
+                },
+                "Name": "魂力增幅",
+                "Description": "我方全体魂力上限增加10%",
+                "Order": 3,
+                "Direct": 0,
+                "Range": 5
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": true,
+                "SkillType": 2,
+                "Buffer": {
+                    "DefenceFactor": 0.1,
+                    "Turns": 999,
+                    "Status": [
+                        2
+                    ]
+                },
+                "Name": "防御增幅",
+                "Description": "我方全体防御力上限增加10%",
+                "Order": 4,
+                "Direct": 0,
+                "Range": 5
+            },
+            {
+                "ColdDownTurn": 5,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": true,
+                "SkillType": 2,
+                "Buffer": {
+                    "AttactFactor": 0.1,
+                    "Turns": 999,
+                    "Status": [
+                        1
+                    ]
+                },
+                "Name": "攻击增幅",
+                "Description": "我方全体攻击力上限增加10%",
+                "Order": 5,
+                "Direct": 0,
+                "Range": 5
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "MaxHPFactor": 0.1,
+                    "Turns": 999,
+                    "Status": [
+                        0
+                    ]
+                },
+                "Name": "复活之光",
+                "Description": "起死回生",
+                "Combine": [
+                    "宁荣荣",
+                    "奥斯卡"
+                ],
+                "Order": 10,
+                "Direct": 0,
+                "Range": 5
+            }
+        ]
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.2,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 1,
+        "Name": "朱竹清",
+        "BufferList": [],
+        "LV": 25,
+        "Soul": "幽冥灵猫",
+        "Description": "星罗帝国贵族朱家二小姐，在戴沐白被封星罗太子之后，被册封为太子妃",
+        "SkillName": [
+            "幽冥突刺",
+            "幽冥百爪",
+            "幽冥斩"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "幽冥突刺",
+                "Description": "迅速用利爪刺杀对方，近身单体攻击技",
+                "Order": 1,
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 50
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "幽冥百爪",
+                "Description": "透点式攻击，百爪攻击同一点，速度极快，破坏力强，近身单体攻击技",
+                "Order": 2,
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 100
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "幽冥斩",
+                "Description": "魂力覆盖双手的同时高举并合掌，然后由上往下攻击，攻击时，覆盖双手的魂力会随着双手的移动轨迹形成一个月牙状的黑影斩向对方，破坏力极大，近身单体攻击技",
+                "Order": 3,
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 200
+            }
+        ]
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 0.6,
+        "GrowthFactor": 1.1,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 0,
+        "Name": "赵无极",
+        "BufferList": [],
+        "LV": 65,
+        "Soul": "大力金刚熊",
+        "Description": "人称不动明王，防御力惊人，曾经风靡一时的狠辣角色，后来到史莱克学院当老师。虽外表凶狠，但内心善良，且十分护短，非常喜爱史莱克七怪。",
+        "SkillName": [
+            "不动明王身",
+            "大力金刚掌",
+            "重力增强",
+            "定位追踪",
+            "重力挤压",
+            "大力金刚吼",
+            "武魂真身"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "DefenceFactor": 1,
+                    "Turns": 999,
+                    "Status": [
+                        2
+                    ]
+                },
+                "Name": "不动明王身",
+                "Description": "防御极强，面对唐三纯熟的唐门暗器，铿铿锵锵，火花四溅，并不能伤及他分毫。",
+                "Order": 1,
+                "Direct": 0,
+                "Range": 0
+            }
+        ]
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.1,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 3,
+        "Name": "独孤雁",
+        "BufferList": [],
+        "LV": 29,
+        "Soul": "碧鳞蛇",
+        "Description": "独孤博的孙女,玉天恒的恋人,因为自身武魂原因而中毒,后被唐三所救。",
+        "SkillName": [
+            "碧磷红毒",
+            "碧磷蓝毒",
+            "碧磷紫毒"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "SpeedFactor": 0.2,
+                    "AttactFactor": 0.2,
+                    "Turns": 999,
+                    "Status": [
+                        1,
+                        3
+                    ],
+                    "Source": "碧磷红毒"
+                },
+                "Name": "碧磷红毒",
+                "Description": "亢奋之毒（刺激神经，攻击力、速度增加20%）",
+                "Order": 1,
+                "Direct": 0,
+                "Range": 0
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "DefenceFactor": 0.3,
+                    "Turns": 999,
+                    "Status": [
+                        2
+                    ],
+                    "Source": "碧磷蓝毒"
+                },
+                "Name": "碧磷蓝毒",
+                "Description": "麻痹之毒（消除痛感，防御力增加30%）",
+                "Order": 2,
+                "Direct": 0,
+                "Range": 0
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "HPFactor": -0.05,
+                    "Turns": 3,
+                    "Status": [
+                        6
+                    ],
+                    "Source": "碧磷紫毒"
+                },
+                "Name": "碧磷紫毒",
+                "Description": "碧磷紫毒（每回合损失5%生命力，持续3回合）",
+                "Order": 3,
+                "Direct": 1,
+                "Range": 1
+            }
+        ]
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.1,
+        "DefStatusPlus": 0.5,
+        "Bones": [
+            {
+                "Name": "万年美杜莎头骨",
+                "Position": 0
+            }
+        ],
+        "Fields": [],
+        "TeamPosition": 3,
+        "Name": "独孤博",
+        "BufferList": [],
+        "LV": 93,
+        "Soul": "碧鳞蛇",
+        "Description": "独孤博的孙女,玉天恒的恋人,因为自身武魂原因而中毒,后被唐三所救。",
+        "SkillName": [
+            "碧磷红毒",
+            "碧磷蓝毒",
+            "碧磷紫毒"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "SpeedFactor": 0.2,
+                    "AttactFactor": 0.2,
+                    "Turns": 999,
+                    "Status": [
+                        1,
+                        3
+                    ],
+                    "Source": "碧磷红毒"
+                },
+                "Name": "碧磷红毒",
+                "Description": "亢奋之毒（刺激神经，攻击力、速度增加20%）",
+                "Order": 1,
+                "Direct": 0,
+                "Range": 0
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "DefenceFactor": 0.3,
+                    "Turns": 999,
+                    "Status": [
+                        2
+                    ],
+                    "Source": "碧磷蓝毒"
+                },
+                "Name": "碧磷蓝毒",
+                "Description": "麻痹之毒（消除痛感，防御力增加30%）",
+                "Order": 2,
+                "Direct": 0,
+                "Range": 0
+            },
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "HPFactor": -0.05,
+                    "Turns": 3,
+                    "Status": [
+                        6
+                    ],
+                    "Source": "碧磷紫毒"
+                },
+                "Name": "碧磷紫毒",
+                "Description": "碧磷紫毒（每回合损失5%生命力，持续3回合）",
+                "Order": 3,
+                "Direct": 1,
+                "Range": 1
+            }
+        ]
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.5,
+        "DefStatusPlus": 0.5,
+        "Bones": [
+            {
+                "Name": "六翅紫光翼",
+                "Position": 6
+            },
+            {
+                "Name": "精神免疫头骨",
+                "Position": 0
+            },
+            {
+                "Name": "死亡蛛皇左臂骨",
+                "Position": 1
+            },
+            {
+                "Name": "死亡蛛皇右臂骨",
+                "Position": 2
+            },
+            {
+                "Name": "柔骨兔魂骨",
+                "Position": 5
+            }
+        ],
+        "Fields": [],
+        "TeamPosition": 2,
+        "Name": "比比东",
+        "BufferList": [],
+        "LV": 99,
+        "Soul": "死亡蛛皇",
+        "SecondSoul": "噬魂蛛皇",
+        "Description": "武魂殿现任教皇也是最年轻的的教皇（34岁），武魂帝国创始人兼第一任女皇，杀戮之都杀神之一。",
+        "SkillName": [
+            "死亡蛛网束缚",
+            "荆棘蛛铠",
+            "吸血蛛刺",
+            "死亡蛛皇真身",
+            "蛛皇分身",
+            "不死之身"
+        ],
+        "Skill": [],
+        "SecondSkillName": [
+            "半月",
+            "魔蛛召唤",
+            "永恒之创",
+            "噬魂蛛皇真身",
+            "空间撕裂之深渊斩"
+        ],
+        "SecondSkill": []
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.1,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 3,
+        "Name": "叶泠泠",
+        "BufferList": [],
+        "LV": 35,
+        "Soul": "九心海棠",
+        "Description": "叶泠泠拥有九心海棠武魂，是皇斗战队唯一辅助器武魂，而九心海棠实际应该是大陆第一辅助系器武魂",
+        "SkillName": [
+            "范围性全体治疗"
+        ],
+        "Skill": [
+            {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": true,
+                "SkillType": 1,
+                "RecoverHP": 0,
+                "RecoverMP": 0,
+                "RecoverHPPercent": 0.1,
+                "RecoverMPPercent": 0,
+                "Name": "范围性全体治疗",
+                "Description": "范围性全体治疗",
+                "Order": 3,
+                "Direct": 0,
+                "Range": 5
+            }
+        ]
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.1,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 0,
+        "Name": "昆图库塔卡提考特苏瓦西拉松",
+        "BufferList": [],
+        "LV": 99,
+        "Soul": "恶龙",
+        "Description": "被蒙达鲁克硫斯伯古比奇巴勒城的勇者，打败了的恶龙",
+        "SkillName": [],
+        "Skill": []
+    },
+    {
+        "Exp": 0,
+        "BaseMaxHP": 100,
+        "BaseMaxMP": 20,
+        "BaseAct": 10,
+        "BaseDef": 10,
+        "BaseSpeed": 10,
+        "Factor": 1,
+        "GrowthFactor": 1.1,
+        "DefStatusPlus": 0.5,
+        "Bones": [],
+        "Fields": [],
+        "TeamPosition": 0,
+        "Name": "达拉崩巴斑得贝迪卜多比鲁翁",
+        "BufferList": [],
+        "LV": 1,
+        "Soul": "勇者之魂",
+        "Description": "蒙达鲁克硫斯伯古比奇巴勒城的勇者，打败了昆图库塔卡提考特苏瓦西拉松，娶了公主米娅莫拉苏娜丹妮谢莉红",
+        "SkillName": [],
+        "Skill": []
+    }
+]

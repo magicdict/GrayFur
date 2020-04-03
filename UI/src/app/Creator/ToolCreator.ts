@@ -1,4 +1,4 @@
-import { ToolInfo } from '../Modal/ToolInfo';
+import { ToolInfo, enmToolType } from '../Modal/ToolInfo';
 import { SkillCreator } from './SkillCreator';
 import { IconMgr } from '../Core/IconMgr';
 
@@ -28,6 +28,43 @@ export class ToolCreator {
         t.Icon = IconMgr.icon_mix_small;
         t.Func = SkillCreator.生命值魂力小回复();
         t.Price = 15;
+        return t;
+    }
+
+    public static 观音泪(): ToolInfo {
+        let t = new ToolInfo();
+        t.ToolType = enmToolType.HiddenWeapon;
+        t.Name = "观音泪";
+        t.Icon = IconMgr.icon_attact;
+        t.Func = SkillCreator.观音泪();
+        t.Price = 99;
+        return t;
+    }
+    public static 菩提血(): ToolInfo {
+        let t = new ToolInfo();
+        t.ToolType = enmToolType.HiddenWeapon;
+        t.Name = "菩提血";
+        t.Icon = IconMgr.icon_attact;
+        t.Func = SkillCreator.菩提血();
+        t.Price = 999;
+        return t;
+    }
+    public static 阎王帖(): ToolInfo {
+        let t = new ToolInfo();
+        t.ToolType = enmToolType.HiddenWeapon;
+        t.Name = "阎王帖";
+        t.Icon = IconMgr.icon_attact;
+        t.Func = SkillCreator.阎王帖();
+        t.Price = 9999;
+        return t;
+    }
+    public static 佛怒唐莲(): ToolInfo {
+        let t = new ToolInfo();
+        t.ToolType = enmToolType.HiddenWeapon;
+        t.Name = "佛怒唐莲";
+        t.Icon = IconMgr.icon_attact;
+        t.Func = SkillCreator.佛怒唐莲();
+        t.Price = 99999;
         return t;
     }
 }

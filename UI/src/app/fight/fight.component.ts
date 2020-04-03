@@ -7,6 +7,8 @@ import { RPGCore } from '../Core/RPGCore';
 import { SkillCreator } from '../Creator/SkillCreator';
 import { ToastService } from '../toasts/toast-service';
 import { IconMgr } from '../Core/IconMgr';
+import { SceneMgr } from '../Core/SceneMgr';
+import { BagMgr } from '../Core/BagMgr';
 
 
 @Component({
@@ -15,6 +17,7 @@ import { IconMgr } from '../Core/IconMgr';
 export class FightComponent implements OnInit {
     constructor(public ge: GameEngine,
         private router: Router,
+        public bagmgr:BagMgr,
         public toastService: ToastService
     ) { }
 
@@ -33,8 +36,8 @@ export class FightComponent implements OnInit {
     FightResultTitle: string = "";
 
     ngOnInit(): void {
-        this.ge.InitFightStatus();
 
+        this.ge.InitFightStatus();
         this.ge.fightStatus.EnemyAction.subscribe((x: string) => {
             console.log("Emit EnemyAction:" + x);
             this.toastService.show(x, { classname: 'bg-danger text-light', delay: 3000 });
@@ -43,15 +46,16 @@ export class FightComponent implements OnInit {
         this.ge.fightStatus.ResultEvent.subscribe((x: number) => {
             if (x === 0) {
                 this.FightResultTitle = "团灭了......魂力不足"
-                this.ge.gamestatus.lineIdx--;
+                SceneMgr.lineIdx--;
             } else {
                 this.FightResultTitle = "胜利了......奥力给"
-                this.ge.gamestatus.lineIdx++;
+                SceneMgr.lineIdx++;
             }
             this.FightEnd = true;
             console.log("jump to scene");
             setTimeout(() => { this.router.navigateByUrl("scene"); }, 3000);
         }, null, null);
+        this.ge.fightStatus.NewTurn();
         this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
     }
 
@@ -198,7 +202,7 @@ export class FightComponent implements OnInit {
         this.ToolPickStatus = false;
         let t = this.ge.getTool(name);
         this.ExcuteSkill(t.Func);
-        this.ge.gamestatus.changeTool([t.Name, -1, t.Icon]);
+        this.ge.bagMgr.changeTool([t.Name, -1, t.Icon]);
         this.ge.fightStatus.ActionDone();
         this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
     }
@@ -218,7 +222,7 @@ export class FightComponent implements OnInit {
     //测试用:模拟胜利
     Exit() {
         console.log("jump to scene");
-        this.ge.gamestatus.lineIdx++;
+        SceneMgr.lineIdx++;
         this.router.navigateByUrl("scene");
     }
 

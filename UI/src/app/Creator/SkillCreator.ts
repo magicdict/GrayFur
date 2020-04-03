@@ -485,4 +485,46 @@ export class SkillCreator {
         s.RecoverHP = 50;
         return s;
     }
+
+    //暗器
+    public static 观音泪(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "观音泪";
+        s.Description = "唐门至尊级巅峰暗器，伤害范围极广，威力极大。";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.EveryOne;
+        s.Harm = 99;
+        return s;
+    }
+
+    public static 菩提血(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "菩提血";
+        s.Description = "唐门至尊级巅峰暗器，伤害范围极广，威力极大。";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.EveryOne;
+        s.Harm = 999;
+        return s;
+    }
+
+    public static 阎王帖(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "阎王帖";
+        s.Description = "唐门至尊级巅峰暗器，伤害范围极广，威力极大。";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.EveryOne;
+        s.Harm = 9999;
+        return s;
+    }
+
+
+    public static 佛怒唐莲(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "佛怒唐莲";
+        s.Description = "唐门至尊级巅峰暗器，伤害范围极广，威力极大。";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.EveryOne;
+        s.Harm = 99999;
+        return s;
+    }
 }
