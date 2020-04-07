@@ -19,6 +19,7 @@ export class SceneMgr {
     public getSceneInfoByName(SceneName: string): SceneInfo {
         return this.SceneInfoList.find(x => x.Name === SceneName);
     }
+    
     public static getSceneInfoByName_Debug(SceneName: string): SceneInfo {
         switch (SceneName) {
             case "Scene0000":

@@ -83,8 +83,7 @@ export class CharacterCreatorMainRole {
             "白虎护身障", "白虎烈光波", "白虎金刚变", "白虎流星雨"
         ];
         戴沐白.Skill = [
-            SkillCreator.白虎护身障(), SkillCreator.白虎烈光波(),
-            SkillCreator.白虎金刚变(), SkillCreator.白虎流星雨()
+           
         ]
         return 戴沐白;
     }

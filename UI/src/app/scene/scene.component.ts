@@ -93,7 +93,8 @@ export class SceneComponent implements OnInit {
   }
   /**星斗大森林 */
   Forest() {
-    alert("建设中")
+    if (this.WaitForBranchPicker) return;
+    this.router.navigateByUrl("forest");
   }
   /**退出 */
   Exit() {

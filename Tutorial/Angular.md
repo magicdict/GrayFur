@@ -1,6 +1,6 @@
 # Angular技巧
 
-ver0.01 2020/03/30
+ver0.01 2020/04/03
 
 ## 关于get计算属性
 
@@ -153,3 +153,7 @@ export class ErrorMessageDialogComponent implements OnInit {
     //console.log(ua);
   }
 ```
+
+## How do I initialize a TypeScript object with a JSON object
+
+[How do I initialize a TypeScript object with a JSON object](https://stackoverflow.com/questions/22885995/how-do-i-initialize-a-typescript-object-with-a-json-object)

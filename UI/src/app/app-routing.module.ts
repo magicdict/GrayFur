@@ -8,6 +8,7 @@ import { MiniGameComponent } from './miniGame/miniGame.component';
 import { StoreComponent } from './store/store.component';
 import { MiniGame2Component } from './miniGame/miniGame2.component';
 import { PictorialBookComponent } from './status/pictorialbook.component';
+import { ForestComponent } from './forest/forest.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'store',
     component: StoreComponent
+  },
+  {
+    path: 'forest',
+    component: ForestComponent
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

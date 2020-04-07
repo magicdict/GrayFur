@@ -15,4 +15,6 @@ export class IconMgr{
     public static icon_hp_small = "assets/Icons/P_Red02.png";
     public static icon_mp_small = "assets/Icons/P_Blue02.png";
     public static icon_mix_small = "assets/Icons/P_Orange02.png";
+    public static icon_box_open = "assets/Icons/I_Chest02.png"; 
+    public static icon_box_close = "assets/Icons/I_Chest01.png"; 
  }

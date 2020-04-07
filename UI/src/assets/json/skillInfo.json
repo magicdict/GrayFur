@@ -1,0 +1,104 @@
+[
+    {
+        "ColdDownTurn": 0,
+        "CurrentColdDown": 0,
+        "EffectWithLevel": false,
+        "SkillType": 2,
+        "Buffer": {
+            "MaxHPFactor": 0.5,
+            "AttactFactor": 0.5,
+            "DefenceFactor": 0.5,
+            "Turns": 999,
+            "Status": [
+                1,
+                2,
+                4
+            ]
+        },
+        "Name": "白虎护身障",
+        "Description": "攻击、防御、力量增强50%",
+        "Order": 1,
+        "Direct": 0,
+        "Range": 0
+    },
+    {
+        "ColdDownTurn": 0,
+        "CurrentColdDown": 0,
+        "EffectWithLevel": false,
+        "SkillType": 0,
+        "Name": "白虎烈光波",
+        "Description": "发出白色的光波进行攻击",
+        "Order": 2,
+        "Direct": 1,
+        "Range": 1,
+        "Harm": 50
+    },
+    {
+        "ColdDownTurn": 0,
+        "CurrentColdDown": 0,
+        "EffectWithLevel": false,
+        "SkillType": 2,
+        "Buffer": {
+            "MaxHPFactor": 0.5,
+            "AttactFactor": 0.5,
+            "DefenceFactor": 0.5,
+            "Turns": 999,
+            "Status": [
+                1,
+                2,
+                4
+            ]
+        },
+        "Name": "白虎护身障",
+        "Description": "攻击、防御、力量增强50%",
+        "Order": 1,
+        "Direct": 0,
+        "Range": 0
+    },
+    {
+        "ColdDownTurn": 0,
+        "CurrentColdDown": 0,
+        "EffectWithLevel": false,
+        "SkillType": 0,
+        "Name": "白虎烈光波",
+        "Description": "发出白色的光波进行攻击",
+        "Order": 2,
+        "Direct": 1,
+        "Range": 1,
+        "Harm": 50
+    },
+    {
+        "ColdDownTurn": 0,
+        "CurrentColdDown": 0,
+        "EffectWithLevel": false,
+        "SkillType": 2,
+        "Buffer": {
+            "MaxHPFactor": 1,
+            "AttactFactor": 1,
+            "DefenceFactor": 1,
+            "Turns": 999,
+            "Status": [
+                1,
+                2,
+                4
+            ]
+        },
+        "Name": "白虎金刚变",
+        "Description": "攻击、防御、力量增强100%",
+        "Order": 3,
+        "Direct": 0,
+        "Range": 0
+    },
+    {
+        "ColdDownTurn": 0,
+        "CurrentColdDown": 0,
+        "EffectWithLevel": false,
+        "SkillType": 0,
+        "Name": "白虎流星雨",
+        "Description": "发出无数拳头大小的金色光球进行攻击",
+        "Order": 4,
+        "Direct": 1,
+        "Range": 1,
+        "Harm": 100
+    }
+]

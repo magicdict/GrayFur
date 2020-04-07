@@ -5,24 +5,28 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { LoginComponent } from './login/login.component';
 import { StatusComponent } from './status/status.component';
-import { GameEngine } from './Core/gameEngine.service';
 import { SceneComponent } from './scene/scene.component';
 import { FormationComponent } from './formation/formation.component';
 import { FightComponent } from './fight/fight.component';
 import { FormationItemComponent } from './formation/formationItem.component';
-
 import { MiniGameComponent } from './miniGame/miniGame.component';
 import { MiniGame2Component } from './miniGame/miniGame2.component';
 import { GameCellComponent } from './miniGame/GameCell.component';
 import { StoreComponent } from './store/store.component';
 import { PictorialBookComponent } from './status/pictorialbook.component';
-import { ToastService } from './toasts/toast-service';
+import { ForestComponent } from './forest/forest.component';
 import { ToastsContainer } from './toasts/toast-container.component';
+
+import { GameEngine } from './Core/gameEngine.service';
+import { ToastService } from './toasts/toast-service';
 import { BattleMgr } from './Core/BattleMgr';
 import { SceneMgr } from './Core/SceneMgr';
 import { BagMgr } from './Core/BagMgr';
+import { SkillMgr } from './Core/SkillMgr';
+import { MapCellComponent } from './forest/MapCell.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,9 @@ import { BagMgr } from './Core/BagMgr';
     MiniGameComponent,
     MiniGame2Component,
     GameCellComponent,
-    ToastsContainer
+    ToastsContainer,
+    ForestComponent,
+    MapCellComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,8 @@ import { BagMgr } from './Core/BagMgr';
     ToastService,
     BattleMgr,
     SceneMgr,
-    BagMgr],
+    BagMgr,
+    SkillMgr],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

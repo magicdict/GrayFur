@@ -10,6 +10,7 @@ import { CharacterCreatorNPC } from '../Creator/CharacterCreatorNPC';
 import { BattleMgr } from './BattleMgr';
 import { BagMgr } from './BagMgr';
 import { SceneMgr } from './SceneMgr';
+import { SkillMgr } from './SkillMgr';
 
 
 @Injectable()
@@ -18,7 +19,8 @@ export class GameEngine {
         public localstorage: DataStorage,
         public battlemgr: BattleMgr,
         public scenemgr: SceneMgr,
-        public bagMgr:BagMgr
+        public bagMgr:BagMgr,
+        public skillMgr:SkillMgr
     ) {
         /**初始化道具 */
         this.InitTool();
@@ -106,6 +108,11 @@ export class GameEngine {
 
         this.PictorialBook.push(CharacterCreatorNPC.昆图库塔卡提考特苏瓦西拉松());
         this.PictorialBook.push(CharacterCreatorNPC.达拉崩巴斑得贝迪卜多比鲁翁());
+        
+        this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎护身障"));
+        this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎烈光波"));
+        this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎金刚变"));
+        this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎流星雨"));
 
         //无法序列化的魂技
         this.GetRoleByName("马红俊").Skill.push(SkillCreator.凤凰火线());
@@ -133,7 +140,7 @@ export class GameEngine {
     public NewGame() {
         if (!this.IsDebugMode) this.battlemgr.Load();
         if (!this.IsDebugMode) this.scenemgr.Load();
-
+        //this.skillMgr.LogJson()
         this.InitBag();
         this.InitRole();
         this.InitNPCAndSkillCustomExcute();
