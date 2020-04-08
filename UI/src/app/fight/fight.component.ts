@@ -6,7 +6,7 @@ import { SkillInfo, enmRange, enmDirect } from '../Modal/SkillInfo';
 import { RPGCore } from '../Core/RPGCore';
 import { SkillCreator } from '../Creator/SkillCreator';
 import { ToastService } from '../toasts/toast-service';
-import { IconMgr } from '../Core/IconMgr';
+import { ResourceMgr } from '../Core/ResourceMgr';
 import { SceneMgr } from '../Core/SceneMgr';
 import { BagMgr } from '../Core/BagMgr';
 
@@ -24,7 +24,7 @@ export class FightComponent implements OnInit {
     clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-    iconMgr = IconMgr;
+    iconMgr = ResourceMgr;
     Message: string = "进入战场";
     /**正在选择技能 */
     SkillPickStatus: boolean;
@@ -202,7 +202,7 @@ export class FightComponent implements OnInit {
         this.ToolPickStatus = false;
         let t = this.ge.getTool(name);
         this.ExcuteSkill(t.Func);
-        this.ge.bagMgr.changeTool([t.Name, -1, t.Icon]);
+        this.ge.bagMgr.changeTool([t.Name, -1]);
         this.ge.fightStatus.ActionDone();
         this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
     }

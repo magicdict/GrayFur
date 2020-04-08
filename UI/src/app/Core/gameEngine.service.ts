@@ -11,6 +11,7 @@ import { BattleMgr } from './BattleMgr';
 import { BagMgr } from './BagMgr';
 import { SceneMgr } from './SceneMgr';
 import { SkillMgr } from './SkillMgr';
+import { ForestMgr } from './ForestMgr';
 
 
 @Injectable()
@@ -19,8 +20,8 @@ export class GameEngine {
         public localstorage: DataStorage,
         public battlemgr: BattleMgr,
         public scenemgr: SceneMgr,
-        public bagMgr:BagMgr,
-        public skillMgr:SkillMgr
+        public bagMgr: BagMgr,
+        public skillMgr: SkillMgr
     ) {
         /**初始化道具 */
         this.InitTool();
@@ -108,7 +109,7 @@ export class GameEngine {
 
         this.PictorialBook.push(CharacterCreatorNPC.昆图库塔卡提考特苏瓦西拉松());
         this.PictorialBook.push(CharacterCreatorNPC.达拉崩巴斑得贝迪卜多比鲁翁());
-        
+
         this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎护身障"));
         this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎烈光波"));
         this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎金刚变"));
@@ -131,11 +132,12 @@ export class GameEngine {
         SceneMgr.sceneName = "Scene0000";
         this.bagMgr.Money = 10;
         /**给3个止血草 */
-        this.bagMgr.changeTool([ToolCreator.止血草().Name, 5, ToolCreator.止血草().Icon]);
-        this.bagMgr.changeTool([ToolCreator.小烤肠().Name, 2, ToolCreator.小烤肠().Icon]);
-        this.bagMgr.changeTool([ToolCreator.菩提血().Name, 1, ToolCreator.菩提血().Icon]);
+        this.bagMgr.changeTool([ToolCreator.止血草().Name, 5]);
+        this.bagMgr.changeTool([ToolCreator.小烤肠().Name, 2]);
+        this.bagMgr.changeTool([ToolCreator.菩提血().Name, 1]);
         this.localstorage.Save("游戏状态", this.bagMgr);
     }
+
 
     public NewGame() {
         if (!this.IsDebugMode) this.battlemgr.Load();
@@ -144,6 +146,7 @@ export class GameEngine {
         this.InitBag();
         this.InitRole();
         this.InitNPCAndSkillCustomExcute();
+        ForestMgr.InitFirst();
     }
 
     public Load() {

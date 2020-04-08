@@ -14,7 +14,7 @@
 
 ## 开发环境
 
-- Angular 9.1.0
+- Angular 9.1.1
 - BootStrap 4.4.1
 - Issue：https://www.bugclose.com/
 - IDE：VS Code
@@ -43,7 +43,7 @@
 - 技能
 - 融合技
 
-### 计划中
+### 开发中
 
 - 星斗大森林
 
@@ -62,6 +62,10 @@ http://datavisualization.club:8888/
 <img src="Demo/场景20200310.jpg" width="50%">
 
 <img src="Demo/场景分支.jpg" width="50%">
+
+### 星斗大森林
+
+<img src="Demo/星斗大森林.jpg" width="50%">
 
 ### 商店
 

@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { MapItem, enmMapType } from '../Core/ForestSys';
+import { MapItem, enmMapType } from '../Creator/MapCreator';
+import { ResourceMgr } from '../Core/ResourceMgr';
+
 
 @Component({
     selector: 'map-cell',
@@ -7,23 +9,37 @@ import { MapItem, enmMapType } from '../Core/ForestSys';
 })
 export class MapCellComponent {
     constructor() { }
-    @Input() Status: MapItem;
+    @Input() Item: MapItem;
     @Input() ColIdx: number = 0;
     @Input() RowIdx: number = 0;
     @Output() cellClicked: EventEmitter<MapCellComponent> = new EventEmitter();
     get ImageName(): string {
-        if (this.Status.IsVisited) {
-            if (this.Status.MapType === enmMapType.Empty) {
-                return "assets/Image/land.jpg"
+        if (this.Item.IsRolePosition) {
+            return "assets/character/唐三/头像.jpg"
+        }
+        if (this.Item.IsVisiable) {
+            if (this.Item.MapType === enmMapType.Empty) {
+                return ResourceMgr.img_land;
             }
-            if (this.Status.MapType === enmMapType.Tree) {
-                return "assets/Image/tree.jpg"
+            if (this.Item.MapType === enmMapType.Tree) {
+                return ResourceMgr.img_tree;
             }
-            if (this.Status.MapType === enmMapType.Role) {
-                return "assets/character/达拉崩巴斑得贝迪卜多比鲁翁/头像.jpg"
+            if (this.Item.MapType === enmMapType.Treasure) {
+                if (this.Item.IsVisited) {
+                    return ResourceMgr.icon_box_open;
+                } else {
+                    return ResourceMgr.icon_box_close;
+                }
+            }
+            if (this.Item.MapType === enmMapType.GoldCoin) {
+                if (this.Item.IsVisited) {
+                    return ResourceMgr.img_land;
+                } else {
+                    return ResourceMgr.icon_coin;
+                }
             }
         } else {
-            return "assets/Image/question.jpg"
+            return ResourceMgr.img_question;
         }
     }
     CellClicked() {

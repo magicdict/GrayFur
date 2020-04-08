@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 export class BagMgr {
     Money: number;  //需要在HTML中使用，这里用非静态比较好
     /**道具 */
-    toolbag: Array<[string, number, string]> = new Array<[string, number, string]>();
+    toolbag: Array<[string, number]> = new Array<[string, number]>();
     getToolHoldCnt(name: string): number {
         let t = this.toolbag.find(x => x[0] === name);
         return (t === undefined) ? 0 : t[1];
     }
-    changeTool(ToolWithCnt: [string, number, string]) {
+    changeTool(ToolWithCnt: [string, number]) {
         let t = this.toolbag.find(x => x[0] === ToolWithCnt[0])
         if (t === undefined) {
             //不存在的情况

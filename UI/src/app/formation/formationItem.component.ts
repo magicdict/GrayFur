@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { character, characterStatus } from '../Modal/character';
-import { IconMgr } from '../Core/IconMgr';
+import { ResourceMgr } from '../Core/ResourceMgr';
 
 @Component({
     selector: 'app-formationItem',
@@ -19,31 +19,31 @@ export class FormationItemComponent implements OnInit {
         this.Item.StatusList.forEach(element => {
             switch (element) {
                 case characterStatus.魂技:
-                    s.push(IconMgr.icon_skill);
+                    s.push(ResourceMgr.icon_skill);
                     break;
                 case characterStatus.中毒:
-                    s.push(IconMgr.icon_poison);
+                    s.push(ResourceMgr.icon_poison);
                     break;
                 case characterStatus.浴火凤凰:
-                    s.push(IconMgr.icon_fire);
+                    s.push(ResourceMgr.icon_fire);
                     break;
                 case characterStatus.束缚:
-                    s.push(IconMgr.icon_block);
+                    s.push(ResourceMgr.icon_block);
                     break;
                 case characterStatus.生命增益:
-                    s.push(IconMgr.icon_hp);
+                    s.push(ResourceMgr.icon_hp);
                     break;
                 case characterStatus.速度增益:
-                    s.push(IconMgr.icon_speed);
+                    s.push(ResourceMgr.icon_speed);
                     break;
                 case characterStatus.防御增益:
-                    s.push(IconMgr.icon_defence);
+                    s.push(ResourceMgr.icon_defence);
                     break;
                 case characterStatus.魂力增益:
-                    s.push(IconMgr.icon_skill);
+                    s.push(ResourceMgr.icon_skill);
                     break;
                 case characterStatus.攻击增益:
-                    s.push(IconMgr.icon_attact);
+                    s.push(ResourceMgr.icon_attact);
                     break;
 
                 default:

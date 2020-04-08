@@ -1,4 +1,4 @@
-export class IconMgr{
+export class ResourceMgr{
     public static icon_attact = "assets/Icons/W_Dagger001.png";
     public static icon_skill =  "assets/Icons/I_Book.png";
     public static icon_skill2 = "assets/Icons/I_Scroll.png";
@@ -17,4 +17,8 @@ export class IconMgr{
     public static icon_mix_small = "assets/Icons/P_Orange02.png";
     public static icon_box_open = "assets/Icons/I_Chest02.png"; 
     public static icon_box_close = "assets/Icons/I_Chest01.png"; 
+
+    public static img_tree = "assets/Image/tree.jpg";
+    public static img_land = "assets/Image/land.jpg";
+    public static img_question = "assets/Image/question.jpg";
  }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../Core/gameEngine.service';
 import { ToolInfo } from '../Modal/ToolInfo';
-import { IconMgr } from '../Core/IconMgr';
+import { ResourceMgr } from '../Core/ResourceMgr';
 import { BagMgr } from '../Core/BagMgr';
 
 @Component({
@@ -15,10 +15,10 @@ export class StoreComponent {
   ) { }
   clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-  iconMgr = IconMgr;
+  iconMgr = ResourceMgr;
   Buy(tool:ToolInfo){
     this.bagmgr.Money -= tool.Price;
-    this.bagmgr.changeTool([tool.Name,1,tool.Icon]);
+    this.bagmgr.changeTool([tool.Name,1]);
   }  
   Exit() {
     console.log("jump to scene")

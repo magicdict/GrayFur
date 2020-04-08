@@ -9,8 +9,9 @@
     <div class="container" *ngFor="let R of [0,1,2,3,4,5,6,7,8]" [style]="{'padding':'0px','width':52 * 7 - 24 + 'px'}">
         <div class="row">
             <div *ngFor="let C of [0,1,2,3,4,5,6]" style="padding: 0px;margin: 2px;">
-                <map-cell [Status]="PullzeArray.getValue(R,C)" (cellClicked)="CellClicker($event)"></map-cell>
+                <map-cell [Item]="MazeArray.getValue(R,C)" [ColIdx] = "C" [RowIdx] = "R" (cellClicked)="CellClicker($event)"></map-cell>
             </div>
         </div>
     </div>
 </div>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

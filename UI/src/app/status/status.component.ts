@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { character, doubleSoul } from '../Modal/character';
 import { GameEngine } from '../Core/gameEngine.service';
-import { IconMgr } from '../Core/IconMgr';
+import { ResourceMgr } from '../Core/ResourceMgr';
 
 
 @Component({
@@ -13,7 +13,7 @@ export class StatusComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
   ) { }
-  iconMgr = IconMgr;
+  iconMgr = ResourceMgr;
   ngOnInit(): void {
     this.route.params.subscribe(
       params => {
