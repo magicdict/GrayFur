@@ -1,5 +1,7 @@
 # HTML技巧
 
+ver0.02 2020/03/30
+
 ## js获得屏幕尺寸
 
 ```typescript

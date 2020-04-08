@@ -27,6 +27,7 @@ import { SceneMgr } from './Core/SceneMgr';
 import { BagMgr } from './Core/BagMgr';
 import { SkillMgr } from './Core/SkillMgr';
 import { MapCellComponent } from './forest/MapCell.component';
+import { ForestMgr } from './Core/ForestMgr';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { MapCellComponent } from './forest/MapCell.component';
     BattleMgr,
     SceneMgr,
     BagMgr,
+    ForestMgr,
     SkillMgr],
   bootstrap: [AppComponent]
 })

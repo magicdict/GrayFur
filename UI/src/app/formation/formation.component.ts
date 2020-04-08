@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { GameEngine } from '../Core/gameEngine.service';
 import { character } from '../Modal/character';
 
 

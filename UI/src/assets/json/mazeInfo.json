@@ -1,0 +1,1072 @@
+{
+    "MazeInfoList": [
+        {
+            "AreaName": "星斗大森林新手区入口",
+            "MazeArray": {
+                "my2DArray": [
+                    [
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 0,
+                            "RowIdx": 0
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 1,
+                            "RowIdx": 0
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 2,
+                            "RowIdx": 0
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 3,
+                            "RowIdx": 0
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 4,
+                            "RowIdx": 0
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 5,
+                            "RowIdx": 0
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 6,
+                            "RowIdx": 0
+                        }
+                    ],
+                    [
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 0,
+                            "RowIdx": 1
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 1,
+                            "RowIdx": 1
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 2,
+                            "RowIdx": 1
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 3,
+                            "RowIdx": 1
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 4,
+                            "RowIdx": 1
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 5,
+                            "RowIdx": 1
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 6,
+                            "RowIdx": 1
+                        }
+                    ],
+                    [
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 0,
+                            "RowIdx": 2
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 1,
+                            "RowIdx": 2
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 2,
+                            "RowIdx": 2
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 3,
+                            "RowIdx": 2
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 4,
+                            "RowIdx": 2
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 5,
+                            "RowIdx": 2
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 6,
+                            "RowIdx": 2
+                        }
+                    ],
+                    [
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 0,
+                            "RowIdx": 3
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 1,
+                            "RowIdx": 3
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 2,
+                            "RowIdx": 3
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 3,
+                            "RowIdx": 3
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 4,
+                            "RowIdx": 3
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 5,
+                            "RowIdx": 3
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 6,
+                            "RowIdx": 3
+                        }
+                    ],
+                    [
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 0,
+                            "RowIdx": 4
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 1,
+                            "RowIdx": 4
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 2,
+                            "RowIdx": 4
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 3,
+                            "RowIdx": 4
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 4,
+                            "RowIdx": 4
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 5,
+                            "RowIdx": 4
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 6,
+                            "RowIdx": 4
+                        }
+                    ],
+                    [
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 0,
+                            "RowIdx": 5
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 1,
+                            "RowIdx": 5
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 2,
+                            "RowIdx": 5
+                        },
+                        {
+                            "IsRolePosition": true,
+                            "IsVisiable": true,
+                            "IsVisited": true,
+                            "MapType": 3,
+                            "ColIdx": 3,
+                            "RowIdx": 5,
+                            "ToolName": "止血草"
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": true,
+                            "MapType": 0,
+                            "ColIdx": 4,
+                            "RowIdx": 5
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 5,
+                            "RowIdx": 5
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 6,
+                            "RowIdx": 5
+                        }
+                    ],
+                    [
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 0,
+                            "RowIdx": 6
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 1,
+                            "RowIdx": 6
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 2,
+                            "RowIdx": 6
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": true,
+                            "MapType": 0,
+                            "ColIdx": 3,
+                            "RowIdx": 6
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": true,
+                            "MapType": 0,
+                            "ColIdx": 4,
+                            "RowIdx": 6
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 5,
+                            "RowIdx": 6
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 6,
+                            "RowIdx": 6
+                        }
+                    ],
+                    [
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 0,
+                            "RowIdx": 7
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 1,
+                            "RowIdx": 7
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 2,
+                            "RowIdx": 7
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": true,
+                            "MapType": 0,
+                            "ColIdx": 3,
+                            "RowIdx": 7
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": false,
+                            "MapType": 2,
+                            "ColIdx": 4,
+                            "RowIdx": 7,
+                            "GoldCoin": 15
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 5,
+                            "RowIdx": 7
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 6,
+                            "RowIdx": 7
+                        }
+                    ],
+                    [
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 0,
+                            "RowIdx": 8
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 1,
+                            "RowIdx": 8
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 2,
+                            "RowIdx": 8
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": true,
+                            "MapType": 0,
+                            "ColIdx": 3,
+                            "RowIdx": 8
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": true,
+                            "IsVisited": false,
+                            "MapType": 0,
+                            "ColIdx": 4,
+                            "RowIdx": 8
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 5,
+                            "RowIdx": 8
+                        },
+                        {
+                            "IsRolePosition": false,
+                            "IsVisiable": false,
+                            "IsVisited": false,
+                            "MapType": 1,
+                            "ColIdx": 6,
+                            "RowIdx": 8
+                        }
+                    ]
+                ],
+                "rows": 9,
+                "columns": 7
+            }
+        }
+    ],
+    "CurrentMazeInfo": {
+        "AreaName": "星斗大森林新手区入口",
+        "MazeArray": {
+            "my2DArray": [
+                [
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 0,
+                        "RowIdx": 0
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 1,
+                        "RowIdx": 0
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 2,
+                        "RowIdx": 0
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 3,
+                        "RowIdx": 0
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 4,
+                        "RowIdx": 0
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 5,
+                        "RowIdx": 0
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 6,
+                        "RowIdx": 0
+                    }
+                ],
+                [
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 0,
+                        "RowIdx": 1
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 1,
+                        "RowIdx": 1
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 2,
+                        "RowIdx": 1
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 3,
+                        "RowIdx": 1
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 4,
+                        "RowIdx": 1
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 5,
+                        "RowIdx": 1
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 6,
+                        "RowIdx": 1
+                    }
+                ],
+                [
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 0,
+                        "RowIdx": 2
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 1,
+                        "RowIdx": 2
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 2,
+                        "RowIdx": 2
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 3,
+                        "RowIdx": 2
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 4,
+                        "RowIdx": 2
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 5,
+                        "RowIdx": 2
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 6,
+                        "RowIdx": 2
+                    }
+                ],
+                [
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 0,
+                        "RowIdx": 3
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 1,
+                        "RowIdx": 3
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 2,
+                        "RowIdx": 3
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 3,
+                        "RowIdx": 3
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 4,
+                        "RowIdx": 3
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 5,
+                        "RowIdx": 3
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 6,
+                        "RowIdx": 3
+                    }
+                ],
+                [
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 0,
+                        "RowIdx": 4
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 1,
+                        "RowIdx": 4
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 2,
+                        "RowIdx": 4
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 3,
+                        "RowIdx": 4
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 4,
+                        "RowIdx": 4
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 5,
+                        "RowIdx": 4
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 6,
+                        "RowIdx": 4
+                    }
+                ],
+                [
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 0,
+                        "RowIdx": 5
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 1,
+                        "RowIdx": 5
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 2,
+                        "RowIdx": 5
+                    },
+                    {
+                        "IsRolePosition": true,
+                        "IsVisiable": true,
+                        "IsVisited": true,
+                        "MapType": 3,
+                        "ColIdx": 3,
+                        "RowIdx": 5,
+                        "ToolName": "止血草"
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": true,
+                        "MapType": 0,
+                        "ColIdx": 4,
+                        "RowIdx": 5
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 5,
+                        "RowIdx": 5
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 6,
+                        "RowIdx": 5
+                    }
+                ],
+                [
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 0,
+                        "RowIdx": 6
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 1,
+                        "RowIdx": 6
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 2,
+                        "RowIdx": 6
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": true,
+                        "MapType": 0,
+                        "ColIdx": 3,
+                        "RowIdx": 6
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": true,
+                        "MapType": 0,
+                        "ColIdx": 4,
+                        "RowIdx": 6
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 5,
+                        "RowIdx": 6
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 6,
+                        "RowIdx": 6
+                    }
+                ],
+                [
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 0,
+                        "RowIdx": 7
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 1,
+                        "RowIdx": 7
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 2,
+                        "RowIdx": 7
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": true,
+                        "MapType": 0,
+                        "ColIdx": 3,
+                        "RowIdx": 7
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": false,
+                        "MapType": 2,
+                        "ColIdx": 4,
+                        "RowIdx": 7,
+                        "GoldCoin": 15
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 5,
+                        "RowIdx": 7
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 6,
+                        "RowIdx": 7
+                    }
+                ],
+                [
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 0,
+                        "RowIdx": 8
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 1,
+                        "RowIdx": 8
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 2,
+                        "RowIdx": 8
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": true,
+                        "MapType": 0,
+                        "ColIdx": 3,
+                        "RowIdx": 8
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": true,
+                        "IsVisited": false,
+                        "MapType": 0,
+                        "ColIdx": 4,
+                        "RowIdx": 8
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 5,
+                        "RowIdx": 8
+                    },
+                    {
+                        "IsRolePosition": false,
+                        "IsVisiable": false,
+                        "IsVisited": false,
+                        "MapType": 1,
+                        "ColIdx": 6,
+                        "RowIdx": 8
+                    }
+                ]
+            ],
+            "rows": 9,
+            "columns": 7
+        }
+    },
+    "CurrentRoleColIdx": 3,
+    "CurrentRoleRowIdx": 5
+}

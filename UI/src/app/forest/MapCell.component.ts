@@ -24,6 +24,9 @@ export class MapCellComponent {
             if (this.Item.MapType === enmMapType.Tree) {
                 return ResourceMgr.img_tree;
             }
+            if (this.Item.MapType === enmMapType.Transfer) {
+                return ResourceMgr.icon_box_transfer;
+            }
             if (this.Item.MapType === enmMapType.Treasure) {
                 if (this.Item.IsVisited) {
                     return ResourceMgr.icon_box_open;

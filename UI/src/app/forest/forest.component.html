@@ -1,15 +1,16 @@
-<div style="position:relative;
+<div *ngIf="MazeInfo" style="position:relative;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100% 100%;"
     [ngStyle]="{'height':clientHeight + 'px','width':clientWidth + 'px','background-image': 'url(/assets/scene/森林.jpg)'}">
-    <h6 style="color: aliceblue;background-color: coral; width: 100%;">星斗大森林</h6>
+    <h6 style="color: aliceblue;background-color: coral; width: 100%;">{{MazeInfo.AreaTitle}}</h6>
     <button class="btn btn-danger" (click)="Exit()" style="float: right;">退出</button>
     <br /><br /><br />
     <div class="container" *ngFor="let R of [0,1,2,3,4,5,6,7,8]" [style]="{'padding':'0px','width':52 * 7 - 24 + 'px'}">
         <div class="row">
             <div *ngFor="let C of [0,1,2,3,4,5,6]" style="padding: 0px;margin: 2px;">
-                <map-cell [Item]="MazeArray.getValue(R,C)" [ColIdx] = "C" [RowIdx] = "R" (cellClicked)="CellClicker($event)"></map-cell>
+                <map-cell [Item]="MazeInfo.MazeArray.getValue(R,C)" [ColIdx]="C" [RowIdx]="R"
+                    (cellClicked)="CellClicker($event)"></map-cell>
             </div>
         </div>
     </div>

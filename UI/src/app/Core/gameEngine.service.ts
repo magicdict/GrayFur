@@ -12,6 +12,7 @@ import { BagMgr } from './BagMgr';
 import { SceneMgr } from './SceneMgr';
 import { SkillMgr } from './SkillMgr';
 import { ForestMgr } from './ForestMgr';
+import { MapCreator } from '../Creator/MapCreator';
 
 
 @Injectable()
@@ -21,7 +22,8 @@ export class GameEngine {
         public battlemgr: BattleMgr,
         public scenemgr: SceneMgr,
         public bagMgr: BagMgr,
-        public skillMgr: SkillMgr
+        public skillMgr: SkillMgr,
+        public forestMgr: ForestMgr
     ) {
         /**初始化道具 */
         this.InitTool();
@@ -135,18 +137,30 @@ export class GameEngine {
         this.bagMgr.changeTool([ToolCreator.止血草().Name, 5]);
         this.bagMgr.changeTool([ToolCreator.小烤肠().Name, 2]);
         this.bagMgr.changeTool([ToolCreator.菩提血().Name, 1]);
-        this.localstorage.Save("游戏状态", this.bagMgr);
+        this.localstorage.Save("背包状态", this.bagMgr);
     }
 
+    public InitMaze() {
+        this.forestMgr.MazeInfoList.push(MapCreator.InitArea("Maze0001", "星斗大森林新手区入口(Maze0001)", MapCreator.BeginnerEntry));
+        this.forestMgr.MazeInfoList.push(MapCreator.InitArea("Maze0002", "星斗大森林新手区入口(Maze0002)", MapCreator.BeginnerEntry2));
+        this.forestMgr.RefreshArray(this.forestMgr.MazeInfoList[0]);
+        this.forestMgr.CurrentRoleColIdx = MapCreator.RoleInitColIdx;
+        this.forestMgr.CurrentRoleRowIdx = MapCreator.RoleInitRowIdx;
+        let initCell = this.forestMgr.CurrentMazeInfo.MazeArray.getValue(this.forestMgr.CurrentRoleRowIdx, this.forestMgr.CurrentRoleColIdx);
+        initCell.IsRolePosition = true;
+        MapCreator.SetVisiable(this.forestMgr.CurrentMazeInfo.MazeArray, initCell);
+    }
 
+    /**新游戏 */
     public NewGame() {
         if (!this.IsDebugMode) this.battlemgr.Load();
         if (!this.IsDebugMode) this.scenemgr.Load();
+
         //this.skillMgr.LogJson()
         this.InitBag();
         this.InitRole();
         this.InitNPCAndSkillCustomExcute();
-        ForestMgr.InitFirst();
+        this.InitMaze()
     }
 
     public Load() {
@@ -175,7 +189,8 @@ export class GameEngine {
         this.localstorage.Save("宁荣荣", this.宁荣荣);
         this.localstorage.Save("朱竹清", this.朱竹清);
 
-        this.localstorage.Save("游戏状态", this.bagMgr);
+        this.localstorage.Save("背包状态", this.bagMgr);
+        this.localstorage.Save("迷宫状态", this.forestMgr);
     }
 
     public fightStatus: FightStatus;

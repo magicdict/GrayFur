@@ -17,6 +17,7 @@ export class ResourceMgr{
     public static icon_mix_small = "assets/Icons/P_Orange02.png";
     public static icon_box_open = "assets/Icons/I_Chest02.png"; 
     public static icon_box_close = "assets/Icons/I_Chest01.png"; 
+    public static icon_box_transfer = "assets/Icons/S_Magic02.png"; 
 
     public static img_tree = "assets/Image/tree.jpg";
     public static img_land = "assets/Image/land.jpg";

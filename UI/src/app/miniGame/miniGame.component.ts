@@ -21,7 +21,7 @@ export class MiniGameComponent implements OnInit {
     ClearStatus = MiniGameCardStatus.Clear;
 
     //2维数组
-    PullzeArray: My2DArray<string> = new My2DArray<string>(6, 6, "唐三");
+    PullzeArray: My2DArray<string> = new My2DArray<string>(6, 6, "唐三", false);
     ClearCnt = 0;
     //使用步数
     StepUsage = 0;

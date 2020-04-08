@@ -11,7 +11,7 @@ export class My2DArray<T>{
     /**
      * 初始化数组
      */
-    public constructor(rows: number, columns: number, value: T, isobj: boolean = false) {
+    public constructor(rows: number, columns: number, value: T, isobj: boolean) {
         this.rows = rows;
         this.columns = columns;
         this.initRows(rows);
