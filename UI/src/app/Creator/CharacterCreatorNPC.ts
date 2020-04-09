@@ -1,6 +1,6 @@
 import { character, enmTeamPosition, doubleSoul } from '../Modal/character';
 import { SkillCreator } from './SkillCreator';
-import { EquipmentCreator } from '../Modal/Equipment';
+import { BoneCreator } from '../Modal/Bone';
 
 export class CharacterCreatorNPC {
 
@@ -67,7 +67,7 @@ export class CharacterCreatorNPC {
         独孤博.Soul = "碧鳞蛇";
         独孤博.TeamPosition = enmTeamPosition.辅助系;
         独孤博.Description = "独孤博的孙女,玉天恒的恋人,因为自身武魂原因而中毒,后被唐三所救。";
-        独孤博.Bones = [EquipmentCreator.万年美杜莎头骨()];
+        独孤博.Bones = [BoneCreator.万年美杜莎头骨()];
         独孤博.SkillName = [
             "碧磷红毒",
             "碧磷蓝毒",
@@ -110,11 +110,11 @@ export class CharacterCreatorNPC {
             "空间撕裂之深渊斩"]
         比比东.SecondSkill = [];
         比比东.Bones = [
-            EquipmentCreator.六翅紫光翼(),
-            EquipmentCreator.精神免疫头骨(),
-            EquipmentCreator.死亡蛛皇左臂骨(),
-            EquipmentCreator.死亡蛛皇右臂骨(),
-            EquipmentCreator.柔骨兔魂骨(),
+            BoneCreator.六翅紫光翼(),
+            BoneCreator.精神免疫头骨(),
+            BoneCreator.死亡蛛皇左臂骨(),
+            BoneCreator.死亡蛛皇右臂骨(),
+            BoneCreator.柔骨兔魂骨(),
         ];
         return 比比东;
     }

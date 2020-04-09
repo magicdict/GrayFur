@@ -39,7 +39,7 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    速度:{{c.BaseSpeed}}
+                    速度:{{c.RealSpeed}}
                 </div>
                 <div class="col-6">
                     经验值：{{c.Exp}}({{c.NextNeedExp}})
@@ -75,6 +75,8 @@
         <ul>
             <li *ngFor="let bone of c.Bones">
                 {{ bone.Name }}
+                {{(bone.FirstFunc !== undefined?  "魂技：" + bone.FirstFunc.Name:"")}}
+                {{(bone.SecondFunc !== undefined? "魂技：" + bone.SecondFunc.Name:"")}}
             </li>
         </ul>
     </div>

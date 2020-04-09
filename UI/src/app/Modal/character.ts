@@ -1,5 +1,5 @@
 import { SkillInfo } from './SkillInfo';
-import { Equipment } from './Equipment';
+import { Bone } from './Bone';
 import { Field } from './Field';
 
 export class character {
@@ -33,8 +33,6 @@ export class character {
 
     /**角色在战场上是否为我方角色 */
     IsMyTeam: boolean;
-    /**是否为防御状态 */
-    IsDefStatus: boolean;
     /**因子：3成功力的某个角色 */
     Factor: number = 1;
     /**成长速度因子 */
@@ -159,9 +157,6 @@ export class character {
     get RealTimeDef(): number {
         var R = this.BaseDef + (this.LV - 1) * this.DefUpPerLv * this.GrowthFactor;
         R = R * this.Factor;
-        if (this.IsDefStatus) {
-            R += R * this.DefStatusPlus
-        }
         this.BufferList.forEach(element => {
             if (element.DefenceFactor !== undefined) {
                 R += R * element.DefenceFactor;
@@ -192,7 +187,7 @@ export class character {
     /**武魂 */
     Soul: string;
     /**魂骨 */
-    Bones: Equipment[] = [];
+    Bones: Bone[] = [];
     /**领域技能 */
     Fields: Field[] = [];
 
@@ -216,6 +211,17 @@ export class character {
     SkillName: string[];
     /**魂技 */
     Skill: SkillInfo[];
+
+    get BoneSkill(): SkillInfo[] {
+        let sl: SkillInfo[] = [];
+        this.Bones.forEach(
+            b => {
+                if (b.FirstFunc !== undefined) sl.push(b.FirstFunc);
+                if (b.SecondFunc !== undefined) sl.push(b.SecondFunc);
+            }
+        );
+        return sl;
+    }
 
     get Grade(): string {
         if (this.LV <= 9) return "魂士";

@@ -39,7 +39,6 @@ export class SceneComponent implements OnInit {
     var RawInfo: string;
     SceneMgr.lineIdx++;
     if (SceneMgr.lineIdx === this.lines.length) {
-
       if (this.scene.NextScene !== undefined) {
         //转场
         var NextScene = this.scene.NextScene;
@@ -51,9 +50,15 @@ export class SceneComponent implements OnInit {
         RawInfo = this.lines[SceneMgr.lineIdx];
       }
       else {
-        //分支
-        this.BranchInfo = this.scene.Branch;
-        this.WaitForBranchPicker = true;
+        if (this.scene.Branch !== undefined) {
+          //分支
+          this.BranchInfo = this.scene.Branch;
+          this.WaitForBranchPicker = true;
+        } else {
+          //游戏结束了
+          SceneMgr.lineIdx--;
+          alert("游戏结束了...")
+        }
         return;
       }
 

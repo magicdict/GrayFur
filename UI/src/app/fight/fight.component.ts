@@ -125,11 +125,11 @@ export class FightComponent implements OnInit {
                 this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
                 break;
             case enmRange.PickOne:
-                this.Message = "请选择一个人发动魂技";
                 this.SkillRolePickStatus = true;
                 switch (Skill.Direct) {
                     case enmDirect.Enemy:
                         //敌人全体
+                        this.Message = "请选择一个敌人";
                         this.ItemClicked = (clickedItem: character) => {
                             if (!clickedItem.IsMyTeam) {
                                 Skill.Excute(clickedItem, this.ge.fightStatus);
@@ -142,6 +142,7 @@ export class FightComponent implements OnInit {
                         break;
                     case enmDirect.MyTeam:
                         //我军全体
+                        this.Message = "请选择一个队友";
                         this.ItemClicked = (clickedItem: character) => {
                             if (clickedItem.IsMyTeam) {
                                 Skill.Excute(clickedItem, this.ge.fightStatus);
@@ -154,6 +155,7 @@ export class FightComponent implements OnInit {
                         break;
                     default:
                         //战场全体
+                        this.Message = "请选择任意选择一人";
                         this.ItemClicked = (clickedItem: character) => {
                             Skill.Excute(clickedItem, this.ge.fightStatus);
                             this.SkillRolePickStatus = false;
@@ -213,7 +215,6 @@ export class FightComponent implements OnInit {
         let t = this.ge.getTool(name);
         this.ExcuteSkill(t.Func);   //ExcuteSkill已经包含了ActionDone！
         this.ge.bagMgr.changeTool([t.Name, -1]);
-        this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
     }
     ReturnFormToolPicker() {
         this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
@@ -223,8 +224,7 @@ export class FightComponent implements OnInit {
     //防御
     Defence() {
         if (!this.IsFuncAreaAvilible) return;
-        this.ge.fightStatus.currentActionCharater.IsDefStatus = true;
-        this.ge.fightStatus.ActionDone();
+        this.ExcuteSkill(SkillCreator.防御());   //ExcuteSkill已经包含了ActionDone！
         this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
     }
 
@@ -234,10 +234,4 @@ export class FightComponent implements OnInit {
         SceneMgr.lineIdx++;
         this.router.navigateByUrl("scene");
     }
-
-    //测试用:状态的改变
-    SkillTest() {
-        SkillCreator.碧磷紫毒().Excute(this.ge.fightStatus.MyTeam[0], this.ge.fightStatus);
-    }
-
 }

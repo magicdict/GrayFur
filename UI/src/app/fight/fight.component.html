@@ -31,11 +31,12 @@
             </thead>
             <tbody style="height: 100%;">
                 <tr style="width: 100%;padding: 0;"
-                    *ngFor="let skill of this.ge.fightStatus.currentActionCharater.Skill">
+                    *ngFor="let skill of this.ge.fightStatus.currentActionCharater.Skill.concat(this.ge.fightStatus.currentActionCharater.BoneSkill)">
                     <td style="width: 60px;">{{skill.Name}}</td>
                     <td style="text-align: left;">{{skill.Description}}</td>
                     <td style="width: 50px;">{{skill.MpUsage}}</td>
-                    <td style="width: 80px;"><button class="btn btn-sm btn-primary"
+                    <td style="width: 80px;">
+                        <button class="btn btn-sm btn-primary"
                             [disabled]=" skill.IsAvalible(this.ge.fightStatus) !== ''" (click)="ExcuteSkill(skill)">
                             {{ skill.IsAvalible(this.ge.fightStatus) === ""?"发动": skill.IsAvalible(this.ge.fightStatus) }}
                         </button>

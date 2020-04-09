@@ -1,6 +1,6 @@
 import { character, doubleSoul, enmTeamPosition } from '../Modal/character';
 import { SkillCreator } from './SkillCreator';
-import { EquipmentCreator } from '../Modal/Equipment';
+import { BoneCreator } from '../Modal/Bone';
 import { FieldCreator } from '../Modal/Field';
 
 export class CharacterCreatorMainRole {
@@ -9,13 +9,13 @@ export class CharacterCreatorMainRole {
         唐三.LV = 29;
         唐三.GrowthFactor = 1.5;
         唐三.Bones = [
-            EquipmentCreator.外附魂骨八蛛矛(),
-            EquipmentCreator.天青牛蟒右臂骨(),
-            EquipmentCreator.泰坦巨猿左臂骨(),
-            EquipmentCreator.深海魔鲸王的躯干骨(),
-            EquipmentCreator.精神凝聚之智慧头骨(),
-            EquipmentCreator.蓝银皇右腿骨(),
-            EquipmentCreator.邪魔虎鲸王左腿骨()
+            BoneCreator.外附魂骨八蛛矛(),
+            BoneCreator.天青牛蟒右臂骨(),
+            BoneCreator.泰坦巨猿左臂骨(),
+            BoneCreator.深海魔鲸王的躯干骨(),
+            BoneCreator.精神凝聚之智慧头骨(),
+            BoneCreator.蓝银皇右腿骨(),
+            BoneCreator.邪魔虎鲸王左腿骨()
         ]
         唐三.Soul = "蓝银皇";
         唐三.SecondSoul = "昊天锤";

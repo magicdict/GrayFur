@@ -337,6 +337,7 @@ export class SkillCreator {
         s.Order = 1;
         s.Direct = enmDirect.MyTeam;
         s.Range = enmRange.Self;
+        s.Buffer.Turns = 3;
         s.Buffer.DefenceFactor = 1;
         s.Buffer.Status = [characterStatus.防御增益];
         return s;
@@ -387,7 +388,7 @@ export class SkillCreator {
 
     //叶泠泠 魂技
 
-    public static 范围性全体治疗():SkillInfo{
+    public static 范围性全体治疗(): SkillInfo {
         let s = new HealSkillInfo();
         s.Name = "范围性全体治疗";
         s.Description = "范围性全体治疗";
@@ -399,6 +400,20 @@ export class SkillCreator {
         return s;
     }
 
+
+    //防御功能
+    public static 防御(): SkillInfo {
+        let s = new BufferStatusSkillInfo();
+        s.Name = "防御";
+        s.Description = "防御";
+        s.Order = 0;
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.Self;
+        s.Buffer.DefenceFactor = 1;
+        s.Buffer.Turns = 1;
+        s.Buffer.Status = [characterStatus.防御增益];
+        return s;
+    }
 
     //武魂融合
 
