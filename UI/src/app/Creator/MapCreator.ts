@@ -43,6 +43,15 @@ export class MapCreator {
         return mapitem;
     }
 
+    public static CreateMonsterCell(name: string, rowidx: number, colidx: number): MapItem {
+        var mapitem = new MapItem();
+        mapitem.RowIdx = rowidx;
+        mapitem.ColIdx = colidx;
+        mapitem.MapType = enmMapType.Monster;
+        mapitem.MonsterName = name;
+        return mapitem;
+    }
+
     public static InitWithTree(): My2DArray<MapItem> {
         let BaseMapItem = new MapItem();
         BaseMapItem.IsVisited = false;
@@ -99,13 +108,18 @@ export class MapCreator {
 
     public static BeginnerEntry2(): MapItem[] {
         let floor: MapItem[] = [];
-        for (let rowidx = 0; rowidx < 9; rowidx++) {
+        for (let rowidx = 0; rowidx < 3; rowidx++) {
+            floor.push(MapCreator.CreateEmptyCell(rowidx, 3));
+        }
+        for (let rowidx = 3; rowidx < 9; rowidx++) {
             floor.push(MapCreator.CreateEmptyCell(rowidx, 2));
             floor.push(MapCreator.CreateEmptyCell(rowidx, 3));
             floor.push(MapCreator.CreateEmptyCell(rowidx, 4));
         }
         floor.push(MapCreator.CreateTreasureCell(5, 3, ToolCreator.止血草().Name));
         floor.push(MapCreator.CreateGoldCell(7, 4, 15));
+        floor.push(MapCreator.CreateTreasureCell(0, 3, ToolCreator.佛怒唐莲().Name));
+        floor.push(MapCreator.CreateMonsterCell("达拉崩巴斑得贝迪卜多比鲁翁", 1, 3));
         floor.push(MapCreator.CreateTransferCell("Maze0001", 4, 3));
         return floor;
     }
@@ -127,6 +141,7 @@ export class MapItem {
     IsVisited: boolean = false;
     MapType: enmMapType = enmMapType.Empty;
     ToolName: string;
+    MonsterName: string;
     GoldCoin: number;
     /**传送：地图名，RowIdx，ColIdx */
     TransferInfo: [string, number, number];

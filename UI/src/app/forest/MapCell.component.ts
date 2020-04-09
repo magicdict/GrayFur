@@ -34,6 +34,13 @@ export class MapCellComponent {
                     return ResourceMgr.icon_box_close;
                 }
             }
+            if (this.Item.MapType === enmMapType.Monster) {
+                if (this.Item.IsVisited) {
+                    return ResourceMgr.img_land;
+                } else {
+                    return "assets/character/" + this.Item.MonsterName + "/头像.jpg"
+                }
+            }
             if (this.Item.MapType === enmMapType.GoldCoin) {
                 if (this.Item.IsVisited) {
                     return ResourceMgr.img_land;

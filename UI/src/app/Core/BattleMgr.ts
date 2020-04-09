@@ -5,10 +5,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class BattleMgr {
     constructor(public http: HttpClient) { }
-
+    
     public static fightname: string;
+    public static MazeBattleInfo:BattleInfo;
+    public static MonsterFightName = "@Monster"
     BattleInfoList: BattleInfo[];
-
     /**开发调试阶段，便于快速修改结构体 */
     public static getBattleInfoByName_Debug(FightName: string): BattleInfo {
         switch (FightName) {
@@ -24,6 +25,19 @@ export class BattleMgr {
     public getBattleInfoByName(FightName: string): BattleInfo {
         return this.BattleInfoList.find(x => x.Name === FightName);
     }
+
+    public static CreateTempBattle(Enemy: string): BattleInfo {
+        return {
+            Name: "",
+            Title: "",
+            Background: "",
+            Enemy: [undefined, undefined, undefined, undefined,
+                undefined, Enemy, undefined, undefined],
+            MyTeam: ["小舞", "马红俊", "戴沐白", "朱竹清",
+                undefined, "宁荣荣", "奥斯卡", "唐三"]
+        }
+    }
+
     public Load() {
         let x = this.http.get("assets/json/battleinfo.json").toPromise().then(x => x as BattleInfo[]);
         x.then(

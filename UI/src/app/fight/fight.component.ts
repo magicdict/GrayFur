@@ -9,6 +9,8 @@ import { ToastService } from '../toasts/toast-service';
 import { ResourceMgr } from '../Core/ResourceMgr';
 import { SceneMgr } from '../Core/SceneMgr';
 import { BagMgr } from '../Core/BagMgr';
+import { BattleMgr } from '../Core/BattleMgr';
+import { ForestMgr } from '../Core/ForestMgr';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { BagMgr } from '../Core/BagMgr';
 export class FightComponent implements OnInit {
     constructor(public ge: GameEngine,
         private router: Router,
-        public bagmgr:BagMgr,
+        public bagmgr: BagMgr,
         public toastService: ToastService
     ) { }
 
@@ -43,17 +45,25 @@ export class FightComponent implements OnInit {
             this.toastService.show(x, { classname: 'bg-danger text-light', delay: 3000 });
         }, null, null);
 
-        this.ge.fightStatus.ResultEvent.subscribe((x: number) => {
-            if (x === 0) {
+        this.ge.fightStatus.ResultEvent.subscribe((exp: number) => {
+            if (exp === 0) {
                 this.FightResultTitle = "团灭了......魂力不足"
-                SceneMgr.lineIdx--;
+                if (BattleMgr.fightname !== BattleMgr.MonsterFightName) SceneMgr.lineIdx--;
             } else {
-                this.FightResultTitle = "胜利了......奥力给"
-                SceneMgr.lineIdx++;
+                this.FightResultTitle = "胜利了......奥力给!每人获得经验【" + exp + "】"
+                if (BattleMgr.fightname !== BattleMgr.MonsterFightName) {
+                    SceneMgr.lineIdx++;
+                } else {
+                    //调整位置
+                    ForestMgr.MonsterVictor();
+                }
             }
             this.FightEnd = true;
-            console.log("jump to scene");
-            setTimeout(() => { this.router.navigateByUrl("scene"); }, 3000);
+            if (BattleMgr.fightname === BattleMgr.MonsterFightName) {
+                setTimeout(() => { this.router.navigateByUrl("forest"); }, 1500);
+            } else {
+                setTimeout(() => { this.router.navigateByUrl("scene"); }, 1500);
+            }
         }, null, null);
         this.ge.fightStatus.NewTurn();
         this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
@@ -201,9 +211,8 @@ export class FightComponent implements OnInit {
     UseTool(name: string) {
         this.ToolPickStatus = false;
         let t = this.ge.getTool(name);
-        this.ExcuteSkill(t.Func);
+        this.ExcuteSkill(t.Func);   //ExcuteSkill已经包含了ActionDone！
         this.ge.bagMgr.changeTool([t.Name, -1]);
-        this.ge.fightStatus.ActionDone();
         this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
     }
     ReturnFormToolPicker() {

@@ -162,7 +162,7 @@ export class FightStatus {
                     this.InitRole(element)
                 }
             });
-            this.ResultEvent.emit(1);
+            this.ResultEvent.emit(this.Exp);
             return;
         }
 

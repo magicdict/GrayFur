@@ -136,14 +136,14 @@ export class GameEngine {
         /**给3个止血草 */
         this.bagMgr.changeTool([ToolCreator.止血草().Name, 5]);
         this.bagMgr.changeTool([ToolCreator.小烤肠().Name, 2]);
-        this.bagMgr.changeTool([ToolCreator.菩提血().Name, 1]);
+        this.bagMgr.changeTool([ToolCreator.观音泪().Name, 1]);
         this.localstorage.Save("背包状态", this.bagMgr);
     }
 
     public InitMaze() {
         this.forestMgr.MazeInfoList.push(MapCreator.InitArea("Maze0001", "星斗大森林新手区入口(Maze0001)", MapCreator.BeginnerEntry));
         this.forestMgr.MazeInfoList.push(MapCreator.InitArea("Maze0002", "星斗大森林新手区入口(Maze0002)", MapCreator.BeginnerEntry2));
-        this.forestMgr.RefreshArray(this.forestMgr.MazeInfoList[0]);
+        this.forestMgr.LoadCurrentStatus(["Maze0001",8,3]);
         this.forestMgr.CurrentRoleColIdx = MapCreator.RoleInitColIdx;
         this.forestMgr.CurrentRoleRowIdx = MapCreator.RoleInitRowIdx;
         let initCell = this.forestMgr.CurrentMazeInfo.MazeArray.getValue(this.forestMgr.CurrentRoleRowIdx, this.forestMgr.CurrentRoleColIdx);
@@ -195,8 +195,12 @@ export class GameEngine {
 
     public fightStatus: FightStatus;
     public InitFightStatus() {
-        let battleinfo = this.IsDebugMode ? BattleMgr.getBattleInfoByName_Debug(BattleMgr.fightname) :
+        if (BattleMgr.fightname === BattleMgr.MonsterFightName){
+            this.fightStatus = new FightStatus(BattleMgr.MazeBattleInfo, this.PictorialBook);
+        }else{
+            let battleinfo = this.IsDebugMode ? BattleMgr.getBattleInfoByName_Debug(BattleMgr.fightname) :
             this.battlemgr.getBattleInfoByName(BattleMgr.fightname);
-        this.fightStatus = new FightStatus(battleinfo, this.PictorialBook);
+            this.fightStatus = new FightStatus(battleinfo, this.PictorialBook);
+        }
     }
 }
