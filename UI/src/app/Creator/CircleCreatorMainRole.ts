@@ -14,7 +14,7 @@ export class CircleCreatorMainRole {
         circles.push(c1);
 
         let c2 = new Circle();
-        c2.Order =2;
+        c2.Order = 2;
         c2.year = enmCircleYear.百年魂环;
         c2.FirstSkill = CircleSkillCreator.寄生();
         c2.Source = "鬼藤";
@@ -66,12 +66,12 @@ export class CircleCreatorMainRole {
         circles.push(c1);
 
         let c2 = new Circle();
-        c2.Order =2;
+        c2.Order = 2;
         c2.year = enmCircleYear.百年魂环;
         circles.push(c2);
 
         let c3 = new Circle();
-        c3.Order =3;
+        c3.Order = 3;
         c3.year = enmCircleYear.百年魂环;
         circles.push(c3);
 
@@ -86,7 +86,7 @@ export class CircleCreatorMainRole {
         circles.push(c5);
 
         let c6 = new Circle();
-        c6.Order =6;
+        c6.Order = 6;
         c6.year = enmCircleYear.百年魂环;
         c6.FirstSkill = CircleSkillCreator.大地蚁皇斩();
         c6.Source = "千钧蚁皇";
@@ -110,7 +110,7 @@ export class CircleCreatorMainRole {
 
         return circles;
     }
-    
+
     /**小舞 */
     public static 小舞(): Circle[] {
         let circles: Circle[] = [];
@@ -163,6 +163,23 @@ export class CircleCreatorMainRole {
         c4.FirstSkill = CircleSkillCreator.白虎流星雨();
         c4.Source = "白虎";
         circles.push(c4);
+
+        return circles;
+    }
+
+    /**马红俊魂环 */
+    public static 马红俊(): Circle[] {
+        let circles: Circle[] = [];
+
+        let c1 = new Circle();
+        c1.year = enmCircleYear.百年魂环;
+        c1.FirstSkill = CircleSkillCreator.凤凰火线();
+        circles.push(c1);
+
+        let c2 = new Circle();
+        c2.year = enmCircleYear.百年魂环;
+        c2.FirstSkill = CircleSkillCreator.浴火凤凰();
+        circles.push(c2);
 
         return circles;
     }

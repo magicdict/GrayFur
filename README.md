@@ -17,7 +17,9 @@
 - Angular 9.1.1
 - BootStrap 4.4.1
 - Issue：https://www.bugclose.com/
-- IDE：VS Code
+- IDE：VS Code 1.4.4
+- OS：Windows7
+- Server：CentOS
 
 ## 兼容性
 
@@ -50,7 +52,7 @@
 - 连连看
 - 记忆力游戏
 
-## 在线网址
+## 在线体验网址（推荐使用移动设备访问）
 
 http://datavisualization.club:8888/
 
@@ -135,8 +137,10 @@ http://datavisualization.club:8888/
 
 ### 史莱克学院
 
-- 赵无极：中
+- 弗兰克：低
+- 柳二龙：低
 - 玉小刚：低
+- 赵无极：中
 - 独孤博：中
   
 ### 武魂殿

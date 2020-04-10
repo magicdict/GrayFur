@@ -66,6 +66,33 @@ export class CircleCreatorNPC {
         c1.FirstSkill = CircleSkillCreator.不动明王身();
         circles.push(c1);
 
+        
+        let c2 = new Circle();
+        c2.Order = 2;
+        c2.year = enmCircleYear.百年魂环;
+        c2.FirstSkill = CircleSkillCreator.大力金刚掌();
+        circles.push(c2);
+
+        let c3 = new Circle();
+        c3.Order = 3;
+        c3.year = enmCircleYear.百年魂环;
+        c3.FirstSkill = CircleSkillCreator.重力增强();
+        circles.push(c3);
+
+        //c4 = 定位追踪（一旦第四魂环锁定，在百米之内，都可以凭借跳跃之力瞬间拉近距离）
+
+        let c5 = new Circle();
+        c5.Order = 5;
+        c5.year = enmCircleYear.百年魂环;
+        c5.FirstSkill = CircleSkillCreator.重力挤压();
+        circles.push(c5);
+
+        let c6 = new Circle();
+        c6.Order = 6;
+        c6.year = enmCircleYear.百年魂环;
+        c6.FirstSkill = CircleSkillCreator.大力金刚吼();
+        circles.push(c6);
+
         return circles;
     }
 

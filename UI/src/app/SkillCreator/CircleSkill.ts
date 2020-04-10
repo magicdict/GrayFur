@@ -376,6 +376,56 @@ export class CircleSkillCreator {
         return s;
     }
 
+    public static 大力金刚掌(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "大力金刚掌";
+        s.Description = "大力金刚掌";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 200;
+        return s;
+    }
+
+    public static 重力增强(): SkillInfo {
+        let s = new BufferStatusSkillInfo();
+        s.Name = "重力增强";
+        s.Description = "重力增强";
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.Self;
+        s.Buffer.SpeedFactor = -0.2;
+        s.Buffer.AttactFactor = -0.2;
+        s.Buffer.DefenceFactor = -0.2;
+        s.Buffer.Status = [characterStatus.攻击增益, characterStatus.速度增益, characterStatus.防御增益];
+        s.Buffer.Source = s.Name;
+        return s;
+    }
+
+
+    public static 重力挤压(): SkillInfo {
+        let s = new BufferStatusSkillInfo();
+        s.Name = "重力增强";
+        s.Description = "重力增强";
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.Self;
+        s.Buffer.SpeedFactor = -0.5;
+        s.Buffer.AttactFactor = -0.5;
+        s.Buffer.DefenceFactor = -0.5;
+        s.Buffer.Status = [characterStatus.攻击增益, characterStatus.速度增益, characterStatus.防御增益];
+        s.Buffer.Source = s.Name;
+        return s;
+    }
+
+
+    public static 大力金刚吼(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "大力金刚吼";
+        s.Description = "大力金刚吼";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.EveryOne;
+        s.Harm = 1000;
+        return s;
+    }
+
     //玉小刚
     public static 放屁如打雷_轰天裂地罗三炮(): SkillInfo {
         let s = new AttactSkillInfo();
@@ -463,7 +513,7 @@ export class CircleSkillCreator {
         s.Buffer.Source = s.Name;
         return s;
     }
-    
+
 
 
     //叶泠泠 魂技

@@ -1,5 +1,4 @@
 import { Character, enmTeamPosition } from '../Modal/Character';
-import { CircleSkillCreator } from '../SkillCreator/CircleSkill';
 import { BoneCreator } from '../Modal/Bone';
 import { CircleCreatorNPC } from './CircleCreatorNPC';
 
@@ -14,6 +13,26 @@ export class CharacterCreatorNPC {
         玉小刚.Circles = CircleCreatorNPC.玉小刚();
         玉小刚.Description = "唐三的老师，黄金铁三角中智慧之角"
         return 玉小刚;
+    }
+
+    public static 弗兰德(): Character {
+        let 弗兰德 = new Character("弗兰德");
+        弗兰德.LV = 65;
+        弗兰德.GrowthFactor = 1.1;
+        弗兰德.Soul = "四眼猫鹰";
+        弗兰德.TeamPosition = enmTeamPosition.辅助系;
+        弗兰德.Description = "史莱克学院创始人，并且是史莱克学院的院长。黄金铁三角中飞翔之角"
+        return 弗兰德;
+    }
+
+    public static 柳二龙(): Character {
+        let 柳二龙 = new Character("柳二龙");
+        柳二龙.LV = 65;
+        柳二龙.GrowthFactor = 1.2;
+        柳二龙.Soul = "火龙（蓝电霸王龙变异）";
+        柳二龙.TeamPosition = enmTeamPosition.辅助系;
+        柳二龙.Description = "原蓝霸学院院长，黄金铁三角杀戮之角，大师玉小刚的妻子，也是大师的堂妹。"
+        return 柳二龙;
     }
 
     public static 赵无极(): Character {

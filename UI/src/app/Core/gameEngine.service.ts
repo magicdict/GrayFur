@@ -86,12 +86,14 @@ export class GameEngine {
         this.PictorialBook.push(this.马红俊);
         this.PictorialBook.push(this.宁荣荣);
         this.PictorialBook.push(this.朱竹清);
+        this.PictorialBook.push(CharacterCreatorNPC.玉小刚());
+        this.PictorialBook.push(CharacterCreatorNPC.弗兰德());
+        this.PictorialBook.push(CharacterCreatorNPC.柳二龙());
         this.PictorialBook.push(CharacterCreatorNPC.赵无极());
         this.PictorialBook.push(CharacterCreatorNPC.独孤雁());
         this.PictorialBook.push(CharacterCreatorNPC.独孤博());
         this.PictorialBook.push(CharacterCreatorNPC.比比东());
         this.PictorialBook.push(CharacterCreatorNPC.叶泠泠());
-        this.PictorialBook.push(CharacterCreatorNPC.玉小刚());
         this.PictorialBook.push(CharacterCreatorNPC.昆图库塔卡提考特苏瓦西拉松());
         this.PictorialBook.push(CharacterCreatorNPC.达拉崩巴斑得贝迪卜多比鲁翁());
     }
