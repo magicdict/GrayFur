@@ -1,7 +1,7 @@
 import { Character, enmTeamPosition } from '../Modal/Character';
 import { BoneCreator } from '../Modal/Bone';
 import { FieldCreator } from '../Modal/Field';
-import { CircleCreator } from './CircleCreator';
+import { CircleCreatorMainRole } from './CircleCreatorMainRole';
 
 export class CharacterCreatorMainRole {
     public static 唐三(): Character {
@@ -20,8 +20,9 @@ export class CharacterCreatorMainRole {
         唐三.TeamPosition = enmTeamPosition.控制系;
         唐三.Description = "唐三前世为巴蜀唐门外门子弟，来到斗罗大陆后与伙伴们一起在异界大陆重新建立了唐门。"
         唐三.Soul = "蓝银皇";
-        唐三.Circles = CircleCreator.唐三();
+        唐三.Circles = CircleCreatorMainRole.唐三_0();
         唐三.SecondSoul = "昊天锤";
+        唐三.SecondCircles = CircleCreatorMainRole.唐三_1();
         唐三.Fields = [FieldCreator.蓝银领域(), FieldCreator.海神领域(),
         FieldCreator.杀神领域(), FieldCreator.修罗领域()];
         return 唐三;
@@ -32,7 +33,7 @@ export class CharacterCreatorMainRole {
         小舞.LV = 25;
         小舞.GrowthFactor = 1.4;
         小舞.Soul = "柔骨兔";
-        小舞.Circles = CircleCreator.小舞();
+        小舞.Circles = CircleCreatorMainRole.小舞();
         小舞.TeamPosition = enmTeamPosition.敏攻系;
         小舞.Description = "小舞的名字是由其父“小五”得来，因为她是家族中第五个出生的，小舞的爸爸懒得取名，就把名字换了一个字。“小舞”这个名字也是由此而来的。"
         return 小舞;
@@ -43,7 +44,7 @@ export class CharacterCreatorMainRole {
         戴沐白.LV = 35;
         戴沐白.GrowthFactor = 1.4;
         戴沐白.Soul = "白虎";
-        戴沐白.Circles = CircleCreator.戴沐白();
+        戴沐白.Circles = CircleCreatorMainRole.戴沐白();
         戴沐白.TeamPosition = enmTeamPosition.敏攻系;
         戴沐白.Description = "史莱克七怪老大、星罗帝国三皇子 、星罗帝国太子、唐门长老、唐门刑堂堂主"
         return 戴沐白;
@@ -74,7 +75,7 @@ export class CharacterCreatorMainRole {
         宁荣荣.LV = 25;
         宁荣荣.GrowthFactor = 1.2;
         宁荣荣.Soul = "九宝琉璃塔";
-        宁荣荣.Circles = CircleCreator.宁荣荣();
+        宁荣荣.Circles = CircleCreatorMainRole.宁荣荣();
         宁荣荣.TeamPosition = enmTeamPosition.辅助系;
         宁荣荣.Description = "九宝琉璃宗宗主，为七宝琉璃宗前宗主宁风致和粉色长发女子(名字不详)之女，也是唯一的女儿。"
         return 宁荣荣;
@@ -85,7 +86,7 @@ export class CharacterCreatorMainRole {
         朱竹清.LV = 25;
         朱竹清.GrowthFactor = 1.2;
         朱竹清.Soul = "幽冥灵猫";
-        朱竹清.Circles = CircleCreator.朱竹清();
+        朱竹清.Circles = CircleCreatorMainRole.朱竹清();
         朱竹清.TeamPosition = enmTeamPosition.敏攻系;
         朱竹清.Description = "星罗帝国贵族朱家二小姐，在戴沐白被封星罗太子之后，被册封为太子妃"
         return 朱竹清;

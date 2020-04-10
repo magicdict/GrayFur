@@ -3,24 +3,17 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SceneMgr {
-    constructor(public http: HttpClient) { }
+    constructor() { }
 
     SceneInfoList: SceneInfo[];
-    public static sceneName: string = "Scene0000";    //场景编号
-    public static lineIdx: number = 0;    //台词位置
-    public Load() {
-        let x = this.http.get("assets/json/sceneInfo.json").toPromise().then(x => x as SceneInfo[]);
-        x.then(
-            r => {
-                this.SceneInfoList = r;
-            }
-        )
-    }
+    sceneName: string = "Scene0000";    //场景编号
+    lineIdx: number = 0;    //台词位置
+
     public getSceneInfoByName(SceneName: string): SceneInfo {
         return this.SceneInfoList.find(x => x.Name === SceneName);
     }
-    
-    public static getSceneInfoByName_Debug(SceneName: string): SceneInfo {
+
+    getSceneInfoByName_Debug(SceneName: string): SceneInfo {
         switch (SceneName) {
             case "Scene0000":
                 return Scene0000;
@@ -74,7 +67,7 @@ export const Scene0001: SceneInfo = {
     ],
     Branch: [
         ["赵无极试炼", "Scene0011"],
-        ["达拉崩巴试炼", "Scene0012"]
+        ["昆图库塔卡提考特苏瓦西拉松试炼", "Scene0012"]
     ]
 };
 
@@ -86,16 +79,18 @@ export const Scene0011: SceneInfo = {
         "小舞@史莱克学院的赵无极老师及其厉害，小心对付啊。",
         FightPrefix + "Battle0001",
         "唐三@终于通过史莱克学院的入学测试了！奥力给！",
+        "玉小刚@恭喜你正式成为史莱克学院的一份子",
     ]
 };
 
 export const Scene0012: SceneInfo = {
     Name: "Scene0012",
-    Title: "史莱克学院",
-    Background: "史莱克学院",
+    Title: "蒙达鲁克硫斯伯古比奇巴勒城",
+    Background: "中式建筑走廊",
     Lines: [
-        "小舞@史莱克学院的赵无极老师及其厉害，小心对付啊。",
+        "达拉崩巴斑得贝迪卜多比鲁翁@昆图库塔卡提考特苏瓦西拉松及其厉害，小心对付啊。",
         FightPrefix + "Battle0002",
-        "唐三@终于通过史莱克学院的入学测试了！奥力给！",
+        "达拉崩巴斑得贝迪卜多比鲁翁@终于通过二次元的入学测试了！奥力给！",
+        "达拉崩巴斑得贝迪卜多比鲁翁@我好像走错片场了...",
     ]
 };

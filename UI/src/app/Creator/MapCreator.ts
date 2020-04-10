@@ -119,7 +119,7 @@ export class MapCreator {
         floor.push(MapCreator.CreateTreasureCell(5, 3, ToolCreator.止血草().Name));
         floor.push(MapCreator.CreateGoldCell(7, 4, 15));
         floor.push(MapCreator.CreateTreasureCell(0, 3, ToolCreator.佛怒唐莲().Name));
-        floor.push(MapCreator.CreateMonsterCell("达拉崩巴斑得贝迪卜多比鲁翁", 1, 3));
+        floor.push(MapCreator.CreateMonsterCell("昆图库塔卡提考特苏瓦西拉松", 1, 3));
         floor.push(MapCreator.CreateTransferCell("Maze0001", 4, 3));
         return floor;
     }

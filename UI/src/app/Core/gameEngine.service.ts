@@ -58,6 +58,7 @@ export class GameEngine {
     public 马红俊: Character;
     public 宁荣荣: Character;
     public 朱竹清: Character;
+
     public InitRole() {
         this.唐三 = CharacterCreatorMainRole.唐三();
         this.小舞 = CharacterCreatorMainRole.小舞();
@@ -75,24 +76,9 @@ export class GameEngine {
         this.localstorage.Save("朱竹清", this.朱竹清);
     }
 
-
-
-    public 赵无极: Character;
-    public 独孤雁: Character;
-    public 独孤博: Character;
-    public 比比东: Character;
-    public 叶泠泠: Character;
-
-    InitNPC() {
-        this.赵无极 = CharacterCreatorNPC.赵无极();
-        this.独孤雁 = CharacterCreatorNPC.独孤雁();
-        this.独孤博 = CharacterCreatorNPC.独孤博();
-        this.比比东 = CharacterCreatorNPC.比比东();
-        this.叶泠泠 = CharacterCreatorNPC.叶泠泠();
-    }
-
     InitPictorialBook() {
         //图鉴准备
+        this.PictorialBook = [];
         this.PictorialBook.push(this.唐三);
         this.PictorialBook.push(this.小舞);
         this.PictorialBook.push(this.戴沐白);
@@ -100,11 +86,12 @@ export class GameEngine {
         this.PictorialBook.push(this.马红俊);
         this.PictorialBook.push(this.宁荣荣);
         this.PictorialBook.push(this.朱竹清);
-        this.PictorialBook.push(this.赵无极);
-        this.PictorialBook.push(this.独孤雁);
-        this.PictorialBook.push(this.独孤博);
-        this.PictorialBook.push(this.比比东);
-        this.PictorialBook.push(this.叶泠泠);
+        this.PictorialBook.push(CharacterCreatorNPC.赵无极());
+        this.PictorialBook.push(CharacterCreatorNPC.独孤雁());
+        this.PictorialBook.push(CharacterCreatorNPC.独孤博());
+        this.PictorialBook.push(CharacterCreatorNPC.比比东());
+        this.PictorialBook.push(CharacterCreatorNPC.叶泠泠());
+        this.PictorialBook.push(CharacterCreatorNPC.玉小刚());
         this.PictorialBook.push(CharacterCreatorNPC.昆图库塔卡提考特苏瓦西拉松());
         this.PictorialBook.push(CharacterCreatorNPC.达拉崩巴斑得贝迪卜多比鲁翁());
     }
@@ -118,8 +105,6 @@ export class GameEngine {
     }
 
     public InitBag() {
-        SceneMgr.lineIdx = 0;
-        SceneMgr.sceneName = "Scene0000";
         this.bagMgr.Money = 10;
         /**给3个止血草 */
         this.bagMgr.changeTool([ToolCreator.止血草().Name, 5]);
@@ -127,9 +112,16 @@ export class GameEngine {
         this.bagMgr.changeTool([ToolCreator.观音泪().Name, 1]);
     }
 
+    public InitScene(){
+        this.scenemgr.lineIdx = 0;
+        this.scenemgr.sceneName = "Scene0000";
+    }
+
     public InitMaze() {
+        this.forestMgr.MazeInfoList = [];
         this.forestMgr.MazeInfoList.push(MapCreator.InitArea("Maze0001", "星斗大森林新手区入口(Maze0001)", MapCreator.BeginnerEntry));
         this.forestMgr.MazeInfoList.push(MapCreator.InitArea("Maze0002", "星斗大森林新手区入口(Maze0002)", MapCreator.BeginnerEntry2));
+        this.forestMgr.Reset();
         this.forestMgr.LoadCurrentStatus(["Maze0001", 8, 3]);
         this.forestMgr.CurrentRoleColIdx = MapCreator.RoleInitColIdx;
         this.forestMgr.CurrentRoleRowIdx = MapCreator.RoleInitRowIdx;
@@ -143,10 +135,10 @@ export class GameEngine {
         this.InitRole();
         this.InitMaze();
         this.InitBag();
+        this.InitScene();
         this.SaveData();
 
         this.InitStoreTool()
-        this.InitNPC();
         this.InitPictorialBook();
         this.InitCombineSkill();    //注意次序，任务列表做完之后才能做融合技处理 
     }
@@ -157,9 +149,9 @@ export class GameEngine {
             this.InitRole();
             this.InitMaze();
             this.InitBag();
+            this.InitScene();
         }
         this.InitStoreTool()
-        this.InitNPC();
         this.InitPictorialBook();
         this.InitCombineSkill();    //注意次序，任务列表做完之后才能做融合技处理 
     }
@@ -171,9 +163,10 @@ export class GameEngine {
         this.马红俊 = this.localstorage.Load<Character>("马红俊");
         this.宁荣荣 = this.localstorage.Load<Character>("宁荣荣");
         this.朱竹清 = this.localstorage.Load<Character>("朱竹清");
-        this.bagMgr = this.localstorage.Load<BagMgr>("背包状态");
-        this.forestMgr = this.localstorage.Load("迷宫状态");
 
+        this.bagMgr = this.localstorage.Load<BagMgr>("背包状态");
+        this.forestMgr = this.localstorage.Load<ForestMgr>("迷宫状态");
+        this.scenemgr = this.localstorage.Load<SceneMgr>("场景状态")
     }
     public SaveData() {
         //这里不保存NPC的状态
@@ -184,7 +177,9 @@ export class GameEngine {
         this.localstorage.Save("马红俊", this.马红俊);
         this.localstorage.Save("宁荣荣", this.宁荣荣);
         this.localstorage.Save("朱竹清", this.朱竹清);
+
         this.localstorage.Save("背包状态", this.bagMgr);
         this.localstorage.Save("迷宫状态", this.forestMgr);
+        this.localstorage.Save("场景状态", this.scenemgr);
     }
 }

@@ -12,16 +12,17 @@ import { BattleMgr } from '../Core/BattleMgr';
 export class SceneComponent implements OnInit {
   constructor(private ge: GameEngine,
     private router: Router,
+    private scenemgr: SceneMgr,
   ) { }
 
   public c: Character;
 
   ngOnInit(): void {
     this.c = this.ge.唐三;
-    this.scene = SceneMgr.getSceneInfoByName_Debug(SceneMgr.sceneName);
+    this.scene = this.scenemgr.getSceneInfoByName_Debug(this.scenemgr.sceneName);
     this.lines = this.scene.Lines;
-    this.line = this.lines[SceneMgr.lineIdx].split("@")[1]
-    this.faceurl = this.lines[SceneMgr.lineIdx].split("@")[0]
+    this.line = this.lines[this.scenemgr.lineIdx].split("@")[1]
+    this.faceurl = this.lines[this.scenemgr.lineIdx].split("@")[0]
     this.clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     this.clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   }
@@ -37,17 +38,17 @@ export class SceneComponent implements OnInit {
   Next() {
     if (this.WaitForBranchPicker) return;
     var RawInfo: string;
-    SceneMgr.lineIdx++;
-    if (SceneMgr.lineIdx === this.lines.length) {
+    this.scenemgr.lineIdx++;
+    if (this.scenemgr.lineIdx === this.lines.length) {
       if (this.scene.NextScene !== undefined) {
         //转场
         var NextScene = this.scene.NextScene;
         console.log("Scene Chnage To:" + NextScene);
-        SceneMgr.sceneName = NextScene;
-        SceneMgr.lineIdx = 0;
-        this.scene = SceneMgr.getSceneInfoByName_Debug(NextScene);
+        this.scenemgr.sceneName = NextScene;
+        this.scenemgr.lineIdx = 0;
+        this.scene = this.scenemgr.getSceneInfoByName_Debug(NextScene);
         this.lines = this.scene.Lines;
-        RawInfo = this.lines[SceneMgr.lineIdx];
+        RawInfo = this.lines[this.scenemgr.lineIdx];
       }
       else {
         if (this.scene.Branch !== undefined) {
@@ -56,14 +57,14 @@ export class SceneComponent implements OnInit {
           this.WaitForBranchPicker = true;
         } else {
           //游戏结束了
-          SceneMgr.lineIdx--;
-          alert("游戏结束了...")
+          this.scenemgr.lineIdx--;
+          alert("未完待续...")
         }
         return;
       }
 
     } else {
-      RawInfo = this.lines[SceneMgr.lineIdx];
+      RawInfo = this.lines[this.scenemgr.lineIdx];
       //战斗
       if (RawInfo.startsWith(FightPrefix)) {
         var fightname = RawInfo.substr(FightPrefix.length);
@@ -80,9 +81,9 @@ export class SceneComponent implements OnInit {
   Branch(sceneName: string) {
     //转场
     console.log("Scene Chnage To:" + sceneName);
-    this.scene = SceneMgr.getSceneInfoByName_Debug(sceneName);
-    SceneMgr.sceneName = sceneName;
-    SceneMgr.lineIdx = -1;  //Clcik事件没有抑制住，Next事件也将触发
+    this.scene = this.scenemgr.getSceneInfoByName_Debug(sceneName);
+    this.scenemgr.sceneName = sceneName;
+    this.scenemgr.lineIdx = -1;  //Clcik事件没有抑制住，Next事件也将触发
     this.lines = this.scene.Lines;
     this.WaitForBranchPicker = false;
   }

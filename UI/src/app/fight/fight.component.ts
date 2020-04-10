@@ -21,6 +21,8 @@ export class FightComponent implements OnInit {
     constructor(public ge: GameEngine,
         private router: Router,
         public bagmgr: BagMgr,
+        private scenemgr:SceneMgr,
+        private forestmgr:ForestMgr,
         public toastService: ToastService
     ) { 
         
@@ -51,14 +53,14 @@ export class FightComponent implements OnInit {
         this.fightStatus.ResultEvent.subscribe((exp: number) => {
             if (exp === 0) {
                 this.FightResultTitle = "团灭了......魂力不足"
-                if (BattleMgr.fightname !== BattleMgr.MonsterFightName) SceneMgr.lineIdx--;
+                if (BattleMgr.fightname !== BattleMgr.MonsterFightName) this.scenemgr.lineIdx--;
             } else {
                 this.FightResultTitle = "胜利了......奥力给!每人获得经验【" + exp + "】"
                 if (BattleMgr.fightname !== BattleMgr.MonsterFightName) {
-                    SceneMgr.lineIdx++;
+                    this.scenemgr.lineIdx++;
                 } else {
                     //调整位置
-                    ForestMgr.MonsterVictor();
+                    this.forestmgr.MonsterVictor();
                 }
             }
             this.FightEnd = true;
@@ -244,7 +246,7 @@ export class FightComponent implements OnInit {
     //测试用:模拟胜利
     Exit() {
         console.log("jump to scene");
-        SceneMgr.lineIdx++;
+        this.scenemgr.lineIdx++;
         this.router.navigateByUrl("scene");
     }
 }

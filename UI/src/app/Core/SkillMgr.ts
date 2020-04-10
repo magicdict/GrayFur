@@ -38,6 +38,7 @@ export class SkillMgr {
     }
 
     public InitSkillInfoList() {
+        this.SkillinfoList = [];
         //戴沐白
         this.SkillinfoList.push(CircleSkillCreator.白虎护身障());
         this.SkillinfoList.push(CircleSkillCreator.白虎烈光波());

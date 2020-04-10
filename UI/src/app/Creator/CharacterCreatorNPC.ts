@@ -1,17 +1,19 @@
 import { Character, enmTeamPosition } from '../Modal/Character';
 import { CircleSkillCreator } from '../SkillCreator/CircleSkill';
 import { BoneCreator } from '../Modal/Bone';
+import { CircleCreatorNPC } from './CircleCreatorNPC';
 
 export class CharacterCreatorNPC {
 
-    public static 叶泠泠(): Character {
-        let 叶泠泠 = new Character("叶泠泠");
-        叶泠泠.LV = 35;
-        叶泠泠.GrowthFactor = 1.1;
-        叶泠泠.Soul = "九心海棠";
-        叶泠泠.TeamPosition = enmTeamPosition.辅助系;
-        叶泠泠.Description = "叶泠泠拥有九心海棠武魂，是皇斗战队唯一辅助器武魂，而九心海棠实际应该是大陆第一辅助系器武魂"
-        return 叶泠泠;
+    public static 玉小刚(): Character {
+        let 玉小刚 = new Character("玉小刚");
+        玉小刚.LV = 56;
+        玉小刚.GrowthFactor = 0.7;
+        玉小刚.Soul = "罗三炮";
+        玉小刚.TeamPosition = enmTeamPosition.辅助系;
+        玉小刚.Circles = CircleCreatorNPC.玉小刚();
+        玉小刚.Description = "唐三的老师，黄金铁三角中智慧之角"
+        return 玉小刚;
     }
 
     public static 赵无极(): Character {
@@ -20,8 +22,20 @@ export class CharacterCreatorNPC {
         赵无极.GrowthFactor = 1.1;
         赵无极.Soul = "大力金刚熊";
         赵无极.TeamPosition = enmTeamPosition.强攻系;
+        赵无极.Circles = CircleCreatorNPC.赵无极();
         赵无极.Description = "人称不动明王，防御力惊人，曾经风靡一时的狠辣角色，后来到史莱克学院当老师。虽外表凶狠，但内心善良，且十分护短，非常喜爱史莱克七怪。"
         return 赵无极;
+    }
+
+    public static 叶泠泠(): Character {
+        let 叶泠泠 = new Character("叶泠泠");
+        叶泠泠.LV = 35;
+        叶泠泠.GrowthFactor = 1.1;
+        叶泠泠.Soul = "九心海棠";
+        叶泠泠.TeamPosition = enmTeamPosition.辅助系;
+        叶泠泠.Circles = CircleCreatorNPC.叶泠泠();
+        叶泠泠.Description = "叶泠泠拥有九心海棠武魂，是皇斗战队唯一辅助器武魂，而九心海棠实际应该是大陆第一辅助系器武魂"
+        return 叶泠泠;
     }
 
     public static 独孤雁(): Character {
@@ -29,6 +43,7 @@ export class CharacterCreatorNPC {
         独孤雁.LV = 29;
         独孤雁.GrowthFactor = 1.1;
         独孤雁.Soul = "碧鳞蛇";
+        独孤雁.Circles = CircleCreatorNPC.独孤雁();
         独孤雁.TeamPosition = enmTeamPosition.辅助系;
         独孤雁.Description = "独孤博的孙女,玉天恒的恋人,因为自身武魂原因而中毒,后被唐三所救。"
         return 独孤雁;
@@ -39,8 +54,9 @@ export class CharacterCreatorNPC {
         独孤博.LV = 93;
         独孤博.GrowthFactor = 1.1;
         独孤博.Soul = "碧鳞蛇";
+        独孤博.Circles = CircleCreatorNPC.独孤博();
         独孤博.TeamPosition = enmTeamPosition.辅助系;
-        独孤博.Description = "独孤博的孙女,玉天恒的恋人,因为自身武魂原因而中毒,后被唐三所救。";
+        独孤博.Description = "九十六级控制系封号斗罗，封号「毒」，武魂为碧磷蛇皇，以毒冠绝天下，在封号斗罗中以最擅长群攻而闻名。";
         独孤博.Bones = [BoneCreator.万年美杜莎头骨()];
         return 独孤博;
     }
@@ -49,9 +65,6 @@ export class CharacterCreatorNPC {
         let 比比东 = new Character("比比东");
         比比东.LV = 99;
         比比东.GrowthFactor = 1.5;
-        比比东.Bones = [
-
-        ]
         比比东.Soul = "死亡蛛皇";
         比比东.SecondSoul = "噬魂蛛皇";
         比比东.TeamPosition = enmTeamPosition.控制系;
@@ -82,7 +95,7 @@ export class CharacterCreatorNPC {
 
     public static 昆图库塔卡提考特苏瓦西拉松(): Character {
         let 昆图库塔卡提考特苏瓦西拉松 = new Character("昆图库塔卡提考特苏瓦西拉松");
-        昆图库塔卡提考特苏瓦西拉松.LV = 99;
+        昆图库塔卡提考特苏瓦西拉松.LV = 1;
         昆图库塔卡提考特苏瓦西拉松.GrowthFactor = 1.1;
         昆图库塔卡提考特苏瓦西拉松.Soul = "恶龙";
         昆图库塔卡提考特苏瓦西拉松.TeamPosition = enmTeamPosition.强攻系;

@@ -56,7 +56,7 @@
         武魂:{{character.Soul}}<br />
         <ul>
             <li *ngFor="let c of character.Circles">
-                {{ c.FirstSkill.Name + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) }}
+                {{ c.Order + ":" + (c.FirstSkill === undefined?"未知":c.FirstSkill.Name) + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) }}
             </li>
         </ul>
     </div>
@@ -65,7 +65,7 @@
         双生武魂:{{character.SecondSoul}}<br />
         <ul>
             <li *ngFor="let c of character.SecondCircles">
-                {{ c.FirstSkill.Name + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) }}
+                {{ c.Order + ":" + (c.FirstSkill === undefined?"未知":c.FirstSkill.Name) + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) }}
             </li>
         </ul>
     </div>

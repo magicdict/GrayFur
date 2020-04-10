@@ -145,6 +145,50 @@ export class CircleSkillCreator {
         return s;
     }
 
+    public static 泰坦之锤(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "泰坦之锤";
+        s.Description = "强攻之技，其威力甚至超越了大须弥锤的炸环，但需要蓄力时间而无法连续使用";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.ColdDownTurn = 5;
+        s.Harm = 500;
+        return s;
+    }
+
+    public static 大地之力(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "大地之力";
+        s.Description = "控制大地的力量为自己所用";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.ColdDownTurn = 5;
+        s.Harm = 500;
+        return s;
+    }
+
+    public static 大地蚁皇斩(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "大地蚁皇斩";
+        s.Description = "强攻之技，其威力甚至超越了大须弥锤的炸环，但需要蓄力时间而无法连续使用";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.ColdDownTurn = 5;
+        s.Harm = 500;
+        return s;
+    }
+
+    public static 千钧壁垒(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "千钧壁垒";
+        s.Description = "强攻之技，其威力甚至超越了大须弥锤的炸环，但需要蓄力时间而无法连续使用";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.ColdDownTurn = 5;
+        s.Harm = 500;
+        return s;
+    }
+
     //小舞
     public static 腰弓(): SkillInfo {
         let s = new AttactSkillInfo();
@@ -164,6 +208,27 @@ export class CircleSkillCreator {
         s.Range = enmRange.PickOne;
         s.Buffer.Turns = 3;
         s.Buffer.Status = [characterStatus.束缚];
+        return s;
+    }
+
+    public static 虚无(): SkillInfo {
+        let s = new BufferStatusSkillInfo();
+        s.Name = "虚无";
+        s.Description = "不会受到攻击，免疫物体、能量等一切防御。";
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.Self;
+        s.Buffer.Turns = 3;
+        s.Buffer.Status = [characterStatus.无敌];
+        return s;
+    }
+
+    public static 爆杀八段摔(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "爆杀八段摔";
+        s.Description = "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 1000;
         return s;
     }
 
@@ -311,6 +376,27 @@ export class CircleSkillCreator {
         return s;
     }
 
+    //玉小刚
+    public static 放屁如打雷_轰天裂地罗三炮(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "放屁如打雷_轰天裂地罗三炮";
+        s.Description = "放屁如打雷_轰天裂地罗三炮";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 50;
+        return s;
+    }
+
+    public static 放屁如烟雾_催眠沉睡罗三炮(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "放屁如烟雾_催眠沉睡罗三炮";
+        s.Description = "放屁如烟雾_催眠沉睡罗三炮";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 50;
+        return s;
+    }
+
     //独孤雁
 
     public static 碧磷红毒(): SkillInfo {
@@ -350,6 +436,35 @@ export class CircleSkillCreator {
         s.Buffer.Source = s.Name;
         return s;
     }
+
+    //独孤博
+    public static 碧磷迷魂阵(): SkillInfo {
+        let s = new BufferStatusSkillInfo();
+        s.Name = "碧磷迷魂阵";
+        s.Description = "碧磷紫毒（每回合损失5%生命力，持续3回合）";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Buffer.HPFactor = -0.05;
+        s.Buffer.Turns = 3;
+        s.Buffer.Status = [characterStatus.中毒, characterStatus.束缚];
+        s.Buffer.Source = s.Name;
+        return s;
+    }
+
+    public static 蛇蟒天罡盾(): SkillInfo {
+        let s = new BufferStatusSkillInfo();
+        s.Name = "蛇蟒天罡盾";
+        s.Description = "碧磷紫毒（每回合损失5%生命力，持续3回合）";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Buffer.HPFactor = -0.05;
+        s.Buffer.Turns = 3;
+        s.Buffer.DefenceFactor = 1;
+        s.Buffer.Source = s.Name;
+        return s;
+    }
+    
+
 
     //叶泠泠 魂技
 

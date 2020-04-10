@@ -39,7 +39,7 @@ export class ForestComponent {
         if (Math.abs(this.forestMgr.CurrentRoleRowIdx - value.RowIdx) + Math.abs(this.forestMgr.CurrentRoleColIdx - value.ColIdx) !== 1) return;
         if (!value.Item.IsVisited && value.Item.MapType === enmMapType.Monster) {
             this.forestMgr.SaveCurrentStatus();
-            ForestMgr.MonsterCell = value;
+            this.forestMgr.MonsterCell = value;
             BattleMgr.fightname = BattleMgr.MonsterFightName;
             let battleinfo = BattleMgr.CreateTempBattle(value.Item.MonsterName);
             BattleMgr.MazeBattleInfo = battleinfo;

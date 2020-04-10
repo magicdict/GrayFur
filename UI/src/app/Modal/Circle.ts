@@ -17,11 +17,12 @@ export class Circle {
                 return "红";
         }
     }
+    Order:number = 0;
     /**魂技 */
     FirstSkill: SkillInfo;
     SecondSkill: SkillInfo;
     /**来源 */
-    Monster:string;
+    Source:string;
 }
 
 export enum enmCircleYear {

@@ -6,7 +6,7 @@ import { MapCellComponent } from '../forest/MapCell.component';
 @Injectable()
 /**星斗大森林 */
 export class ForestMgr {
-    LoadCurrentStatus(MapInitInfo:[string,number,number]) {
+    LoadCurrentStatus(MapInitInfo: [string, number, number]) {
         let m = this.getMazeInfoByName(MapInitInfo[0]);
         this.CurrentRoleRowIdx = MapInitInfo[1];
         this.CurrentRoleColIdx = MapInitInfo[2];
@@ -21,21 +21,26 @@ export class ForestMgr {
         this.CurrentMazeInfo.AreaTitle = m.AreaTitle;
         this.CurrentMazeInfo.Name = m.Name;
     }
-    SaveCurrentStatus(){
+    SaveCurrentStatus() {
         let m = this.getMazeInfoByName(this.CurrentMazeInfo.Name);
         for (let r = 0; r < MapCreator.RowCnt; r++) {
             for (let c = 0; c < MapCreator.ColCnt; c++) {
-                Object.assign(m.MazeArray.getValue(r, c),this.CurrentMazeInfo.MazeArray.getValue(r, c));
+                Object.assign(m.MazeArray.getValue(r, c), this.CurrentMazeInfo.MazeArray.getValue(r, c));
             }
         }
     }
-
-    public static MonsterCell:MapCellComponent;
-    public static MonsterVictor(){
+    public Reset() {
+        this.CurrentMazeInfo = {
+            AreaTitle: "", Name: "", MazeArray: new My2DArray<MapItem>(MapCreator.RowCnt, MapCreator.ColCnt, new MapItem(), true)
+        };
+    }
+    public MonsterCell: MapCellComponent;
+    public MonsterVictor() {
         this.MonsterCell.Item.IsVisited = true;
+        MapCreator.SetVisiable(this.CurrentMazeInfo.MazeArray, this.MonsterCell.Item);
     }
     CurrentMazeInfo: MazeInfo = {
-        AreaTitle: "", Name: "", MazeArray: new My2DArray<MapItem>(MapCreator.RowCnt, MapCreator.ColCnt, new MapItem(),true)
+        AreaTitle: "", Name: "", MazeArray: new My2DArray<MapItem>(MapCreator.RowCnt, MapCreator.ColCnt, new MapItem(), true)
     };
     CurrentRoleColIdx: number;
     CurrentRoleRowIdx: number;

@@ -7,6 +7,7 @@
     "BaseSpeed": 10,
     "Factor": 1,
     "GrowthFactor": 1.5,
+    "TeamPosition": 2,
     "DefStatusPlus": 0.5,
     "Bones": [
         {
@@ -37,33 +38,31 @@
         {
             "Name": "邪魔虎鲸王左腿骨",
             "Position": 3,
-            "FirstFunc": {
+            "FirstSkill": {
                 "ColdDownTurn": 0,
                 "CurrentColdDown": 0,
                 "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
                 "SkillType": 0,
                 "Name": "虎鲸碎牙斩",
                 "Description": "群攻技能",
-                "Order": 9,
                 "Direct": 1,
                 "Range": 5,
-                "Harm": 2000,
-                "Source": "邪魔虎鲸王左腿骨",
-                "IsMaster": true
+                "Harm": 2000
             },
-            "SecondFunc": {
+            "SecondSkill": {
                 "ColdDownTurn": 0,
                 "CurrentColdDown": 0,
                 "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
                 "SkillType": 0,
                 "Name": "虎鲸邪魔斧",
                 "Description": "完全作用于攻击，凝全身功力于左腿，经魂骨增幅，化为薄如蝉翼的战斧利刃，直线型单体攻击",
-                "Order": 9,
                 "Direct": 1,
                 "Range": 1,
-                "Harm": 5000,
-                "Source": "邪魔虎鲸王左腿骨",
-                "IsMaster": true
+                "Harm": 5000
             }
         }
     ],
@@ -85,32 +84,22 @@
             "Descirption": "修罗神状态下使用，杀神领域的神级进化，但已经不再是杀神领域，而是全新的领域，修罗神的领域：修罗领域。"
         }
     ],
-    "TeamPosition": 2,
+    "CombineSkill": [],
     "Name": "唐三",
     "BufferList": [],
     "LV": 29,
-    "Soul": "蓝银皇",
-    "SecondSoul": "昊天锤",
     "Description": "唐三前世为巴蜀唐门外门子弟，来到斗罗大陆后与伙伴们一起在异界大陆重新建立了唐门。",
-    "SkillName": [
-        "缠绕",
-        "寄生",
-        "蛛网束缚",
-        "蓝银囚笼/蓝银突刺阵",
-        "蓝银霸皇枪",
-        "虚无状态/暴杀八段摔",
-        "蓝银真身",
-        "蓝银虎鲸镜之灭/蓝银虎鲸魔之摄",
-        "蓝银天青龙之魂",
-        "海神神环"
-    ],
+    "Soul": "蓝银皇",
     "Circles": [
         {
             "year": 1,
+            "Order": 1,
             "FirstSkill": {
                 "ColdDownTurn": 0,
                 "CurrentColdDown": 0,
                 "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
                 "SkillType": 2,
                 "Buffer": {
                     "Turns": 1,
@@ -120,19 +109,20 @@
                 },
                 "Name": "缠绕",
                 "Description": "单体限制，使用蓝银皇缠住敌人",
-                "Order": 1,
                 "Direct": 1,
-                "Range": 1,
-                "Source": "曼陀罗蛇"
+                "Range": 1
             },
-            "Monster": "曼陀罗蛇"
+            "Source": "曼陀罗蛇"
         },
         {
             "year": 1,
+            "Order": 2,
             "FirstSkill": {
                 "ColdDownTurn": 0,
                 "CurrentColdDown": 0,
                 "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
                 "SkillType": 2,
                 "Buffer": {
                     "Turns": 3,
@@ -142,19 +132,20 @@
                 },
                 "Name": "寄生",
                 "Description": "单体限制，蓝银皇在敌人体内留下的种子萌发",
-                "Order": 2,
                 "Direct": 1,
-                "Range": 1,
-                "Source": "鬼藤"
+                "Range": 1
             },
-            "Monster": "鬼藤"
+            "Source": "鬼藤"
         },
         {
-            "year": 1,
+            "year": 2,
+            "Order": 3,
             "FirstSkill": {
                 "ColdDownTurn": 0,
                 "CurrentColdDown": 0,
                 "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
                 "SkillType": 2,
                 "Buffer": {
                     "Turns": 3,
@@ -164,15 +155,15 @@
                 },
                 "Name": "蛛网束缚(单体)",
                 "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
-                "Order": 3,
                 "Direct": 1,
-                "Range": 1,
-                "Source": "人面魔蛛"
+                "Range": 1
             },
             "SecondSkill": {
                 "ColdDownTurn": 3,
                 "CurrentColdDown": 0,
                 "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
                 "SkillType": 2,
                 "Buffer": {
                     "Turns": 1,
@@ -182,172 +173,208 @@
                 },
                 "Name": "蛛网束缚(群体)",
                 "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
-                "Order": 3,
                 "Direct": 1,
-                "Range": 5,
-                "Source": "人面魔蛛"
+                "Range": 5
             },
-            "Monster": "人面魔蛛"
-        }
-    ],
-    "Skill": [
-        {
-            "ColdDownTurn": 0,
-            "CurrentColdDown": 0,
-            "EffectWithLevel": false,
-            "SkillType": 2,
-            "Buffer": {
-                "Turns": 1,
-                "Status": [
-                    9
-                ]
-            },
-            "Name": "缠绕",
-            "Description": "单体限制，使用蓝银皇缠住敌人",
-            "Order": 1,
-            "Direct": 1,
-            "Range": 1,
-            "Source": "曼陀罗蛇"
-        },
-        {
-            "ColdDownTurn": 0,
-            "CurrentColdDown": 0,
-            "EffectWithLevel": false,
-            "SkillType": 2,
-            "Buffer": {
-                "Turns": 3,
-                "Status": [
-                    9
-                ]
-            },
-            "Name": "寄生",
-            "Description": "单体限制，蓝银皇在敌人体内留下的种子萌发",
-            "Order": 2,
-            "Direct": 1,
-            "Range": 1,
-            "Source": "鬼藤"
-        },
-        {
-            "ColdDownTurn": 0,
-            "CurrentColdDown": 0,
-            "EffectWithLevel": false,
-            "SkillType": 2,
-            "Buffer": {
-                "Turns": 3,
-                "Status": [
-                    9
-                ]
-            },
-            "Name": "蛛网束缚(单体)",
-            "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
-            "Order": 3,
-            "Direct": 1,
-            "Range": 1,
             "Source": "人面魔蛛"
         },
         {
-            "ColdDownTurn": 3,
-            "CurrentColdDown": 0,
-            "EffectWithLevel": false,
-            "SkillType": 2,
-            "Buffer": {
-                "Turns": 1,
-                "Status": [
-                    9
-                ]
-            },
-            "Name": "蛛网束缚(群体)",
-            "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
-            "Order": 3,
-            "Direct": 1,
-            "Range": 5,
-            "Source": "人面魔蛛"
-        },
-        {
-            "ColdDownTurn": 3,
-            "CurrentColdDown": 0,
-            "EffectWithLevel": false,
-            "SkillType": 2,
-            "Buffer": {
-                "Turns": 3,
-                "Status": [
-                    9
-                ]
-            },
-            "Name": "蓝银囚笼",
-            "Description": "群体限制，蓝银皇化为囚笼困住敌人",
+            "year": 3,
             "Order": 4,
-            "Direct": 1,
-            "Range": 5,
-            "Source": "地穴魔蛛"
-        },
-        {
-            "ColdDownTurn": 0,
-            "CurrentColdDown": 0,
-            "EffectWithLevel": false,
-            "AddtionSkill": {
+            "FirstSkill": {
+                "ColdDownTurn": 3,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "蓝银囚笼",
+                "Description": "群体限制，蓝银皇化为囚笼困住敌人",
+                "Direct": 1,
+                "Range": 5
+            },
+            "SecondSkill": {
                 "ColdDownTurn": 0,
                 "CurrentColdDown": 0,
                 "EffectWithLevel": false,
-                "SkillType": 0,
-                "Name": "蓝银突刺阵附加攻击",
-                "Harm": 20
+                "MpUsage": 5,
+                "Combine": [],
+                "AddtionSkill": {
+                    "ColdDownTurn": 0,
+                    "CurrentColdDown": 0,
+                    "EffectWithLevel": false,
+                    "MpUsage": 5,
+                    "Combine": [],
+                    "SkillType": 0,
+                    "Name": "蓝银突刺阵附加攻击",
+                    "Harm": 20
+                },
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "蓝银突刺阵",
+                "Description": "群体限制，强制眩晕一秒",
+                "Direct": 1,
+                "Range": 5
             },
-            "SkillType": 2,
-            "Buffer": {
-                "Turns": 1,
-                "Status": [
-                    9
-                ]
-            },
-            "Name": "蓝银突刺阵",
-            "Description": "群体限制，强制眩晕一秒",
-            "Order": 4,
-            "Direct": 1,
-            "Range": 5,
             "Source": "地穴魔蛛"
         },
         {
-            "ColdDownTurn": 0,
-            "CurrentColdDown": 0,
-            "EffectWithLevel": false,
-            "SkillType": 0,
-            "Name": "蓝银霸王枪",
-            "Description": "单体攻击，凝聚一点，蓝银皇武魂攻击最强魂技",
+            "year": 3,
             "Order": 5,
-            "Direct": 1,
-            "Range": 1,
-            "Harm": 100,
-            "Source": "蓝银皇天赋魂环"
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "Name": "蓝银霸王枪",
+                "Description": "单体攻击，凝聚一点，蓝银皇武魂攻击最强魂技",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 100
+            },
+            "Source": "本命魂环"
         },
         {
-            "ColdDownTurn": 0,
-            "CurrentColdDown": 0,
-            "EffectWithLevel": false,
-            "SkillType": 2,
-            "Buffer": {
-                "MaxHPFactor": 0.1,
-                "Turns": 999,
-                "Status": [
-                    0
-                ]
+            "year": 4,
+            "Order": 1,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        12
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
             },
-            "Name": "双神共存",
-            "Description": "成就独一无二的完美武魂融合技，是神级的融合。",
-            "Combine": [
-                "唐三",
-                "小舞"
-            ],
-            "Order": 10,
-            "Direct": 0,
-            "Range": 5
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "小舞献祭"
         }
     ],
-    "SecondSkillName": [
-        "泰坦之锤/大地之力",
-        "大地蚁皇斩",
-        "器魂真身",
-        "千钧壁垒"
-    ],
-    "SecondSkill": []
+    "SecondSoul": "昊天锤",
+    "SecondCircles": [
+        {
+            "year": 1,
+            "Order": 1,
+            "FirstSkill": {
+                "ColdDownTurn": 5,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "Name": "泰坦之锤",
+                "Description": "强攻之技，其威力甚至超越了大须弥锤的炸环，但需要蓄力时间而无法连续使用",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 500
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 5,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "Name": "大地之力",
+                "Description": "控制大地的力量为自己所用",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 500
+            },
+            "Source": "泰坦巨猿"
+        },
+        {
+            "year": 1,
+            "Order": 2
+        },
+        {
+            "year": 1,
+            "Order": 3
+        },
+        {
+            "year": 1,
+            "Order": 4
+        },
+        {
+            "year": 1,
+            "Order": 5
+        },
+        {
+            "year": 1,
+            "Order": 6,
+            "FirstSkill": {
+                "ColdDownTurn": 5,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "Name": "大地蚁皇斩",
+                "Description": "强攻之技，其威力甚至超越了大须弥锤的炸环，但需要蓄力时间而无法连续使用",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 500
+            },
+            "Source": "千钧蚁皇"
+        },
+        {
+            "year": 1,
+            "Order": 7
+        },
+        {
+            "year": 1,
+            "Order": 8,
+            "FirstSkill": {
+                "ColdDownTurn": 5,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "Name": "千钧壁垒",
+                "Description": "强攻之技，其威力甚至超越了大须弥锤的炸环，但需要蓄力时间而无法连续使用",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 500
+            }
+        },
+        {
+            "year": 1,
+            "Order": 9
+        }
+    ]
 }
