@@ -1,4 +1,4 @@
-import { character, characterStatus, Buffer } from '../Modal/character';
+import { Character, characterStatus, Buffer } from '../Modal/Character';
 import { BattleInfo } from './BattleMgr';
 import { Output, EventEmitter } from '@angular/core';
 import { RPGCore } from './RPGCore';
@@ -6,23 +6,23 @@ import { RPGCore } from './RPGCore';
 
 export class FightStatus {
     IsDebugMode: boolean = true;
-    Enemy: character[];
-    MyTeam: character[];
+    Enemy: Character[];
+    MyTeam: Character[];
     info: BattleInfo;
-    public PictorialBook: Array<character> = new Array<character>();
+    public PictorialBook: Array<Character> = new Array<Character>();
     //gameengine: GameEngine;
-    public GetRoleByName(name: string): character {
+    public GetRoleByName(name: string): Character {
         if (name === undefined) return undefined;
         return this.PictorialBook.find(x => x.Name === name);
     }
-    currentActionCharater: character;
+    currentActionCharater: Character;
     @Output() ResultEvent: EventEmitter<number> = new EventEmitter<number>();
     @Output() EnemyAction: EventEmitter<string> = new EventEmitter<string>();
     //列出当前所有战场角色的速度列表，每一回合的出手顺序根据速度来实现
-    TurnList: Array<character>;
+    TurnList: Array<Character>;
     TurnCnt: number = 0;
     Exp: number = 0;
-    constructor(battleinfo: BattleInfo,pictorialBook:Array<character>) {
+    constructor(battleinfo: BattleInfo,pictorialBook:Array<Character>) {
         this.info = battleinfo;
         this.PictorialBook = pictorialBook;
         this.Enemy = battleinfo.Enemy.map(x => this.GetRoleByName(x));
@@ -44,7 +44,7 @@ export class FightStatus {
 
     }
 
-    InitRole(c: character) {
+    InitRole(c: Character) {
         if (c === undefined) return;
         while (c.Exp >= c.NextNeedExp) {
             c.Exp -= c.NextNeedExp;
@@ -55,10 +55,7 @@ export class FightStatus {
                 //人物魂技设定：人物技能都是各自New出来的独立对象
                 //冷却回合数
                 skill.CurrentColdDown = skill.ColdDownTurn;
-                //可用性的设定
-                let o = Math.floor(c.LV / 10)
-                skill.IsMaster = skill.Order <= o;
-            }
+             }
         )
         c.HP = c.RealMaxHP;
         c.MP = c.RealMaxMP;
@@ -68,7 +65,7 @@ export class FightStatus {
     NewTurn() {
         this.TurnCnt++;
         console.log("新的回合:" + this.TurnCnt);
-        this.TurnList = new Array<character>();
+        this.TurnList = new Array<Character>();
         //所有HP不为0的角色进入回合列表
         this.MyTeam.forEach(element => {
             if (element !== undefined && element.HP > 0) {

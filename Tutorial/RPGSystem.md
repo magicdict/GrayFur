@@ -1,6 +1,6 @@
 # RPG系统构造
 
-ver0.02 2020/03/31
+ver0.03 2020/04/10
 
 ## 人物
 
@@ -90,20 +90,41 @@ export enum enmDirect {
 /** 技能 */
 export abstract class SkillInfo {
     Name: string;
-    Order: number;   //第N魂技
     SkillType: enmSkillType;
     Range: enmRange;
     Direct: enmDirect;
     Description: string;
-    Source: string;
-    get MpUsage(): number {
-        return Math.pow(2, this.Order);
-    }
+    /**冷却回合数 */
+    ColdDownTurn: number = 0;
+    /**实时冷却剩余数 */
+    CurrentColdDown = 0;
+    /**是否能使用 */
+    IsAvalible(fs: FightStatus): string {
+        let c = fs.currentActionCharater;
+        if (c.MP < this.MpUsage) return "MP不足";
+        if (this.CurrentColdDown !== 0) return "冷却中:" + this.CurrentColdDown;
+        if (this.Combine !== undefined) {
+            //武魂融合技
+            let EveryOneCanAction = true;
+            this.Combine.forEach(
+                name => {
+                    if (name !== c.Name) {
+                        if (fs.TurnList.find(x => x.Name === name) === undefined) EveryOneCanAction = false;
+                    }
+                }
+            );
+            if (!EveryOneCanAction) return "融合者已行动";
+        }
+        return "";
+    };
+    /**效果随着等级变化 */
+    EffectWithLevel = false;
+    MpUsage: number = 5;
     /**武魂融合技的融合者列表 */
-    Combine: string[];
-    abstract Excute(c: character, fs: FightStatus): void;
+    Combine: string[] = [];
+    abstract Excute(c: Character, fs: FightStatus): void;
     /**自定义执行方法 */
-    CustomeExcute(c: character, fs: FightStatus): boolean {
+    CustomeExcute(c: Character, fs: FightStatus): boolean {
         return false;
     }
     //攻击并中毒这样的两个效果叠加的技能
@@ -113,13 +134,13 @@ export abstract class SkillInfo {
 export class AttactSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Attact;
     Harm: number;
-    Excute(c: character, fs: FightStatus) {
+    IgnoreceDefence: boolean;
+    Excute(c: Character, fs: FightStatus) {
         //如果自定义方法被执行，则跳过后续代码
         if (this.CustomeExcute(c, fs)) return;
-        let factor = fs.currentActionCharater.LV / 100;
+        let factor = 1 + fs.currentActionCharater.LV / 100;
         c.HP -= Math.round(this.Harm * factor);
         if (c.HP <= 0) c.HP = 0;
-        //如果需要产生其他效果
         if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
     }
 }
@@ -249,40 +270,137 @@ export class BufferStatusSkillInfo extends SkillInfo {
 }
 ```
 
-## 剧情
-
-剧情暂时使用传统的列表在当前位置指针方式来制作
+具体到斗罗大陆，其技能可能来自于魂骨（类似于极品装备的概念）和魂环，或者角色自身融合技，设计的时候，暂时考虑技能独立体系独立存在，然后分配给魂骨魂环,魂骨魂环分配给人物。用这样的方式将人物和技能串联起来。
 
 ```typescript
-export const FightPrefix = "[FightScene]";
-export const ChangeScenePrefix = "[ChangeScene]";
-export const Scene0000: SceneInfo = {
+    public static 唐三(): Character {
+        let 唐三 = new Character("唐三");
+        唐三.LV = 29;
+        唐三.GrowthFactor = 1.5;
+        唐三.Bones = [
+            BoneCreator.外附魂骨八蛛矛(),
+            BoneCreator.天青牛蟒右臂骨(),
+            BoneCreator.泰坦巨猿左臂骨(),
+            BoneCreator.深海魔鲸王的躯干骨(),
+            BoneCreator.精神凝聚之智慧头骨(),
+            BoneCreator.蓝银皇右腿骨(),
+            BoneCreator.邪魔虎鲸王左腿骨()
+        ]
+        唐三.TeamPosition = enmTeamPosition.控制系;
+        唐三.Description = "唐三前世为巴蜀唐门外门子弟，来到斗罗大陆后与伙伴们一起在异界大陆重新建立了唐门。"
+        唐三.Soul = "蓝银皇";
+        唐三.Circles = CircleCreator.唐三();
+        唐三.SecondSoul = "昊天锤";
+        唐三.Fields = [FieldCreator.蓝银领域(), FieldCreator.海神领域(),
+        FieldCreator.杀神领域(), FieldCreator.修罗领域()];
+        return 唐三;
+    }
+
+    public static 邪魔虎鲸王左腿骨(): Bone {
+        let e = new Bone();
+        e.Name = "邪魔虎鲸王左腿骨";
+        e.Position = BonePosition.左腿骨;
+        e.FirstSkill = BoneSkillCreator.虎鲸碎牙斩();
+        e.SecondSkill = BoneSkillCreator.虎鲸邪魔斧();
+        return e;
+    }
+
+    //邪魔虎鲸王左腿骨
+    public static 虎鲸邪魔斧(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "虎鲸邪魔斧";
+        s.Description = "完全作用于攻击，凝全身功力于左腿，经魂骨增幅，化为薄如蝉翼的战斧利刃，直线型单体攻击";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.PickOne;
+        s.Harm = 5000;
+        return s;
+    }
+
+    public static 虎鲸碎牙斩(): SkillInfo {
+        let s = new AttactSkillInfo();
+        s.Name = "虎鲸碎牙斩";
+        s.Description = "群攻技能";
+        s.Direct = enmDirect.Enemy;
+        s.Range = enmRange.EveryOne;
+        s.Harm = 2000;
+        return s;
+    }
+```
+
+## 剧情
+
+每个场景包含了名称，标题，对白（战斗）列表，背景，下一个场景名称和分支的信息。
+
+```typescript
+public static lineIdx: number = 0;    //台词位置
+export interface SceneInfo {
+    Name: string;
+    Title: string;
+    Lines: string[];
+    Background: string;
+    NextScene?: string;
+    Branch?: [string, string][]
+}
+
+export const Scene0001: SceneInfo = {
+    Name: "Scene0001",
     Title: "引子 穿越的唐家三少",
     Background: "唐门",
     Lines: [
-        "唐门唐三@我知道，偷入内门，偷学本门绝学罪不可恕，门规所不容。但唐三可以对天发誓，绝未将偷学到的任何一点本门绝学泄露与外界。",
-        FightPrefix + "Battle0001",
-        "唐门唐三@我说这些，并不是希望得到长老们的宽容，只是想告诉长老们，唐三从未忘本。以前没有，以后也没有。",
-        "唐门唐三@唐三的一切都是唐门给的，不论是生命还是所拥有的能力，都是唐门所赋予，不论什么时候，唐三生是唐门的人，死是唐门的鬼，",
-        "唐门唐三@我知道，长老们是不会允许我一个触犯门规的外门弟子尸体留在唐门的，既然如此，就让我骨化于这巴蜀自然之中吧。",
         "唐门长老@玄天宝录，你竟然连玄天宝录中本门最高内功也学了？",
         "唐门唐三@赤裸而来，赤裸而去，佛怒唐莲算是唐三最后留给本门的礼物。",
         "唐门唐三@现在，除了我这个人以外，我再没有带走唐门任何东西，秘籍都在我房间门内第一块砖下。唐三现在就将一切都还给唐门。",
         "唐门唐三@哈哈哈哈哈哈哈……。",
         "唐门长老@等一下。",
         "唐门唐三@(云雾很浓，带着阵阵湿气，带走了阳光，也带走了那将一生贡献给了唐门和暗器的唐三。)",
-        ChangeScenePrefix + "Scene0001"
+    ],
+    Branch: [
+        ["赵无极试炼", "Scene0011"],
+        ["达拉崩巴试炼", "Scene0012"]
     ]
 };
 ```
 
-这里使用 FightPrefix表示进入战斗，ChangeScenePrefix表示场景转换。对话列表则使用@符号将角色和台词进行区分。
+每次对话发生的时候，lineIdx这个台词位置的指针都会下移，指向下一句台词或者开启战斗。这里使用 FightPrefix表示进入战斗。对话列表则使用@符号将角色和台词进行区分。
+
+```typescript
+export const Scene0011: SceneInfo = {
+    Name: "Scene0011",
+    Title: "史莱克学院",
+    Background: "史莱克学院",
+    Lines: [
+        "小舞@史莱克学院的赵无极老师及其厉害，小心对付啊。",
+        FightPrefix + "Battle0001",
+        "唐三@终于通过史莱克学院的入学测试了！奥力给！",
+    ]
+};
+```
 
 ## 道具系统
 
 可以将道具看作一种特殊的技能,只是这种技能是可以购买的。当然特殊的剧情道具则不属于这个范畴，设计起来比较复杂，需要配合场景的通过条件来使用。
 
 ```typescript
+import { SkillInfo } from './SkillInfo';
+
+/** 道具 */
+export class ToolInfo {
+    /** 名字 */
+    Name: string;
+    /** 图标 */
+    Icon: string;
+    /** 价格 */
+    Price: number;
+    /** 道具和技能可以合并 */
+    Func: SkillInfo;
+    /**道具类型 */
+    ToolType: enmToolType = enmToolType.StoreItem;
+}
+
+export class HiddenWeapon extends ToolInfo {
+    ToolType = enmToolType.HiddenWeapon;
+};
+
 export enum enmToolType {
     /**暗器 */
     HiddenWeapon,
@@ -290,5 +408,15 @@ export enum enmToolType {
     StoreItem,
     /**剧情道具 */
     Spacial
+}
+
+public static 佛怒唐莲(): ToolInfo {
+    let t = new ToolInfo();
+    t.ToolType = enmToolType.HiddenWeapon;
+    t.Name = "佛怒唐莲";
+    t.Icon = ResourceMgr.icon_attact;
+    t.Func = ToolSkillCreator.佛怒唐莲();
+    t.Price = 99999;
+    return t;
 }
 ```

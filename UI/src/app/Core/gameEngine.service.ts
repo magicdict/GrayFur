@@ -1,12 +1,10 @@
 import { Injectable } from "@angular/core";
-import { character, doubleSoul } from '../Modal/character';
+import { Character } from '../Modal/Character';
 import { DataStorage } from '../Lib/datastorage';
 import { CharacterCreatorMainRole } from '../Creator/CharacterCreatorMainRole';
-import { FightStatus } from './FightStatus';
+import { CharacterCreatorNPC } from '../Creator/CharacterCreatorNPC';
 import { ToolInfo } from '../Modal/ToolInfo';
 import { ToolCreator } from '../Creator/ToolCreator';
-import { SkillCreator } from '../Creator/SkillCreator';
-import { CharacterCreatorNPC } from '../Creator/CharacterCreatorNPC';
 import { BattleMgr } from './BattleMgr';
 import { BagMgr } from './BagMgr';
 import { SceneMgr } from './SceneMgr';
@@ -25,14 +23,14 @@ export class GameEngine {
         public skillMgr: SkillMgr,
         public forestMgr: ForestMgr
     ) {
-        /**初始化道具 */
-        this.InitTool();
+
     }
     IsDebugMode: boolean = true;
+
     /**道具列表 */
     StoreToolList: Array<ToolInfo>;
     /**初始化道具 */
-    public InitTool() {
+    public InitStoreTool() {
         this.StoreToolList = new Array<ToolInfo>();
         this.StoreToolList.push(ToolCreator.止血草());
         this.StoreToolList.push(ToolCreator.小烤肠());
@@ -42,26 +40,24 @@ export class GameEngine {
         this.StoreToolList.push(ToolCreator.阎王帖());
         this.StoreToolList.push(ToolCreator.佛怒唐莲());
     }
-
     getTool(name: string): ToolInfo {
         let t = this.StoreToolList.find(x => x.Name === name);
         return t;
     }
 
-    public 唐三: doubleSoul;
-    public 小舞: character;
-    public 戴沐白: character;
-    public 奥斯卡: character;
-    public 马红俊: character;
-    public 宁荣荣: character;
-    public 朱竹清: character;
-
-    public PictorialBook: Array<character> = new Array<character>();
-    public GetRoleByName(name: string): character {
+    public PictorialBook: Array<Character> = new Array<Character>();
+    public GetRoleByName(name: string): Character {
         if (name === undefined) return undefined;
         return this.PictorialBook.find(x => x.Name === name);
     }
 
+    public 唐三: Character;
+    public 小舞: Character;
+    public 戴沐白: Character;
+    public 奥斯卡: Character;
+    public 马红俊: Character;
+    public 宁荣荣: Character;
+    public 朱竹清: Character;
     public InitRole() {
         this.唐三 = CharacterCreatorMainRole.唐三();
         this.小舞 = CharacterCreatorMainRole.小舞();
@@ -70,7 +66,6 @@ export class GameEngine {
         this.马红俊 = CharacterCreatorMainRole.马红俊();
         this.宁荣荣 = CharacterCreatorMainRole.宁荣荣();
         this.朱竹清 = CharacterCreatorMainRole.朱竹清();
-
         this.localstorage.Save("唐三", this.唐三);
         this.localstorage.Save("小舞", this.小舞);
         this.localstorage.Save("戴沐白", this.戴沐白);
@@ -80,20 +75,23 @@ export class GameEngine {
         this.localstorage.Save("朱竹清", this.朱竹清);
     }
 
-    public 赵无极: character;
-    public 独孤雁: character;
-    public 独孤博: character;
-    public 比比东: doubleSoul;
-    public 叶泠泠: character;
 
-    public InitNPCAndSkillCustomExcute() {
+
+    public 赵无极: Character;
+    public 独孤雁: Character;
+    public 独孤博: Character;
+    public 比比东: Character;
+    public 叶泠泠: Character;
+
+    InitNPC() {
         this.赵无极 = CharacterCreatorNPC.赵无极();
-        this.赵无极.Factor = 0.6;
         this.独孤雁 = CharacterCreatorNPC.独孤雁();
         this.独孤博 = CharacterCreatorNPC.独孤博();
         this.比比东 = CharacterCreatorNPC.比比东();
         this.叶泠泠 = CharacterCreatorNPC.叶泠泠();
+    }
 
+    InitPictorialBook() {
         //图鉴准备
         this.PictorialBook.push(this.唐三);
         this.PictorialBook.push(this.小舞);
@@ -102,30 +100,20 @@ export class GameEngine {
         this.PictorialBook.push(this.马红俊);
         this.PictorialBook.push(this.宁荣荣);
         this.PictorialBook.push(this.朱竹清);
-
         this.PictorialBook.push(this.赵无极);
         this.PictorialBook.push(this.独孤雁);
         this.PictorialBook.push(this.独孤博);
         this.PictorialBook.push(this.比比东);
         this.PictorialBook.push(this.叶泠泠);
-
         this.PictorialBook.push(CharacterCreatorNPC.昆图库塔卡提考特苏瓦西拉松());
         this.PictorialBook.push(CharacterCreatorNPC.达拉崩巴斑得贝迪卜多比鲁翁());
+    }
 
-        this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎护身障"));
-        this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎烈光波"));
-        this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎金刚变"));
-        this.GetRoleByName("戴沐白").Skill.push(this.skillMgr.getSkillInfoByName("白虎流星雨"));
-
-        //无法序列化的魂技
-        this.GetRoleByName("马红俊").Skill.push(SkillCreator.凤凰火线());
-
-        //武魂融合技
-        let s = SkillCreator.幽冥白虎();
-        s.Combine.forEach(
-            c => {
-                this.GetRoleByName(c).Skill.push(s);
-            }
+    /**融合技 */
+    InitCombineSkill() {
+        this.skillMgr.InitSkillInfoList();
+        this.PictorialBook.forEach(
+            c => { c.CombineSkill = this.skillMgr.SearchCombineSkill(c.Name); }
         )
     }
 
@@ -137,13 +125,12 @@ export class GameEngine {
         this.bagMgr.changeTool([ToolCreator.止血草().Name, 5]);
         this.bagMgr.changeTool([ToolCreator.小烤肠().Name, 2]);
         this.bagMgr.changeTool([ToolCreator.观音泪().Name, 1]);
-        this.localstorage.Save("背包状态", this.bagMgr);
     }
 
     public InitMaze() {
         this.forestMgr.MazeInfoList.push(MapCreator.InitArea("Maze0001", "星斗大森林新手区入口(Maze0001)", MapCreator.BeginnerEntry));
         this.forestMgr.MazeInfoList.push(MapCreator.InitArea("Maze0002", "星斗大森林新手区入口(Maze0002)", MapCreator.BeginnerEntry2));
-        this.forestMgr.LoadCurrentStatus(["Maze0001",8,3]);
+        this.forestMgr.LoadCurrentStatus(["Maze0001", 8, 3]);
         this.forestMgr.CurrentRoleColIdx = MapCreator.RoleInitColIdx;
         this.forestMgr.CurrentRoleRowIdx = MapCreator.RoleInitRowIdx;
         let initCell = this.forestMgr.CurrentMazeInfo.MazeArray.getValue(this.forestMgr.CurrentRoleRowIdx, this.forestMgr.CurrentRoleColIdx);
@@ -153,33 +140,42 @@ export class GameEngine {
 
     /**新游戏 */
     public NewGame() {
-        if (!this.IsDebugMode) this.battlemgr.Load();
-        if (!this.IsDebugMode) this.scenemgr.Load();
-
-        //this.skillMgr.LogJson()
-        this.InitBag();
         this.InitRole();
-        this.InitNPCAndSkillCustomExcute();
-        this.InitMaze()
+        this.InitMaze();
+        this.InitBag();
+        this.SaveData();
+
+        this.InitStoreTool()
+        this.InitNPC();
+        this.InitPictorialBook();
+        this.InitCombineSkill();    //注意次序，任务列表做完之后才能做融合技处理 
     }
 
-    public Load() {
-        this.bagMgr = this.localstorage.Load<BagMgr>("游戏状态");
-        if (this.bagMgr === null) {
-            this.NewGame();
-        } else {
-            this.唐三 = this.localstorage.Load<doubleSoul>("唐三");
-            this.小舞 = this.localstorage.Load<character>("小舞");
-            this.戴沐白 = this.localstorage.Load<character>("戴沐白");
-            this.奥斯卡 = this.localstorage.Load<character>("奥斯卡");
-            this.马红俊 = this.localstorage.Load<character>("马红俊");
-            this.宁荣荣 = this.localstorage.Load<character>("宁荣荣");
-            this.朱竹清 = this.localstorage.Load<character>("朱竹清");
-            this.InitNPCAndSkillCustomExcute();
+    public LoadGame() {
+        this.LoadData();
+        if (this.唐三 === undefined) {
+            this.InitRole();
+            this.InitMaze();
+            this.InitBag();
         }
+        this.InitStoreTool()
+        this.InitNPC();
+        this.InitPictorialBook();
+        this.InitCombineSkill();    //注意次序，任务列表做完之后才能做融合技处理 
     }
+    public LoadData() {
+        this.唐三 = this.localstorage.Load<Character>("唐三");
+        this.小舞 = this.localstorage.Load<Character>("小舞");
+        this.戴沐白 = this.localstorage.Load<Character>("戴沐白");
+        this.奥斯卡 = this.localstorage.Load<Character>("奥斯卡");
+        this.马红俊 = this.localstorage.Load<Character>("马红俊");
+        this.宁荣荣 = this.localstorage.Load<Character>("宁荣荣");
+        this.朱竹清 = this.localstorage.Load<Character>("朱竹清");
+        this.bagMgr = this.localstorage.Load<BagMgr>("背包状态");
+        this.forestMgr = this.localstorage.Load("迷宫状态");
 
-    public Save() {
+    }
+    public SaveData() {
         //这里不保存NPC的状态
         this.localstorage.Save("唐三", this.唐三);
         this.localstorage.Save("小舞", this.小舞);
@@ -188,19 +184,7 @@ export class GameEngine {
         this.localstorage.Save("马红俊", this.马红俊);
         this.localstorage.Save("宁荣荣", this.宁荣荣);
         this.localstorage.Save("朱竹清", this.朱竹清);
-
         this.localstorage.Save("背包状态", this.bagMgr);
         this.localstorage.Save("迷宫状态", this.forestMgr);
-    }
-
-    public fightStatus: FightStatus;
-    public InitFightStatus() {
-        if (BattleMgr.fightname === BattleMgr.MonsterFightName){
-            this.fightStatus = new FightStatus(BattleMgr.MazeBattleInfo, this.PictorialBook);
-        }else{
-            let battleinfo = this.IsDebugMode ? BattleMgr.getBattleInfoByName_Debug(BattleMgr.fightname) :
-            this.battlemgr.getBattleInfoByName(BattleMgr.fightname);
-            this.fightStatus = new FightStatus(battleinfo, this.PictorialBook);
-        }
     }
 }

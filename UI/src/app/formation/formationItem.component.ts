@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { character, characterStatus } from '../Modal/character';
+import { Character, characterStatus } from '../Modal/Character';
 import { ResourceMgr } from '../Core/ResourceMgr';
 
 @Component({
@@ -9,9 +9,9 @@ import { ResourceMgr } from '../Core/ResourceMgr';
 export class FormationItemComponent implements OnInit {
     constructor() { }
 
-    @Input() Item: character;
+    @Input() Item: Character;
 
-    @Output() ItemClickedEmit: EventEmitter<character> = new EventEmitter();
+    @Output() ItemClickedEmit: EventEmitter<Character> = new EventEmitter();
 
     get StatusIcon(): Array<string> {
         if (this.Item.BufferList.length == 0) return undefined;

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { character } from '../Modal/character';
+import { Character } from '../Modal/Character';
 
 
 @Component({
@@ -9,21 +9,21 @@ import { character } from '../Modal/character';
 export class FormationComponent implements OnInit {
     constructor() { }
 
-    @Input() Fighterlist: character[];
+    @Input() Fighterlist: Character[];
 
     //Row1
-    R1C1: character = undefined;
-    R1C2: character = undefined;
-    R1C3: character = undefined;
-    R1C4: character = undefined;
+    R1C1: Character = undefined;
+    R1C2: Character = undefined;
+    R1C3: Character = undefined;
+    R1C4: Character = undefined;
     //Row2 
-    R2C1: character = undefined;
-    R2C2: character = undefined;
-    R2C3: character = undefined;
-    R2C4: character = undefined;
+    R2C1: Character = undefined;
+    R2C2: Character = undefined;
+    R2C3: Character = undefined;
+    R2C4: Character = undefined;
 
-    @Output() ItemClickedEmit: EventEmitter<character> = new EventEmitter();
-    ItemClicked(clickedItem: character) {
+    @Output() ItemClickedEmit: EventEmitter<Character> = new EventEmitter();
+    ItemClicked(clickedItem: Character) {
         this.ItemClickedEmit.emit(clickedItem);
     }
 

@@ -1,27 +1,21 @@
-import { character, Buffer } from './character';
+import { Character, Buffer } from './Character';
 import { FightStatus } from '../Core/FightStatus';
 
 /** 技能 */
 export abstract class SkillInfo {
     Name: string;
-    /**第N魂技 */
-    Order: number;
     SkillType: enmSkillType;
     Range: enmRange;
     Direct: enmDirect;
     Description: string;
-    Source: string;
     /**冷却回合数 */
     ColdDownTurn: number = 0;
     /**实时冷却剩余数 */
     CurrentColdDown = 0;
-    /**是否获得 */
-    IsMaster: boolean;
     /**是否能使用 */
     IsAvalible(fs: FightStatus): string {
         let c = fs.currentActionCharater;
         if (c.MP < this.MpUsage) return "MP不足";
-        if (!this.IsMaster) return "未掌握";
         if (this.CurrentColdDown !== 0) return "冷却中:" + this.CurrentColdDown;
         if (this.Combine !== undefined) {
             //武魂融合技
@@ -39,15 +33,12 @@ export abstract class SkillInfo {
     };
     /**效果随着等级变化 */
     EffectWithLevel = false;
-    get MpUsage(): number {
-        if (this.Order === undefined) return 0; //道具是不消耗魂力的
-        return Math.pow(2, this.Order);
-    }
+    MpUsage: number = 5;
     /**武魂融合技的融合者列表 */
-    Combine: string[];
-    abstract Excute(c: character, fs: FightStatus): void;
+    Combine: string[] = [];
+    abstract Excute(c: Character, fs: FightStatus): void;
     /**自定义执行方法 */
-    CustomeExcute(c: character, fs: FightStatus): boolean {
+    CustomeExcute(c: Character, fs: FightStatus): boolean {
         return false;
     }
     //攻击并中毒这样的两个效果叠加的技能
@@ -58,7 +49,7 @@ export class AttactSkillInfo extends SkillInfo {
     SkillType = enmSkillType.Attact;
     Harm: number;
     IgnoreceDefence: boolean;
-    Excute(c: character, fs: FightStatus) {
+    Excute(c: Character, fs: FightStatus) {
         //如果自定义方法被执行，则跳过后续代码
         if (this.CustomeExcute(c, fs)) return;
         let factor = 1 + fs.currentActionCharater.LV / 100;
@@ -74,7 +65,7 @@ export class HealSkillInfo extends SkillInfo {
     RecoverMP: number = 0;
     RecoverHPPercent: number = 0;
     RecoverMPPercent: number = 0;
-    Excute(c: character, fs: FightStatus) {
+    Excute(c: Character, fs: FightStatus) {
         if (this.CustomeExcute(c, fs)) return;
         if (fs.IsDebugMode) console.log("Before HP:" + c.HP + " MP:" + c.MP);
 
@@ -104,7 +95,7 @@ export class BufferStatusSkillInfo extends SkillInfo {
     Buffer: Buffer = new Buffer();
     /**Buffer强度是否和施法者等级挂钩？ */
 
-    Excute(c: character, fs: FightStatus) {
+    Excute(c: Character, fs: FightStatus) {
         if (this.CustomeExcute(c, fs)) return;
         //增加Buffer来源信息，相同的不叠加
         if (c.BufferList.find(x => x.Source === this.Name) !== undefined) return;

@@ -42,20 +42,30 @@ ver0.02 2020/03/30
         let EnemyTeamLive = this.Enemy.find(x => x !== undefined && x.HP > 0);
         if (EnemyTeamLive === undefined) {
             console.log("胜利");
-            this.MyTeam.forEach(element => { this.InitRole(element) });
-            this.ResultEvent.emit(1);
+            //这里需要还原MyTeam的队列
+            this.MyTeam = this.info.MyTeam.map(x => this.GetRoleByName(x));
+            this.MyTeam.forEach(element => {
+                if (element !== undefined) {
+                    element.Exp += this.Exp;
+                    this.InitRole(element)
+                }
+            });
+            this.ResultEvent.emit(this.Exp);
             return;
         }
+
         //气绝者去除
-        this.MyTeam = this.MyTeam.map(x => x !== undefined && x.HP > 0 ? x : undefined);
-        this.Enemy = this.Enemy.map(x => x !== undefined && x.HP > 0 ? x : undefined);
+        this.MyTeam = this.MyTeam.map(x => (x !== undefined && x.HP > 0) ? x : undefined);
+        this.Enemy = this.Enemy.map(x => (x !== undefined && x.HP > 0) ? x : undefined);
+        this.TurnList = this.TurnList.map(x => (x !== undefined && x.HP > 0) ? x : undefined);
+        this.TurnList = this.TurnList.filter(x => x !== undefined);
 
         if (this.TurnList.length == 0) {
             console.log("回合结束");
             this.NewTurn();
         } else {
             let Role = this.TurnList.pop();
-            let block = Role.BufferStatusList.find(x => x.Status === characterStatus.束缚);
+            let block = Role.StatusList.find(x => x === characterStatus.束缚 || x === characterStatus.晕眩);
 
             if (Role === undefined || block !== undefined) {
                 console.log(Role.Name + ":角色已经气绝,或者角色被束缚");
@@ -65,7 +75,7 @@ ver0.02 2020/03/30
                 this.currentActionCharater = Role;
                 if (!Role.IsMyTeam) {
                     //AI For Enemy
-                    RPGCore.EnemyAI(Role, this);
+                    this.EnemyAction.emit(RPGCore.EnemyAI(Role, this));
                     this.ActionDone();
                 }
             }

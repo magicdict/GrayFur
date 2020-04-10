@@ -1,12 +1,12 @@
 import { SkillInfo } from './SkillInfo';
-import { BoneSkillCreator } from '../Creator/BoneSkillCreator';
+import { BoneSkillCreator } from '../SkillCreator/BoneSkill';
 
 /**魂骨 */
 export class Bone {
     Name: string;
     Position: BonePosition;
-    FirstFunc: SkillInfo;
-    SecondFunc: SkillInfo;
+    FirstSkill: SkillInfo;
+    SecondSkill: SkillInfo;
     EvolutionName: string;
 }
 
@@ -32,8 +32,8 @@ export class BoneCreator {
         let e = new Bone();
         e.Name = "邪魔虎鲸王左腿骨";
         e.Position = BonePosition.左腿骨;
-        e.FirstFunc = BoneSkillCreator.虎鲸碎牙斩();
-        e.SecondFunc = BoneSkillCreator.虎鲸邪魔斧();
+        e.FirstSkill = BoneSkillCreator.虎鲸碎牙斩();
+        e.SecondSkill = BoneSkillCreator.虎鲸邪魔斧();
         return e;
     }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { character } from '../Modal/character';
+import { Character } from '../Modal/Character';
 import { GameEngine } from '../Core/gameEngine.service';
 import { SceneInfo, FightPrefix, SceneMgr } from '../Core/SceneMgr';
 import { BattleMgr } from '../Core/BattleMgr';
@@ -14,7 +14,7 @@ export class SceneComponent implements OnInit {
     private router: Router,
   ) { }
 
-  public c: character;
+  public c: Character;
 
   ngOnInit(): void {
     this.c = this.ge.唐三;
@@ -105,7 +105,7 @@ export class SceneComponent implements OnInit {
   Exit() {
     if (this.WaitForBranchPicker) return;
     console.log("jump to login")
-    this.ge.Save();
+    this.ge.SaveData();
     this.router.navigateByUrl("login");
   }
 }

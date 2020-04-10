@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../Core/gameEngine.service';
-import { character } from '../Modal/character';
+import { Character } from '../Modal/Character';
 import { SkillInfo, enmRange, enmDirect } from '../Modal/SkillInfo';
 import { RPGCore } from '../Core/RPGCore';
-import { SkillCreator } from '../Creator/SkillCreator';
+import { CircleSkillCreator } from '../SkillCreator/CircleSkill';
 import { ToastService } from '../toasts/toast-service';
 import { ResourceMgr } from '../Core/ResourceMgr';
 import { SceneMgr } from '../Core/SceneMgr';
 import { BagMgr } from '../Core/BagMgr';
 import { BattleMgr } from '../Core/BattleMgr';
 import { ForestMgr } from '../Core/ForestMgr';
+import { FightStatus } from '../Core/FightStatus';
 
 
 @Component({
@@ -21,11 +22,14 @@ export class FightComponent implements OnInit {
         private router: Router,
         public bagmgr: BagMgr,
         public toastService: ToastService
-    ) { }
+    ) { 
+        
+    }
 
     clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
+    fightStatus: FightStatus;
     iconMgr = ResourceMgr;
     Message: string = "进入战场";
     /**正在选择技能 */
@@ -38,14 +42,13 @@ export class FightComponent implements OnInit {
     FightResultTitle: string = "";
 
     ngOnInit(): void {
-
-        this.ge.InitFightStatus();
-        this.ge.fightStatus.EnemyAction.subscribe((x: string) => {
+        this.InitFightStatus();
+        this.fightStatus.EnemyAction.subscribe((x: string) => {
             console.log("Emit EnemyAction:" + x);
             this.toastService.show(x, { classname: 'bg-danger text-light', delay: 3000 });
         }, null, null);
 
-        this.ge.fightStatus.ResultEvent.subscribe((exp: number) => {
+        this.fightStatus.ResultEvent.subscribe((exp: number) => {
             if (exp === 0) {
                 this.FightResultTitle = "团灭了......魂力不足"
                 if (BattleMgr.fightname !== BattleMgr.MonsterFightName) SceneMgr.lineIdx--;
@@ -65,12 +68,22 @@ export class FightComponent implements OnInit {
                 setTimeout(() => { this.router.navigateByUrl("scene"); }, 1500);
             }
         }, null, null);
-        this.ge.fightStatus.NewTurn();
-        this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
+        this.fightStatus.NewTurn();
+        this.Message = this.fightStatus.currentActionCharater.Name + "的行动";
     }
 
+    InitFightStatus() {
+        if (BattleMgr.fightname === BattleMgr.MonsterFightName) {
+            this.fightStatus = new FightStatus(BattleMgr.MazeBattleInfo, this.ge.PictorialBook);
+        } else {
+            let battleinfo = this.ge.IsDebugMode ? BattleMgr.getBattleInfoByName_Debug(BattleMgr.fightname) :
+                this.ge.battlemgr.getBattleInfoByName(BattleMgr.fightname);
+            this.fightStatus = new FightStatus(battleinfo, this.ge.PictorialBook);
+        }
+    }
+    
     /**对象目标选择 */
-    ItemClicked(_pickedCharacter: character) { }
+    ItemClicked(_pickedCharacter: Character) { }
 
     get IsFuncAreaAvilible(): boolean {
         if (this.SkillPickStatus) return false;
@@ -85,11 +98,11 @@ export class FightComponent implements OnInit {
         if (!this.IsFuncAreaAvilible) return;
         console.log("普通攻击");
         this.Message = "请选择一个攻击目标";
-        this.ItemClicked = (clickedItem: character) => {
-            clickedItem.HP -= RPGCore.NornamAct(this.ge.fightStatus.currentActionCharater, clickedItem);
-            this.ge.fightStatus.ActionDone();
-            this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
-            this.ItemClicked = (_clickedItem: character) => { }
+        this.ItemClicked = (clickedItem: Character) => {
+            clickedItem.HP -= RPGCore.NornamAct(this.fightStatus.currentActionCharater, clickedItem);
+            this.fightStatus.ActionDone();
+            this.Message = this.fightStatus.currentActionCharater.Name + "的行动";
+            this.ItemClicked = (_clickedItem: Character) => { }
         }
     }
 
@@ -104,14 +117,14 @@ export class FightComponent implements OnInit {
         console.log("发动魂技:" + Skill.Name);
         console.log("Range:" + Skill.Range);
         console.log("Direct:" + Skill.Direct);
-        this.ge.fightStatus.currentActionCharater.MP -= Skill.MpUsage;
+        this.fightStatus.currentActionCharater.MP -= Skill.MpUsage;
         Skill.CurrentColdDown = Skill.ColdDownTurn + 1; //本轮结束会自动减1，所以这里额外加1
         this.SkillPickStatus = false;
         //武魂融合技
         if (Skill.Combine !== undefined) {
             Skill.Combine.forEach(
                 c => {
-                    this.ge.fightStatus.TurnList = this.ge.fightStatus.TurnList.map(x => x.Name === c ? undefined : x);
+                    this.fightStatus.TurnList = this.fightStatus.TurnList.map(x => x.Name === c ? undefined : x);
                 }
             )
         }
@@ -120,9 +133,9 @@ export class FightComponent implements OnInit {
         switch (Skill.Range) {
             case enmRange.Self:
                 //对自己使用的技能
-                Skill.Excute(this.ge.fightStatus.currentActionCharater, this.ge.fightStatus);
-                this.ge.fightStatus.ActionDone();
-                this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
+                Skill.Excute(this.fightStatus.currentActionCharater, this.fightStatus);
+                this.fightStatus.ActionDone();
+                this.Message = this.fightStatus.currentActionCharater.Name + "的行动";
                 break;
             case enmRange.PickOne:
                 this.SkillRolePickStatus = true;
@@ -130,38 +143,38 @@ export class FightComponent implements OnInit {
                     case enmDirect.Enemy:
                         //敌人全体
                         this.Message = "请选择一个敌人";
-                        this.ItemClicked = (clickedItem: character) => {
+                        this.ItemClicked = (clickedItem: Character) => {
                             if (!clickedItem.IsMyTeam) {
-                                Skill.Excute(clickedItem, this.ge.fightStatus);
+                                Skill.Excute(clickedItem, this.fightStatus);
                                 this.SkillRolePickStatus = false;
-                                this.ge.fightStatus.ActionDone();
-                                this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
-                                this.ItemClicked = (_clickedItem: character) => { }
+                                this.fightStatus.ActionDone();
+                                this.Message = this.fightStatus.currentActionCharater.Name + "的行动";
+                                this.ItemClicked = (_clickedItem: Character) => { }
                             }
                         }
                         break;
                     case enmDirect.MyTeam:
                         //我军全体
                         this.Message = "请选择一个队友";
-                        this.ItemClicked = (clickedItem: character) => {
+                        this.ItemClicked = (clickedItem: Character) => {
                             if (clickedItem.IsMyTeam) {
-                                Skill.Excute(clickedItem, this.ge.fightStatus);
+                                Skill.Excute(clickedItem, this.fightStatus);
                                 this.SkillRolePickStatus = false;
-                                this.ge.fightStatus.ActionDone();
-                                this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
-                                this.ItemClicked = (_clickedItem: character) => { }
+                                this.fightStatus.ActionDone();
+                                this.Message = this.fightStatus.currentActionCharater.Name + "的行动";
+                                this.ItemClicked = (_clickedItem: Character) => { }
                             }
                         }
                         break;
                     default:
                         //战场全体
                         this.Message = "请选择任意选择一人";
-                        this.ItemClicked = (clickedItem: character) => {
-                            Skill.Excute(clickedItem, this.ge.fightStatus);
+                        this.ItemClicked = (clickedItem: Character) => {
+                            Skill.Excute(clickedItem, this.fightStatus);
                             this.SkillRolePickStatus = false;
-                            this.ge.fightStatus.ActionDone();
-                            this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
-                            this.ItemClicked = (_clickedItem: character) => { }
+                            this.fightStatus.ActionDone();
+                            this.Message = this.fightStatus.currentActionCharater.Name + "的行动";
+                            this.ItemClicked = (_clickedItem: Character) => { }
                         }
                         break;
                 }
@@ -171,28 +184,28 @@ export class FightComponent implements OnInit {
                 switch (Skill.Direct) {
                     case enmDirect.Enemy:
                         //敌人全体
-                        this.ge.fightStatus.Enemy.forEach(element => {
-                            if (element !== undefined) Skill.Excute(element, this.ge.fightStatus);
+                        this.fightStatus.Enemy.forEach(element => {
+                            if (element !== undefined) Skill.Excute(element, this.fightStatus);
                         });
                         break;
                     case enmDirect.MyTeam:
                         //我军全体
-                        this.ge.fightStatus.MyTeam.forEach(element => {
-                            if (element !== undefined) Skill.Excute(element, this.ge.fightStatus);
+                        this.fightStatus.MyTeam.forEach(element => {
+                            if (element !== undefined) Skill.Excute(element, this.fightStatus);
                         });
                         break;
                     default:
                         //战场全体
-                        this.ge.fightStatus.MyTeam.forEach(element => {
-                            if (element !== undefined) Skill.Excute(element, this.ge.fightStatus);
+                        this.fightStatus.MyTeam.forEach(element => {
+                            if (element !== undefined) Skill.Excute(element, this.fightStatus);
                         });
-                        this.ge.fightStatus.Enemy.forEach(element => {
-                            if (element !== undefined) Skill.Excute(element, this.ge.fightStatus);
+                        this.fightStatus.Enemy.forEach(element => {
+                            if (element !== undefined) Skill.Excute(element, this.fightStatus);
                         });
                         break;
                 }
-                this.ge.fightStatus.ActionDone();
-                this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
+                this.fightStatus.ActionDone();
+                this.Message = this.fightStatus.currentActionCharater.Name + "的行动";
                 break;
             default:
                 break;
@@ -200,7 +213,7 @@ export class FightComponent implements OnInit {
     }
 
     ReturnFormSkillPicker() {
-        this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
+        this.Message = this.fightStatus.currentActionCharater.Name + "的行动";
         this.SkillPickStatus = false;
     }
 
@@ -217,15 +230,15 @@ export class FightComponent implements OnInit {
         this.ge.bagMgr.changeTool([t.Name, -1]);
     }
     ReturnFormToolPicker() {
-        this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
+        this.Message = this.fightStatus.currentActionCharater.Name + "的行动";
         this.ToolPickStatus = false;
     }
 
     //防御
     Defence() {
         if (!this.IsFuncAreaAvilible) return;
-        this.ExcuteSkill(SkillCreator.防御());   //ExcuteSkill已经包含了ActionDone！
-        this.Message = this.ge.fightStatus.currentActionCharater.Name + "的行动";
+        this.ExcuteSkill(CircleSkillCreator.防御());   //ExcuteSkill已经包含了ActionDone！
+        this.Message = this.fightStatus.currentActionCharater.Name + "的行动";
     }
 
     //测试用:模拟胜利

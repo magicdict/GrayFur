@@ -1,12 +1,29 @@
 import { SkillInfo } from './SkillInfo';
 import { Bone } from './Bone';
 import { Field } from './Field';
+import { Circle } from './Circle';
 
-export class character {
+export class Character {
     /**姓名 */
     Name: string;
     /**等级 */
     LV: number;
+    /**称号 */
+    get Grade(): string {
+        if (this.LV <= 9) return "魂士";
+        if (this.LV <= 19) return "魂师";
+        if (this.LV <= 29) return "大魂师";
+        if (this.LV <= 39) return "魂尊";
+        if (this.LV <= 49) return "魂宗";
+        if (this.LV <= 59) return "魂王";
+        if (this.LV <= 69) return "魂帝";
+        if (this.LV <= 79) return "魂圣";
+        if (this.LV <= 89) return "魂斗罗";
+        if (this.LV <= 94) return "封号斗罗";
+        if (this.LV <= 98) return "超级斗罗";
+        if (this.LV == 99) return "极限斗罗";
+        if (this.LV == 100) return "成神";
+    }
     /**当前经验值 */
     Exp: number = 0;
     /**等级 */
@@ -37,6 +54,23 @@ export class character {
     Factor: number = 1;
     /**成长速度因子 */
     GrowthFactor: number = 1;
+
+    /**团队角色 */
+    TeamPosition: enmTeamPosition = enmTeamPosition.辅助系;
+
+    get strTeamPosition(): string {
+        switch (this.TeamPosition) {
+            case enmTeamPosition.强攻系:
+                return "强攻系"
+            case enmTeamPosition.控制系:
+                return "控制系"
+            case enmTeamPosition.敏攻系:
+                return "敏攻系"
+            case enmTeamPosition.辅助系:
+                return "辅助系"
+        }
+    }
+
     /**速度成长值 */
     get SpeedUpPerLv(): number {
         switch (this.TeamPosition) {
@@ -186,57 +220,59 @@ export class character {
     Description: string;
     /**武魂 */
     Soul: string;
+    /**魂环 */
+    Circles: Circle[];
+    //第二武魂
+    SecondSoul: string;
+    //第二魂环
+    SecondCircles: Circle[];
+
     /**魂骨 */
     Bones: Bone[] = [];
     /**领域技能 */
     Fields: Field[] = [];
 
-    /**团队角色 */
-    TeamPosition: enmTeamPosition = enmTeamPosition.辅助系;
-
-    get strTeamPosition(): string {
-        switch (this.TeamPosition) {
-            case enmTeamPosition.强攻系:
-                return "强攻系"
-            case enmTeamPosition.控制系:
-                return "控制系"
-            case enmTeamPosition.敏攻系:
-                return "敏攻系"
-            case enmTeamPosition.辅助系:
-                return "辅助系"
-        }
-    }
-
-    /**魂技名称 */
-    SkillName: string[];
-    /**魂技 */
-    Skill: SkillInfo[];
-
-    get BoneSkill(): SkillInfo[] {
+    get CircleSkill(): SkillInfo[] {
         let sl: SkillInfo[] = [];
-        this.Bones.forEach(
+        if (this.Circles === undefined) return sl;
+        this.Circles.forEach(
             b => {
-                if (b.FirstFunc !== undefined) sl.push(b.FirstFunc);
-                if (b.SecondFunc !== undefined) sl.push(b.SecondFunc);
+                if (b.FirstSkill !== undefined) sl.push(b.FirstSkill);
+                if (b.SecondSkill !== undefined) sl.push(b.SecondSkill);
             }
         );
         return sl;
     }
 
-    get Grade(): string {
-        if (this.LV <= 9) return "魂士";
-        if (this.LV <= 19) return "魂师";
-        if (this.LV <= 29) return "大魂师";
-        if (this.LV <= 39) return "魂尊";
-        if (this.LV <= 49) return "魂宗";
-        if (this.LV <= 59) return "魂王";
-        if (this.LV <= 69) return "魂帝";
-        if (this.LV <= 79) return "魂圣";
-        if (this.LV <= 89) return "魂斗罗";
-        if (this.LV <= 94) return "封号斗罗";
-        if (this.LV <= 98) return "超级斗罗";
-        if (this.LV == 99) return "极限斗罗";
-        if (this.LV == 100) return "成神";
+    get SecondCircleSkill(): SkillInfo[] {
+        let sl: SkillInfo[] = [];
+        if (this.SecondCircles === undefined) return sl;
+        this.SecondCircles.forEach(
+            b => {
+                if (b.FirstSkill !== undefined) sl.push(b.FirstSkill);
+                if (b.SecondSkill !== undefined) sl.push(b.SecondSkill);
+            }
+        );
+        return sl;
+    }
+
+    /**魂骨魂技列表 */
+    get BoneSkill(): SkillInfo[] {
+        let sl: SkillInfo[] = [];
+        this.Bones.forEach(
+            b => {
+                if (b.FirstSkill !== undefined) sl.push(b.FirstSkill);
+                if (b.SecondSkill !== undefined) sl.push(b.SecondSkill);
+            }
+        );
+        return sl;
+    }
+
+    /**武魂融合技 */
+    CombineSkill: SkillInfo[] = [];
+
+    get Skill(): SkillInfo[] {
+        return this.CircleSkill.concat(this.SecondCircleSkill).concat(this.BoneSkill).concat(this.CombineSkill);
     }
 
     /**增益 */
@@ -349,10 +385,5 @@ export enum characterStatus {
     飞行
 }
 
-export class doubleSoul extends character {
-    SecondSoul: string; //第二武魂
-    SecondSkillName: string[]; //第二武魂魂技
-    /**魂技 */
-    SecondSkill: SkillInfo[];
-}
+
 

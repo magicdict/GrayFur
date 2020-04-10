@@ -1,17 +1,17 @@
-import { character, enmTeamPosition } from '../Modal/character';
+import { Character, enmTeamPosition } from '../Modal/Character';
 import { FightStatus } from './FightStatus';
 import { SkillInfo, enmDirect, enmRange } from '../Modal/SkillInfo';
 
 export class RPGCore {
     //以下是伤害计算的核心公式
-    public static NornamAct(Act: character, BeAct: character): number {
+    public static NornamAct(Act: Character, BeAct: Character): number {
         var HarmPoint = Math.round(Act.RealTimeAct - BeAct.RealTimeDef);
         if (HarmPoint < 0) HarmPoint = 5;   //命中时候的最低消费
         return HarmPoint;
     }
 
     //敌方人工智能
-    public static EnemyAI(c: character, status: FightStatus): string {
+    public static EnemyAI(c: Character, status: FightStatus): string {
         console.log("敌方人工智能:" + c.Name);
         //可以使用技能列表
         let EnableSkill = c.Skill.filter(x => x.MpUsage <= c.MP && x.CurrentColdDown === 0);
@@ -46,9 +46,7 @@ export class RPGCore {
         }
     }
 
-    public static EnemyAI_强攻系(c: character): boolean {
-        let EnableSkill = c.Skill.filter(x => x.MpUsage <= c.MP);
-
+    public static EnemyAI_强攻系(c: Character): boolean {
         return false;
     }
     public static EnemyAI_敏攻系(): boolean {
@@ -112,7 +110,7 @@ export class RPGCore {
                         return status.currentActionCharater.Name + "对我双方使用了技能：" + skill.Name;;
                 }
             case enmRange.PickOne:
-                var c: character;
+                var c: Character;
                 switch (skill.Direct) {
                     case enmDirect.All:
                         break;

@@ -72,8 +72,10 @@ export const Scene0001: SceneInfo = {
         "唐门长老@等一下。",
         "唐门唐三@(云雾很浓，带着阵阵湿气，带走了阳光，也带走了那将一生贡献给了唐门和暗器的唐三。)",
     ],
-    Branch: [["赵无极试炼", "Scene0011"],
-    ["打蜡蹦吧试炼", "Scene0012"]]
+    Branch: [
+        ["赵无极试炼", "Scene0011"],
+        ["达拉崩巴试炼", "Scene0012"]
+    ]
 };
 
 export const Scene0011: SceneInfo = {

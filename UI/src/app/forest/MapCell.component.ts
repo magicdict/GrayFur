@@ -19,7 +19,11 @@ export class MapCellComponent {
         }
         if (this.Item.IsVisiable) {
             if (this.Item.MapType === enmMapType.Empty) {
-                return ResourceMgr.img_land;
+                if (this.Item.IsVisited) {
+                    return ResourceMgr.img_land_visited;
+                } else {
+                    return ResourceMgr.img_land_unvisited;
+                }
             }
             if (this.Item.MapType === enmMapType.Tree) {
                 return ResourceMgr.img_tree;
@@ -36,14 +40,14 @@ export class MapCellComponent {
             }
             if (this.Item.MapType === enmMapType.Monster) {
                 if (this.Item.IsVisited) {
-                    return ResourceMgr.img_land;
+                    return ResourceMgr.img_land_visited;
                 } else {
                     return "assets/character/" + this.Item.MonsterName + "/头像.jpg"
                 }
             }
             if (this.Item.MapType === enmMapType.GoldCoin) {
                 if (this.Item.IsVisited) {
-                    return ResourceMgr.img_land;
+                    return ResourceMgr.img_land_visited;
                 } else {
                     return ResourceMgr.icon_coin;
                 }

@@ -20,6 +20,7 @@ export class ResourceMgr{
     public static icon_box_transfer = "assets/Icons/S_Magic02.png"; 
 
     public static img_tree = "assets/Image/tree.jpg";
-    public static img_land = "assets/Image/land.jpg";
+    public static img_land_unvisited = "assets/Image/dark_land.jpg";
+    public static img_land_visited = "assets/Image/land.jpg";
     public static img_question = "assets/Image/question.jpg";
  }

@@ -1,13 +1,13 @@
-<div [ngStyle]="{'height':clientHeight + 'px','width':clientWidth + 'px','background-image': 'url(/assets/scene/' + this.ge.fightStatus.info.Background + '.jpg)'}"
+<div [ngStyle]="{'height':clientHeight + 'px','width':clientWidth + 'px','background-image': 'url(/assets/scene/' + this.fightStatus.info.Background + '.jpg)'}"
     style="position:relative;background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100% 100%;">
     <h6 style="color: aliceblue;background-color: coral; width: 100%;">
-        {{this.ge.fightStatus.info.Title + ":" + this.ge.fightStatus.TurnCnt}}</h6>
+        {{this.fightStatus.info.Title + ":" + this.fightStatus.TurnCnt}}</h6>
     <br />
-    <app-formation [Fighterlist]="this.ge.fightStatus.Enemy" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
+    <app-formation [Fighterlist]="this.fightStatus.Enemy" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
     <hr style="border: blueviolet dashed 1px;margin: 5px;" />
-    <app-formation [Fighterlist]="this.ge.fightStatus.MyTeam" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
+    <app-formation [Fighterlist]="this.fightStatus.MyTeam" (ItemClickedEmit)="ItemClicked($event)"></app-formation>
 
     <div class="container" *ngIf="FightEnd"
         style="position: absolute;z-index: 1000; bottom: 300px;width: 100%;height: 100px;background-color: lightyellow;opacity: 0.7;">
@@ -31,14 +31,14 @@
             </thead>
             <tbody style="height: 100%;">
                 <tr style="width: 100%;padding: 0;"
-                    *ngFor="let skill of this.ge.fightStatus.currentActionCharater.Skill.concat(this.ge.fightStatus.currentActionCharater.BoneSkill)">
+                    *ngFor="let skill of this.fightStatus.currentActionCharater.Skill">
                     <td style="width: 60px;">{{skill.Name}}</td>
                     <td style="text-align: left;">{{skill.Description}}</td>
                     <td style="width: 50px;">{{skill.MpUsage}}</td>
                     <td style="width: 80px;">
                         <button class="btn btn-sm btn-primary"
-                            [disabled]=" skill.IsAvalible(this.ge.fightStatus) !== ''" (click)="ExcuteSkill(skill)">
-                            {{ skill.IsAvalible(this.ge.fightStatus) === ""?"发动": skill.IsAvalible(this.ge.fightStatus) }}
+                            [disabled]=" skill.IsAvalible(this.fightStatus) !== ''" (click)="ExcuteSkill(skill)">
+                            {{ skill.IsAvalible(this.fightStatus) === ""?"发动": skill.IsAvalible(this.fightStatus) }}
                         </button>
                     </td>
                 </tr>
@@ -73,7 +73,7 @@
         style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 100px;background-color: dodgerblue;opacity: 1;">
         <div class="row">
             <div class="col-4" style="padding:0px;">
-                <img [src]="'/assets/character/' + this.ge.fightStatus.currentActionCharater.Name + '/头像.jpg'"
+                <img [src]="'/assets/character/' + this.fightStatus.currentActionCharater.Name + '/头像.jpg'"
                     height="100px" width="100px" />
             </div>
             <div class="col-5" style="padding:0px">
@@ -103,17 +103,17 @@
             </div>
             <div class="col-3" style="padding:0px;">
                 <img [src]="this.iconMgr.icon_hp" width="16px"
-                    height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.HP}} /
-                {{this.ge.fightStatus.currentActionCharater.RealMaxHP}} <br />
+                    height="16px" />&nbsp;{{this.fightStatus.currentActionCharater.HP}} /
+                {{this.fightStatus.currentActionCharater.RealMaxHP}} <br />
                 <img [src]="this.iconMgr.icon_skill" width="16px"
-                    height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.MP}} /
-                {{this.ge.fightStatus.currentActionCharater.RealMaxMP}} <br />
+                    height="16px" />&nbsp;{{this.fightStatus.currentActionCharater.MP}} /
+                {{this.fightStatus.currentActionCharater.RealMaxMP}} <br />
                 <img [src]="this.iconMgr.icon_attact" width="16px"
-                    height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeAct}} <br />
+                    height="16px" />&nbsp;{{this.fightStatus.currentActionCharater.RealTimeAct}} <br />
                 <img [src]="this.iconMgr.icon_defence" width="16px"
-                    height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealTimeDef}} <br />
+                    height="16px" />&nbsp;{{this.fightStatus.currentActionCharater.RealTimeDef}} <br />
                 <img [src]="this.iconMgr.icon_speed" width="16px"
-                    height="16px" />&nbsp;{{this.ge.fightStatus.currentActionCharater.RealSpeed}} <br />
+                    height="16px" />&nbsp;{{this.fightStatus.currentActionCharater.RealSpeed}} <br />
             </div>
         </div>
     </div>

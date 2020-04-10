@@ -7,65 +7,65 @@
     </div>
     <div class="row">
         <div class="col-4">
-            <img [src]="'/assets/character/' + c.Name + '/图鉴.jpg'" height="150px" width="100px" />
+            <img [src]="'/assets/character/' + character.Name + '/图鉴.jpg'" height="150px" width="100px" />
         </div>
         <div class="col-8">
             <div class="row">
-                <h2>{{c.Name}}</h2>
+                <h2>{{character.Name}}</h2>
             </div>
             <div class="row">
                 <div class="col-6">
-                    生命:{{ c.RealMaxHP }}
+                    生命:{{ character.RealMaxHP }}
                 </div>
                 <div class="col-6">
-                    魂力:{{ c.RealMaxMP }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    等级:{{c.LV}}({{c.Grade}})
-                </div>
-                <div class="col-6">
-                    定位:{{c.strTeamPosition}}
+                    魂力:{{ character.RealMaxMP }}
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
-                    攻击:{{c.RealTimeAct}}
+                    等级:{{character.LV}}({{character.Grade}})
                 </div>
                 <div class="col-6">
-                    防御:{{c.RealTimeDef}}
+                    定位:{{character.strTeamPosition}}
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
-                    速度:{{c.RealSpeed}}
+                    攻击:{{character.RealTimeAct}}
                 </div>
                 <div class="col-6">
-                    经验值：{{c.Exp}}({{c.NextNeedExp}})
+                    防御:{{character.RealTimeDef}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    速度:{{character.RealSpeed}}
+                </div>
+                <div class="col-6">
+                    经验值：{{character.Exp}}({{character.NextNeedExp}})
                 </div>
             </div>
             <br />
-            {{c.Description}}
+            {{character.Description}}
         </div>
     </div>
 
     <hr />
 
     <div *ngIf="PageIdx === 1" style="margin-left: 10px;">
-        武魂:{{c.Soul}}<br />
+        武魂:{{character.Soul}}<br />
         <ul>
-            <li *ngFor="let skill of c.SkillName">
-                {{ skill }}
+            <li *ngFor="let c of character.Circles">
+                {{ c.FirstSkill.Name + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) }}
             </li>
         </ul>
     </div>
 
     <div *ngIf="PageIdx === 2" style="margin-left: 10px;">
-        双生武魂:{{d.SecondSoul}}<br />
+        双生武魂:{{character.SecondSoul}}<br />
         <ul>
-            <li *ngFor="let skill of d.SecondSkillName">
-                {{ skill }}
+            <li *ngFor="let c of character.SecondCircles">
+                {{ c.FirstSkill.Name + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) }}
             </li>
         </ul>
     </div>
@@ -73,10 +73,10 @@
     <div *ngIf="PageIdx === 3" style="margin-left: 10px;">
         魂骨<br />
         <ul>
-            <li *ngFor="let bone of c.Bones">
+            <li *ngFor="let bone of character.Bones">
                 {{ bone.Name }}
-                {{(bone.FirstFunc !== undefined?  "魂技：" + bone.FirstFunc.Name:"")}}
-                {{(bone.SecondFunc !== undefined? "魂技：" + bone.SecondFunc.Name:"")}}
+                {{(bone.FirstSkill !== undefined?  "魂技：" + bone.FirstSkill.Name:"")}}
+                {{(bone.SecondSkill !== undefined? " / " + bone.SecondSkill.Name:"")}}
             </li>
         </ul>
     </div>
@@ -84,21 +84,22 @@
     <div *ngIf="PageIdx === 4" style="margin-left: 10px;">
         领域<br />
         <ul>
-            <li *ngFor="let field of c.Fields">
+            <li *ngFor="let field of character.Fields">
                 {{ field.Name }}
             </li>
         </ul>
     </div>
 
     <div style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 50px;">
-        <button *ngIf="c.Fields.length > 0" type="button" class="btn btn-lg btn-primary"
+        <button *ngIf="character.Fields.length > 0" type="button" class="btn btn-lg btn-primary"
             style="float: right;margin: 0px;" (click)="PageIdx = 4;"><img [src]="this.iconMgr.icon_field" width="16px"
                 height="16px" />领域</button>
-        <button *ngIf="c.Bones.length > 0" type="button" class="btn btn-lg btn-primary"
+        <button *ngIf="character.Bones.length > 0" type="button" class="btn btn-lg btn-primary"
             style="float: right;margin: 0px;" (click)="PageIdx = 3;"><img [src]="this.iconMgr.icon_bone" width="16px"
                 height="16px" />魂骨</button>
-        <button *ngIf="d !== undefined" type="button" class="btn btn-lg btn-primary" style="float: right;margin: 0px;"
-            (click)="PageIdx = 2;"><img [src]="this.iconMgr.icon_skill2" width="16px" height="16px" />双生武魂</button>
+        <button *ngIf="character.SecondCircles !== undefined" type="button" class="btn btn-lg btn-primary"
+            style="float: right;margin: 0px;" (click)="PageIdx = 2;"><img [src]="this.iconMgr.icon_skill2" width="16px"
+                height="16px" />双生武魂</button>
         <button type="button" class="btn btn-lg btn-primary" style="float: right;margin: 0px;"
             (click)="PageIdx = 1;"><img [src]="this.iconMgr.icon_skill" width="16px" height="16px" />武魂</button>
     </div>

@@ -27,6 +27,14 @@ export class ForestComponent {
 
     CellClicker(value: MapCellComponent) {
         //无法穿越树林
+        if (value.Item.IsVisited) {
+            //访问过的地方瞬移
+            this.forestMgr.CurrentMazeInfo.MazeArray.getValue(this.forestMgr.CurrentRoleRowIdx, this.forestMgr.CurrentRoleColIdx).IsRolePosition = false;
+            value.Item.IsRolePosition = true;
+            this.forestMgr.CurrentRoleRowIdx = value.RowIdx;
+            this.forestMgr.CurrentRoleColIdx = value.ColIdx;
+            return;
+        }
         if (value.Item.MapType === enmMapType.Tree) return;
         if (Math.abs(this.forestMgr.CurrentRoleRowIdx - value.RowIdx) + Math.abs(this.forestMgr.CurrentRoleColIdx - value.ColIdx) !== 1) return;
         if (!value.Item.IsVisited && value.Item.MapType === enmMapType.Monster) {

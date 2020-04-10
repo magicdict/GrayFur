@@ -1,0 +1,353 @@
+{
+    "Exp": 0,
+    "BaseMaxHP": 100,
+    "BaseMaxMP": 20,
+    "BaseAct": 10,
+    "BaseDef": 10,
+    "BaseSpeed": 10,
+    "Factor": 1,
+    "GrowthFactor": 1.5,
+    "DefStatusPlus": 0.5,
+    "Bones": [
+        {
+            "Name": "外附魂骨八蛛矛",
+            "EvolutionName": "海神八翼",
+            "Position": 6
+        },
+        {
+            "Name": "天青牛蟒右臂骨",
+            "Position": 2
+        },
+        {
+            "Name": "泰坦巨猿左臂骨",
+            "Position": 1
+        },
+        {
+            "Name": "深海魔鲸王的躯干骨",
+            "Position": 5
+        },
+        {
+            "Name": "精神凝聚之智慧头骨",
+            "Position": 0
+        },
+        {
+            "Name": "蓝银皇右腿骨",
+            "Position": 4
+        },
+        {
+            "Name": "邪魔虎鲸王左腿骨",
+            "Position": 3,
+            "FirstFunc": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "虎鲸碎牙斩",
+                "Description": "群攻技能",
+                "Order": 9,
+                "Direct": 1,
+                "Range": 5,
+                "Harm": 2000,
+                "Source": "邪魔虎鲸王左腿骨",
+                "IsMaster": true
+            },
+            "SecondFunc": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "虎鲸邪魔斧",
+                "Description": "完全作用于攻击，凝全身功力于左腿，经魂骨增幅，化为薄如蝉翼的战斧利刃，直线型单体攻击",
+                "Order": 9,
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 5000,
+                "Source": "邪魔虎鲸王左腿骨",
+                "IsMaster": true
+            }
+        }
+    ],
+    "Fields": [
+        {
+            "Name": "蓝银领域",
+            "Descirption": "与外界蓝银草产生共鸣，短时间内把领域里的蓝银草变成蓝银皇为自己所用，大幅度提升战斗力，隔绝一定不良状态，控制领域范围内的所有蓝银草使用技能以领域为媒，在领域范围内可配合精神力探查周围的信息。"
+        },
+        {
+            "Name": "海神领域",
+            "Descirption": "传承海神获得，通过凝聚海神领域来获得大海的力量，补充自己的魂力。"
+        },
+        {
+            "Name": "杀神领域",
+            "Descirption": "增加气势，削弱对方实力，杀气形成的气势和压力往往能够让你的对手无法发挥出全部实力，而你自己却可以发挥到百分之一百二的程度，可增幅他人。"
+        },
+        {
+            "Name": "修罗领域",
+            "Descirption": "修罗神状态下使用，杀神领域的神级进化，但已经不再是杀神领域，而是全新的领域，修罗神的领域：修罗领域。"
+        }
+    ],
+    "TeamPosition": 2,
+    "Name": "唐三",
+    "BufferList": [],
+    "LV": 29,
+    "Soul": "蓝银皇",
+    "SecondSoul": "昊天锤",
+    "Description": "唐三前世为巴蜀唐门外门子弟，来到斗罗大陆后与伙伴们一起在异界大陆重新建立了唐门。",
+    "SkillName": [
+        "缠绕",
+        "寄生",
+        "蛛网束缚",
+        "蓝银囚笼/蓝银突刺阵",
+        "蓝银霸皇枪",
+        "虚无状态/暴杀八段摔",
+        "蓝银真身",
+        "蓝银虎鲸镜之灭/蓝银虎鲸魔之摄",
+        "蓝银天青龙之魂",
+        "海神神环"
+    ],
+    "Circles": [
+        {
+            "year": 1,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "缠绕",
+                "Description": "单体限制，使用蓝银皇缠住敌人",
+                "Order": 1,
+                "Direct": 1,
+                "Range": 1,
+                "Source": "曼陀罗蛇"
+            },
+            "Monster": "曼陀罗蛇"
+        },
+        {
+            "year": 1,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "寄生",
+                "Description": "单体限制，蓝银皇在敌人体内留下的种子萌发",
+                "Order": 2,
+                "Direct": 1,
+                "Range": 1,
+                "Source": "鬼藤"
+            },
+            "Monster": "鬼藤"
+        },
+        {
+            "year": 1,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "蛛网束缚(单体)",
+                "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+                "Order": 3,
+                "Direct": 1,
+                "Range": 1,
+                "Source": "人面魔蛛"
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 3,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        9
+                    ]
+                },
+                "Name": "蛛网束缚(群体)",
+                "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+                "Order": 3,
+                "Direct": 1,
+                "Range": 5,
+                "Source": "人面魔蛛"
+            },
+            "Monster": "人面魔蛛"
+        }
+    ],
+    "Skill": [
+        {
+            "ColdDownTurn": 0,
+            "CurrentColdDown": 0,
+            "EffectWithLevel": false,
+            "SkillType": 2,
+            "Buffer": {
+                "Turns": 1,
+                "Status": [
+                    9
+                ]
+            },
+            "Name": "缠绕",
+            "Description": "单体限制，使用蓝银皇缠住敌人",
+            "Order": 1,
+            "Direct": 1,
+            "Range": 1,
+            "Source": "曼陀罗蛇"
+        },
+        {
+            "ColdDownTurn": 0,
+            "CurrentColdDown": 0,
+            "EffectWithLevel": false,
+            "SkillType": 2,
+            "Buffer": {
+                "Turns": 3,
+                "Status": [
+                    9
+                ]
+            },
+            "Name": "寄生",
+            "Description": "单体限制，蓝银皇在敌人体内留下的种子萌发",
+            "Order": 2,
+            "Direct": 1,
+            "Range": 1,
+            "Source": "鬼藤"
+        },
+        {
+            "ColdDownTurn": 0,
+            "CurrentColdDown": 0,
+            "EffectWithLevel": false,
+            "SkillType": 2,
+            "Buffer": {
+                "Turns": 3,
+                "Status": [
+                    9
+                ]
+            },
+            "Name": "蛛网束缚(单体)",
+            "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+            "Order": 3,
+            "Direct": 1,
+            "Range": 1,
+            "Source": "人面魔蛛"
+        },
+        {
+            "ColdDownTurn": 3,
+            "CurrentColdDown": 0,
+            "EffectWithLevel": false,
+            "SkillType": 2,
+            "Buffer": {
+                "Turns": 1,
+                "Status": [
+                    9
+                ]
+            },
+            "Name": "蛛网束缚(群体)",
+            "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+            "Order": 3,
+            "Direct": 1,
+            "Range": 5,
+            "Source": "人面魔蛛"
+        },
+        {
+            "ColdDownTurn": 3,
+            "CurrentColdDown": 0,
+            "EffectWithLevel": false,
+            "SkillType": 2,
+            "Buffer": {
+                "Turns": 3,
+                "Status": [
+                    9
+                ]
+            },
+            "Name": "蓝银囚笼",
+            "Description": "群体限制，蓝银皇化为囚笼困住敌人",
+            "Order": 4,
+            "Direct": 1,
+            "Range": 5,
+            "Source": "地穴魔蛛"
+        },
+        {
+            "ColdDownTurn": 0,
+            "CurrentColdDown": 0,
+            "EffectWithLevel": false,
+            "AddtionSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "SkillType": 0,
+                "Name": "蓝银突刺阵附加攻击",
+                "Harm": 20
+            },
+            "SkillType": 2,
+            "Buffer": {
+                "Turns": 1,
+                "Status": [
+                    9
+                ]
+            },
+            "Name": "蓝银突刺阵",
+            "Description": "群体限制，强制眩晕一秒",
+            "Order": 4,
+            "Direct": 1,
+            "Range": 5,
+            "Source": "地穴魔蛛"
+        },
+        {
+            "ColdDownTurn": 0,
+            "CurrentColdDown": 0,
+            "EffectWithLevel": false,
+            "SkillType": 0,
+            "Name": "蓝银霸王枪",
+            "Description": "单体攻击，凝聚一点，蓝银皇武魂攻击最强魂技",
+            "Order": 5,
+            "Direct": 1,
+            "Range": 1,
+            "Harm": 100,
+            "Source": "蓝银皇天赋魂环"
+        },
+        {
+            "ColdDownTurn": 0,
+            "CurrentColdDown": 0,
+            "EffectWithLevel": false,
+            "SkillType": 2,
+            "Buffer": {
+                "MaxHPFactor": 0.1,
+                "Turns": 999,
+                "Status": [
+                    0
+                ]
+            },
+            "Name": "双神共存",
+            "Description": "成就独一无二的完美武魂融合技，是神级的融合。",
+            "Combine": [
+                "唐三",
+                "小舞"
+            ],
+            "Order": 10,
+            "Direct": 0,
+            "Range": 5
+        }
+    ],
+    "SecondSkillName": [
+        "泰坦之锤/大地之力",
+        "大地蚁皇斩",
+        "器魂真身",
+        "千钧壁垒"
+    ],
+    "SecondSkill": []
+}
