@@ -16,12 +16,14 @@
             (click)="Branch(q[1])">{{q[0]}}</button>
     </div>
 
+    <div style="position: absolute;z-index: 99; bottom: 100px;width: 100%;height: 150px;">
+        <!-- <img [src]="'/assets/character/' + faceurl + '/图鉴.png'" height="200px" width="100px" style="float: right;" /> -->
+        <img [src]="'/assets/character/' + faceurl + '/头像.png'" height="150px" width="200px" style="float: right;" />
+    </div>
     <div
-        style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 100px;background-color: dodgerblue;opacity: 0.8;">
-        <img [src]="'/assets/character/' + this.faceurl + '/头像.jpg'" height="100px" width="100px"
-            style="float: left;" />
+        style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 100px;background-color: dodgerblue;opacity: 0.9;">
         <h5 style="color: aliceblue;margin: 10px;">
-            {{line}}
+            {{faceurl + ":"}}<br />{{line}}
         </h5>
     </div>
 </div>

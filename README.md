@@ -16,10 +16,11 @@
 
 - Angular 9.1.1
 - BootStrap 4.4.1
-- Issue：https://www.bugclose.com/
+- Issue：[BugClose](https://www.bugclose.com/)
 - IDE：VS Code 1.4.4
 - OS：Windows7
 - Server：CentOS
+- 在线AI抠图工具[皮卡智能](http://www.picup.shop/people.html#/)
 
 ## 兼容性
 
@@ -79,7 +80,9 @@ http://datavisualization.club:8888/
 
 ### 场景
 
-<img src="Demo/场景20200310.jpg" width="50%">
+<img src="Demo/场景.jpg" width="50%">
+
+### 场景分支
 
 <img src="Demo/场景分支.jpg" width="50%">
 
