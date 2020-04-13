@@ -13,7 +13,16 @@ export class FightStatus {
     //gameengine: GameEngine;
     public GetRoleByName(name: string): Character {
         if (name === undefined) return undefined;
-        return this.PictorialBook.find(x => x.Name === name);
+        let info = name.split("@");
+        if (info.length === 1) {
+            let r = this.PictorialBook.find(x => x.Name === name);
+            r.Factor = 1;
+            return r;
+        } else{
+            let r = this.PictorialBook.find(x => x.Name === info[0]);
+            r.Factor = Number.parseFloat(info[1]);
+            return r;
+        }
     }
     currentActionCharater: Character;
     @Output() ResultEvent: EventEmitter<number> = new EventEmitter<number>();

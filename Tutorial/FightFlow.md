@@ -1,6 +1,37 @@
 # 战斗流程
 
-ver0.02 2020/03/30
+ver0.03 2020/04/13
+
+## 战场信息
+
+战场信息主要记录了这场战斗敌我双方出场的人物，以及人物的加成信息。有时候人物有例如“3成功力”这样的设定，所以用@符号加上了加成因子。
+
+```typescript
+export const Battle0001: BattleInfo = {
+    Name: "Battle0001",
+    Title: "史莱克学院赵无极",
+    Background: "室内场景",
+    Enemy: [undefined, "独孤雁", "独孤博@0.3", "叶泠泠@1.5",
+        undefined, "赵无极@0.3", "比比东@0.3", undefined],
+    MyTeam: ["小舞", "马红俊", "戴沐白@1.5", "朱竹清",
+        undefined, "宁荣荣", "奥斯卡", "唐三"]
+}
+
+
+    public GetRoleByName(name: string): Character {
+        if (name === undefined) return undefined;
+        let info = name.split("@");
+        if (info.length === 1) {
+            let r = this.PictorialBook.find(x => x.Name === name);
+            r.Factor = 1;
+            return r;
+        } else{
+            let r = this.PictorialBook.find(x => x.Name === info[0]);
+            r.Factor = Number.parseFloat(info[1]);
+            return r;
+        }
+    }
+```
 
 ## 回合开始
 

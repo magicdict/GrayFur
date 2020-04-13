@@ -62,9 +62,9 @@ export const Battle0001: BattleInfo = {
     Name: "Battle0001",
     Title: "史莱克学院赵无极",
     Background: "室内场景",
-    Enemy: [undefined, "独孤雁", "独孤博", "叶泠泠",
-        undefined, "赵无极", "比比东", undefined],
-    MyTeam: ["小舞", "马红俊", "戴沐白", "朱竹清",
+    Enemy: [undefined, "独孤雁", "独孤博@0.3", "叶泠泠@1.5",
+        undefined, "赵无极@0.3", "比比东@0.3", undefined],
+    MyTeam: ["小舞", "马红俊", "戴沐白@1.5", "朱竹清",
         undefined, "宁荣荣", "奥斯卡", "唐三"]
 }
 

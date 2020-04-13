@@ -12,6 +12,7 @@ import { BagMgr } from '../Core/BagMgr';
 import { BattleMgr } from '../Core/BattleMgr';
 import { ForestMgr } from '../Core/ForestMgr';
 import { FightStatus } from '../Core/FightStatus';
+import { ToolInfo } from '../Modal/ToolInfo';
 
 
 @Component({
@@ -21,11 +22,11 @@ export class FightComponent implements OnInit {
     constructor(public ge: GameEngine,
         private router: Router,
         public bagmgr: BagMgr,
-        private scenemgr:SceneMgr,
-        private forestmgr:ForestMgr,
+        private scenemgr: SceneMgr,
+        private forestmgr: ForestMgr,
         public toastService: ToastService
-    ) { 
-        
+    ) {
+
     }
 
     clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -36,8 +37,10 @@ export class FightComponent implements OnInit {
     Message: string = "进入战场";
     /**正在选择技能 */
     SkillPickStatus: boolean;
+    SkillDescript: SkillInfo;
     /**正在选择道具 */
     ToolPickStatus: boolean;
+    ToolDescript: ToolInfo;
     /**正在选择技能使用对象 */
     SkillRolePickStatus: boolean;
     FightEnd: boolean = false;
@@ -83,7 +86,7 @@ export class FightComponent implements OnInit {
             this.fightStatus = new FightStatus(battleinfo, this.ge.PictorialBook);
         }
     }
-    
+
     /**对象目标选择 */
     ItemClicked(_pickedCharacter: Character) { }
 
@@ -111,7 +114,9 @@ export class FightComponent implements OnInit {
     /**魂技 */
     Skill() {
         if (!this.IsFuncAreaAvilible) return;
+        if (this.fightStatus.currentActionCharater.Skill.length === 0) return;
         this.SkillPickStatus = true;
+        this.SkillDescript = this.fightStatus.currentActionCharater.Skill[0];
         this.Message = "请选择一个魂技";
     }
 
@@ -222,7 +227,9 @@ export class FightComponent implements OnInit {
     //道具
     Tool() {
         if (!this.IsFuncAreaAvilible) return;
+        if (this.bagmgr.toolbag.length === 0) return;
         this.ToolPickStatus = true;
+        this.ToolDescript = this.ge.getTool(this.bagmgr.toolbag[0][0]);
         this.Message = "请选择一个道具";
     }
     UseTool(name: string) {

@@ -53,9 +53,9 @@ export class AttactSkillInfo extends SkillInfo {
     Instruction(): string {
         switch (this.Range) {
             case enmRange.PickOne:
-                return "单体攻击伤害：" + this.Harm;
+                return "单体攻击 伤害：" + this.Harm;
             case enmRange.EveryOne:
-                return "群体攻击伤害：" + this.Harm;
+                return "群体攻击 伤害：" + this.Harm;
         }
     }
     SkillType = enmSkillType.Attact;
@@ -74,10 +74,10 @@ export class AttactSkillInfo extends SkillInfo {
 export class HealSkillInfo extends SkillInfo {
     Instruction(): string {
         var recover = "";
-        if (this.RecoverHP !== undefined) recover += "生命值：" + this.RecoverHP
-        if (this.RecoverMP !== undefined) recover += "魂力：" + this.RecoverMP
-        if (this.RecoverHPPercent !== undefined) recover += "生命值比例：" + this.RecoverHPPercent + "%";
-        if (this.RecoverMPPercent !== undefined) recover += "魂力比例：" + this.RecoverMPPercent + "%";
+        if (this.RecoverHP !== 0) recover += "生命值：" + this.RecoverHP
+        if (this.RecoverMP !== 0) recover += "魂力：" + this.RecoverMP
+        if (this.RecoverHPPercent !== 0) recover += "生命值比例：" + this.RecoverHPPercent + "%";
+        if (this.RecoverMPPercent !== 0) recover += "魂力比例：" + this.RecoverMPPercent + "%";
         switch (this.Range) {
             case enmRange.PickOne:
                 return "单体回复：" + recover;

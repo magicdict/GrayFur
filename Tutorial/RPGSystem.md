@@ -240,7 +240,7 @@ export class BufferStatusSkillInfo extends SkillInfo {
         //增幅强度和等级关联:如果是和施法者相关，必须使用currentActionCharater的信息
         if (this.BufferFactorByLV) {
             let factor = fs.currentActionCharater.LV / 100;
-            //以下不使用 1 + factor 是因为RealTimeAct()计算使用了 R += R * element.AttactFactor; 
+            //以下不使用 1 + factor 是因为RealTimeAct()计算使用了 R += R * element.AttactFactor;
             if (this.Buffer.AttactFactor !== undefined) this.Buffer.AttactFactor = factor;
             if (this.Buffer.DefenceFactor !== undefined) this.Buffer.DefenceFactor = factor;
             if (this.Buffer.MaxHPFactor !== undefined) this.Buffer.MaxHPFactor = factor;

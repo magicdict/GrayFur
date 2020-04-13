@@ -395,7 +395,7 @@ export class CircleSkillCreator {
         s.Buffer.SpeedFactor = -0.2;
         s.Buffer.AttactFactor = -0.2;
         s.Buffer.DefenceFactor = -0.2;
-        s.Buffer.Status = [characterStatus.攻击增益, characterStatus.速度增益, characterStatus.防御增益];
+        s.Buffer.Status = [characterStatus.攻击衰减, characterStatus.速度衰减, characterStatus.防御衰减];
         s.Buffer.Source = s.Name;
         return s;
     }
@@ -410,7 +410,7 @@ export class CircleSkillCreator {
         s.Buffer.SpeedFactor = -0.5;
         s.Buffer.AttactFactor = -0.5;
         s.Buffer.DefenceFactor = -0.5;
-        s.Buffer.Status = [characterStatus.攻击增益, characterStatus.速度增益, characterStatus.防御增益];
+        s.Buffer.Status = [characterStatus.攻击衰减, characterStatus.速度衰减, characterStatus.防御衰减];
         s.Buffer.Source = s.Name;
         return s;
     }
@@ -438,12 +438,13 @@ export class CircleSkillCreator {
     }
 
     public static 放屁如烟雾_催眠沉睡罗三炮(): SkillInfo {
-        let s = new AttactSkillInfo();
+        let s = new BufferStatusSkillInfo();
         s.Name = "放屁如烟雾_催眠沉睡罗三炮";
         s.Description = "放屁如烟雾_催眠沉睡罗三炮";
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.PickOne;
-        s.Harm = 50;
+        s.Buffer.Turns = 3;
+        s.Buffer.Status = [characterStatus.束缚];
         return s;
     }
 
