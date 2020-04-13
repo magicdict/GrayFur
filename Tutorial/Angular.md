@@ -1,10 +1,11 @@
 # Angular技巧
 
-ver0.01 2020/04/03
+ver0.02 2020/04/13
 
 ## 关于get计算属性
 
 在界面绑定的时候，如果绑定的是get的计算属性，则get计算属性的值也是被监视的，其值也会随着其依赖的值的变化而变化的。不用担心get计算属性值在界面上不刷新。
+get属性如果是对象，这个对象也是可以操作的，但是对于基本属性应该没有影响
 
 ## *ngFor在无子元素的组件上运用
 
@@ -157,3 +158,35 @@ export class ErrorMessageDialogComponent implements OnInit {
 ## How do I initialize a TypeScript object with a JSON object
 
 [How do I initialize a TypeScript object with a JSON object](https://stackoverflow.com/questions/22885995/how-do-i-initialize-a-typescript-object-with-a-json-object)
+
+## How do I convert a string to enum in TypeScript?
+
+```typescript
+enum Color{
+    Red, Green
+}
+
+// To String
+ var green: string = Color[Color.Green];
+
+// To Enum / number
+var color : Color = Color[green];
+```
+
+## vconsole
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import VConsole from 'vconsole';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    var vconsole = new VConsole();
+  }
+  title = 'RPG';
+}
+```

@@ -1,4 +1,4 @@
-import { Character, Buffer } from './Character';
+import { Character, Buffer, characterStatus } from './Character';
 import { FightStatus } from '../Core/FightStatus';
 
 /** 技能 */
@@ -7,6 +7,9 @@ export abstract class SkillInfo {
     SkillType: enmSkillType;
     Range: enmRange;
     Direct: enmDirect;
+    /**说明 */
+    abstract Instruction(): string;
+    /**描述 */
     Description: string;
     /**冷却回合数 */
     ColdDownTurn: number = 0;
@@ -33,6 +36,7 @@ export abstract class SkillInfo {
     };
     /**效果随着等级变化 */
     EffectWithLevel = false;
+    /**魔法消耗 */
     MpUsage: number = 5;
     /**武魂融合技的融合者列表 */
     Combine: string[] = [];
@@ -46,6 +50,14 @@ export abstract class SkillInfo {
 }
 
 export class AttactSkillInfo extends SkillInfo {
+    Instruction(): string {
+        switch (this.Range) {
+            case enmRange.PickOne:
+                return "单体攻击伤害：" + this.Harm;
+            case enmRange.EveryOne:
+                return "群体攻击伤害：" + this.Harm;
+        }
+    }
     SkillType = enmSkillType.Attact;
     Harm: number;
     IgnoreceDefence: boolean;
@@ -60,6 +72,19 @@ export class AttactSkillInfo extends SkillInfo {
 }
 
 export class HealSkillInfo extends SkillInfo {
+    Instruction(): string {
+        var recover = "";
+        if (this.RecoverHP !== undefined) recover += "生命值：" + this.RecoverHP
+        if (this.RecoverMP !== undefined) recover += "魂力：" + this.RecoverMP
+        if (this.RecoverHPPercent !== undefined) recover += "生命值比例：" + this.RecoverHPPercent + "%";
+        if (this.RecoverMPPercent !== undefined) recover += "魂力比例：" + this.RecoverMPPercent + "%";
+        switch (this.Range) {
+            case enmRange.PickOne:
+                return "单体回复：" + recover;
+            case enmRange.EveryOne:
+                return "群体回复：" + recover;
+        }
+    }
     SkillType = enmSkillType.Heal;
     RecoverHP: number = 0;
     RecoverMP: number = 0;
@@ -91,6 +116,21 @@ export class HealSkillInfo extends SkillInfo {
 
 /**增益和减弱 */
 export class BufferStatusSkillInfo extends SkillInfo {
+    Instruction(): string {
+        var status = "";
+        this.Buffer.Status.forEach(element => {
+            status += characterStatus[element] + "/";
+        });
+        status = status.substr(0, status.length - 1);
+        switch (this.Range) {
+            case enmRange.PickOne:
+                return "单体状态：" + status + " 回合数：" + this.Buffer.Turns;
+            case enmRange.EveryOne:
+                return "群体状态：" + status + " 回合数：" + this.Buffer.Turns;
+            case enmRange.Self:
+                return "自身状态：" + status + " 回合数：" + this.Buffer.Turns;
+        }
+    }
     SkillType = enmSkillType.Buffer;
     Buffer: Buffer = new Buffer();
     /**Buffer强度是否和施法者等级挂钩？ */
@@ -126,7 +166,12 @@ export class BufferStatusSkillInfo extends SkillInfo {
         if (fs.IsDebugMode) {
             console.log("技能对象：" + c.Name);
             c.BufferList.forEach(element => {
-                console.log("回合数：" + element.Turns + "\t状态" + element.Status.toString() + "\t来源" + element.Source);
+                var status = "";
+                element.Status.forEach(st => {
+                    status += characterStatus[st] + "/";
+                });
+                status = status.substr(0, status.length - 1);
+                console.log("回合数：" + element.Turns + "\t状态：" + status + "\t来源：" + element.Source);
             });
         }
         if (this.AddtionSkill !== undefined) this.AddtionSkill.Excute(c, fs);
