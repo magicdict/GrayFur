@@ -1,4 +1,4 @@
-# 斗罗大陆 Angular9版本
+# 斗罗大陆 Angular10版本
 
 该项目没有斗罗大陆版权，所有的图像，文本，只是作为教学示例！！！
 
@@ -6,7 +6,7 @@
 
 该项目没有斗罗大陆版权，所有的图像，文本，只是作为教学示例！！！
 
-## Angular9/10教程 面向对象的RPG游戏开发
+## Angular10教程 面向对象的RPG游戏开发
 
 通过对于【斗罗大陆】系列小说的游戏化过程，熟悉Angular的结构以及使用TypeScript的面向对象开发方法。
 
@@ -14,7 +14,7 @@
 
 ## 开发环境
 
-- Angular 9.1.1
+- Angular 10.0.0-next.1
 - BootStrap 4.4.1
 - Issue：[BugClose](https://www.bugclose.com/)
 - IDE：VS Code 1.4.4
