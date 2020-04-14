@@ -17,7 +17,7 @@
         <tbody [ngStyle]="{'height':clientHeight - 75 + 'px'}">
             <tr *ngFor="let t of this.ge.StoreToolList">
                 <td style="width: 80px;"><img [src]="t.Icon" width="16px" height="16px" /> {{t.Name}}</td>
-                <td style="text-align: left;">{{t.Func.Description}}</td>
+                <td style="text-align: left;">{{t.Skill.Instruction()}}</td>
                 <td style="width: 50px;">{{t.Price}}</td>
                 <td style="width: 50px;">{{this.bagmgr.getToolHoldCnt(t.Name)}}</td>
                 <td style="width: 70px;"><button class="btn btn-primary"

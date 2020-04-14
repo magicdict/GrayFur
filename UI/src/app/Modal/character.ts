@@ -8,7 +8,7 @@ export class Character {
     Name: string;
     /**等级 */
     LV: number;
-    /**称号 */
+    /**称号 （始于斗罗大陆）*/
     get Grade(): string {
         if (this.LV <= 9) return "魂士";
         if (this.LV <= 19) return "魂师";
@@ -24,6 +24,19 @@ export class Character {
         if (this.LV == 99) return "极限斗罗";
         if (this.LV == 100) return "成神";
     }
+
+    /**精神力（始于龙王传说） */
+    SpiritPoint: number;
+    get SpiriGrade(): string {
+        if (this.SpiritPoint <= 50) return "灵元境";
+        if (this.SpiritPoint <= 500) return "灵通境";
+        if (this.SpiritPoint <= 5_000) return "灵海境";
+        if (this.SpiritPoint <= 20_000) return "灵渊境";
+        if (this.SpiritPoint <= 50_000) return "灵域境";
+        if (this.SpiritPoint <= 100_000) return "神元境";
+        return "灵元境";
+    }
+
     /**当前经验值 */
     Exp: number = 0;
     /**等级 */
@@ -62,12 +75,18 @@ export class Character {
         switch (this.TeamPosition) {
             case enmTeamPosition.强攻系:
                 return "强攻系"
-            case enmTeamPosition.控制系:
-                return "控制系"
             case enmTeamPosition.敏攻系:
                 return "敏攻系"
+            case enmTeamPosition.控制系:
+                return "控制系"
+            case enmTeamPosition.防御系:
+                return "防御系"
             case enmTeamPosition.辅助系:
                 return "辅助系"
+            case enmTeamPosition.食物系:
+                return "食物系"
+            case enmTeamPosition.治疗系:
+                return "治疗系"
         }
     }
 
@@ -80,20 +99,32 @@ export class Character {
                 return 15;
             case enmTeamPosition.控制系:
                 return 10;
+            case enmTeamPosition.防御系:
+                return 5;
             case enmTeamPosition.辅助系:
+                return 10;
+            case enmTeamPosition.食物系:
+                return 10;
+            case enmTeamPosition.治疗系:
                 return 10;
         }
     }
     get MaxHPUpPerLv(): number {
         switch (this.TeamPosition) {
             case enmTeamPosition.强攻系:
-                return 100;
+                return 60;
             case enmTeamPosition.敏攻系:
-                return 25;
+                return 40;
             case enmTeamPosition.控制系:
-                return 40;
+                return 25;
+            case enmTeamPosition.防御系:
+                return 100;
             case enmTeamPosition.辅助系:
-                return 40;
+                return 25;
+            case enmTeamPosition.食物系:
+                return 25;
+            case enmTeamPosition.治疗系:
+                return 25;
         }
     }
     get MaxMPUpPerLv(): number {
@@ -103,32 +134,50 @@ export class Character {
             case enmTeamPosition.敏攻系:
                 return 10;
             case enmTeamPosition.控制系:
-                return 15;
+                return 20;
+            case enmTeamPosition.防御系:
+                return 20;
             case enmTeamPosition.辅助系:
-                return 10;
+                return 20;
+            case enmTeamPosition.食物系:
+                return 20;
+            case enmTeamPosition.治疗系:
+                return 20;
         }
     }
     get ActUpPerLv(): number {
         switch (this.TeamPosition) {
             case enmTeamPosition.强攻系:
-                return 15;
+                return 10;
             case enmTeamPosition.敏攻系:
-                return 15;
+                return 20;
             case enmTeamPosition.控制系:
                 return 5;
+            case enmTeamPosition.防御系:
+                return 5;
             case enmTeamPosition.辅助系:
+                return 5;
+            case enmTeamPosition.食物系:
+                return 5;
+            case enmTeamPosition.治疗系:
                 return 5;
         }
     }
     get DefUpPerLv(): number {
         switch (this.TeamPosition) {
             case enmTeamPosition.强攻系:
-                return 15;
+                return 10;
             case enmTeamPosition.敏攻系:
                 return 5;
             case enmTeamPosition.控制系:
                 return 5;
+            case enmTeamPosition.防御系:
+                return 25;
             case enmTeamPosition.辅助系:
+                return 5;
+            case enmTeamPosition.食物系:
+                return 5;
+            case enmTeamPosition.治疗系:
                 return 5;
         }
     }
@@ -348,7 +397,10 @@ export enum enmTeamPosition {
     强攻系,
     敏攻系,
     控制系,
-    辅助系
+    防御系,
+    治疗系,
+    辅助系,
+    食物系
 }
 
 /**状态 */

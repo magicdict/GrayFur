@@ -235,7 +235,7 @@ export class FightComponent implements OnInit {
     UseTool(name: string) {
         this.ToolPickStatus = false;
         let t = this.ge.getTool(name);
-        this.ExcuteSkill(t.Func);   //ExcuteSkill已经包含了ActionDone！
+        this.ExcuteSkill(t.Skill);   //ExcuteSkill已经包含了ActionDone！
         this.ge.bagMgr.changeTool([t.Name, -1]);
     }
     ReturnFormToolPicker() {

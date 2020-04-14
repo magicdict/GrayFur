@@ -9,7 +9,7 @@ export class ToolInfo {
     /** 价格 */
     Price: number;
     /** 道具和技能可以合并 */
-    Func: SkillInfo;
+    Skill: SkillInfo;
     /**道具类型 */
     ToolType: enmToolType = enmToolType.StoreItem;
 }

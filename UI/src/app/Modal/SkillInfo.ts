@@ -3,9 +3,13 @@ import { FightStatus } from '../Core/FightStatus';
 
 /** 技能 */
 export abstract class SkillInfo {
+    /**技能名称 */
     Name: string;
+    /**技能类型 */
     SkillType: enmSkillType;
+    /**技能范围 */
     Range: enmRange;
+    /**技能方向 */
     Direct: enmDirect;
     /**说明 */
     abstract Instruction(): string;
@@ -30,7 +34,7 @@ export abstract class SkillInfo {
                     }
                 }
             );
-            if (!EveryOneCanAction) return "融合者已行动";
+            if (!EveryOneCanAction) return "融合者错误";
         }
         return "";
     };
@@ -40,6 +44,7 @@ export abstract class SkillInfo {
     MpUsage: number = 5;
     /**武魂融合技的融合者列表 */
     Combine: string[] = [];
+    /**执行 */
     abstract Excute(c: Character, fs: FightStatus): void;
     /**自定义执行方法 */
     CustomeExcute(c: Character, fs: FightStatus): boolean {
@@ -53,14 +58,17 @@ export class AttactSkillInfo extends SkillInfo {
     Instruction(): string {
         switch (this.Range) {
             case enmRange.PickOne:
-                return "单体攻击 伤害：" + this.Harm;
+                return "单体攻击 伤害：" + this.Harm + (this.IgnoreDefence ? " （无视防御力）" : "");
             case enmRange.EveryOne:
-                return "群体攻击 伤害：" + this.Harm;
+                return "群体攻击 伤害：" + this.Harm + (this.IgnoreDefence ? " （无视防御力）" : "");
         }
     }
     SkillType = enmSkillType.Attact;
+    /**伤害值 */
     Harm: number;
-    IgnoreceDefence: boolean;
+    /**无视防御 */
+    IgnoreDefence: boolean = false;
+    /**执行 */
     Excute(c: Character, fs: FightStatus) {
         //如果自定义方法被执行，则跳过后续代码
         if (this.CustomeExcute(c, fs)) return;

@@ -30,7 +30,7 @@ export class CharacterCreatorNPC {
         柳二龙.LV = 65;
         柳二龙.GrowthFactor = 1.2;
         柳二龙.Soul = "火龙（蓝电霸王龙变异）";
-        柳二龙.TeamPosition = enmTeamPosition.辅助系;
+        柳二龙.TeamPosition = enmTeamPosition.强攻系;
         柳二龙.Description = "原蓝霸学院院长，黄金铁三角杀戮之角，大师玉小刚的妻子，也是大师的堂妹。"
         return 柳二龙;
     }
@@ -40,7 +40,7 @@ export class CharacterCreatorNPC {
         赵无极.LV = 65;
         赵无极.GrowthFactor = 1.1;
         赵无极.Soul = "大力金刚熊";
-        赵无极.TeamPosition = enmTeamPosition.强攻系;
+        赵无极.TeamPosition = enmTeamPosition.防御系;
         赵无极.Circles = CircleCreatorNPC.赵无极();
         赵无极.Description = "人称不动明王，防御力惊人，曾经风靡一时的狠辣角色，后来到史莱克学院当老师。虽外表凶狠，但内心善良，且十分护短，非常喜爱史莱克七怪。"
         return 赵无极;
@@ -51,7 +51,7 @@ export class CharacterCreatorNPC {
         叶泠泠.LV = 35;
         叶泠泠.GrowthFactor = 1.1;
         叶泠泠.Soul = "九心海棠";
-        叶泠泠.TeamPosition = enmTeamPosition.辅助系;
+        叶泠泠.TeamPosition = enmTeamPosition.治疗系;
         叶泠泠.Circles = CircleCreatorNPC.叶泠泠();
         叶泠泠.Description = "叶泠泠拥有九心海棠武魂，是皇斗战队唯一辅助器武魂，而九心海棠实际应该是大陆第一辅助系器武魂"
         return 叶泠泠;

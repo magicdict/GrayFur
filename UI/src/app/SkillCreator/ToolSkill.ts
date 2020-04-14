@@ -43,8 +43,8 @@ export class ToolSkillCreator {
         s.Name = "观音泪";
         s.Description = "唐门至尊级巅峰暗器，伤害范围极广，威力极大。";
         s.Direct = enmDirect.Enemy;
-        s.Range = enmRange.EveryOne;
-        s.Harm = 99;
+        s.Range = enmRange.PickOne;
+        s.Harm = 9800;
         return s;
     }
 
@@ -53,8 +53,8 @@ export class ToolSkillCreator {
         s.Name = "菩提血";
         s.Description = "唐门至尊级巅峰暗器，伤害范围极广，威力极大。";
         s.Direct = enmDirect.Enemy;
-        s.Range = enmRange.EveryOne;
-        s.Harm = 999;
+        s.Range = enmRange.PickOne;
+        s.Harm = 8800;
         return s;
     }
 
@@ -63,7 +63,7 @@ export class ToolSkillCreator {
         s.Name = "阎王帖";
         s.Description = "唐门至尊级巅峰暗器，伤害范围极广，威力极大。";
         s.Direct = enmDirect.Enemy;
-        s.Range = enmRange.EveryOne;
+        s.Range = enmRange.PickOne;
         s.Harm = 9999;
         return s;
     }
@@ -75,7 +75,7 @@ export class ToolSkillCreator {
         s.Description = "唐门至尊级巅峰暗器，伤害范围极广，威力极大。";
         s.Direct = enmDirect.Enemy;
         s.Range = enmRange.EveryOne;
-        s.Harm = 99999;
+        s.Harm = 9999;
         return s;
     }
 }

@@ -63,13 +63,13 @@
                     (click)="ToolDescript = this.ge.getTool(tool[0]);">
                     <td style="width: 60px;"><img [src]="this.ge.getTool(tool[0]).Icon" width="16px"
                             height="16px" />{{tool[0]}}</td>
-                    <td style="text-align: left;">{{this.ge.getTool(tool[0]).Func.Instruction()}}</td>
+                    <td style="text-align: left;">{{this.ge.getTool(tool[0]).Skill.Instruction()}}</td>
                     <td style="width: 60px;"><button class="btn btn-sm btn-primary"
                             (click)="UseTool(tool[0])">使用</button></td>
                 </tr>
             </tbody>
         </table>
-        {{ ToolDescript.Name + ":" + ToolDescript.Func.Description }}
+        {{ ToolDescript.Name + ":" + ToolDescript.Skill.Description }}
     </div>
 
     <div class="container"

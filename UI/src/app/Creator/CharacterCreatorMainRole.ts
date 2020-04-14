@@ -45,7 +45,7 @@ export class CharacterCreatorMainRole {
         戴沐白.GrowthFactor = 1.4;
         戴沐白.Soul = "白虎";
         戴沐白.Circles = CircleCreatorMainRole.戴沐白();
-        戴沐白.TeamPosition = enmTeamPosition.敏攻系;
+        戴沐白.TeamPosition = enmTeamPosition.强攻系;
         戴沐白.Description = "史莱克七怪老大、星罗帝国三皇子 、星罗帝国太子、唐门长老、唐门刑堂堂主"
         return 戴沐白;
     }
@@ -55,7 +55,7 @@ export class CharacterCreatorMainRole {
         奥斯卡.LV = 25;
         奥斯卡.GrowthFactor = 1.3;
         奥斯卡.Soul = "香肠/食神";
-        奥斯卡.TeamPosition = enmTeamPosition.辅助系;
+        奥斯卡.TeamPosition = enmTeamPosition.食物系;
         奥斯卡.Description = "史莱克学院的学员，弗兰德院长从小收留的孤儿，大陆上第一位食物系封号斗罗，不可多得的食物系天才魂师。"
         return 奥斯卡;
     }
@@ -66,7 +66,7 @@ export class CharacterCreatorMainRole {
         马红俊.GrowthFactor = 1.3;
         马红俊.Soul = "邪火凤凰";
         马红俊.Circles = CircleCreatorMainRole.马红俊();
-        马红俊.TeamPosition = enmTeamPosition.敏攻系;
+        马红俊.TeamPosition = enmTeamPosition.强攻系;
         马红俊.Description = "拥有顶级兽武魂邪火凤凰，为变异武魂。对自身有邪火反噬的影响。"
         return 马红俊;
     }
