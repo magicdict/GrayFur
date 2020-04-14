@@ -171,8 +171,8 @@ export class CircleCreatorMainRole {
         return circles;
     }
 
-    /**马红俊魂环 */
-    public static 马红俊(): Circle[] {
+    /**马红俊、马小桃 魂环 */
+    public static 凤凰家族共用(): Circle[] {
         let circles: Circle[] = [];
 
         let c1 = new Circle();

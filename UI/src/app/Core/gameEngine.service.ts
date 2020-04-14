@@ -11,6 +11,7 @@ import { SceneMgr } from './SceneMgr';
 import { SkillMgr } from './SkillMgr';
 import { ForestMgr } from './ForestMgr';
 import { MapCreator } from '../Creator/MapCreator';
+import { CharacterCreatorMainRole_JueShiTangMen } from '../Creator/CharacterCreatorMainRole_JueShiTangMen';
 
 
 @Injectable()
@@ -76,8 +77,9 @@ export class GameEngine {
         this.localstorage.Save("朱竹清", this.朱竹清);
     }
 
+    /**人物图鉴初始化 */
     InitPictorialBook() {
-        //图鉴准备
+        //斗罗大陆
         this.PictorialBook = [];
         this.PictorialBook.push(this.唐三);
         this.PictorialBook.push(this.小舞);
@@ -94,6 +96,11 @@ export class GameEngine {
         this.PictorialBook.push(CharacterCreatorNPC.独孤博());
         this.PictorialBook.push(CharacterCreatorNPC.比比东());
         this.PictorialBook.push(CharacterCreatorNPC.叶泠泠());
+
+        //绝世唐门
+        this.PictorialBook.push(CharacterCreatorMainRole_JueShiTangMen.马小桃());
+
+        //B站热门
         this.PictorialBook.push(CharacterCreatorNPC.昆图库塔卡提考特苏瓦西拉松());
         this.PictorialBook.push(CharacterCreatorNPC.达拉崩巴斑得贝迪卜多比鲁翁());
     }

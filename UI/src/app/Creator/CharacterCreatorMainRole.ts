@@ -65,7 +65,7 @@ export class CharacterCreatorMainRole {
         马红俊.LV = 25;
         马红俊.GrowthFactor = 1.3;
         马红俊.Soul = "邪火凤凰";
-        马红俊.Circles = CircleCreatorMainRole.马红俊();
+        马红俊.Circles = CircleCreatorMainRole.凤凰家族共用();
         马红俊.TeamPosition = enmTeamPosition.强攻系;
         马红俊.Description = "拥有顶级兽武魂邪火凤凰，为变异武魂。对自身有邪火反噬的影响。"
         return 马红俊;

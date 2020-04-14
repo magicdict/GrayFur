@@ -6,6 +6,8 @@ import { Circle } from './Circle';
 export class Character {
     /**姓名 */
     Name: string;
+    /**小说 */
+    NovelName:string = "斗罗大陆";
     /**等级 */
     LV: number;
     /**称号 （始于斗罗大陆）*/
