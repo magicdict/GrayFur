@@ -7,7 +7,7 @@ import VConsole from 'vconsole';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    var vconsole = new VConsole();
+    //var vconsole = new VConsole();
   }
   title = 'RPG';
 }

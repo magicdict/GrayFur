@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Character } from '../Modal/Character';
+import { Character, Character_JueShiTangMen } from '../Modal/Character';
 import { GameEngine } from '../Core/gameEngine.service';
 import { ResourceMgr } from '../Core/ResourceMgr';
 
@@ -17,14 +17,14 @@ export class StatusComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(
       params => {
-        this.character = this.ge.GetRoleByName(params['name']);
+        this.character = this.ge.GetRoleByName(params['name']) as Character_JueShiTangMen;
       }
     );
   }
 
   clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
   clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-  public character: Character;
+  public character: Character_JueShiTangMen;
   public PageIdx: number = 1;
 
   Exit() {

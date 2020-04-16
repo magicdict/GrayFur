@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Character } from '../Modal/Character';
 import { DataStorage } from '../Lib/datastorage';
-import { CharacterCreatorMainRole } from '../Creator/CharacterCreatorMainRole';
-import { CharacterCreatorNPC } from '../Creator/CharacterCreatorNPC';
+import { CharacterCreatorMainRole } from '../RoleCreator/CharacterCreatorMainRole';
+import { CharacterCreatorNPC } from '../RoleCreator/CharacterCreatorNPC';
 import { ToolInfo } from '../Modal/ToolInfo';
 import { ToolCreator } from '../Creator/ToolCreator';
 import { BattleMgr } from './BattleMgr';
@@ -11,7 +11,7 @@ import { SceneMgr } from './SceneMgr';
 import { SkillMgr } from './SkillMgr';
 import { ForestMgr } from './ForestMgr';
 import { MapCreator } from '../Creator/MapCreator';
-import { CharacterCreatorMainRole_JueShiTangMen } from '../Creator/CharacterCreatorMainRole_JueShiTangMen';
+import { CharacterCreatorMainRole_JueShiTangMen } from '../RoleCreator/CharacterCreatorMainRole_JueShiTangMen';
 
 
 @Injectable()
@@ -59,6 +59,7 @@ export class GameEngine {
     public 马红俊: Character;
     public 宁荣荣: Character;
     public 朱竹清: Character;
+    public 霍雨浩: Character;
 
     public InitRole() {
         this.唐三 = CharacterCreatorMainRole.唐三();
@@ -68,6 +69,8 @@ export class GameEngine {
         this.马红俊 = CharacterCreatorMainRole.马红俊();
         this.宁荣荣 = CharacterCreatorMainRole.宁荣荣();
         this.朱竹清 = CharacterCreatorMainRole.朱竹清();
+
+        this.霍雨浩 = CharacterCreatorMainRole_JueShiTangMen.霍雨浩();
         this.localstorage.Save("唐三", this.唐三);
         this.localstorage.Save("小舞", this.小舞);
         this.localstorage.Save("戴沐白", this.戴沐白);
@@ -75,6 +78,7 @@ export class GameEngine {
         this.localstorage.Save("马红俊", this.马红俊);
         this.localstorage.Save("宁荣荣", this.宁荣荣);
         this.localstorage.Save("朱竹清", this.朱竹清);
+        this.localstorage.Save("霍雨浩", this.霍雨浩);
     }
 
     /**人物图鉴初始化 */
@@ -88,6 +92,7 @@ export class GameEngine {
         this.PictorialBook.push(this.马红俊);
         this.PictorialBook.push(this.宁荣荣);
         this.PictorialBook.push(this.朱竹清);
+        this.PictorialBook.push(this.霍雨浩);
         this.PictorialBook.push(CharacterCreatorNPC.玉小刚());
         this.PictorialBook.push(CharacterCreatorNPC.弗兰德());
         this.PictorialBook.push(CharacterCreatorNPC.柳二龙());

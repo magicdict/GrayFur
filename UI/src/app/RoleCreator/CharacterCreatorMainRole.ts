@@ -18,6 +18,7 @@ export class CharacterCreatorMainRole {
             BoneCreator.邪魔虎鲸王左腿骨()
         ]
         唐三.TeamPosition = enmTeamPosition.控制系;
+        唐三.SecondTeamPosition = enmTeamPosition.强攻系;
         唐三.Description = "唐三前世为巴蜀唐门外门子弟，来到斗罗大陆后与伙伴们一起在异界大陆重新建立了唐门。"
         唐三.Soul = "蓝银皇";
         唐三.Circles = CircleCreatorMainRole.唐三_0();

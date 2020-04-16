@@ -56,7 +56,9 @@
         武魂:{{character.Soul}}<br />
         <ul>
             <li *ngFor="let c of character.Circles">
-                {{ c.Order + ":" + (c.FirstSkill === undefined?"未知":c.FirstSkill.Name) + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) }}
+                {{ c.Order + ":" + (c.FirstSkill === undefined?"未知":c.FirstSkill.Name) + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) +
+                                   (c.ThirdSkill === undefined?"":("/" + c.ThirdSkill.Name)) +  (c.ForthSkill === undefined?"":("/" + c.ForthSkill.Name))
+                }}
             </li>
         </ul>
     </div>
@@ -65,12 +67,23 @@
         双生武魂:{{character.SecondSoul}}<br />
         <ul>
             <li *ngFor="let c of character.SecondCircles">
-                {{ c.Order + ":" + (c.FirstSkill === undefined?"未知":c.FirstSkill.Name) + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) }}
+                {{ c.Order + ":" + (c.FirstSkill === undefined?"未知":c.FirstSkill.Name) + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) +
+                                   (c.ThirdSkill === undefined?"":("/" + c.ThirdSkill.Name)) +  (c.ForthSkill === undefined?"":("/" + c.ForthSkill.Name))
+                }}
             </li>
         </ul>
     </div>
-
     <div *ngIf="PageIdx === 3" style="margin-left: 10px;">
+        三生武魂:{{character.ThirdSoul}}<br />
+        <ul>
+            <li *ngFor="let c of character.ThirdCircles">
+                {{ c.Order + ":" + (c.FirstSkill === undefined?"未知":c.FirstSkill.Name) + (c.SecondSkill === undefined?"":("/" + c.SecondSkill.Name)) +
+                                   (c.ThirdSkill === undefined?"":("/" + c.ThirdSkill.Name)) +  (c.ForthSkill === undefined?"":("/" + c.ForthSkill.Name))
+                }}
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="PageIdx === 4" style="margin-left: 10px;">
         魂骨<br />
         <ul>
             <li *ngFor="let bone of character.Bones">
@@ -81,7 +94,7 @@
         </ul>
     </div>
 
-    <div *ngIf="PageIdx === 4" style="margin-left: 10px;">
+    <div *ngIf="PageIdx === 5" style="margin-left: 10px;">
         领域<br />
         <ul>
             <li *ngFor="let field of character.Fields">
@@ -92,11 +105,14 @@
 
     <div style="position: absolute;z-index: 99; bottom: 0px;width: 100%;height: 50px;">
         <button *ngIf="character.Fields.length > 0" type="button" class="btn btn-lg btn-primary"
-            style="float: right;margin: 0px;" (click)="PageIdx = 4;"><img [src]="this.iconMgr.icon_field" width="16px"
+            style="float: right;margin: 0px;" (click)="PageIdx = 5;"><img [src]="this.iconMgr.icon_field" width="16px"
                 height="16px" />领域</button>
         <button *ngIf="character.Bones.length > 0" type="button" class="btn btn-lg btn-primary"
-            style="float: right;margin: 0px;" (click)="PageIdx = 3;"><img [src]="this.iconMgr.icon_bone" width="16px"
+            style="float: right;margin: 0px;" (click)="PageIdx = 4;"><img [src]="this.iconMgr.icon_bone" width="16px"
                 height="16px" />魂骨</button>
+        <button *ngIf="character.ThirdCircles !== undefined" type="button" class="btn btn-lg btn-primary"
+            style="float: right;margin: 0px;" (click)="PageIdx = 3;"><img [src]="this.iconMgr.icon_skill2" width="16px"
+                height="16px" />三生武魂</button>
         <button *ngIf="character.SecondCircles !== undefined" type="button" class="btn btn-lg btn-primary"
             style="float: right;margin: 0px;" (click)="PageIdx = 2;"><img [src]="this.iconMgr.icon_skill2" width="16px"
                 height="16px" />双生武魂</button>

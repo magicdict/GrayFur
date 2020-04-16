@@ -1,4 +1,5 @@
-import { SkillInfo, HealSkillInfo, enmDirect, enmRange, AttactSkillInfo } from '../Modal/SkillInfo';
+import { SkillInfo, HealSkillInfo, AttactSkillInfo } from '../Modal/SkillInfo';
+import { enmDirect, enmRange } from '../Modal/EnumAndConst';
 
 export class ToolSkillCreator {
     //道具

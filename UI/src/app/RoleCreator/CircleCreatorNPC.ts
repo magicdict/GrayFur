@@ -23,6 +23,13 @@ export class CircleCreatorNPC {
         c3.year = enmCircleYear.千年魂环;
         c3.FirstSkill = CircleSkillCreator.碧磷紫毒();
         circles.push(c3);
+
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
+
         return circles;
     }
 
@@ -53,6 +60,11 @@ export class CircleCreatorNPC {
         c5.FirstSkill = CircleSkillCreator.蛇蟒天罡盾();
         circles.push(c5);
         
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
 
         return circles;
     }
@@ -93,6 +105,12 @@ export class CircleCreatorNPC {
         c6.FirstSkill = CircleSkillCreator.大力金刚吼();
         circles.push(c6);
 
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
+
         return circles;
     }
 
@@ -104,6 +122,12 @@ export class CircleCreatorNPC {
         c1.year = enmCircleYear.百年魂环;
         c1.FirstSkill = CircleSkillCreator.范围性全体治疗();
         circles.push(c1);
+
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
 
         return circles;
     }
@@ -123,6 +147,12 @@ export class CircleCreatorNPC {
         c2.FirstSkill = CircleSkillCreator.放屁如烟雾_催眠沉睡罗三炮();
         circles.push(c2);
 
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
+        
         return circles;
     }
     

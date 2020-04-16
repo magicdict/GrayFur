@@ -190,3 +190,59 @@ export class AppComponent implements OnInit {
   title = 'RPG';
 }
 ```
+
+## 使用every代替for-each提前跳出循环体
+
+```typescript
+  let x = fs.GetRoleByName(this.ServantName);
+  fs.MyTeam.every(
+      c => {
+          if (c === undefined) {
+              c = x;
+              return true;
+          }
+      }
+  )
+```
+
+## WARNING in Circular dependency detected
+
+WARNING in Circular dependency detected:
+src\app\Modal\Character.ts -> src\app\Modal\SkillInfo.ts -> src\app\Modal\Character.ts
+
+WARNING in Circular dependency detected:
+src\app\Modal\SkillInfo.ts -> src\app\Modal\Character.ts -> src\app\Modal\SkillInfo.ts
+
+先看一下SkillInfo.ts的代码，里面包含了以下类
+
+- SkillInfo
+- AttactSkillInfo
+- 其他SkillInfo的类
+- enmSkillType
+
+然后看一下Character.ts里面关于SkillInfo类相关的代码
+
+```typescript
+    get CircleSkill(): SkillInfo[] {
+        let sl: SkillInfo[] = [];
+        if (this.Circles === undefined) return sl;
+        this.Circles.forEach(
+            b => {
+                if (b.FirstSkill !== undefined) sl.push(b.FirstSkill);
+                if (b.SecondSkill !== undefined) sl.push(b.SecondSkill);
+            }
+        );
+        return sl;
+    }
+```
+
+如果仅仅是这个样子，则没有问题。但是有一个方法不但使用了SkillInfo类，还是用了enmSkillType
+
+```typescript
+    get Skill(): SkillInfo[] {
+        return this.CircleSkill.concat(this.SecondCircleSkill).concat(this.BoneSkill).concat(this.CombineSkill)
+                               .filter(x=>x.SkillType !== enmSkillType.NotImplemented);
+    }
+```
+
+enmSkillType造成了Circular dependency的问题。具体的原理不清楚，解决方法大致是将enmSkillType放到单独的文件中去。

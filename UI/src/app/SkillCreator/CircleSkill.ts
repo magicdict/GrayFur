@@ -1,4 +1,5 @@
-import { SkillInfo, enmRange, enmDirect, AttactSkillInfo, HealSkillInfo, BufferStatusSkillInfo } from '../Modal/SkillInfo';
+import { SkillInfo, AttactSkillInfo, HealSkillInfo, BufferStatusSkillInfo, NotImplementedSkillInfo } from '../Modal/SkillInfo';
+import { enmDirect, enmRange } from '../Modal/EnumAndConst';
 import { characterStatus } from '../Modal/Character';
 import { ToolSkillCreator } from './ToolSkill';
 
@@ -530,6 +531,29 @@ export class CircleSkillCreator {
         return s;
     }
 
+    public static 未现实魂技(name:string){
+        let s = new NotImplementedSkillInfo();
+        s.Name = name;
+        return s;
+    }
+
+
+    //武魂真身固定第七魂技
+    public static 武魂真身(): SkillInfo {
+        let s = new BufferStatusSkillInfo();
+        s.Name = "武魂真身";
+        s.Description = "武魂真身";
+        s.Direct = enmDirect.MyTeam;
+        s.Range = enmRange.Self;
+        s.Buffer.HPFactor = 1;
+        s.Buffer.MPFactor = 1;
+        s.Buffer.AttactFactor = 1;
+        s.Buffer.DefenceFactor = 1;
+        s.Buffer.SpeedFactor = 1;
+        s.Buffer.Turns = 5;
+        s.Buffer.Status = [characterStatus.生命增益, characterStatus.魂力增益, characterStatus.攻击增益, characterStatus.防御增益, characterStatus.速度增益];
+        return s;
+    }
 
     //防御功能
     public static 防御(): SkillInfo {

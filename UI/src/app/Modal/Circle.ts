@@ -15,8 +15,10 @@ export class Circle {
                 return "黑";
             case enmCircleYear.十万年魂环:
                 return "红";
-            case enmCircleYear.十万年魂环:
+            case enmCircleYear.百万年魂环:
                 return "金";
+            case enmCircleYear.特殊:
+                return "暗金";
         }
     }
     /**魂环序号 */
@@ -25,10 +27,13 @@ export class Circle {
     FirstSkill: SkillInfo;
     /**第二魂技 */
     SecondSkill: SkillInfo;
+    /**第三魂技 */
+    ThirdSkill: SkillInfo;
+    /**第四魂技 */
+    ForthSkill: SkillInfo;
     /**来源 */
     Source: string;
 }
-
 export enum enmCircleYear {
     十年魂环,
     百年魂环,

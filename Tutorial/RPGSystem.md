@@ -1,6 +1,6 @@
 # RPG系统构造
 
-ver0.03 2020/04/10
+ver0.04 2020/04/16
 
 ## 人物
 
@@ -41,6 +41,33 @@ Base属性是指人物的初始属性，是一种固有属性，在整个游戏�
 
 > 由于乘法计算会出现小数点，这里使用了Math.round对结果进行取整。
 
+## 人物的扩展
+
+当斗罗大陆小说发展到第二部的时候，也就是绝世唐门的阶段，人物又增加了一些新的要素，这里使用继承的方式来扩展这些新的属性，以保持结构的完整性。
+
+```typescript
+/**绝世唐门角色 */
+export class Character_JueShiTangMen extends Character {
+    /** 第三武魂 */
+    ThirdSoul: string;
+    /** 第三魂环 */
+    ThirdCircles: Circle[];
+    /**魂灵(绝世唐门) */
+    Spirits: Spirit[];
+    /**精神力（始于龙王传说） */
+    SpiritPoint: number;
+    get SpiriGrade(): string {
+        if (this.SpiritPoint <= 50) return "灵元境";
+        if (this.SpiritPoint <= 500) return "灵通境";
+        if (this.SpiritPoint <= 5_000) return "灵海境";
+        if (this.SpiritPoint <= 20_000) return "灵渊境";
+        if (this.SpiritPoint <= 50_000) return "灵域境";
+        if (this.SpiritPoint <= 100_000) return "神元境";
+        return "灵元境";
+    }
+}
+```
+
 ## 技能
 
 技能是一个游戏的战斗核心，所有技能本质上都是为了改变角色状态。如果要具体细分大致可以分为
@@ -48,6 +75,7 @@ Base属性是指人物的初始属性，是一种固有属性，在整个游戏�
 - 攻击类：对于指定角色产生伤害
 - 回复类：对于指定角色，回复生命值和魔法值
 - 状态改变类：这里其实包含了Buffer和状态变化两种情况，Buffer类大多是被动技能，游戏中只要某个角色在战场上就获得，并且效果是持续性的。状态变化则一般必须主动施放技能才行，而且持续时间也是有限制的。
+- 召唤类：召唤某个角色上场助战
 
 同时技能设计的时候，还需要设定使用的方向，既这个技能是对于我方使用，还是敌方使用，还是无差别使用。另外这个技能的对象是某个对象，还是群体。
 
@@ -59,7 +87,11 @@ export enum enmSkillType {
     /**治疗 */
     Heal,
     /**光环和状态  */
-    Buffer
+    Buffer,
+    /**召唤 */
+    Summon,
+    /**其他暂时用代码无法实现的魂技 */
+    NotImplemented
 }
 
 /**技能范围 */
@@ -328,6 +360,8 @@ export class BufferStatusSkillInfo extends SkillInfo {
         return s;
     }
 ```
+
+![斗罗大陆类图.jpg](斗罗大陆类图.jpg)
 
 ## 剧情
 

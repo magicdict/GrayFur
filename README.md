@@ -90,7 +90,9 @@
 
 ### 双生武魂
 
-<img src="Demo/状态20200319.jpg" width="50%">
+<img src="Demo/唐三状态.jpg" width="50%">
+
+<img src="Demo/霍雨浩状态.jpg" width="50%">
 
 ### 战斗
 

@@ -1,6 +1,7 @@
 import { Character, enmTeamPosition } from '../Modal/Character';
 import { FightStatus } from './FightStatus';
-import { SkillInfo, enmDirect, enmRange } from '../Modal/SkillInfo';
+import { SkillInfo} from '../Modal/SkillInfo';
+import { enmRange, enmDirect } from '../Modal/EnumAndConst';
 
 export class RPGCore {
     //以下是伤害计算的核心公式

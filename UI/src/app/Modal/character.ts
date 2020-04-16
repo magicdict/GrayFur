@@ -2,12 +2,14 @@ import { SkillInfo } from './SkillInfo';
 import { Bone } from './Bone';
 import { Field } from './Field';
 import { Circle } from './Circle';
+import { Spirit } from './Spirit';
+import { enmSkillType } from './EnumAndConst';
 
 export class Character {
     /**姓名 */
     Name: string;
     /**小说 */
-    NovelName:string = "斗罗大陆";
+    NovelName: string = "斗罗大陆";
     /**等级 */
     LV: number;
     /**称号 （始于斗罗大陆）*/
@@ -26,19 +28,6 @@ export class Character {
         if (this.LV == 99) return "极限斗罗";
         if (this.LV == 100) return "成神";
     }
-
-    /**精神力（始于龙王传说） */
-    SpiritPoint: number;
-    get SpiriGrade(): string {
-        if (this.SpiritPoint <= 50) return "灵元境";
-        if (this.SpiritPoint <= 500) return "灵通境";
-        if (this.SpiritPoint <= 5_000) return "灵海境";
-        if (this.SpiritPoint <= 20_000) return "灵渊境";
-        if (this.SpiritPoint <= 50_000) return "灵域境";
-        if (this.SpiritPoint <= 100_000) return "神元境";
-        return "灵元境";
-    }
-
     /**当前经验值 */
     Exp: number = 0;
     /**等级 */
@@ -51,13 +40,13 @@ export class Character {
     }
     /**最大生命值 */
     BaseMaxHP: number = 100;
-    HP: number;     //生命值
+    HP: number;                 //生命值
 
-    BaseMaxMP: number = 20;  //最大魔法值（魂力）
-    MP: number;         //魔法值（魂力）
+    BaseMaxMP: number = 20;     //最大魔法值（魂力）
+    MP: number;                 //魔法值（魂力）
 
-    BaseAct: number = 10;     //基础攻击力
-    BaseDef: number = 10;     //基础防御力
+    BaseAct: number = 10;       //基础攻击力
+    BaseDef: number = 10;       //基础防御力
 
     //战斗状态下使用属性
     /**速度：出手顺序 */
@@ -72,6 +61,8 @@ export class Character {
 
     /**团队角色 */
     TeamPosition: enmTeamPosition = enmTeamPosition.辅助系;
+    /**第二武魂时 团队角色 */
+    SecondTeamPosition: enmTeamPosition;
 
     get strTeamPosition(): string {
         switch (this.TeamPosition) {
@@ -273,9 +264,9 @@ export class Character {
     Soul: string;
     /**魂环 */
     Circles: Circle[];
-    //第二武魂
+    /** 第二武魂 */
     SecondSoul: string;
-    //第二魂环
+    /** 第二魂环 */
     SecondCircles: Circle[];
 
     /**魂骨 */
@@ -323,7 +314,8 @@ export class Character {
     CombineSkill: SkillInfo[] = [];
 
     get Skill(): SkillInfo[] {
-        return this.CircleSkill.concat(this.SecondCircleSkill).concat(this.BoneSkill).concat(this.CombineSkill);
+        return this.CircleSkill.concat(this.SecondCircleSkill).concat(this.BoneSkill).concat(this.CombineSkill)
+                               .filter(x=>x.SkillType !== enmSkillType.NotImplemented);
     }
 
     /**增益 */
@@ -360,6 +352,29 @@ export class Character {
     constructor(theName: string) {
         this.Name = theName;
         this.BufferList = new Array<Buffer>();
+    }
+
+}
+
+/**绝世唐门角色 */
+export class Character_JueShiTangMen extends Character {
+
+    /** 第三武魂 */
+    ThirdSoul: string;
+    /** 第三魂环 */
+    ThirdCircles: Circle[];
+    /**魂灵(绝世唐门) */
+    Spirits: Spirit[];
+    /**精神力（始于龙王传说） */
+    SpiritPoint: number;
+    get SpiriGrade(): string {
+        if (this.SpiritPoint <= 50) return "灵元境";
+        if (this.SpiritPoint <= 500) return "灵通境";
+        if (this.SpiritPoint <= 5_000) return "灵海境";
+        if (this.SpiritPoint <= 20_000) return "灵渊境";
+        if (this.SpiritPoint <= 50_000) return "灵域境";
+        if (this.SpiritPoint <= 100_000) return "神元境";
+        return "灵元境";
     }
 }
 

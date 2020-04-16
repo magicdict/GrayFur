@@ -51,6 +51,32 @@ export class CircleCreatorMainRole {
         c6.Source = "小舞献祭";
         circles.push(c6);
 
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
+
+        let c8 = new Circle();
+        c8.Order = 8;
+        c8.year = enmCircleYear.十万年魂环;
+        c8.FirstSkill = CircleSkillCreator.未现实魂技("蓝银邪魔镜之灭");
+        c8.SecondSkill = CircleSkillCreator.未现实魂技("蓝银虎鲸魔之摄");
+        circles.push(c8);
+
+        let c9 = new Circle();
+        c9.Order = 9;
+        c9.year = enmCircleYear.十万年魂环;
+        c9.FirstSkill = CircleSkillCreator.未现实魂技("蓝银天青龙之魂");
+        c9.SecondSkill = CircleSkillCreator.未现实魂技("蓝银青龙缠之韧");
+        circles.push(c9);
+
+        let c10 = new Circle();
+        c10.Order = 10;
+        c10.year = enmCircleYear.十万年魂环;
+        c10.SecondSkill = CircleSkillCreator.未现实魂技("海神神技");
+        circles.push(c10);
+
         return circles;
     }
 
@@ -77,35 +103,37 @@ export class CircleCreatorMainRole {
 
         let c4 = new Circle();
         c4.Order = 4;
-        c4.year = enmCircleYear.百年魂环;
+        c4.year = enmCircleYear.千年魂环;
         circles.push(c4);
 
         let c5 = new Circle();
         c5.Order = 5;
-        c5.year = enmCircleYear.百年魂环;
+        c5.year = enmCircleYear.万年魂环;
         circles.push(c5);
 
         let c6 = new Circle();
         c6.Order = 6;
-        c6.year = enmCircleYear.百年魂环;
+        c6.year = enmCircleYear.万年魂环;
         c6.FirstSkill = CircleSkillCreator.大地蚁皇斩();
         c6.Source = "千钧蚁皇";
         circles.push(c6);
 
         let c7 = new Circle();
         c7.Order = 7;
-        c7.year = enmCircleYear.百年魂环;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
         circles.push(c7);
 
         let c8 = new Circle();
         c8.Order = 8;
-        c8.year = enmCircleYear.百年魂环;
+        c8.year = enmCircleYear.十万年魂环;
         c8.FirstSkill = CircleSkillCreator.千钧壁垒();
         circles.push(c8);
 
         let c9 = new Circle();
         c9.Order = 9;
-        c9.year = enmCircleYear.百年魂环;
+        c9.year = enmCircleYear.十万年魂环;
+        c9.FirstSkill = CircleSkillCreator.未现实魂技("未知");
         circles.push(c9);
 
         return circles;
@@ -135,6 +163,11 @@ export class CircleCreatorMainRole {
         c6.SecondSkill = CircleSkillCreator.爆杀八段摔();
         circles.push(c6);
 
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
 
         return circles;
     }
@@ -168,6 +201,12 @@ export class CircleCreatorMainRole {
         c4.Source = "白虎";
         circles.push(c4);
 
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
+
         return circles;
     }
 
@@ -186,6 +225,12 @@ export class CircleCreatorMainRole {
         c2.year = enmCircleYear.百年魂环;
         c2.FirstSkill = CircleSkillCreator.浴火凤凰();
         circles.push(c2);
+
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
 
         return circles;
     }
@@ -223,6 +268,11 @@ export class CircleCreatorMainRole {
         c5.FirstSkill = CircleSkillCreator.攻击增幅();
         circles.push(c5);
 
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
         return circles;
     }
 
@@ -247,6 +297,12 @@ export class CircleCreatorMainRole {
         c3.year = enmCircleYear.百年魂环;
         c3.FirstSkill = CircleSkillCreator.幽冥斩();
         circles.push(c3);
+
+        let c7 = new Circle();
+        c7.Order = 7;
+        c7.year = enmCircleYear.十万年魂环;
+        c7.FirstSkill = CircleSkillCreator.武魂真身();
+        circles.push(c7);
 
         return circles;
     }

@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SkillInfo, AttactSkillInfo, enmSkillType, BufferStatusSkillInfo, HealSkillInfo } from '../Modal/SkillInfo';
+import { SkillInfo, AttactSkillInfo, BufferStatusSkillInfo, HealSkillInfo } from '../Modal/SkillInfo';
 import { CircleSkillCreator } from '../SkillCreator/CircleSkill';
 import { CombineSkillCreator } from '../SkillCreator/CombineSkill';
+import { enmSkillType } from '../Modal/EnumAndConst';
 
 @Injectable()
 export class SkillMgr {

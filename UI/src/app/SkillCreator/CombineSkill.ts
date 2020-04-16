@@ -1,4 +1,5 @@
-import { SkillInfo, BufferStatusSkillInfo, enmDirect, enmRange, AttactSkillInfo } from '../Modal/SkillInfo';
+import { SkillInfo, BufferStatusSkillInfo, AttactSkillInfo } from '../Modal/SkillInfo';
+import { enmDirect, enmRange } from '../Modal/EnumAndConst';
 
 export class CombineSkillCreator {
 

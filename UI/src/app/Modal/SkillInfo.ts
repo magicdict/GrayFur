@@ -1,5 +1,8 @@
 import { Character, Buffer, characterStatus } from './Character';
 import { FightStatus } from '../Core/FightStatus';
+import { enmSkillType, enmRange, enmDirect } from './EnumAndConst';
+
+
 
 /** 技能 */
 export abstract class SkillInfo {
@@ -186,31 +189,34 @@ export class BufferStatusSkillInfo extends SkillInfo {
     }
 }
 
-
-
-/**技能类型 */
-export enum enmSkillType {
-    /**攻击 */
-    Attact,
-    /**治疗 */
-    Heal,
-    /**光环和状态  */
-    Buffer
+/**召唤系技能 */
+export class SummonSkillInfo extends SkillInfo {
+    ServantName: string;
+    Factor: number;
+    SkillType = enmSkillType.Summon;
+    Instruction(): string {
+        return "召唤" + this.ServantName + "进入战场";
+    }
+    Excute(c: Character, fs: FightStatus): void {
+        let x = fs.GetRoleByName(this.ServantName);
+        fs.MyTeam.every(
+            c => {
+                if (c === undefined) {
+                    c = x;
+                    return true;
+                }
+            }
+        )
+    }
 }
 
-/**技能范围 */
-export enum enmRange {
-    Self,       //自己
-    PickOne,    //选择一个人
-    RandomOne,  //随机选择一个人
-    FrontAll,   //前排所有人
-    BackAll,    //后排所有人
-    EveryOne,   //战场所有人
-}
-
-/**技能方向 */
-export enum enmDirect {
-    MyTeam,     //本方
-    Enemy,      //敌方
-    All,        //全体
+export class NotImplementedSkillInfo extends SkillInfo {
+    SkillType = enmSkillType.NotImplemented;
+    MpUsage = 0;
+    Instruction(): string {
+        return "Method not implemented.";
+    }
+    Excute(c: Character, fs: FightStatus): void {
+        return;
+    }
 }

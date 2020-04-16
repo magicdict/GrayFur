@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngine } from '../Core/gameEngine.service';
 import { Character } from '../Modal/Character';
-import { SkillInfo, enmRange, enmDirect } from '../Modal/SkillInfo';
+import { SkillInfo} from '../Modal/SkillInfo';
 import { RPGCore } from '../Core/RPGCore';
 import { CircleSkillCreator } from '../SkillCreator/CircleSkill';
 import { ToastService } from '../toasts/toast-service';
@@ -13,6 +13,7 @@ import { BattleMgr } from '../Core/BattleMgr';
 import { ForestMgr } from '../Core/ForestMgr';
 import { FightStatus } from '../Core/FightStatus';
 import { ToolInfo } from '../Modal/ToolInfo';
+import { enmRange, enmDirect } from '../Modal/EnumAndConst';
 
 
 @Component({

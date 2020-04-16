@@ -1,0 +1,963 @@
+{
+    "NovelName": "绝世唐门",
+    "Exp": 0,
+    "BaseMaxHP": 100,
+    "BaseMaxMP": 20,
+    "BaseAct": 10,
+    "BaseDef": 10,
+    "BaseSpeed": 10,
+    "Factor": 1,
+    "GrowthFactor": 1.6,
+    "TeamPosition": 2,
+    "DefStatusPlus": 0.5,
+    "Bones": [],
+    "Fields": [],
+    "CombineSkill": [],
+    "Name": "霍雨浩",
+    "BufferList": [],
+    "LV": 16,
+    "Soul": "灵眸·修罗之瞳",
+    "Circles": [
+        {
+            "year": 5,
+            "Order": 1,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 0,
+                "Combine": [],
+                "SkillType": 4,
+                "Name": "精神探测"
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 0,
+                "Combine": [],
+                "SkillType": 4,
+                "Name": "精神共享"
+            },
+            "ThirdSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 0,
+                "Combine": [],
+                "SkillType": 4,
+                "Name": "精神干扰·领域"
+            },
+            "ForthSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 0,
+                "Combine": [],
+                "SkillType": 4,
+                "Name": "灵魂冲击"
+            },
+            "Source": "梦冰蚕"
+        },
+        {
+            "year": 2,
+            "Order": 2,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "寄生",
+                "Description": "单体限制，蓝银皇在敌人体内留下的种子萌发",
+                "Direct": 1,
+                "Range": 1
+            },
+            "Source": "冰蚕"
+        },
+        {
+            "year": 3,
+            "Order": 3,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蛛网束缚(单体)",
+                "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+                "Direct": 1,
+                "Range": 1
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 3,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蛛网束缚(群体)",
+                "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+                "Direct": 1,
+                "Range": 5
+            },
+            "Source": "紫灵狈"
+        },
+        {
+            "year": 3,
+            "Order": 4,
+            "FirstSkill": {
+                "ColdDownTurn": 3,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蓝银囚笼",
+                "Description": "群体限制，蓝银皇化为囚笼困住敌人",
+                "Direct": 1,
+                "Range": 5
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "AddtionSkill": {
+                    "ColdDownTurn": 0,
+                    "CurrentColdDown": 0,
+                    "EffectWithLevel": false,
+                    "MpUsage": 5,
+                    "Combine": [],
+                    "SkillType": 0,
+                    "IgnoreDefence": false,
+                    "Name": "蓝银突刺阵附加攻击",
+                    "Harm": 20
+                },
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蓝银突刺阵",
+                "Description": "群体限制，强制眩晕一秒",
+                "Direct": 1,
+                "Range": 5
+            },
+            "Source": "银月狼王"
+        },
+        {
+            "year": 3,
+            "Order": 5,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "蓝银霸王枪",
+                "Description": "单体攻击，凝聚一点，蓝银皇武魂攻击最强魂技",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 100
+            },
+            "Source": "银英兽"
+        },
+        {
+            "year": 3,
+            "Order": 6,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        17
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "三眼金猊"
+        },
+        {
+            "year": 4,
+            "Order": 7,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "HPFactor": 1,
+                    "MPFactor": 1,
+                    "SpeedFactor": 1,
+                    "AttactFactor": 1,
+                    "DefenceFactor": 1,
+                    "Turns": 5,
+                    "Status": [
+                        4,
+                        5,
+                        1,
+                        2,
+                        3
+                    ]
+                },
+                "Name": "武魂真身",
+                "Description": "武魂真身",
+                "Direct": 0,
+                "Range": 0
+            },
+            "Source": "邪眼暴君"
+        },
+        {
+            "year": 4,
+            "Order": 8,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        17
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "人鱼公主"
+        },
+        {
+            "year": 4,
+            "Order": 9,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        17
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "邪眼暴君主宰"
+        }
+    ],
+    "SecondSoul": "冰碧帝皇蝎",
+    "SecondCircles": [
+        {
+            "year": 4,
+            "Order": 1,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "缠绕",
+                "Description": "单体限制，使用蓝银皇缠住敌人",
+                "Direct": 1,
+                "Range": 1
+            },
+            "Source": "冰碧帝皇蝎"
+        },
+        {
+            "year": 4,
+            "Order": 2,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "寄生",
+                "Description": "单体限制，蓝银皇在敌人体内留下的种子萌发",
+                "Direct": 1,
+                "Range": 1
+            },
+            "Source": "冰天雪女"
+        },
+        {
+            "year": 4,
+            "Order": 3,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蛛网束缚(单体)",
+                "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+                "Direct": 1,
+                "Range": 1
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 3,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蛛网束缚(群体)",
+                "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+                "Direct": 1,
+                "Range": 5
+            },
+            "Source": "冰天雪女"
+        },
+        {
+            "year": 4,
+            "Order": 4,
+            "FirstSkill": {
+                "ColdDownTurn": 3,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蓝银囚笼",
+                "Description": "群体限制，蓝银皇化为囚笼困住敌人",
+                "Direct": 1,
+                "Range": 5
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "AddtionSkill": {
+                    "ColdDownTurn": 0,
+                    "CurrentColdDown": 0,
+                    "EffectWithLevel": false,
+                    "MpUsage": 5,
+                    "Combine": [],
+                    "SkillType": 0,
+                    "IgnoreDefence": false,
+                    "Name": "蓝银突刺阵附加攻击",
+                    "Harm": 20
+                },
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蓝银突刺阵",
+                "Description": "群体限制，强制眩晕一秒",
+                "Direct": 1,
+                "Range": 5
+            },
+            "Source": "冰天雪女"
+        },
+        {
+            "year": 4,
+            "Order": 5,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "蓝银霸王枪",
+                "Description": "单体攻击，凝聚一点，蓝银皇武魂攻击最强魂技",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 100
+            },
+            "Source": "冰天雪女"
+        },
+        {
+            "year": 4,
+            "Order": 6,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        17
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "八角玄冰草"
+        },
+        {
+            "year": 4,
+            "Order": 7,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "HPFactor": 1,
+                    "MPFactor": 1,
+                    "SpeedFactor": 1,
+                    "AttactFactor": 1,
+                    "DefenceFactor": 1,
+                    "Turns": 5,
+                    "Status": [
+                        4,
+                        5,
+                        1,
+                        2,
+                        3
+                    ]
+                },
+                "Name": "武魂真身",
+                "Description": "武魂真身",
+                "Direct": 0,
+                "Range": 0
+            },
+            "Source": "八角玄冰草"
+        },
+        {
+            "year": 4,
+            "Order": 8,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        17
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "年冰熊王"
+        },
+        {
+            "year": 4,
+            "Order": 9,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        17
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "冰帝·雪帝·八角·小白"
+        }
+    ],
+    "ThirdSoul": "死灵圣法神",
+    "ThirdCircles": [
+        {
+            "year": 5,
+            "Order": 1,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "缠绕",
+                "Description": "单体限制，使用蓝银皇缠住敌人",
+                "Direct": 1,
+                "Range": 1
+            },
+            "Source": "死灵圣法神、亡灵天灾伊莱克斯"
+        },
+        {
+            "year": 2,
+            "Order": 2,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "寄生",
+                "Description": "单体限制，蓝银皇在敌人体内留下的种子萌发",
+                "Direct": 1,
+                "Range": 1
+            },
+            "Source": "死灵圣法神、亡灵天灾伊莱克斯"
+        },
+        {
+            "year": 3,
+            "Order": 3,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蛛网束缚(单体)",
+                "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+                "Direct": 1,
+                "Range": 1
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 3,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蛛网束缚(群体)",
+                "Description": "限制性技能，可单体，可群体，蓝银皇凝聚制成的蛛网，捆绑对手",
+                "Direct": 1,
+                "Range": 5
+            },
+            "Source": "死灵圣法神、亡灵天灾伊莱克斯"
+        },
+        {
+            "year": 3,
+            "Order": 4,
+            "FirstSkill": {
+                "ColdDownTurn": 3,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蓝银囚笼",
+                "Description": "群体限制，蓝银皇化为囚笼困住敌人",
+                "Direct": 1,
+                "Range": 5
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "AddtionSkill": {
+                    "ColdDownTurn": 0,
+                    "CurrentColdDown": 0,
+                    "EffectWithLevel": false,
+                    "MpUsage": 5,
+                    "Combine": [],
+                    "SkillType": 0,
+                    "IgnoreDefence": false,
+                    "Name": "蓝银突刺阵附加攻击",
+                    "Harm": 20
+                },
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 1,
+                    "Status": [
+                        14
+                    ]
+                },
+                "Name": "蓝银突刺阵",
+                "Description": "群体限制，强制眩晕一秒",
+                "Direct": 1,
+                "Range": 5
+            },
+            "Source": "死灵圣法神、亡灵天灾伊莱克斯"
+        },
+        {
+            "year": 3,
+            "Order": 5,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "蓝银霸王枪",
+                "Description": "单体攻击，凝聚一点，蓝银皇武魂攻击最强魂技",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 100
+            },
+            "Source": "死灵圣法神、亡灵天灾伊莱克斯"
+        },
+        {
+            "year": 3,
+            "Order": 6,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        17
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "死灵圣法神、亡灵天灾伊莱克斯"
+        },
+        {
+            "year": 4,
+            "Order": 7,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        17
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "死灵圣法神、亡灵天灾伊莱克斯"
+        },
+        {
+            "year": 4,
+            "Order": 8,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        17
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "死灵圣法神、亡灵天灾伊莱克斯"
+        },
+        {
+            "year": 4,
+            "Order": 9,
+            "FirstSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 2,
+                "Buffer": {
+                    "Turns": 3,
+                    "Status": [
+                        17
+                    ]
+                },
+                "Name": "虚无",
+                "Description": "不会受到攻击，免疫物体、能量等一切防御。",
+                "Direct": 0,
+                "Range": 0
+            },
+            "SecondSkill": {
+                "ColdDownTurn": 0,
+                "CurrentColdDown": 0,
+                "EffectWithLevel": false,
+                "MpUsage": 5,
+                "Combine": [],
+                "SkillType": 0,
+                "IgnoreDefence": false,
+                "Name": "爆杀八段摔",
+                "Description": "最狂暴的一种摔法，只要被摔出第一下，就没有反抗的可能，每一下都附带眩晕效果",
+                "Direct": 1,
+                "Range": 1,
+                "Harm": 1000
+            },
+            "Source": "死灵圣法神、亡灵天灾伊莱克斯"
+        }
+    ],
+    "Description": "",
+    "Spirits": [
+        {
+            "SpecialSoul": 0,
+            "Name": "冰天雪女",
+            "Nickname": "雪帝",
+            "Year": 700000
+        }
+    ]
+}
