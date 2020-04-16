@@ -2,7 +2,10 @@
 
 ## 人物列表-斗罗大陆
 
+[processon高清版](https://processon.com/view/5e95560ee401fd262e1700c3)
+
 <img src="斗罗大陆人物关系图.jpg" width="600px" />
+
 
 ### 初代史莱克七怪
 
