@@ -43,3 +43,29 @@ ver0.02 2020/03/30
     </div>
 </div>
 ```
+
+## 基础FontSize的统一
+
+不同浏览器的渲染机制不同，不同第三方组件的style设定不同，所以必须在统一全局的font-size
+
+```css
+* {
+    font-size: 12px;
+  }
+```
+
+## 网页整体居中
+
+```html
+<div>
+    <div style="width:1140px;margin-left: auto;margin-right: auto;margin-top:10px;">
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+```
+
+## 资源网站
+
+[Iconfont-阿里巴巴矢量图标库](https://www.iconfont.cn)

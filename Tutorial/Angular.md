@@ -159,7 +159,7 @@ export class ErrorMessageDialogComponent implements OnInit {
 
 [How do I initialize a TypeScript object with a JSON object](https://stackoverflow.com/questions/22885995/how-do-i-initialize-a-typescript-object-with-a-json-object)
 
-## How do I convert a string to enum in TypeScript?
+## How do I convert a string to enum in TypeScript
 
 ```typescript
 enum Color{
@@ -246,3 +246,121 @@ src\app\Modal\SkillInfo.ts -> src\app\Modal\Character.ts -> src\app\Modal\SkillI
 ```
 
 enmSkillType造成了Circular dependency的问题。具体的原理不清楚，解决方法大致是将enmSkillType放到单独的文件中去。
+
+## eCharts
+
+eCharts的导入需要如下这些库的支持
+
+[在Angular项目中导入Echarts](http://datavisualization.club/article/19)
+
+- "ngx-echarts": "^4.2.1"
+- "echarts": "^4.3.0"
+- "echarts-gl": "^1.1.1"
+
+## 文件上传案例
+
+大致思路是利用HttpClient进行Post操作，将[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)进行上传。
+
+注意点：ReactiveFormsModule的imports
+
+```typescript
+import { ReactiveFormsModule } from '@angular/forms';
+
+imports: [
+    BrowserModule,
+    HttpClientModule,
+    ReactiveFormsModule
+  ],
+
+    //获得文件对象
+    const file = (event.target as HTMLInputElement).files[0];
+    //准备数据
+    var formData: any = new FormData();
+    formData.append("avatar", this.form.get('avatar').value);
+    //发送数据
+    this.http.post('http://localhost:4000/api/create-user', formData).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    )
+
+```
+
+[Angular Formdata](https://github.com/SinghDigamber/angular-formdata)
+
+C#端的文件接收：.NetCore 3.1.2
+
+使用IFormFile等参数无法接收到文件，直接用Request里面的文件进行处理
+
+```csharp
+        /// <summary>
+        /// 上传图片,通过Form表单提交
+        /// </summary>
+        /// <returns></returns>
+        [Route("Upload/FormImg")]
+        [HttpPost]
+        public ActionResult UploadImg()
+        {
+            var files = Request.Form.Files;
+            //返回的文件地址
+            List<string> filenames = new List<string>();
+            var now = DateTime.Now;
+            //文件存储路径
+            var file = files[0];
+            var filePath = string.Format(file.FileName);
+            var fileStream = new FileStream(filePath, FileMode.Create);
+            file.CopyTo(fileStream);
+            fileStream.Close();
+            return new JsonResult("{}");
+        }
+```
+
+## localStorage
+
+```typescript
+import { Injectable, InjectionToken, Inject } from '@angular/core';
+
+export const BROWSER_STORAGE = new InjectionToken<Storage>('Browser Storage', {
+    providedIn: 'root',
+    factory: () => localStorage
+});
+
+//数据存储类
+@Injectable({
+    providedIn: 'root'
+})
+export class DataStorage {
+    constructor(@Inject(BROWSER_STORAGE) public storage: Storage) {
+
+    }
+    public IsExist(key: string): boolean {
+        return this.storage.getItem(key) === null;
+    }
+
+    public Load<T>(key: string): T {
+        var json = this.storage.getItem(key);
+        return JSON.parse(json);
+    }
+    public Save<T>(key: string, value: T) {
+        var json = JSON.stringify(value);
+        this.storage.setItem(key, json);
+    }
+}
+```
+
+作为一个注入服务，使用localstorage
+
+```typescript
+ constructor(public http: HttpClient,public localstorage: DataStorage) {
+```
+
+## 关于避开callback方法中的this
+
+```typescript
+ reader.onload = () => { this.FinishRun(reader.result) };    //Instance Method
+ FinishRun(result: string | ArrayBuffer): any {
+   ...
+   ...
+ }
+```
+
+如果直接使用 reader.onload = this.FinishRun 这会导致FinishRun方法的第一参数的参数名必须是this，进而导致整个方法不能用到指向本身class的this。因为这里的this代表着reader这个context。

@@ -1,12 +1,9 @@
 import { Injectable, InjectionToken, Inject } from '@angular/core';
 
-
-
 export const BROWSER_STORAGE = new InjectionToken<Storage>('Browser Storage', {
     providedIn: 'root',
     factory: () => localStorage
 });
-
 
 //数据存储类
 @Injectable({
