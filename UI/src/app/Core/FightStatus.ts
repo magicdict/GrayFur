@@ -1,6 +1,6 @@
 import { Character, characterStatus, Buffer } from '../Modal/Character';
 import { BattleInfo } from './BattleMgr';
-import { Output, EventEmitter } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { RPGCore } from './RPGCore';
 
 
@@ -25,8 +25,8 @@ export class FightStatus {
         }
     }
     currentActionCharater: Character;
-    @Output() ResultEvent: EventEmitter<number> = new EventEmitter<number>();
-    @Output() EnemyAction: EventEmitter<string> = new EventEmitter<string>();
+    ResultEvent: EventEmitter<number> = new EventEmitter<number>();
+    EnemyAction: EventEmitter<string> = new EventEmitter<string>();
     //列出当前所有战场角色的速度列表，每一回合的出手顺序根据速度来实现
     TurnList: Array<Character>;
     TurnCnt: number = 0;

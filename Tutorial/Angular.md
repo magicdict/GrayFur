@@ -34,7 +34,11 @@ get属性如果是对象，这个对象也是可以操作的，但是对于基�
 
 imports LazyLoadImageModule
 
-## AdminLTE 树形目录无法展开的问题
+图片的角度获得：get-orientation
+
+## AdminLTE2.0 树形目录无法展开的问题
+
+注意declare这样的写法
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -61,9 +65,25 @@ export class TrafficMainComponent implements OnInit {
 }
 ```
 
+在最新版本的AdminLTE3.0中没有这个问题。
+
 ## 模态窗体
 
-在JS里面无法模拟模态窗体组织代码的执行，所以一般这样处理
+在JS里面无法模拟模态窗体组织代码的执行，所以一般使用第三方模块进行处理
+
+```ts
+import { DialogModule } from 'primeng/dialog';
+```
+
+```html
+<p-dialog header="数智教育" [(visible)]="display" modal="modal"  [responsive]="true" [style.width]="'460px'">
+  <p>{{errorMsgContent}}</p>
+  <p-footer>
+      <button type="button" class="btn btn-info" style="height: 30px;"
+      (click)="hide()"><i class="fas fa-check"></i>&nbsp;确定</button>
+  </p-footer>
+</p-dialog>
+```
 
 ```typescript
 import { Component, OnInit, Input } from '@angular/core';
@@ -251,13 +271,15 @@ enmSkillType造成了Circular dependency的问题。具体的原理不清楚，�
 
 eCharts的导入需要如下这些库的支持
 
-[在Angular项目中导入Echarts](http://datavisualization.club/article/19)
+[在Angular项目中导入Echarts](http://datavisualization.club/article/28)
 
 - "ngx-echarts": "^4.2.1"
 - "echarts": "^4.3.0"
 - "echarts-gl": "^1.1.1"
 
 ## 文件上传案例
+
+[How to Use Angular 8/9/10 HttpClient API to Post FormData?](https://www.positronx.io/how-to-use-angular-8-httpclient-to-post-formdata/)
 
 大致思路是利用HttpClient进行Post操作，将[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)进行上传。
 
@@ -296,22 +318,51 @@ C#端的文件接收：.NetCore 3.1.2
         /// 上传图片,通过Form表单提交
         /// </summary>
         /// <returns></returns>
-        [Route("Upload/FormImg")]
-        [HttpPost]
-        public ActionResult UploadImg()
+        [HttpPost(nameof(SetFootPrint))]
+        public ActionResult SetFootPrint()
         {
             var files = Request.Form.Files;
             //返回的文件地址
             List<string> filenames = new List<string>();
-            var now = DateTime.Now;
             //文件存储路径
             var file = files[0];
-            var filePath = string.Format(file.FileName);
-            var fileStream = new FileStream(filePath, FileMode.Create);
-            file.CopyTo(fileStream);
+            var originalImage = System.Drawing.Image.FromStream(file.OpenReadStream());
+            var thumbImage = originalImage.GetThumbnailImage(128, 128, null, IntPtr.Zero);
+            var filename = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + file.FileName;
+            var fileStream = new FileStream(DataCenter.imagefilefolder + filename, FileMode.Create);
+            thumbImage.Save(fileStream,ImageFormat.Jpeg);
             fileStream.Close();
-            return new JsonResult("{}");
+            var x = new FootPrint()
+            {
+                UserImage = filename,
+                Title = Request.Form["Title"][0],
+                Address = Request.Form["Address"][0],
+                Description = Request.Form["Description"][0],
+                Datetime = Request.Form["Datetime"][0],
+            };
+            DataCenter.Footprints.Add(x);
+            return new JsonResult("{'result':'OK'}");
         }
+```
+
+注意：NetCore需要使用System.Drawing.Common库来执行图片操作！同时需要执行以下命令安装libgdiplus！！
+
+```shell
+yum install libgdiplus-devel
+```
+
+## POST大文件时候nginx.config注意点
+
+```yaml
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    client_max_body_size 5m;
+  }
+  location / {
+            client_max_body_size 5m;
+  }
 ```
 
 ## localStorage
@@ -364,3 +415,105 @@ export class DataStorage {
 ```
 
 如果直接使用 reader.onload = this.FinishRun 这会导致FinishRun方法的第一参数的参数名必须是this，进而导致整个方法不能用到指向本身class的this。因为这里的this代表着reader这个context。
+
+## AppComponent不能放到路由中
+
+AppComponent这个组件是index.html中放置的,所以如果将这个放置到路由中，则会出现重复渲染的问题（app-root挂载一次，路由挂载一次）.
+
+```html
+  <app-root></app-root>
+```
+
+例如使用了AdminLTE的框架，App组件已经包含了菜单和整体的时候，路由这样设置即可。
+
+```ts
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { Bar_BasicComponent } from './Bar/bar_basic.component';
+
+
+
+const routes: Routes = [
+  {
+    path: 'bar/basic', component: Bar_BasicComponent,
+  },
+  {
+    path: '', redirectTo: 'bar/basic', pathMatch: 'full'
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
+## URL
+
+如果需要获得url需要使用下面的方法
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  templateUrl: './TrafficMain.component.html',
+})
+export class TrafficMainComponent implements OnInit {
+  constructor(private route: ActivatedRoute) { }
+  _path = "";
+
+  ngOnInit() {
+    this._path = this.route.snapshot["_routerState"].url;
+  }
+}
+```
+
+但是，如果是app-root，直接被挂载到index.html下面，则无法用上面的方式获得url
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import {PlatformLocation} from '@angular/common';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit  {
+  title = 'VisLab';
+  _path = "";
+  constructor(private location: PlatformLocation,) { 
+  }
+  ngOnInit(): void {
+    this._path =  this.location['location']['pathname'];
+    console.log(this._path);
+  }
+}
+```
+
+## @type/packagename
+
+有时候imports的时候，无法找到package里面的类型，则可以尝试安装一下 @type/packagename 这样的包。例如安装@type/echarts之后，可以使用ECharts类型，并且智能提示了getDataURL方法。
+
+```ts
+  import { ECharts } from 'echarts';
+    public static SaveChartImage(echartsInstance : ECharts, filename: string) {
+    var img = new Image();
+    img.src = echartsInstance.getDataURL({
+      pixelRatio: 2,
+      backgroundColor: '#fff'
+    });
+```
+
+## Class is using Angular features but is not decorated. Please add an explicit Angular decorator
+
+在普通的类里面，可以使用一些 @Angular/Core的东西，但是@output()这样的东西不要使用，在Angular10里面会报错！
+
+```ts
+    @Output() ResultEvent: EventEmitter<number> = new EventEmitter<number>();
+    @Output() EnemyAction: EventEmitter<string> = new EventEmitter<string>();
+```
+
+这里的@Output()没有实际作用，但是会导致Angular10编译错误！！！
