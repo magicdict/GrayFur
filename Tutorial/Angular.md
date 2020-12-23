@@ -69,10 +69,19 @@ export class TrafficMainComponent implements OnInit {
 
 ## 模态窗体
 
-在JS里面无法模拟模态窗体组织代码的执行，所以一般使用第三方模块进行处理
+模态窗体在JS里面无法阻止代码的执行，所以一般使用第三方模块进行处理
+使用PrimeNg的 dialog 组件可以轻松做出模态窗体
+首先使用之前导入相关module,注意，这里由于弹出窗体具有动画效果，BrowserAnimationsModule也是必须导入的！
 
-```ts
+```typescript
 import { DialogModule } from 'primeng/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+  imports: [
+    ......
+    DialogModule,
+    BrowserAnimationsModule
+  ],
+
 ```
 
 ```html
@@ -84,6 +93,17 @@ import { DialogModule } from 'primeng/dialog';
   </p-footer>
 </p-dialog>
 ```
+
+由于使用了PrimeNg组件，请一定要加上PrimeNg的CSS文件到Angular.json
+
+```json
+            "styles": [
+              "./node_modules/primeng/resources/primeng.min.css",
+              "./node_modules/primeng/resources/themes/rhea/theme.css",
+
+```
+
+注意事项：窗体里面的HTML请严格关闭TAG，不然可能出现奇怪的现象。
 
 ```typescript
 import { Component, OnInit, Input } from '@angular/core';
@@ -484,7 +504,7 @@ import {PlatformLocation} from '@angular/common';
 export class AppComponent implements OnInit  {
   title = 'VisLab';
   _path = "";
-  constructor(private location: PlatformLocation,) { 
+  constructor(private location: PlatformLocation,) {
   }
   ngOnInit(): void {
     this._path =  this.location['location']['pathname'];
