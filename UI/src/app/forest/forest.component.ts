@@ -33,6 +33,12 @@ export class ForestComponent {
             value.Item.IsRolePosition = true;
             this.forestMgr.CurrentRoleRowIdx = value.RowIdx;
             this.forestMgr.CurrentRoleColIdx = value.ColIdx;
+            //如果是Transfer传送点，则传送
+            if (value.Item.MapType === enmMapType.Transfer) {
+                //保存当前区域
+                this.forestMgr.SaveCurrentStatus();
+                this.forestMgr.LoadCurrentStatus(value.Item.TransferInfo);
+            }
             return;
         }
         if (value.Item.MapType === enmMapType.Tree) return;

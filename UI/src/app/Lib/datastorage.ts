@@ -14,7 +14,7 @@ export class DataStorage {
 
     }
     public IsExist(key: string): boolean {
-        return this.storage.getItem(key) === null;
+        return this.storage.getItem(key) !== null;
     }
 
     public Load<T>(key: string): T {
